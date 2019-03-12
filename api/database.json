@@ -1,0 +1,263 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Kristi McCoromack",
+      "userTypeId": 2,
+      "accountId": 1,
+      "phoneNumber": "(615) 308-6062",
+      "emailAddress": "krist@gmail",
+      "password": "1234",
+      "teacherId": 1,
+      "lessonDayId": 7,
+      "parentId": 0,
+      "lessonTime": "18:15",
+      "instrumentId": 1,
+      "locationId": 1,
+      "lengthId": 2
+    },
+    {
+      "id": 2,
+      "name": "Nathan Sepulveda",
+      "userTypeId": 1,
+      "accountId": 0,
+      "phoneNumber": "(619) 387-6153",
+      "emailAddress": "nathans.composer@gmail.com",
+      "password": "1234",
+      "teacherId": 0,
+      "lessonDayId": 0,
+      "parentId": 0,
+      "lessonTime": 0,
+      "instrumentId": 0,
+      "locationId": 0,
+      "lengthId": 0
+    },
+    {
+      "id": 4,
+      "name": "Jimmy's Mom",
+      "userTypeId": 3,
+      "accountId": 3,
+      "phoneNumber": "615-555-5555",
+      "emailAddress": "gmail.com",
+      "password": 1234,
+      "teacherId": 0,
+      "lessonDayId": 0,
+      "parentId": 0,
+      "lessonTime": 0,
+      "instrumentId": 0,
+      "locationId": 0,
+      "lengthId": 0
+    }
+  ],
+  "userTypes": [
+    {
+      "id": 1,
+      "userType": "Teacher"
+    },
+    {
+      "id": 2,
+      "userType": "Student"
+    },
+    {
+      "id": 3,
+      "userType": "Parent"
+    }
+  ],
+  "instruments": [
+    {
+      "id": 1,
+      "name": "Piano"
+    },
+    {
+      "id": 2,
+      "name": "Guitar"
+    },
+    {
+      "id": 3,
+      "name": "Ukulele"
+    },
+    {
+      "id": 4,
+      "name": "Bass"
+    },
+    {
+      "id": 5,
+      "name": "Music Tech"
+    }
+  ],
+  "locations": [
+    {
+      "id": 1,
+      "location": "Home Studio"
+    },
+    {
+      "id": 2,
+      "location": "Student Home"
+    },
+    {
+      "id": 3,
+      "location": "Video Lesson"
+    }
+  ],
+  "lengths": [
+    {
+      "id": 1,
+      "length": 30
+    },
+    {
+      "id": 2,
+      "length": 45
+    },
+    {
+      "id": 3,
+      "length": 60
+    },
+    {
+      "id": 4,
+      "length": "greater than 60"
+    }
+  ],
+  "payments": [
+    {
+      "studentId": 1,
+      "id": 1,
+      "date": "1/29/19",
+      "amount": 45,
+      "paymentMethodId": 1
+    }
+  ],
+  "lessons": [
+    {
+      "studentId": 1,
+      "date": "1/29/19",
+      "note": "keep up the good work!",
+      "id": 1
+    },
+    {
+      "studentId": 2,
+      "date": "1/29/19",
+      "note": "keep up the great work!",
+      "id": 2
+    },
+    {
+      "studentId": "4",
+      "date": "2/7",
+      "note": "Abri is doing great!",
+      "id": 3
+    },
+    {
+      "studentId": "3",
+      "date": "2019-02-10",
+      "note": "Make up lesson",
+      "id": 5
+    },
+    {
+      "studentId": "5",
+      "date": "",
+      "note": "zxZXCz",
+      "id": 6
+    },
+    {
+      "studentId": "7",
+      "date": "2019-02-10",
+      "note": "new notes",
+      "id": 7
+    },
+    {
+      "studentId": "5",
+      "date": "2019-02-05",
+      "note": "Isaiah Did well today",
+      "id": 8
+    },
+    {
+      "studentId": "1",
+      "date": "2019-02-12",
+      "note": "this is a reall log this is a reall log this is a reall log this is a reall log this is a reall log this is a reall log this is a reall log this is a reall log this is a reall log this is a reall log this is a reall log this is a reall logthis is a reall log this is a reall log this is a reall log this is a reall log this is a reall log this is a reall log this is a reall log this is a reall log this is a reall log this is a reall log this is a reall log this is a reall log this is a reall log this is a reall log this is a reall log this is a reall log this i this is a reall log this i this is a reall log this i this is a reall log this i this is a reall log this i this is a reall log this i this is a reall log this i this is a reall log this i this is a reall log this i",
+      "id": 9
+    },
+    {
+      "studentId": "5",
+      "date": "2019-02-12",
+      "note": "sdcsdcsd",
+      "id": 10
+    },
+    {
+      "studentId": "1",
+      "date": "2019-02-05",
+      "note": "sdc",
+      "id": 12
+    },
+    {
+      "studentId": "11",
+      "date": "2019-02-12",
+      "note": "Worked on \"Shallow\" from a Star is Born. Worked on into and first 4 bars of the song.",
+      "id": 13
+    },
+    {
+      "studentId": "2",
+      "date": "2019-02-12",
+      "note": "1. Continue with exercises. Begin scales hands separate. Practice Jingle Bells. \n7 rings, chords are Am, F, Dm, E.",
+      "id": 14
+    },
+    {
+      "studentId": "1",
+      "date": "2019-02-13",
+      "note": "check this out! https://knowledge.affectiva.com/docs/getting-started-with-the-emotion-sdk-for-javascript",
+      "id": 15
+    },
+    {
+      "studentId": "1",
+      "date": "2019-02-13",
+      "note": "https://youtu.be/Vzs4_cOnkP4",
+      "id": 16
+    }
+  ],
+  "paymentMethods": [
+    {
+      "id": 1,
+      "method": "cash"
+    },
+    {
+      "id": 2,
+      "method": "check"
+    },
+    {
+      "id": 3,
+      "method": "electronic payment"
+    }
+  ],
+  "lessonDays": [
+    {
+      "id": 1,
+      "day": "Sunday"
+    },
+    {
+      "id": 2,
+      "day": "Monday"
+    },
+    {
+      "id": 3,
+      "day": "Tuesday"
+    },
+    {
+      "id": 4,
+      "day": "Wednesday"
+    },
+    {
+      "id": 5,
+      "day": "Thursday"
+    },
+    {
+      "id": 6,
+      "day": "Friday"
+    },
+    {
+      "id": 7,
+      "day": "Saturday"
+    },
+    {
+      "id": 8,
+      "day": "Sporadic"
+    }
+  ]
+}
