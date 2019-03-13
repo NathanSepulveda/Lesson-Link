@@ -27,9 +27,12 @@ class NotesDisplay extends Component {
     }
 
     deleteNote = (id) => {
+        let answer = window.confirm("Are you sure you want to delete this note?")
+        if (answer) {
         return StudentAndParentManager.deleteNote(id)
             .then(() => StudentAndParentManager.getLessonsOfStudent(studentId))
             .then(lessons => this.setState({ lessons: lessons }))
+        }
     }
 
     render() {

@@ -52,14 +52,25 @@ class StudentDetail extends Component {
                     onClick={() => {
                         // let id = Number(studentId)
                         console.log(typeof thisStudent.id)
-                        this.props.deleteStudent(thisStudent.id).then(() => this.props.history.push(`/TeacherHome`) )
+                        let answer = window.confirm("Are you sure you want to delete this student?")
+                        if (answer) {
+
+                            this.props.deleteStudent(thisStudent.id).then(() => this.props.history.push(`/TeacherHome`))
+                        }
                     }
                     }
                     className="btn btn-success">
                     Delete This Student
                     </button>
                 <button type="button"
-                    onClick={() => this.props.history.push(`/students/${thisStudent.id}/edit`)}
+                    onClick={() => {
+                        
+                        
+                        this.props.history.push(`/students/${thisStudent.id}/edit`)
+                        
+                    }
+
+                    }
                     className="btn btn-success">
                     Edit This Student's Info
                     </button>

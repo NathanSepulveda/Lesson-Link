@@ -61,7 +61,7 @@ class NotesModal extends React.Component {
                         </form>
                     </ModalBody>
                     <ModalFooter>
-                        <Button color="primary" onClick={this.NewLesson}>Add Friend!</Button>{' '}
+                        <Button color="primary" onClick={this.NewLesson}>Add this note!</Button>{' '}
                         {/* <Button color="primary" onClick={console.log(newFriendObject)}>Add Friend!</Button>{' '} */}
                         <Button color="secondary" onClick={this.toggle}>Cancel</Button>
                     </ModalFooter>
