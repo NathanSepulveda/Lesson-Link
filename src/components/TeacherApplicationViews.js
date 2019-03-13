@@ -5,6 +5,7 @@ import TeacherHome from "./TeacherHome/TeacherHome";
 import StudentDetail from "../components/TeacherHome/Student/StudentDetail"
 import NewStudentForm from "../components/TeacherHome/Student/NewStudentForm"
 import StudentEditForm from "../components/TeacherHome/Student/StudentEditForm"
+import NotesDisplay from "../components/notes/NotesDisplay"
 class TeacherApplicationViews extends Component {
   state = {
     students: [],
@@ -50,8 +51,8 @@ class TeacherApplicationViews extends Component {
 
   editStudent = (studObj) => {
     return StudentAndParentManager.editUser(studObj)
-    .then(()=> StudentAndParentManager.getAllStudents())
-    .then(students => this.setState({ students: students }))
+      .then(() => StudentAndParentManager.getAllStudents())
+      .then(students => this.setState({ students: students }))
   }
 
 
@@ -71,17 +72,24 @@ class TeacherApplicationViews extends Component {
           students={this.state.students}
           deleteStudent={this.deleteStudent} />
       }} />
+      <Route exact path="/Students/:studentId(\d+)/notes" render={(props) => {
+        return <NotesDisplay {...props}
+          students={this.state.students}
+          lessons={this.state.lessons}
+          
+          />
+      }} />
       <Route
         exact path="/students/:studentId(\d+)/edit" render={props => {
           return <StudentEditForm {...props}
-          instruments={this.state.instruments}
-          locations={this.state.locations}
-          editStudent={this.editStudent}
-          lengths={this.state.lengths}
-          lessonDays={this.state.lessonDays}
-          addStudent={this.addStudent}
-          parents={this.state.parents}
-            />
+            instruments={this.state.instruments}
+            locations={this.state.locations}
+            editStudent={this.editStudent}
+            lengths={this.state.lengths}
+            lessonDays={this.state.lessonDays}
+            addStudent={this.addStudent}
+            parents={this.state.parents}
+          />
         }}
       />
       <Route path="/students/new" render={(props) => {

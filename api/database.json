@@ -1,20 +1,20 @@
 {
   "users": [
     {
-      "id": 5,
       "name": "Kristi McCoromack",
-      "userTypeId": 2,
       "accountId": 7,
       "phoneNumber": "(615) 308-6062",
+      "id": 5,
       "emailAddress": "krist@gmail",
       "password": "1234",
-      "teacherId": 1,
+      "teacherId": 2,
       "lessonDayId": 7,
       "parentId": 0,
       "lessonTime": "10:15",
-      "instrumentId": 1,
+      "instrumentId": "2",
       "locationId": 1,
-      "lengthId": 2
+      "lengthId": 2,
+      "userTypeId": 2
     },
     {
       "id": 2,
@@ -160,88 +160,16 @@
   ],
   "lessons": [
     {
-      "studentId": 1,
+      "studentId": 5,
       "date": "1/29/19",
       "note": "keep up the good work!",
       "id": 1
     },
     {
-      "studentId": 2,
-      "date": "1/29/19",
-      "note": "keep up the great work!",
+      "studentId": 6,
+      "date": "3/13/19",
+      "note": "keep up the good stuff!",
       "id": 2
-    },
-    {
-      "studentId": "4",
-      "date": "2/7",
-      "note": "Abri is doing great!",
-      "id": 3
-    },
-    {
-      "studentId": "3",
-      "date": "2019-02-10",
-      "note": "Make up lesson",
-      "id": 5
-    },
-    {
-      "studentId": "5",
-      "date": "",
-      "note": "zxZXCz",
-      "id": 6
-    },
-    {
-      "studentId": "7",
-      "date": "2019-02-10",
-      "note": "new notes",
-      "id": 7
-    },
-    {
-      "studentId": "5",
-      "date": "2019-02-05",
-      "note": "Isaiah Did well today",
-      "id": 8
-    },
-    {
-      "studentId": "1",
-      "date": "2019-02-12",
-      "note": "this is a reall log this is a reall log this is a reall log this is a reall log this is a reall log this is a reall log this is a reall log this is a reall log this is a reall log this is a reall log this is a reall log this is a reall logthis is a reall log this is a reall log this is a reall log this is a reall log this is a reall log this is a reall log this is a reall log this is a reall log this is a reall log this is a reall log this is a reall log this is a reall log this is a reall log this is a reall log this is a reall log this is a reall log this i this is a reall log this i this is a reall log this i this is a reall log this i this is a reall log this i this is a reall log this i this is a reall log this i this is a reall log this i this is a reall log this i",
-      "id": 9
-    },
-    {
-      "studentId": "5",
-      "date": "2019-02-12",
-      "note": "sdcsdcsd",
-      "id": 10
-    },
-    {
-      "studentId": "1",
-      "date": "2019-02-05",
-      "note": "sdc",
-      "id": 12
-    },
-    {
-      "studentId": "11",
-      "date": "2019-02-12",
-      "note": "Worked on \"Shallow\" from a Star is Born. Worked on into and first 4 bars of the song.",
-      "id": 13
-    },
-    {
-      "studentId": "2",
-      "date": "2019-02-12",
-      "note": "1. Continue with exercises. Begin scales hands separate. Practice Jingle Bells. \n7 rings, chords are Am, F, Dm, E.",
-      "id": 14
-    },
-    {
-      "studentId": "1",
-      "date": "2019-02-13",
-      "note": "check this out! https://knowledge.affectiva.com/docs/getting-started-with-the-emotion-sdk-for-javascript",
-      "id": 15
-    },
-    {
-      "studentId": "1",
-      "date": "2019-02-13",
-      "note": "https://youtu.be/Vzs4_cOnkP4",
-      "id": 16
     }
   ],
   "paymentMethods": [

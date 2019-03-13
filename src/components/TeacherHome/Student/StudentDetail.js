@@ -37,7 +37,7 @@ class StudentDetail extends Component {
                 </div>
                 <div id="buttonsDisplay">
                     <button type="button"
-                        onClick={() => this.props.history.push("/students/de")}
+                        onClick={() => this.props.history.push(`/Students/${thisStudent.id}/notes`)}
                         className="btn btn-success">
                         View Student Notes
                     </button>
