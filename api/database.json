@@ -1,8 +1,24 @@
 {
   "users": [
     {
-      "id": 1,
+      "id": 5,
       "name": "Kristi McCoromack",
+      "userTypeId": 2,
+      "accountId": 7,
+      "phoneNumber": "(615) 308-6062",
+      "emailAddress": "krist@gmail",
+      "password": "1234",
+      "teacherId": 1,
+      "lessonDayId": 7,
+      "parentId": 0,
+      "lessonTime": "10:15",
+      "instrumentId": 1,
+      "locationId": 1,
+      "lengthId": 2
+    },
+    {
+      "id": 1,
+      "name": "Boop McCoromack",
       "userTypeId": 2,
       "accountId": 1,
       "phoneNumber": "(615) 308-6062",
@@ -11,7 +27,7 @@
       "teacherId": 1,
       "lessonDayId": 7,
       "parentId": 0,
-      "lessonTime": "18:15",
+      "lessonTime": "10:15",
       "instrumentId": 1,
       "locationId": 1,
       "lengthId": 2
@@ -47,6 +63,22 @@
       "instrumentId": 0,
       "locationId": 0,
       "lengthId": 0
+    },
+    {
+      "name": "Jake Wehrly",
+      "accountId": "G8Ddh",
+      "phoneNumber": "12345678",
+      "emailAddress": "jake@gmail.com",
+      "password": "5pHyv",
+      "teacherId": 2,
+      "lessonDayId": "4",
+      "parentId": 0,
+      "lessonTime": "7:00 PM",
+      "instrumentId": "1",
+      "locationId": "1",
+      "lengthId": "2",
+      "userTypeId": 2,
+      "id": 6
     }
   ],
   "userTypes": [

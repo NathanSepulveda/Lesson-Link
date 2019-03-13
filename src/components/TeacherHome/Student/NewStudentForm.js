@@ -15,7 +15,7 @@ let makeid = () => {
 export default class EventForm extends Component {
     // Set initial state
     state = {
-        "userTypeId": 1,
+        "userTypeId": 2,
         "teacherId": Number(sessionStorage.getItem("credentials")),
         "password": 0 ,
         "accountId": 0 ,

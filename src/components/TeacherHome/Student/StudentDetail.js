@@ -1,4 +1,5 @@
 import React, { Component } from "react"
+import "./StudentForm.css"
 
 
 class StudentDetail extends Component {
@@ -6,18 +7,47 @@ class StudentDetail extends Component {
     //     student : []
     // }
     render() {
-        
 
-        let studentId = 1
-        let thisStudent = this.props.students.find(student => student.id = studentId) || {}
+
+        let studentId = sessionStorage.getItem("studentId")
+        console.log(typeof studentId)
+        console.log(this.props.students)
+        let thisStudent = this.props.students.find(student => parseInt(student.id) === parseInt(studentId)) || {}
         let instrument = thisStudent.instrument || {}
-        console.log(instrument)
-        
-        
+        let length = thisStudent.length || {}
+        let location = thisStudent.location || {}
+        let day = thisStudent.lessonDay || {}
+
+
+        console.log(thisStudent)
+
+
         return (
             <React.Fragment>
-                <h1>{thisStudent.name}</h1>
-                <h2>{instrument.name}</h2>
+                <div id="studentInfo">
+                    <h1>{thisStudent.name}</h1>
+                    <h2>{instrument.name}</h2>
+                    <h2>{thisStudent.emailAddress} </h2>
+                    <h2>{thisStudent.phoneNumber} </h2>
+                    <h2>{length.length} Minute Lessons</h2>
+                    <h2>{thisStudent.lessonTime} </h2>
+                    <h2>{location.location} </h2>
+                    <h2>{day.day}'s </h2>
+                </div>
+                <div id="buttonsDisplay">
+                    <button type="button"
+                        onClick={() => this.props.history.push("/students/de")}
+                        className="btn btn-success">
+                        View Student Notes
+                    </button>
+                    <div id="divider"></div>
+                    <button type="button"
+                        onClick={() => this.props.history.push("/students/new")}
+                        className="btn btn-success">
+                        View Student Payments
+                    </button>
+                </div>
+                
             </React.Fragment>
         )
     }
