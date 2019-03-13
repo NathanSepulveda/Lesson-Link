@@ -42,6 +42,7 @@ class TeacherApplicationViews extends Component {
       .then(students => this.setState({ students: students }))
   }
 
+
   deleteStudent = (id) => {
     return StudentAndParentManager.delete(id)
       .then(() => StudentAndParentManager.getAllStudents())

@@ -20,6 +20,17 @@ class NotesDisplay extends Component {
             this.setState(newState)
         })
     }
+    addNote = (lessonObj) => {
+        return StudentAndParentManager.addNote(lessonObj)
+            .then(() => StudentAndParentManager.getLessonsOfStudent(studentId))
+            .then(lessons => this.setState({ lessons: lessons }))
+    }
+
+    deleteNote = (id) => {
+        return StudentAndParentManager.deleteNote(id)
+            .then(() => StudentAndParentManager.getLessonsOfStudent(studentId))
+            .then(lessons => this.setState({ lessons: lessons }))
+    }
 
     render() {
 
@@ -32,13 +43,22 @@ class NotesDisplay extends Component {
 
                 <h1>{thisStudent.name}'s Notes</h1>
                 {this.state.lessons.map(note =>
-                    <div>
+                    <div id={note.id}>
                         <div>{note.date}</div>
                         <div>{note.note}</div>
+                        <button className="button"
+                            type="button"
+                            onClick={() => this.deleteNote(note.id)}
+
+                        >Delete this note?</button>
                     </div>
 
                 )}
-                <NotesModal></NotesModal>
+                <NotesModal
+                    {...this.props}
+                    addNote={this.addNote}
+                />
+
             </React.Fragment>
         )
     }

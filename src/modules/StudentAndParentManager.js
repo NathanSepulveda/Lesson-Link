@@ -43,11 +43,25 @@ export default {
             method: "DELETE"
         })
     },
+    deleteNote(id) {
+        return fetch(`${Settings.remoteURL}/lessons/${id}`, {
+            method: "DELETE"
+        })
+    },
     getAll() {
         return fetch(`${Settings.remoteURL}/users`).then(e => e.json())
     },
     addUser(obj) {
         return fetch(`${Settings.remoteURL}/users`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(obj)
+        }).then(data => data.json())
+    },
+    addNote(obj) {
+        return fetch(`${Settings.remoteURL}/lessons`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
