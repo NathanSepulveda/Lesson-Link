@@ -43,7 +43,7 @@ class StudentDetail extends Component {
                     </button>
                     <div id="divider"></div>
                     <button type="button"
-                        onClick={() => this.props.history.push("/students/new")}
+                        onClick={() => this.props.history.push(`/Students/${thisStudent.id}/payments`)}
                         className="btn btn-success">
                         View Student Payments
                     </button>

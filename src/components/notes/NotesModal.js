@@ -17,17 +17,10 @@ class NotesModal extends React.Component {
         }));
     }
 
-    //   newFriendObject = {
-    //     userId: Number(sessionStorage.getItem("credentials")),
-    //     friend: document.querySelector("#friend").value
-    //   }
-
-
     handleFieldChange = evt => {
         // const stateToChange = {};
         newLessonNote["note"] = evt.target.value;
-        // this.setState(stateToChange);
-        // console.log(this.state)
+
     };
     NewLesson = evt => {
         

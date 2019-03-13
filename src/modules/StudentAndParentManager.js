@@ -23,6 +23,10 @@ export default {
     getPayments() {
         return fetch(`${Settings.remoteURL}/payments`).then(e => e.json())
     },
+    getPaymentsOfStudent(stId) {
+        return fetch(`${Settings.remoteURL}/payments?_expand=paymentMethod&_studentId=${stId}`).then(e => e.json())
+    },
+    
     getInstruments() {
         return fetch(`${Settings.remoteURL}/instruments`).then(e => e.json())
     },
@@ -38,8 +42,8 @@ export default {
     getLessonDays() {
         return fetch(`${Settings.remoteURL}/lessonDays`).then(e => e.json())
     },
-    delete(id) {
-        return fetch(`${Settings.remoteURL}/users/${id}`, {
+    delete(id, collection) {
+        return fetch(`${Settings.remoteURL}/${collection}/${id}`, {
             method: "DELETE"
         })
     },

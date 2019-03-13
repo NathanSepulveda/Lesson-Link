@@ -6,6 +6,7 @@ import StudentDetail from "../components/TeacherHome/Student/StudentDetail"
 import NewStudentForm from "../components/TeacherHome/Student/NewStudentForm"
 import StudentEditForm from "../components/TeacherHome/Student/StudentEditForm"
 import NotesDisplay from "../components/notes/NotesDisplay"
+import PaymentsDisplay from "../components/payments/PaymentDisplay"
 class TeacherApplicationViews extends Component {
   state = {
     students: [],
@@ -77,8 +78,16 @@ class TeacherApplicationViews extends Component {
         return <NotesDisplay {...props}
           students={this.state.students}
           lessons={this.state.lessons}
-          
-          />
+
+        />
+      }} />
+      <Route exact path="/Students/:studentId(\d+)/payments" render={(props) => {
+        return <PaymentsDisplay {...props}
+          students={this.state.students}
+          payments={this.state.payments}
+          paymentMethods={this.state.paymentMethods}
+
+        />
       }} />
       <Route
         exact path="/students/:studentId(\d+)/edit" render={props => {

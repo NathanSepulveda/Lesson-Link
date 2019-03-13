@@ -26,12 +26,12 @@ class NotesDisplay extends Component {
             .then(lessons => this.setState({ lessons: lessons }))
     }
 
-    deleteNote = (id) => {
+    deletePayment = (id) => {
         let answer = window.confirm("Are you sure you want to delete this note?")
         if (answer) {
-        return StudentAndParentManager.deleteNote(id)
-            .then(() => StudentAndParentManager.getLessonsOfStudent(studentId))
-            .then(lessons => this.setState({ lessons: lessons }))
+            return StudentAndParentManager.deleteNote(id)
+                .then(() => StudentAndParentManager.getLessonsOfStudent(studentId))
+                .then(lessons => this.setState({ lessons: lessons }))
         }
     }
 
@@ -61,6 +61,14 @@ class NotesDisplay extends Component {
                     {...this.props}
                     addNote={this.addNote}
                 />
+                <button className="button"
+                    type="button"
+                    onClick={()=> {
+                        this.props.history.push(`/students/${thisStudent.id}`)
+                    }}
+                    
+
+                >Back to {thisStudent.name}'s Info</button>
 
             </React.Fragment>
         )
