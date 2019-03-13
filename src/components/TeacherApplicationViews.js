@@ -4,6 +4,7 @@ import StudentAndParentManager from "../modules/StudentAndParentManager"
 import TeacherHome from "./TeacherHome/TeacherHome";
 import StudentDetail from "../components/TeacherHome/Student/StudentDetail"
 import NewStudentForm from "../components/TeacherHome/Student/NewStudentForm"
+import StudentEditForm from "../components/TeacherHome/Student/StudentEditForm"
 class TeacherApplicationViews extends Component {
   state = {
     students: [],
@@ -36,17 +37,22 @@ class TeacherApplicationViews extends Component {
   }
   addStudent = (studentObj) => {
     return StudentAndParentManager.addUser(studentObj)
-    .then(() => StudentAndParentManager.getAllStudents())
-    .then(students => this.setState({students: students}))
+      .then(() => StudentAndParentManager.getAllStudents())
+      .then(students => this.setState({ students: students }))
   }
 
   deleteStudent = (id) => {
     return StudentAndParentManager.delete(id)
-    .then(() => StudentAndParentManager.getAllStudents())
-    .then(students => this.setState({students: students}))
-    
+      .then(() => StudentAndParentManager.getAllStudents())
+      .then(students => this.setState({ students: students }))
+
   }
 
+  editStudent = (studObj) => {
+    return StudentAndParentManager.editUser(studObj)
+    .then(()=> StudentAndParentManager.getAllStudents())
+    .then(students => this.setState({ students: students }))
+  }
 
 
   render() {
@@ -65,15 +71,28 @@ class TeacherApplicationViews extends Component {
           students={this.state.students}
           deleteStudent={this.deleteStudent} />
       }} />
+      <Route
+        exact path="/students/:studentId(\d+)/edit" render={props => {
+          return <StudentEditForm {...props}
+          instruments={this.state.instruments}
+          locations={this.state.locations}
+          editStudent={this.editStudent}
+          lengths={this.state.lengths}
+          lessonDays={this.state.lessonDays}
+          addStudent={this.addStudent}
+          parents={this.state.parents}
+            />
+        }}
+      />
       <Route path="/students/new" render={(props) => {
         return <NewStudentForm {...props}
-        instruments={this.state.instruments}
-        locations={this.state.locations}
-        lengths={this.state.lengths}
-        lessonDays={this.state.lessonDays}
-        addStudent={this.addStudent}
-        parents={this.state.parents}
-          // addArticle={this.addArticle}
+          instruments={this.state.instruments}
+          locations={this.state.locations}
+          lengths={this.state.lengths}
+          lessonDays={this.state.lessonDays}
+          addStudent={this.addStudent}
+          parents={this.state.parents}
+        // addArticle={this.addArticle}
         />
       }} />
     </React.Fragment>

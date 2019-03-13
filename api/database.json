@@ -51,18 +51,18 @@
     {
       "name": "Jake Wehrly",
       "accountId": "G8Ddh",
-      "phoneNumber": "12345678",
+      "phoneNumber": "199",
+      "id": 6,
       "emailAddress": "jake@gmail.com",
       "password": "5pHyv",
       "teacherId": 2,
       "lessonDayId": "4",
       "parentId": 0,
       "lessonTime": "7:00 PM",
-      "instrumentId": "1",
-      "locationId": "1",
-      "lengthId": "2",
-      "userTypeId": 2,
-      "id": 6
+      "instrumentId": 1,
+      "locationId": 1,
+      "lengthId": 2,
+      "userTypeId": 2
     }
   ],
   "userTypes": [

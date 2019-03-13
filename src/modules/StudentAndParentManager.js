@@ -5,6 +5,9 @@ export default {
     getAllStudents() {
         return fetch(`${Settings.remoteURL}/users/?userTypeId=2&_expand=length&_expand=instrument&_expand=location&_expand=length&_expand=lessonDay`).then(e => e.json())
     },
+    getStudent(id) {
+        return fetch(`${Settings.remoteURL}/users/${id}/?userTypeId=2&_expand=length&_expand=instrument&_expand=location&_expand=length&_expand=lessonDay`).then(e => e.json())
+    },
     getAllParents() {
         return fetch(`${Settings.remoteURL}/users/?userTypeId=3`).then(e => e.json())
     },
@@ -49,11 +52,17 @@ export default {
             body: JSON.stringify(obj)
         }).then(data => data.json())
     },
-    searchUP(username, password) {
-        return fetch(
-            `${Settings.remoteURL}/users?username=${username}&password=${password}`
-        ).then(e => e.json())
+    editUser(obj) {
+        return fetch(`${Settings.remoteURL}/users/${obj.id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(obj)
+        }).then(data => data.json());
+
     },
+
     searchUsername(username) {
         return fetch(`${Settings.remoteURL}/users?username=${username}`).then(e =>
             e.json()

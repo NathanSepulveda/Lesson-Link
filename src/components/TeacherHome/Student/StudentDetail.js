@@ -59,7 +59,7 @@ class StudentDetail extends Component {
                     Delete This Student
                     </button>
                 <button type="button"
-                    onClick={() => this.props.history.push("/students/new")}
+                    onClick={() => this.props.history.push(`/students/${thisStudent.id}/edit`)}
                     className="btn btn-success">
                     Edit This Student's Info
                     </button>
