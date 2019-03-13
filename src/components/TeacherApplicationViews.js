@@ -40,6 +40,13 @@ class TeacherApplicationViews extends Component {
     .then(students => this.setState({students: students}))
   }
 
+  deleteStudent = (id) => {
+    return StudentAndParentManager.delete(id)
+    .then(() => StudentAndParentManager.getAllStudents())
+    .then(students => this.setState({students: students}))
+    
+  }
+
 
 
   render() {
@@ -55,7 +62,8 @@ class TeacherApplicationViews extends Component {
       }} />
       <Route exact path="/Students/:studentId(\d+)" render={(props) => {
         return <StudentDetail {...props}
-          students={this.state.students} />
+          students={this.state.students}
+          deleteStudent={this.deleteStudent} />
       }} />
       <Route path="/students/new" render={(props) => {
         return <NewStudentForm {...props}

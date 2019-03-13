@@ -35,7 +35,7 @@ export default {
     delete(id) {
         return fetch(`${Settings.remoteURL}/users/${id}`, {
             method: "DELETE"
-        }).then(e => e.json())
+        })
     },
     getAll() {
         return fetch(`${Settings.remoteURL}/users`).then(e => e.json())

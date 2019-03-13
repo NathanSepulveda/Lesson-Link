@@ -19,7 +19,8 @@ class StudentDetail extends Component {
         let day = thisStudent.lessonDay || {}
 
 
-        console.log(thisStudent)
+
+        console.log(thisStudent.id)
 
 
         return (
@@ -47,7 +48,22 @@ class StudentDetail extends Component {
                         View Student Payments
                     </button>
                 </div>
-                
+                <button type="button"
+                    onClick={() => {
+                        // let id = Number(studentId)
+                        console.log(typeof thisStudent.id)
+                        this.props.deleteStudent(thisStudent.id).then(() => this.props.history.push(`/TeacherHome`) )
+                    }
+                    }
+                    className="btn btn-success">
+                    Delete This Student
+                    </button>
+                <button type="button"
+                    onClick={() => this.props.history.push("/students/new")}
+                    className="btn btn-success">
+                    Edit This Student's Info
+                    </button>
+
             </React.Fragment>
         )
     }

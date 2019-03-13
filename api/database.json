@@ -17,22 +17,6 @@
       "lengthId": 2
     },
     {
-      "id": 1,
-      "name": "Boop McCoromack",
-      "userTypeId": 2,
-      "accountId": 1,
-      "phoneNumber": "(615) 308-6062",
-      "emailAddress": "krist@gmail",
-      "password": "1234",
-      "teacherId": 1,
-      "lessonDayId": 7,
-      "parentId": 0,
-      "lessonTime": "10:15",
-      "instrumentId": 1,
-      "locationId": 1,
-      "lengthId": 2
-    },
-    {
       "id": 2,
       "name": "Nathan Sepulveda",
       "userTypeId": 1,
@@ -83,6 +67,10 @@
   ],
   "userTypes": [
     {
+      "id": 0,
+      "userType": "N/A"
+    },
+    {
       "id": 1,
       "userType": "Teacher"
     },
@@ -96,6 +84,10 @@
     }
   ],
   "instruments": [
+    {
+      "id": 0,
+      "name": "N/A"
+    },
     {
       "id": 1,
       "name": "Piano"
@@ -119,6 +111,10 @@
   ],
   "locations": [
     {
+      "id": 0,
+      "location": "N/A"
+    },
+    {
       "id": 1,
       "location": "Home Studio"
     },
@@ -132,6 +128,10 @@
     }
   ],
   "lengths": [
+    {
+      "id": 0,
+      "length": "N/A"
+    },
     {
       "id": 1,
       "length": 30
@@ -259,6 +259,10 @@
     }
   ],
   "lessonDays": [
+    {
+      "id": 0,
+      "day": "N/A"
+    },
     {
       "id": 1,
       "day": "Sunday"

@@ -32,7 +32,7 @@ class TeacherHome extends Component {
         let name = this.props.teacherName.name || ""
         let firstName = name.split(" ")[0] || ""
        
-        console.log(this.props.teacherName)
+        // console.log(this.props.teacherName)
 
 
 
