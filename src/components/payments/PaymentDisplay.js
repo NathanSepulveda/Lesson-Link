@@ -12,21 +12,23 @@ class PaymentsDisplay extends Component {
 
 
     componentDidMount() {
+        console.log(typeof studentId)
         let newState = {}
         StudentAndParentManager.getPaymentsOfStudent(studentId).then(payments => {
             newState.payments = payments
+            console.log(payments)
         }).then(() => {
             this.setState(newState)
         })
     }
-    addNote = (lessonObj) => {
-        return StudentAndParentManager.addNote(lessonObj)
-            .then(() => StudentAndParentManager.getLessonsOfStudent(studentId))
-            .then(lessons => this.setState({ lessons: lessons }))
+    addPayment = (paymentObj) => {
+        return StudentAndParentManager.addPayment(paymentObj)
+            .then(() => StudentAndParentManager.getPaymentsOfStudent(studentId))
+            .then(payments => this.setState({ payments: payments }))
     }
 
     deletePayment = (id) => {
-        let answer = window.confirm("Are you sure you want to delete this payment?")
+        let answer = window.confirm("Are     you sure you want to delete this payment?")
         if (answer) {
             return StudentAndParentManager.delete(id, "payments")
                 .then(() => StudentAndParentManager.getPaymentsOfStudent(studentId))
@@ -60,6 +62,7 @@ class PaymentsDisplay extends Component {
                 )}
                 <PaymentsModal
                     {...this.props}
+                    addPayment={this.addPayment}
                     
                 />
                 <button className="button"

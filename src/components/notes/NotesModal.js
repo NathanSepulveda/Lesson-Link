@@ -3,6 +3,8 @@ import React from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 let newLessonNote = {}
+let today = new Date()
+let date = (today.getMonth() + 1) + "/" + today.getDate() + "/" + today.getFullYear()
 class NotesModal extends React.Component {
 
 
@@ -23,14 +25,14 @@ class NotesModal extends React.Component {
 
     };
     NewLesson = evt => {
-        
+
         let today = new Date()
-        let date = (today.getMonth()+1)+"/"+today.getDate()+"/"+today.getFullYear()
+        let date = (today.getMonth() + 1) + "/" + today.getDate() + "/" + today.getFullYear()
 
         console.log(date)
         newLessonNote = {
             studentId: Number(sessionStorage.getItem("studentId")),
-            date: date,
+            date: document.querySelector("#date").value,
             note: document.querySelector("#notes").value
         };
         console.log(newLessonNote)
@@ -48,8 +50,10 @@ class NotesModal extends React.Component {
                     <ModalBody>
                         <form>
                             <label htmlFor="note"></label>
+                            <label >Date</label>
+                            <input type="text" placeholder={date} id="date" defaultValue={date}></input>
                             <textarea placeholder="write about the lesson!" id="notes"
-                            onChange={this.handleFieldChange}
+                                onChange={this.handleFieldChange}
                             ></textarea>
                         </form>
                     </ModalBody>

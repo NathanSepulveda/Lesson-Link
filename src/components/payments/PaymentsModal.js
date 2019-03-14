@@ -22,28 +22,29 @@ class PaymentsModal extends React.Component {
         newPayment[evt.target.id] = evt.target.value;
 
     };
-    // NewPayment = evt => {
+    NewPayment = evt => {
 
-    //     let today = new Date()
-    //     let date = (today.getMonth()+1)+"/"+today.getDate()+"/"+today.getFullYear()
+        let today = new Date()
+        let date = (today.getMonth()+1)+"/"+today.getDate()+"/"+today.getFullYear()
 
-    //     console.log(date)
-    //     newPayment = {
-    //         studentId: Number(sessionStorage.getItem("studentId")),
-    //         date: date,
-    //         amount: document.querySelector("#notes").value
-    //     };
-    //     console.log(newLessonNote)
-    //     this.props.addNote(newLessonNote).then(() => this.toggle())
+        console.log(date)
+        newPayment = {
+            studentId: Number(sessionStorage.getItem("studentId")),
+            date: date,
+            amount: document.querySelector("#notes").value,
+            paymentMethodId: document.querySelector("#paymentMethod").value
+        };
+        console.log(newPayment)
+        this.props.addPayment(newPayment).then(() => this.toggle())
 
-    // };
+    };
 
     render() {
 
         {console.log(newPayment)}
         return (
             <div>
-                <Button color="info" onClick={this.toggle}>Add Lesson Notes</Button>
+                <Button color="info" onClick={this.toggle}>Add Payment</Button>
                 <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
                     <ModalHeader toggle={this.toggle}>Add Lesson Notes</ModalHeader>
                     <ModalBody>
@@ -74,7 +75,7 @@ class PaymentsModal extends React.Component {
                         </form>
                     </ModalBody>
                     <ModalFooter>
-                        <Button color="primary" onClick={this.NewLesson}>Add this note!</Button>{' '}
+                        <Button color="primary" onClick={this.NewPayment}>Add this payment</Button>{' '}
                         {/* <Button color="primary" onClick={console.log(newFriendObject)}>Add Friend!</Button>{' '} */}
                         <Button color="secondary" onClick={this.toggle}>Cancel</Button>
                     </ModalFooter>

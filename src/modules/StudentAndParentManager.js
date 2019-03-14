@@ -24,7 +24,7 @@ export default {
         return fetch(`${Settings.remoteURL}/payments`).then(e => e.json())
     },
     getPaymentsOfStudent(stId) {
-        return fetch(`${Settings.remoteURL}/payments?_expand=paymentMethod&_studentId=${stId}`).then(e => e.json())
+        return fetch(`${Settings.remoteURL}/payments?studentId=${stId}&_expand=paymentMethod`).then(e => e.json())
     },
     
     getInstruments() {
@@ -66,6 +66,15 @@ export default {
     },
     addNote(obj) {
         return fetch(`${Settings.remoteURL}/lessons`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(obj)
+        }).then(data => data.json())
+    },
+    addPayment(obj) {
+        return fetch(`${Settings.remoteURL}/payments`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

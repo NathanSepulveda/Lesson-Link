@@ -151,18 +151,25 @@
   ],
   "payments": [
     {
-      "studentId": 1,
+      "studentId": 5,
       "id": 1,
       "date": "1/29/19",
       "amount": 45,
       "paymentMethodId": 1
     },
     {
-      "studentId": 1,
+      "studentId": 6,
       "id": 2,
       "date": "1/31/19",
       "amount": 45,
       "paymentMethodId": 1
+    },
+    {
+      "studentId": 5,
+      "date": "3/13/2019",
+      "amount": "45",
+      "paymentMethodId": "1",
+      "id": 3
     }
   ],
   "lessons": [
@@ -183,6 +190,12 @@
       "date": "3/13/2019",
       "note": "Note for Jake",
       "id": 3
+    },
+    {
+      "studentId": 5,
+      "date": "3/13/2019",
+      "note": "afvadvdfvsdv",
+      "id": 4
     }
   ],
   "paymentMethods": [
