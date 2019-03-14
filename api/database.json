@@ -151,13 +151,6 @@
   ],
   "payments": [
     {
-      "studentId": 5,
-      "id": 1,
-      "date": "1/29/19",
-      "amount": 45,
-      "paymentMethodId": 1
-    },
-    {
       "studentId": 6,
       "id": 2,
       "date": "1/31/19",
@@ -165,11 +158,11 @@
       "paymentMethodId": 1
     },
     {
+      "id": 3,
       "studentId": 5,
-      "date": "3/13/2019",
-      "amount": "45",
-      "paymentMethodId": "1",
-      "id": 3
+      "date": "3/14/2019",
+      "amount": 60,
+      "paymentMethodId": 2
     }
   ],
   "lessons": [

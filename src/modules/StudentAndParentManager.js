@@ -26,6 +26,9 @@ export default {
     getPaymentsOfStudent(stId) {
         return fetch(`${Settings.remoteURL}/payments?studentId=${stId}&_expand=paymentMethod`).then(e => e.json())
     },
+    getOnePayment(id) {
+        return fetch(`${Settings.remoteURL}/payments/${id}`).then(e => e.json())
+    },
     
     getInstruments() {
         return fetch(`${Settings.remoteURL}/instruments`).then(e => e.json())
@@ -84,6 +87,16 @@ export default {
     },
     editUser(obj) {
         return fetch(`${Settings.remoteURL}/users/${obj.id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(obj)
+        }).then(data => data.json());
+
+    },
+    editPayment(obj) {
+        return fetch(`${Settings.remoteURL}/payments/${obj.id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"

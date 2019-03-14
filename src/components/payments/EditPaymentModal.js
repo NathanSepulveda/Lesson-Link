@@ -1,15 +1,29 @@
 
 import React from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import StudentAndParentManager from '../../modules/StudentAndParentManager';
 
 let newPayment = {}
-class PaymentsModal extends React.Component {
+let editedPayment = {
 
+}
+class EditPaymentModal extends React.Component {
 
-    state = {
-        modal: false,
+    editedPayment = {
 
     }
+    state = {
+        modal: false,
+        paymentMethod: 1
+
+    }
+
+    componentDidMount() {
+        StudentAndParentManager.getStudent(Number(this.props.match.params.studentId))
+        
+    }
+
+    
 
     toggle = () => {
         this.setState(prevState => ({
@@ -19,52 +33,60 @@ class PaymentsModal extends React.Component {
 
     handleFieldChange = evt => {
         // const stateToChange = {};
-        newPayment[evt.target.id] = evt.target.value;
+        editedPayment[evt.target.id] = evt.target.value;
 
     };
-    NewPayment = evt => {
+    EditPayment = evt => {
 
         let today = new Date()
         let date = (today.getMonth()+1)+"/"+today.getDate()+"/"+today.getFullYear()
 
         console.log(date)
-        newPayment = {
+        editedPayment = {
+            id: this.props.currentPayment.id,
             studentId: Number(sessionStorage.getItem("studentId")),
             date: date,
-            amount: document.querySelector("#notes").value,
-            paymentMethodId: document.querySelector("#paymentMethod").value
+            amount: Number(document.querySelector("#paymentAmount").value),
+            paymentMethodId: Number(document.querySelector("#paymentMethodId").value)
         };
-        console.log(newPayment)
-        this.props.addPayment(newPayment).then(() => this.toggle())
+        console.log(editedPayment)
+        this.props.editPayment(editedPayment).then(() => this.toggle())
 
     };
 
+
+
     render() {
 
-        {console.log(newPayment)}
         return (
             <div>
-                <Button color="success" onClick={this.toggle}>Add Payment</Button>
+                <Button color="info" 
+                onClick={this.toggle}
+
+                
+                >Edit this payment</Button>
                 <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
-                    <ModalHeader toggle={this.toggle}>Add Lesson Notes</ModalHeader>
+                    <ModalHeader toggle={this.toggle}>Edit Payment</ModalHeader>
                     <ModalBody>
                         <form>
                             <label htmlFor="paymentAmount"></label>
-                            $<input placeholder="60" id="notes"
+                            $<input placeholder="60" id="paymentAmount"
                                 onChange={this.handleFieldChange}
+                                defaultValue={this.props.currentPayment.amount}
                             ></input>
+
                             <select
-                                defaultValue=""
+                                
                                 name="paymentList"
-                                id="paymentList"
+                                id="paymentMethodId"
                                 onChange={this.handleFieldChange
 
                                 }
 
                             >
-                                <option value="">Method</option>
+                                <option value={this.props.currentPayment.paymentMethodId}>{this.props.currentPayment.paymentMethod.method}</option>
                                 {this.props.paymentMethods.map(e => (
-                                    <option key={e.id} id="paymentMethod" value={e.id} >
+                                    <option key={e.id} id="paymentMethodId" value={e.id} >
 
                                         {e.method}
 
@@ -75,7 +97,7 @@ class PaymentsModal extends React.Component {
                         </form>
                     </ModalBody>
                     <ModalFooter>
-                        <Button color="primary" onClick={this.NewPayment}>Add this payment</Button>{' '}
+                        <Button color="primary" onClick={this.EditPayment}>Edit this payment</Button>{' '}
                         {/* <Button color="primary" onClick={console.log(newFriendObject)}>Add Friend!</Button>{' '} */}
                         <Button color="secondary" onClick={this.toggle}>Cancel</Button>
                     </ModalFooter>
@@ -85,4 +107,4 @@ class PaymentsModal extends React.Component {
     }
 }
 
-export default PaymentsModal;
+export default EditPaymentModal;
