@@ -2,6 +2,7 @@ import React, { Component } from "react"
 import { Route } from "react-router-dom"
 import StudentAndParentManager from "../modules/StudentAndParentManager"
 import TeacherHome from "./TeacherHome/TeacherHome";
+import StudentHome from "../components/StudentHome/StudentHome";
 import StudentDetail from "../components/TeacherHome/Student/StudentDetail"
 import NewStudentForm from "../components/TeacherHome/Student/NewStudentForm"
 import StudentEditForm from "../components/TeacherHome/Student/StudentEditForm"
@@ -59,9 +60,34 @@ class TeacherApplicationViews extends Component {
 
 
   render() {
-    // console.log(this.props.activeUser)
-    // console.log(this.state)
+
+    // <Route path="/" render={(props)} => 
+    // if (userType === student) {
+    //   return <Student Home>
+    // } else {
+    //   return TeacherHome
+    // }
     return <React.Fragment>
+      <Route exact path="/" render={(props) => {
+          if (Number(sessionStorage.getItem("userType")) === 1) {
+            console.log("teacher")
+            return  <TeacherHome
+            students={this.state.students}
+            parents={this.state.parents}
+            teacherName={this.props.activeUser}
+            {...props} />
+          } else {
+            console.log("studentt")
+            return <StudentHome
+            students={this.state.students}
+            parents={this.state.parents}
+            teacherName={this.props.activeUser}
+            {...props} />
+          }
+
+        
+
+      }} />
       <Route exact path="/TeacherHome" render={(props) => {
         return <TeacherHome
           students={this.state.students}

@@ -1,7 +1,9 @@
 import React, { Component } from "react"
 import StudentAndParentManager from "../../modules/StudentAndParentManager"
-// import "./StudentForm.css"
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import "./Notes.css"
 import NotesModal from "./NotesModal"
+import EditNotesModal from "./EditNotesModal"
 
 let studentId = sessionStorage.getItem("studentId")
 
@@ -34,6 +36,12 @@ class NotesDisplay extends Component {
                 .then(lessons => this.setState({ lessons: lessons }))
         }
     }
+    editLessonNote = (noteObj) => {
+        return StudentAndParentManager.editLesson(noteObj)
+        .then(() => StudentAndParentManager.getLessonsOfStudent(studentId))
+        .then(lessons => this.setState({ lessons: lessons }))
+      }
+
 
     render() {
 
@@ -46,14 +54,20 @@ class NotesDisplay extends Component {
 
                 <h1>{thisStudent.name}'s Notes</h1>
                 {this.state.lessons.map(note =>
-                    <div id={note.id}>
+                    <div id={note.id} className="notesCard">
                         <div>{note.date}</div>
                         <div>{note.note}</div>
-                        <button className="button"
+                        <Button className="button"
+                            color="danger"
                             type="button"
                             onClick={() => this.deleteNote(note.id)}
 
-                        >Delete this note?</button>
+                        >Delete this note?</Button>
+                        <EditNotesModal
+                        currentNote={note}
+                        editLessonNote={this.editLessonNote}
+                        {...this.props}
+                        />
                     </div>
 
                 )}
@@ -61,14 +75,14 @@ class NotesDisplay extends Component {
                     {...this.props}
                     addNote={this.addNote}
                 />
-                <button className="button"
+                <Button className="button"
                     type="button"
                     onClick={()=> {
                         this.props.history.push(`/students/${thisStudent.id}`)
                     }}
                     
 
-                >Back to {thisStudent.name}'s Info</button>
+                >Back to {thisStudent.name}'s Info</Button>
 
             </React.Fragment>
         )

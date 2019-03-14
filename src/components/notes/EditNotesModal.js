@@ -3,9 +3,10 @@ import React from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 let newLessonNote = {}
+let editedLessonNote = {}
 let today = new Date()
 let date = (today.getMonth() + 1) + "/" + today.getDate() + "/" + today.getFullYear()
-class NotesModal extends React.Component {
+class EditNotesModal extends React.Component {
 
 
     state = {
@@ -21,7 +22,7 @@ class NotesModal extends React.Component {
 
     handleFieldChange = evt => {
         // const stateToChange = {};
-        newLessonNote["note"] = evt.target.value;
+        editedLessonNote["note"] = evt.target.value;
 
     };
     NewLesson = evt => {
@@ -30,13 +31,14 @@ class NotesModal extends React.Component {
         let date = (today.getMonth() + 1) + "/" + today.getDate() + "/" + today.getFullYear()
 
         console.log(date)
-        newLessonNote = {
+        editedLessonNote = {
+            id: this.props.currentNote.id,
             studentId: Number(sessionStorage.getItem("studentId")),
             date: document.querySelector("#date").value,
             note: document.querySelector("#notes").value
         };
         console.log(newLessonNote)
-        this.props.addNote(newLessonNote).then(() => this.toggle())
+        this.props.editLessonNote(editedLessonNote).then(() => this.toggle())
 
     };
 
@@ -44,15 +46,15 @@ class NotesModal extends React.Component {
 
         return (
             <div>
-                <Button color="success" onClick={this.toggle}>Add Lesson Notes</Button>
+                <Button color="info" onClick={this.toggle}>Edit This Note</Button>
                 <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
                     <ModalHeader toggle={this.toggle}>Add Lesson Notes</ModalHeader>
                     <ModalBody>
                         <form>
                             <label htmlFor="note"></label>
                             <label >Date</label>
-                            <input type="text" placeholder={date} id="date" defaultValue={date}></input>
-                            <textarea placeholder="write about the lesson!" id="notes"
+                            <input type="text" placeholder={this.props.currentNote.date} id="date" defaultValue={this.props.currentNote.date}></input>
+                            <textarea placeholder="write about the lesson!" defaultValue={this.props.currentNote.note} id="notes"
                                 onChange={this.handleFieldChange}
                             ></textarea>
                         </form>
@@ -68,4 +70,4 @@ class NotesModal extends React.Component {
     }
 }
 
-export default NotesModal;
+export default EditNotesModal;

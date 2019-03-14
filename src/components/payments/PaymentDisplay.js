@@ -5,7 +5,7 @@ import EditPaymentModal from "./EditPaymentModal"
 import "./Payments.css"
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
-let studentId = sessionStorage.getItem("studentId")
+let studentId = sessionStorage.getItem("studentId") 
 
 class PaymentsDisplay extends Component {
 

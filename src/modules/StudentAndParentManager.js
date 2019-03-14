@@ -105,6 +105,16 @@ export default {
         }).then(data => data.json());
 
     },
+    editLesson(obj) {
+        return fetch(`${Settings.remoteURL}/lessons/${obj.id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(obj)
+        }).then(data => data.json());
+
+    },
 
     searchUsername(username) {
         return fetch(`${Settings.remoteURL}/users?username=${username}`).then(e =>

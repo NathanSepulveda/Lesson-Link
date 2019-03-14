@@ -47,6 +47,7 @@ export default class Login extends Component {
             alert("Wrong name or password!")
           } else {
             sessionStorage.setItem("credentials", parseInt(user[0].id))
+            sessionStorage.setItem("userType", user[0].userTypeId)
             this.props.setAuth()
           }
         }

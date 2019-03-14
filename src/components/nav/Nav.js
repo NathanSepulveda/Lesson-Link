@@ -17,9 +17,12 @@ class Nav extends Component {
             </Link>
           </li>
           <li className="nav-item">
+             
+
             <Link className="nav-link" to="/TeacherHome">
               Home
             </Link>
+            
           </li>
         </ul>
         <a className="nav-link">Lesson Link</a>
