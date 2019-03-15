@@ -1,0 +1,24 @@
+.hidden {
+    display: none
+}
+
+#buttonsDisplay {
+    display: flex;
+    flex-direction: row;
+    
+    
+}
+
+#divider {
+    background-color: black;
+    width: 1px;
+    height: 90px;
+    
+}
+
+.btn {
+
+    margin: 20px
+
+
+}
