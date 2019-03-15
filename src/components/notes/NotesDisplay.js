@@ -28,7 +28,7 @@ class NotesDisplay extends Component {
             .then(lessons => this.setState({ lessons: lessons }))
     }
 
-    deletePayment = (id) => {
+    deleteNote = (id) => {
         let answer = window.confirm("Are you sure you want to delete this note?")
         if (answer) {
             return StudentAndParentManager.deleteNote(id)
@@ -38,9 +38,9 @@ class NotesDisplay extends Component {
     }
     editLessonNote = (noteObj) => {
         return StudentAndParentManager.editLesson(noteObj)
-        .then(() => StudentAndParentManager.getLessonsOfStudent(studentId))
-        .then(lessons => this.setState({ lessons: lessons }))
-      }
+            .then(() => StudentAndParentManager.getLessonsOfStudent(studentId))
+            .then(lessons => this.setState({ lessons: lessons }))
+    }
 
 
     render() {
@@ -57,30 +57,53 @@ class NotesDisplay extends Component {
                     <div id={note.id} className="notesCard">
                         <div>{note.date}</div>
                         <div>{note.note}</div>
-                        <Button className="button"
-                            color="danger"
-                            type="button"
-                            onClick={() => this.deleteNote(note.id)}
 
-                        >Delete this note?</Button>
-                        <EditNotesModal
-                        currentNote={note}
-                        editLessonNote={this.editLessonNote}
-                        {...this.props}
-                        />
+                        {Number(sessionStorage.getItem("userType")) === 1 ?
+
+                            <div>
+                                <Button className="button"
+                                    color="danger"
+                                    type="button"
+                                    onClick={() => this.deleteNote(note.id)}
+
+                                >Delete this note?</Button>
+                                <EditNotesModal
+                                    currentNote={note}
+                                    editLessonNote={this.editLessonNote}
+                                    {...this.props}
+                                />
+                            </div>
+
+                            : ""}
+
                     </div>
 
                 )}
-                <NotesModal
+                {Number(sessionStorage.getItem("userType")) === 1 ?
+
+                    <div>
+                        <NotesModal
+
+                            {...this.props}
+                            addNote={this.addNote}
+
+                        />
+                    </div>
+                    : ""
+
+                }
+                {/* <NotesModal
                     {...this.props}
                     addNote={this.addNote}
-                />
+                /> */}
                 <Button className="button"
                     type="button"
-                    onClick={()=> {
+                    onClick={() => {
+                        Number(sessionStorage.getItem("userType")) ===1 ? 
                         this.props.history.push(`/students/${thisStudent.id}`)
+                        : this.props.history.push(`/`)
                     }}
-                    
+
 
                 >Back to {thisStudent.name}'s Info</Button>
 

@@ -46,7 +46,7 @@ class TeacherApplicationViews extends Component {
 
 
   deleteStudent = (id) => {
-    return StudentAndParentManager.delete(id)
+    return StudentAndParentManager.delete(id, "users")
       .then(() => StudentAndParentManager.getAllStudents())
       .then(students => this.setState({ students: students }))
 
@@ -60,7 +60,7 @@ class TeacherApplicationViews extends Component {
 
 
   render() {
-
+    let id;
     // <Route path="/" render={(props)} => 
     // if (userType === student) {
     //   return <Student Home>
@@ -78,6 +78,8 @@ class TeacherApplicationViews extends Component {
             {...props} />
           } else {
             console.log("studentt")
+            id = sessionStorage.getItem("credentials")
+            sessionStorage.setItem("studentId", id)
             return <StudentHome
             students={this.state.students}
             parents={this.state.parents}

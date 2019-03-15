@@ -13,17 +13,17 @@ class Nav extends Component {
         <ul className="nav nav-pills">
           <li className="nav-item">
             <Link className="nav-link" to="/">
-              Nutshell
+              Home
             </Link>
           </li>
-          <li className="nav-item">
+          {/* <li className="nav-item">
              
 
             <Link className="nav-link" to="/TeacherHome">
               Home
             </Link>
             
-          </li>
+          </li> */}
         </ul>
         <a className="nav-link">Lesson Link</a>
         <button
