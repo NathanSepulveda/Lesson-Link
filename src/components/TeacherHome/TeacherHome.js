@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import "./TeacherHome.css"
 import { Link } from "react-router-dom"
 import {withRouter} from "react-router"
-
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Input } from 'reactstrap';
 
 
 class TeacherHome extends Component {
@@ -26,6 +26,7 @@ class TeacherHome extends Component {
     
     render() {
         sessionStorage.removeItem("studentId")
+        sessionStorage.removeItem("parentId")
 
 
 
@@ -42,7 +43,8 @@ class TeacherHome extends Component {
             <React.Fragment>
                 <h1>Welcome {firstName}!</h1>
                 Students
-                <select
+                <Input
+                    type="select"
                     defaultValue=""
                     name="studentList"
                     id="selectedStudentId"
@@ -50,25 +52,27 @@ class TeacherHome extends Component {
 
                 >
                     <option value="">Look for a student</option>
-                    {this.props.students.map(e => (
+                    {   this.props.students.filter(student => Number(student.parentId) === 0)
+                        .map(e => (
                         <option key={e.id} id="students" value={e.id} >
                             {e.name}
                             
                         </option>
                     ))}
-                </select>
+                </Input>
                 <br></br>
                 
-                <Link to={"/students/" + this.state.selectedStudentId}><button type="button" onClick={() => {
+                <Link to={"/students/" + this.state.selectedStudentId}><Button type="button" onClick={() => {
                     sessionStorage.setItem("studentId", Number(this.state.selectedStudentId))
-                }}>Go to this student</button></Link>
+                }}>Go to this student</Button></Link>
                 
                 <br></br>
                 Parents
-                <select
+                <Input
+                    type="select"
                     defaultValue=""
                     name="parentList"
-                    id="parentList"
+                    id="selectedParentId"
                     onChange={this.handleFieldChange
 
                     }
@@ -83,9 +87,14 @@ class TeacherHome extends Component {
 
                         </option>
                     ))}
-                </select>
+                </Input>
                 <br></br>
+                <Link to={"/parents/" + this.state.selectedParentId}><Button type="button" onClick={() => {
+                    sessionStorage.setItem("parentId", Number(this.state.selectedParentId))
+                    
+                }}>Go to this Parent</Button></Link>
                 <span className="divide"></span>
+                <br></br>
                 <button type="button"
                     onClick={() => this.props.history.push("/students/new")}
                     className="btn btn-success">

@@ -4,6 +4,7 @@ import StudentAndParentManager from "../modules/StudentAndParentManager"
 import TeacherHome from "./TeacherHome/TeacherHome";
 import StudentHome from "../components/StudentHome/StudentHome";
 import StudentDetail from "../components/TeacherHome/Student/StudentDetail"
+import ParentDetail from "../components/TeacherHome/Parent/ParentDetail"
 import NewStudentForm from "../components/TeacherHome/Student/NewStudentForm"
 import StudentEditForm from "../components/TeacherHome/Student/StudentEditForm"
 import NotesDisplay from "../components/notes/NotesDisplay"
@@ -11,6 +12,7 @@ import PaymentsDisplay from "../components/payments/PaymentDisplay"
 class TeacherApplicationViews extends Component {
   state = {
     students: [],
+    users: [],
     parents: [],
     lessons: [],
     payments: [],
@@ -31,6 +33,7 @@ class TeacherApplicationViews extends Component {
       .then(() => StudentAndParentManager.getInstruments().then(instruments => newState.instruments = instruments))
       .then(() => StudentAndParentManager.getLocations().then(locations => newState.locations = locations))
       .then(() => StudentAndParentManager.getLengths().then(lengths => newState.lengths = lengths))
+      .then(() => StudentAndParentManager.getAll().then(users => newState.users = users))
       .then(() => StudentAndParentManager.getPaymentMethods().then(paymentMethods => newState.paymentMethods = paymentMethods))
       .then(() => StudentAndParentManager.getLessonDays().then(lessonDays => newState.lessonDays = lessonDays))
       .then(() => {
@@ -69,25 +72,25 @@ class TeacherApplicationViews extends Component {
     // }
     return <React.Fragment>
       <Route exact path="/" render={(props) => {
-          if (Number(sessionStorage.getItem("userType")) === 1) {
-            console.log("teacher")
-            return  <TeacherHome
+        if (Number(sessionStorage.getItem("userType")) === 1) {
+          console.log("teacher")
+          return <TeacherHome
             students={this.state.students}
             parents={this.state.parents}
             teacherName={this.props.activeUser}
             {...props} />
-          } else {
-            console.log("studentt")
-            id = sessionStorage.getItem("credentials")
-            sessionStorage.setItem("studentId", id)
-            return <StudentHome
+        } else {
+          console.log("studentt")
+          id = sessionStorage.getItem("credentials")
+          sessionStorage.setItem("studentId", id)
+          return <StudentHome
             students={this.state.students}
             parents={this.state.parents}
             teacherName={this.props.activeUser}
             {...props} />
-          }
+        }
 
-        
+
 
       }} />
       <Route exact path="/TeacherHome" render={(props) => {
@@ -102,6 +105,12 @@ class TeacherApplicationViews extends Component {
           students={this.state.students}
           deleteStudent={this.deleteStudent} />
       }} />
+      <Route exact path="/parents/:parentId(\d+)" render={(props) => {
+        return <ParentDetail {...props}
+          students={this.state.students}
+          parents={this.state.parents}
+          deleteStudent={this.deleteStudent} />
+      }} />
       <Route exact path="/Students/:studentId(\d+)/notes" render={(props) => {
         return <NotesDisplay {...props}
           students={this.state.students}
@@ -112,6 +121,7 @@ class TeacherApplicationViews extends Component {
       <Route exact path="/Students/:studentId(\d+)/payments" render={(props) => {
         return <PaymentsDisplay {...props}
           students={this.state.students}
+          users={this.state.users}
           payments={this.state.payments}
           paymentMethods={this.state.paymentMethods}
 

@@ -23,13 +23,17 @@ class PaymentsModal extends React.Component {
 
     };
     NewPayment = evt => {
-
+        let id = sessionStorage.getItem("studentId")
+        console.log(id)
+        if (id === null) {
+            id = sessionStorage.getItem("parentId")
+        }
         let today = new Date()
-        let date = (today.getMonth()+1)+"/"+today.getDate()+"/"+today.getFullYear()
+        let date = (today.getMonth() + 1) + "/" + today.getDate() + "/" + today.getFullYear()
 
         console.log(date)
         newPayment = {
-            studentId: Number(sessionStorage.getItem("studentId")),
+            userId: Number(id),
             date: date,
             amount: document.querySelector("#notes").value,
             paymentMethodId: document.querySelector("#paymentMethod").value
@@ -41,7 +45,7 @@ class PaymentsModal extends React.Component {
 
     render() {
 
-        {console.log(newPayment)}
+        { console.log(newPayment) }
         return (
             <div>
                 <Button color="success" onClick={this.toggle}>Add Payment</Button>

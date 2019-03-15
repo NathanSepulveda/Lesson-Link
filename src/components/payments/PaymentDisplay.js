@@ -5,7 +5,11 @@ import EditPaymentModal from "./EditPaymentModal"
 import "./Payments.css"
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
-let studentId = sessionStorage.getItem("studentId")
+let id = sessionStorage.getItem("studentId") 
+console.log(id)
+if (id === null) {
+    id = sessionStorage.getItem("parentId") 
+}
 
 
 
@@ -20,7 +24,7 @@ class PaymentsDisplay extends Component {
     componentDidMount() {
 
         let newState = {}
-        StudentAndParentManager.getPaymentsOfStudent(studentId).then(payments => {
+        StudentAndParentManager.getPaymentsOfStudent(id).then(payments => {
             newState.payments = payments
             console.log(payments)
         }).then(() => {
@@ -29,13 +33,13 @@ class PaymentsDisplay extends Component {
     }
     addPayment = (paymentObj) => {
         return StudentAndParentManager.addPayment(paymentObj)
-            .then(() => StudentAndParentManager.getPaymentsOfStudent(studentId))
+            .then(() => StudentAndParentManager.getPaymentsOfStudent(id))
             .then(payments => this.setState({ payments: payments }))
     }
 
     editPayment = (paymentObj) => {
         return StudentAndParentManager.editPayment(paymentObj)
-            .then(() => StudentAndParentManager.getPaymentsOfStudent(studentId))
+            .then(() => StudentAndParentManager.getPaymentsOfStudent(id))
             .then(payments => this.setState({ payments: payments }))
     }
 
@@ -43,7 +47,7 @@ class PaymentsDisplay extends Component {
         let answer = window.confirm("Are you sure you want to delete this payment?")
         if (answer) {
             return StudentAndParentManager.delete(id, "payments")
-                .then(() => StudentAndParentManager.getPaymentsOfStudent(studentId))
+                .then(() => StudentAndParentManager.getPaymentsOfStudent(id))
                 .then(payments => this.setState({ payments: payments }))
         }
     }
@@ -51,13 +55,13 @@ class PaymentsDisplay extends Component {
     render() {
 
 
-        let thisStudent = this.props.students.find(student => parseInt(student.id) === parseInt(studentId)) || {}
+        let thisUser = this.props.users.find(user => parseInt(user.id) === parseInt(id)) || {}
 
         return (
             <React.Fragment>
                 {console.log(this.state)}
 
-                <h1>{thisStudent.name}'s Payments</h1>
+                <h1>{thisUser.name}'s Payments</h1>
                 {this.state.payments.map(payment =>
                     <div className="paymentBox" id={payment.id}>
                         <div>{payment.date}</div>
@@ -104,11 +108,18 @@ class PaymentsDisplay extends Component {
                 <Button className="button"
                     type="button"
                     onClick={() => {
-                        Number(sessionStorage.getItem("userType")) ===1 ? 
-                        this.props.history.push(`/students/${thisStudent.id}`)
-                        : this.props.history.push(`/`)
+                        Number(sessionStorage.getItem("userType")) !== 1 ? 
+                        this.props.history.push(`/`)
+                        
+                        : (Number(sessionStorage.getItem("parentId"))  !== 0 ? 
+                            
+                            this.props.history.push(`/parents/${thisUser.id}`) :
+                            this.props.history.push(`/students/${thisUser.id}`))
+                        
+
+                        
                     }}
-                >Back to {thisStudent.name}'s Info</Button>
+                >Back to {thisUser.name}'s Info</Button>
 
             </React.Fragment>
         )

@@ -49,6 +49,22 @@
       "lengthId": 0
     },
     {
+      "id": 8,
+      "name": "News's Mom",
+      "userTypeId": 3,
+      "accountId": 9,
+      "phoneNumber": "615-555-5555",
+      "emailAddress": "gmail.com",
+      "password": 1234,
+      "teacherId": 0,
+      "lessonDayId": 0,
+      "parentId": 0,
+      "lessonTime": 0,
+      "instrumentId": 0,
+      "locationId": 0,
+      "lengthId": 0
+    },
+    {
       "name": "Jake Wehrly",
       "accountId": "G8Ddh",
       "phoneNumber": "199",
@@ -63,6 +79,38 @@
       "locationId": 1,
       "lengthId": 2,
       "userTypeId": 2
+    },
+    {
+      "name": "Jimy Sepulveda",
+      "accountId": 3,
+      "phoneNumber": 0,
+      "emailAddress": 0,
+      "password": "eLTnO",
+      "teacherId": 2,
+      "lessonDayId": "1",
+      "parentId": 4,
+      "lessonTime": "7:00 PM",
+      "instrumentId": "1",
+      "locationId": "2",
+      "lengthId": "2",
+      "userTypeId": 2,
+      "id": 7
+    },
+    {
+      "name": "New New",
+      "accountId": "8qKj8",
+      "phoneNumber": 0,
+      "emailAddress": 0,
+      "password": "aw4lm",
+      "teacherId": 2,
+      "lessonDayId": 4,
+      "parentId": 8,
+      "lessonTime": "7:00 PM",
+      "instrumentId": 0,
+      "locationId": 2,
+      "lengthId": 2,
+      "userTypeId": 2,
+      "id": 9
     }
   ],
   "userTypes": [
@@ -151,7 +199,7 @@
   ],
   "payments": [
     {
-      "studentId": 6,
+      "userId": 6,
       "id": 2,
       "date": "1/31/19",
       "amount": 45,
@@ -159,10 +207,17 @@
     },
     {
       "id": 3,
-      "studentId": 5,
-      "date": "3/14/2019",
-      "amount": 60,
+      "userId": 5,
+      "date": "3/15/2019",
+      "amount": 45,
       "paymentMethodId": 2
+    },
+    {
+      "userId": 4,
+      "date": "3/15/2019",
+      "amount": "360",
+      "paymentMethodId": "1",
+      "id": 4
     }
   ],
   "lessons": [
@@ -195,6 +250,18 @@
       "date": "3/14/2019",
       "note": "new!",
       "id": 5
+    },
+    {
+      "studentId": 7,
+      "date": "3/15/2019",
+      "note": "Hey ",
+      "id": 6
+    },
+    {
+      "studentId": 7,
+      "date": "3/15/2019",
+      "note": "Jimmy you did great this week!",
+      "id": 7
     }
   ],
   "paymentMethods": [

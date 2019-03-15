@@ -11,6 +11,9 @@ export default {
     getAllParents() {
         return fetch(`${Settings.remoteURL}/users/?userTypeId=3`).then(e => e.json())
     },
+    getOneParent(id) {
+        return fetch(`${Settings.remoteURL}/users/${id}`).then(e => e.json())
+    },
     getTeacher(id) {
         return fetch(`${Settings.remoteURL}/users/${id}`).then(e => e.json())
     },
@@ -23,8 +26,8 @@ export default {
     getPayments() {
         return fetch(`${Settings.remoteURL}/payments`).then(e => e.json())
     },
-    getPaymentsOfStudent(stId) {
-        return fetch(`${Settings.remoteURL}/payments?studentId=${stId}&_expand=paymentMethod`).then(e => e.json())
+    getPaymentsOfStudent(usId) {
+        return fetch(`${Settings.remoteURL}/payments?userId=${usId}&_expand=paymentMethod`).then(e => e.json())
     },
     getOnePayment(id) {
         return fetch(`${Settings.remoteURL}/payments/${id}`).then(e => e.json())

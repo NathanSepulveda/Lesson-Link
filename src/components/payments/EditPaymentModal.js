@@ -40,11 +40,15 @@ class EditPaymentModal extends React.Component {
 
         let today = new Date()
         let date = (today.getMonth()+1)+"/"+today.getDate()+"/"+today.getFullYear()
-
+        let id = sessionStorage.getItem("studentId")
+        console.log(id)
+        if (id === null) {
+            id = sessionStorage.getItem("parentId")
+        }
         console.log(date)
         editedPayment = {
             id: this.props.currentPayment.id,
-            studentId: Number(sessionStorage.getItem("studentId")),
+            userId: Number(id),
             date: date,
             amount: Number(document.querySelector("#paymentAmount").value),
             paymentMethodId: Number(document.querySelector("#paymentMethodId").value)

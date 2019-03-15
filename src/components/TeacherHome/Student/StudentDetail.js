@@ -1,5 +1,12 @@
 import React, { Component } from "react"
 import "./StudentForm.css"
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+
+let id = sessionStorage.getItem("studentId")
+console.log(id)
+if (id === null) {
+    id = sessionStorage.getItem("parentId")
+}
 
 
 class StudentDetail extends Component {
@@ -22,14 +29,22 @@ class StudentDetail extends Component {
 
         console.log(thisStudent.id)
 
-
+        let thisUser = this.props.students.find(user => parseInt(user.id) === parseInt(id)) || {}
         return (
+
             <React.Fragment>
                 <div id="studentInfo">
                     <h1>{thisStudent.name}</h1>
                     <h2>{instrument.name}</h2>
-                    <h2>{thisStudent.emailAddress} </h2>
-                    <h2>{thisStudent.phoneNumber} </h2>
+                    {Number(sessionStorage.getItem("parentId") === null) ?
+
+                        <div>
+                            <h2>{thisStudent.emailAddress} </h2>
+                            <h2>{thisStudent.phoneNumber} </h2>
+
+                        </div> : ""
+
+                    }
                     <h2>{length.length} Minute Lessons</h2>
                     <h2>{thisStudent.lessonTime} </h2>
                     <h2>{location.location} </h2>
@@ -42,11 +57,13 @@ class StudentDetail extends Component {
                         View Student Notes
                     </button>
                     <div id="divider"></div>
-                    <button type="button"
-                        onClick={() => this.props.history.push(`/Students/${thisStudent.id}/payments`)}
-                        className="btn btn-success">
-                        View Student Payments
-                    </button>
+                    {Number(sessionStorage.getItem("parentId") === null) ?
+                        <button type="button"
+                            onClick={() => this.props.history.push(`/Students/${thisStudent.id}/payments`)}
+                            className="btn btn-success">
+                            View Student Payments
+                    </button> : ""
+                    }
                 </div>
                 <button type="button"
                     onClick={() => {
@@ -64,16 +81,50 @@ class StudentDetail extends Component {
                     </button>
                 <button type="button"
                     onClick={() => {
-                        
-                        
+
+
                         this.props.history.push(`/students/${thisStudent.id}/edit`)
-                        
+
                     }
 
                     }
                     className="btn btn-success">
                     Edit This Student's Info
                     </button>
+
+
+                {Number(sessionStorage.getItem("parentId") === null)
+                    ? ""
+                    : <Button className="button"
+                    type="button"
+                    onClick={() => {
+                        Number(sessionStorage.getItem("parentId")) === null ?
+                            this.props.history.push(`/`)
+
+                            : (Number(sessionStorage.getItem("parentId")) !== 0 ?
+
+                                this.props.history.push(`/parents/${thisUser.id}`) :
+                                this.props.history.push(`/students/${thisUser.id}`))
+                    }}
+                >Back to {thisUser.name}'s Parent Info</Button>
+
+                }
+                {/* <Button className="button"
+                    type="button"
+                    onClick={() => {
+                        Number(sessionStorage.getItem("userType")) !== 1 ? 
+                        this.props.history.push(`/`)
+                        
+                        : (Number(sessionStorage.getItem("parentId"))  !== 0 ? 
+                            
+                            this.props.history.push(`/parents/${thisUser.id}`) :
+                            this.props.history.push(`/students/${thisUser.id}`))
+                        
+
+                        
+                    }}
+                >Back to {thisUser.name}'s Info</Button> */}
+
 
             </React.Fragment>
         )

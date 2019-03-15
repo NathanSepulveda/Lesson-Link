@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import "./StudentForm.css"
+import StudentAndParentManager from "../../../modules/StudentAndParentManager";
+
 
 let makeid = () => {
     var text = "";
@@ -30,10 +32,24 @@ export default class EventForm extends Component {
         stateToChange.password = password
         stateToChange.accountId = accountId
         stateToChange[evt.target.id] = evt.target.value;
-        this.setState(stateToChange);
+        let parentId = document.querySelector("#parentId").value
+        sessionStorage.setItem("parentId", parentId )
+        
+        StudentAndParentManager.getOneParent(Number(sessionStorage.getItem("parentId"))).then(parent => {
+            sessionStorage.setItem("accountId" ,parent.accountId)
+            stateToChange.accountId = Number(sessionStorage.getItem("accountId"))
+            console.log(stateToChange)
+            this.setState(stateToChange)
+            console.log(this.state)
+        })
+
     };
 
     NewStudent = evt => {
+        let accountId = makeid
+        if (Number(sessionStorage.getItem("accountId")) !== null) {
+            accountId = Number(sessionStorage.getItem("accountId"))
+        }
         evt.preventDefault();
         if (this.state.eventName === "") {
             window.alert("Please Enter Event Name");
@@ -43,18 +59,19 @@ export default class EventForm extends Component {
                 name: this.state.name,
                 accountId: makeid(),
                 phoneNumber: this.state.phoneNumber,
-                
+                accountId: accountId,
                 emailAddress: this.state.emailAddress,
                 password: makeid(),
                 teacherId: this.state.teacherId,
-                lessonDayId: this.state.lessonDayId,
+                lessonDayId: Number(this.state.lessonDayId),
                 parentId: Number(this.state.parentId),
                 lessonTime: this.state.lessonTime,
-                instrumentId: this.state.instrumentId,
-                locationId: this.state.locationId,
-                lengthId: this.state.lengthId,
+                instrumentId: Number(this.state.instrumentId),
+                locationId: Number(this.state.locationId),
+                lengthId: Number(this.state.lengthId),
                 userTypeId: this.state.userTypeId,
                 lessonTime: this.state.lessonTime
+
 
             };
             this.props.addStudent(student)
@@ -70,11 +87,12 @@ export default class EventForm extends Component {
         stateToChange.emailAddress = 0
         stateToChange.phoneNumber = 0
         stateToChange.password = 0
-        stateToChange.parentId = document.querySelector("#parents").key
-        
+        stateToChange.password = 0
+        stateToChange.parentId = document.querySelector("#parents").value
         this.setState(stateToChange)
-        
 
+
+        
     }
 
 
