@@ -246,12 +246,6 @@
       "note": "123"
     },
     {
-      "studentId": 5,
-      "date": "3/14/2019",
-      "note": "new!",
-      "id": 5
-    },
-    {
       "studentId": 7,
       "date": "3/15/2019",
       "note": "Hey ",
@@ -262,6 +256,12 @@
       "date": "3/15/2019",
       "note": "Jimmy you did great this week!",
       "id": 7
+    },
+    {
+      "studentId": 5,
+      "date": "3/16/2019",
+      "note": "One more!",
+      "id": 8
     }
   ],
   "paymentMethods": [

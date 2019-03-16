@@ -1,6 +1,10 @@
 
 import React from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import * as emailjs from 'emailjs-com';
+
+
+
 
 let newLessonNote = {}
 let today = new Date()
@@ -36,7 +40,16 @@ class NotesModal extends React.Component {
             note: document.querySelector("#notes").value
         };
         console.log(newLessonNote)
-        this.props.addNote(newLessonNote).then(() => this.toggle())
+        this.props.addNote(newLessonNote).then(() => this.toggle()).then(() => {
+            var template_params = {
+                "user_email": "nathansepulveda127@gmail.com",
+                "text": newLessonNote.note
+            }
+
+            var service_id = "default_service";
+            var template_id = "studentnote";
+            emailjs.send(service_id, template_id, template_params);
+        })
 
     };
 
@@ -56,7 +69,13 @@ class NotesModal extends React.Component {
                                 onChange={this.handleFieldChange}
                             ></textarea>
                         </form>
+
                     </ModalBody>
+                    <script type="text/javascript">
+                        (function(){
+                            emailjs.init("user_vcKdIHuDqkDlJfNRcsCfB")
+                        })();
+</script>
                     <ModalFooter>
                         <Button color="primary" onClick={this.NewLesson}>Add this note!</Button>{' '}
                         {/* <Button color="primary" onClick={console.log(newFriendObject)}>Add Friend!</Button>{' '} */}
