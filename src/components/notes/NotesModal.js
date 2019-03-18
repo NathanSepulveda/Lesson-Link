@@ -42,7 +42,7 @@ class NotesModal extends React.Component {
         console.log(newLessonNote)
         this.props.addNote(newLessonNote).then(() => this.toggle()).then(() => {
             var template_params = {
-                "user_email": "nathansepulveda127@gmail.com",
+                "user_email": "warnercarpenter@yahoo.com",
                 "text": newLessonNote.note
             }
 

@@ -67,15 +67,15 @@ class TeacherApplicationViews extends Component {
       .then(students => this.setState({ students: students }))
   }
 
+  editParent = (parentObj) => {
+    return StudentAndParentManager.editUser(parentObj)
+      .then(() => StudentAndParentManager.getAllParents())
+      .then(parents => console.log(parents))
+  }
+
 
   render() {
     let id;
-    // <Route path="/" render={(props)} => 
-    // if (userType === student) {
-    //   return <Student Home>
-    // } else {
-    //   return TeacherHome
-    // }
     return <React.Fragment>
       <Route exact path="/" render={(props) => {
         if (Number(sessionStorage.getItem("userType")) === 1) {
@@ -147,6 +147,7 @@ class TeacherApplicationViews extends Component {
             instruments={this.state.instruments}
             locations={this.state.locations}
             editStudent={this.editStudent}
+            editParent={this.editParent}
             lengths={this.state.lengths}
             lessonDays={this.state.lessonDays}
             addStudent={this.addStudent}

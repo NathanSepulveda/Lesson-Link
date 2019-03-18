@@ -4,11 +4,12 @@ import PaymentsModal from "./PaymentsModal"
 import EditPaymentModal from "./EditPaymentModal"
 import "./Payments.css"
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import * as Chart from "chart.js"
 
-let id = sessionStorage.getItem("studentId") 
+let id = sessionStorage.getItem("studentId")
 console.log(id)
 if (id === null) {
-    id = sessionStorage.getItem("parentId") 
+    id = sessionStorage.getItem("parentId")
 }
 
 
@@ -26,15 +27,33 @@ class PaymentsDisplay extends Component {
 
         let newState = {}
         StudentAndParentManager.getStudent(Number(this.props.match.params.studentId))
-        .then(user => newState.thisUser = user)
-        .then(() => StudentAndParentManager.getPaymentsOfStudent(newState.thisUser.id))
-        .then(payments => {
-            newState.payments = payments
-            console.log(payments)
-        })
-        .then(() => {
-            this.setState(newState)
-        })
+            .then(user => newState.thisUser = user)
+            .then(() => StudentAndParentManager.getPaymentsOfStudent(newState.thisUser.id))
+            .then(payments => {
+                newState.payments = payments
+                console.log(payments)
+            })
+            .then(() => {
+                this.setState(newState)
+            }).then(() => {
+
+                let ctx = document.getElementById('myChart').getContext('2d');
+                new Chart(document.getElementById("myChart"), {
+                    "type": "bar", "data": {
+                        "labels": ["January", "February", "March", "April", "May", "June", "July"],
+                        "datasets": [{
+                            "label": `${this.state.thisUser.name}'s Monthly Payments`, "data": [30, this.state.payments[0].amount, 70, 81, 56, 55, 40],
+                            "fill": false, "backgroundColor": ["rgba(255, 99, 132, 0.2)", "rgba(255, 159, 64, 0.2)", "rgba(255, 205, 86, 0.2)", "rgba(75, 192, 192, 0.2)", "rgba(54, 162, 235, 0.2)", "rgba(153, 102, 255, 0.2)", "rgba(201, 203, 207, 0.2)"],
+                            "borderColor": ["rgb(255, 99, 132)", "rgb(255, 159, 64)", "rgb(255, 205, 86)", "rgb(75, 192, 192)", "rgb(54, 162, 235)", "rgb(153, 102, 255)", "rgb(101, 203, 207)"],
+
+                            "borderWidth": 5
+                        }]
+                    }, "options": { "scales": { "yAxes": [{ "ticks": { "beginAtZero": true } }] } }
+                });
+            }
+            )
+
+
     }
     addPayment = (paymentObj) => {
         return StudentAndParentManager.addPayment(paymentObj)
@@ -60,6 +79,9 @@ class PaymentsDisplay extends Component {
     render() {
 
 
+
+
+
         // let thisUser = this.props.users.find(user => parseInt(user.id) === parseInt(id)) || {}
 
         return (
@@ -67,6 +89,8 @@ class PaymentsDisplay extends Component {
                 {console.log(this.state)}
 
                 <h1>{this.state.thisUser.name}'s Payments</h1>
+
+
                 {this.state.payments.map(payment =>
                     <div className="paymentBox" id={payment.id}>
                         <div>{payment.date}</div>
@@ -97,34 +121,38 @@ class PaymentsDisplay extends Component {
                     </div>
 
                 )}
-                {Number(sessionStorage.getItem("userType"))=== 1 ? 
-                
-                <div>
-                    <PaymentsModal
+                {Number(sessionStorage.getItem("userType")) === 1 ?
 
-                        {...this.props}
-                        addPayment={this.addPayment}
+                    <div>
+                        <PaymentsModal
 
-                    />
-                </div>
-                : ""
-            
-            }
+                            {...this.props}
+                            addPayment={this.addPayment}
+
+                        />
+                    </div>
+                    : ""
+
+                }
                 <Button className="button"
                     type="button"
                     onClick={() => {
-                        Number(sessionStorage.getItem("userType")) !== 1 ? 
-                        this.props.history.push(`/`)
-                        
-                        : (Number(sessionStorage.getItem("parentId"))  !== 0 ? 
-                            
-                            this.props.history.push(`/parents/${this.state.thisUser.id}`) :
-                            this.props.history.push(`/students/${this.state.thisUser.id}`))
-                        
+                        Number(sessionStorage.getItem("userType")) !== 1 ?
+                            this.props.history.push(`/`)
 
-                        
+                            : (Number(sessionStorage.getItem("parentId")) !== 0 ?
+
+                                this.props.history.push(`/parents/${this.state.thisUser.id}`) :
+                                this.props.history.push(`/students/${this.state.thisUser.id}`))
+
+
+
                     }}
                 >Back to {this.state.thisUser.name}'s Info</Button>
+                <canvas id="myChart" width="400" height="100"></canvas>
+
+
+
 
             </React.Fragment>
         )

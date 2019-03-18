@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "bootstrap": "^4.1.3",
+    "chart.js": "^2.8.0",
     "emailjs-com": "^2.3.2",
     "json2csv": "^4.3.5",
     "react": "^16.6.3",

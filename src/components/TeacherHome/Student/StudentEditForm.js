@@ -18,7 +18,7 @@ export default class StudentEditForm extends Component {
     state = {
         "userTypeId": 2,
         "teacherId": Number(sessionStorage.getItem("credentials")),
-        "password": 0 ,
+        "password": 0,
         "accountId": 0,
         "parentId": 0
     };
@@ -63,40 +63,74 @@ export default class StudentEditForm extends Component {
         }
     };
 
+    EditParents = evt => {
+        evt.preventDefault();
+        if (this.state.eventName === "") {
+            window.alert("Please Enter Event Name");
+        }
+        else {
+            const parent = {
+                name: this.state.name,
+                accountId: this.state.accountId,
+                phoneNumber: this.state.phoneNumber,
+                id: this.state.id,
+                emailAddress: this.state.emailAddress,
+                password: this.state.password,
+                teacherId: this.state.teacherId,
+                lessonDayId: this.state.lessonDayId,
+                parentId: this.state.parentId,
+                lessonTime: this.state.lessonTime,
+                instrumentId: this.state.instrumentId,
+                locationId: this.state.locationId,
+                lengthId: this.state.lengthId,
+                userTypeId: this.state.userTypeId,
+                lessonTime: this.state.lessonTime
+
+            };
+            if (Number(parent.parentId) !== 0) {
+                parent.parentId = 0 
+            }
+            this.props.editParent(parent)
+                .then(() => this.props.history.push("/TeacherHome"));
+        }
+    };
+
     hideInfo = () => {
         document.querySelector("#contactInfo").classList.toggle("hidden")
         document.querySelector("#parents").classList.toggle("hidden")
-        
+
         const stateToChange = {}
         stateToChange.emailAddress = 0
         stateToChange.phoneNumber = 0
         stateToChange.password = 0
         stateToChange.parentId = document.querySelector("#parents").key
-        
+
         this.setState(stateToChange)
-        
+
 
     }
 
     componentDidMount() {
         StudentAndParentManager.getStudent(Number(this.props.match.params.studentId))
-        .then(student => {
-            this.setState({
-                name: student.name,
-                id: student.id,
-                phoneNumber: student.phoneNumber,
-                password: student.password,
-                accountId: student.accountId,
-                emailAddress: student.emailAddress,
-                instrumentId: Number(student.instrumentId),
-                locationId: Number(student.locationId),
-                lengthId: Number(student.lengthId),
-                lessonTime: student.lessonTime,
-                lessonDayId: student.lessonDayId
-                
+            .then(student => {
+                this.setState({
+                    name: student.name,
+                    userTypeId: student.userTypeId,
+                    id: student.id,
+                    parentId: student.parentId,
+                    phoneNumber: student.phoneNumber,
+                    password: student.password,
+                    accountId: student.accountId,
+                    emailAddress: student.emailAddress,
+                    instrumentId: Number(student.instrumentId),
+                    locationId: Number(student.locationId),
+                    lengthId: Number(student.lengthId),
+                    lessonTime: student.lessonTime,
+                    lessonDayId: student.lessonDayId
 
+
+                })
             })
-        })
     }
 
     render() {
@@ -117,16 +151,10 @@ export default class StudentEditForm extends Component {
                             value={this.state.name}
                         />
                     </div>
-                    <div className="form-group">
-                        <label htmlFor="parent?">Does this student have a parent?</label> <br></br>
-                        <input type="checkbox"
-                            name="completed"
-
-                            onChange={this.hideInfo}
-
-                            id="parentStatus" />
-                    </div>
+                    {Number(this.state.parentId) === 0 ? 
+                    
                     <div id="contactInfo">
+
                         <div className="form-group">
                             <label htmlFor="phoneNumber">Phone Number</label>
                             <input
@@ -152,16 +180,17 @@ export default class StudentEditForm extends Component {
                                 value={this.state.emailAddress}
                             />
                         </div>
-                    </div>
+                    </div> : ""
+                }
                     <div id="parents" className="hidden">
                         Parents <br></br>
-                <select
+                        <select
                             // defaultValue="Pick a Parent"
                             name="parentList"
                             id="parentId"
                             onChange={this.handleFieldChange}
 
-                            
+
 
                         >
                             <option value="">Look for a Parent</option>
@@ -190,7 +219,7 @@ export default class StudentEditForm extends Component {
                     <div className="form-group">
                         <label htmlFor="instrument">Instrument</label>
                         <br></br>
-                        
+
                         <select
                             // defaultValue=""
                             name="studentList"
@@ -211,7 +240,7 @@ export default class StudentEditForm extends Component {
                         <label htmlFor="location">Lesson Location</label>
                         <br></br>
                         <select
-                            
+
                             name="locationList"
                             id="locationId"
                             onChange={this.handleFieldChange}
@@ -265,13 +294,23 @@ export default class StudentEditForm extends Component {
                         </select>
                     </div>
 
-                    <button
-                        type="submit"
-                        onClick={this.EditStudent}
-                        className="btn btn-primary"
-                    >
-                        Submit
-          </button>
+                    {this.state.userTypeId === 2
+                        ?
+                        <button
+                            type="submit"
+                            onClick={this.EditStudent}
+                            className="btn btn-primary">
+                            Edit Student
+                    </button> :
+
+                        <button
+                            type="submit"
+                            onClick={this.EditParents}
+                            className="btn btn-primary">
+                            Edit Parent
+</button>
+
+                    }
                 </form>
             </React.Fragment>
         );

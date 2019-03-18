@@ -33,20 +33,20 @@
       "lengthId": 0
     },
     {
-      "id": 4,
-      "name": "Jimmy's Mom",
-      "userTypeId": 3,
+      "name": "Jimmy's Mother",
       "accountId": 3,
-      "phoneNumber": "615-555-5555",
+      "phoneNumber": "615-333-5555",
+      "id": 4,
       "emailAddress": "gmail.com",
       "password": 1234,
-      "teacherId": 0,
+      "teacherId": 2,
       "lessonDayId": 0,
       "parentId": 0,
       "lessonTime": 0,
       "instrumentId": 0,
       "locationId": 0,
-      "lengthId": 0
+      "lengthId": 0,
+      "userTypeId": 3
     },
     {
       "id": 8,
@@ -79,38 +79,6 @@
       "locationId": 1,
       "lengthId": 2,
       "userTypeId": 2
-    },
-    {
-      "name": "Jimy Sepulveda",
-      "accountId": 3,
-      "phoneNumber": 0,
-      "emailAddress": 0,
-      "password": "eLTnO",
-      "teacherId": 2,
-      "lessonDayId": "1",
-      "parentId": 4,
-      "lessonTime": "7:00 PM",
-      "instrumentId": "1",
-      "locationId": "2",
-      "lengthId": "2",
-      "userTypeId": 2,
-      "id": 7
-    },
-    {
-      "name": "PARENT",
-      "accountId": "XBbsb",
-      "phoneNumber": "111",
-      "emailAddress": "111",
-      "password": "nMTIT",
-      "teacherId": 2,
-      "lessonDayId": 0,
-      "parentId": 0,
-      "lessonTime": "111",
-      "instrumentId": 0,
-      "locationId": 0,
-      "lengthId": 0,
-      "userTypeId": 3,
-      "id": 13
     },
     {
       "name": "CHILD",
@@ -209,22 +177,6 @@
       "id": 19
     },
     {
-      "name": "Nathan's Adult Customer",
-      "accountId": "CXnLi",
-      "phoneNumber": "6193876153",
-      "emailAddress": "nathans.composer@gmail.com",
-      "password": "c6QOc",
-      "teacherId": 2,
-      "lessonDayId": 0,
-      "parentId": 0,
-      "lessonTime": "dsfsd",
-      "instrumentId": 0,
-      "locationId": 0,
-      "lengthId": 0,
-      "userTypeId": 3,
-      "id": 20
-    },
-    {
       "name": "Nathan's Child Customer",
       "accountId": "CXnLi",
       "phoneNumber": 0,
@@ -271,6 +223,38 @@
       "locationId": 0,
       "lengthId": 0,
       "id": 24
+    },
+    {
+      "name": "Test Adult",
+      "accountId": "FEUQb",
+      "phoneNumber": "911",
+      "id": 25,
+      "emailAddress": "123",
+      "password": "yxMAg",
+      "teacherId": 2,
+      "lessonDayId": 1,
+      "parentId": 0,
+      "lessonTime": "7:00 PM",
+      "instrumentId": 2,
+      "locationId": 1,
+      "lengthId": 2,
+      "userTypeId": 2
+    },
+    {
+      "name": "Jim Sepulveda",
+      "accountId": "3",
+      "phoneNumber": 0,
+      "id": 26,
+      "emailAddress": 0,
+      "password": null,
+      "teacherId": 2,
+      "lessonDayId": 1,
+      "parentId": 4,
+      "lessonTime": "7:00 PM",
+      "instrumentId": "5",
+      "locationId": 1,
+      "lengthId": 2,
+      "userTypeId": 2
     }
   ],
   "userTypes": [
@@ -380,11 +364,11 @@
       "id": 4
     },
     {
-      "userId": 13,
-      "date": "3/16/2019",
-      "amount": "1000000",
+      "userId": 6,
+      "date": "3/18/2019",
+      "amount": "60",
       "paymentMethodId": "1",
-      "id": 5
+      "id": 6
     }
   ],
   "lessons": [
@@ -425,16 +409,16 @@
       "id": 7
     },
     {
-      "studentId": 5,
-      "date": "3/16/2019",
-      "note": "One more!",
-      "id": 8
-    },
-    {
       "studentId": 14,
       "date": "3/16/2019",
       "note": "GOOD JOB",
       "id": 9
+    },
+    {
+      "id": 10,
+      "studentId": 5,
+      "date": "3/18/2019",
+      "note": "Hey bud"
     }
   ],
   "paymentMethods": [

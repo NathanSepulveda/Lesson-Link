@@ -1,18 +1,26 @@
 import React, { Component } from "react"
 import "./StudentForm.css"
+import StudentAndParentManager from "../../../modules/StudentAndParentManager"
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 let id = sessionStorage.getItem("studentId")
-console.log(id)
 if (id === null) {
     id = sessionStorage.getItem("parentId")
 }
 
 
 class StudentDetail extends Component {
-    // state = {
-    //     student : []
-    // }
+    state = {
+        student : {}
+    }
+
+    componentDidMount()  {
+        let newState = {}
+        StudentAndParentManager.getStudent(Number(this.props.match.params.studentId))
+        .then((student) => newState.student = student)
+        .then(() => this.setState(newState))
+    }
+
     render() {
 
 
@@ -34,7 +42,7 @@ class StudentDetail extends Component {
 
             <React.Fragment>
                 <div id="studentInfo">
-                    <h1>{thisStudent.name}</h1>
+                    <h1>{this.state.student.name}</h1>
                     <h2>{instrument.name}</h2>
                     {Number(sessionStorage.getItem("parentId") === null) ?
 
@@ -65,7 +73,8 @@ class StudentDetail extends Component {
                     </button> : ""
                     }
                 </div>
-                {Number(sessionStorage.getItem("userType")) === 2 ?
+                {/* hide admin details */}
+                {Number(sessionStorage.getItem("userType")) === 1 ?
                     <div>
                         <button type="button"
                             onClick={() => {
@@ -114,7 +123,7 @@ class StudentDetail extends Component {
                                     this.props.history.push(`/students/${thisUser.id}`))
                             sessionStorage.removeItem("studentId")
                         }}
-                    >Back to {thisUser.name}'s Parent Info</Button>
+                    >Back to {this.state.student.name}'s Parent Info</Button>
 
                 }
 

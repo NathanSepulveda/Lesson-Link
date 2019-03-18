@@ -88,7 +88,7 @@ class ParentDetail extends Component {
                         View Parent Payments
                     </button>
                 </div>
-                <button type="button"
+                <Button type="button" color="danger"
                     onClick={() => {
                         // let id = Number(parentId)
                         console.log(typeof thisParent.id)
@@ -101,8 +101,8 @@ class ParentDetail extends Component {
                     }
                     className="btn btn-success">
                     Delete This Parent
-                    </button>
-                <button type="button"
+                    </Button>
+                <Button type="button" color="info"
                     onClick={() => {
 
 
@@ -113,7 +113,7 @@ class ParentDetail extends Component {
                     }
                     className="btn btn-success">
                     Edit This Parents's Info
-                    </button>
+                    </Button>
 
             </React.Fragment>
         )
