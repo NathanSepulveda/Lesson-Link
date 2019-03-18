@@ -24,7 +24,7 @@ export default {
         return fetch(`${Settings.remoteURL}/lessons?studentId=${stId}`).then(e => e.json())
     },
     getPayments() {
-        return fetch(`${Settings.remoteURL}/payments`).then(e => e.json())
+        return fetch(`${Settings.remoteURL}/payments?_expand=paymentMethod`).then(e => e.json())
     },
     getPaymentsOfStudent(usId) {
         return fetch(`${Settings.remoteURL}/payments?userId=${usId}&_expand=paymentMethod`).then(e => e.json())

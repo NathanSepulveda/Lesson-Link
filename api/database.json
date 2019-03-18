@@ -347,28 +347,39 @@
       "userId": 6,
       "date": "3/18/2019",
       "amount": 45,
-      "paymentMethodId": 1
+      "paymentMethodId": 2
     },
     {
       "id": 3,
       "userId": 5,
       "date": "3/15/2019",
       "amount": 45,
-      "paymentMethodId": 2
+      "paymentMethodId": 2,
+      "teacherId": 1
     },
     {
       "userId": 4,
       "date": "3/15/2019",
       "amount": "360",
       "paymentMethodId": "1",
-      "id": 4
+      "id": 4,
+      "teacherId": 2
     },
     {
       "userId": 6,
       "date": "3/18/2019",
       "amount": "60",
       "paymentMethodId": "1",
-      "id": 6
+      "id": 6,
+      "teacherId": 2
+    },
+    {
+      "id": 7,
+      "userId": 6,
+      "date": "3/18/2019",
+      "teacherId": 2,
+      "amount": 45,
+      "paymentMethodId": 2
     }
   ],
   "lessons": [

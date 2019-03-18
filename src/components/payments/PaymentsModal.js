@@ -36,7 +36,8 @@ class PaymentsModal extends React.Component {
             userId: Number(id),
             date: date,
             amount: document.querySelector("#notes").value,
-            paymentMethodId: document.querySelector("#paymentMethod").value
+            paymentMethodId: document.querySelector("#paymentMethod").value,
+            teacherId : Number(sessionStorage.getItem("credentials"))
         };
         console.log(newPayment)
         this.props.addPayment(newPayment).then(() => this.toggle())

@@ -16,6 +16,14 @@ class Nav extends Component {
               Home
             </Link>
           </li>
+          {Number(sessionStorage.getItem("userType")) === 1 ? 
+          <li className="nav-item">
+            <Link className="nav-link" to="/paymentsummary">
+              Payment Summary
+            </Link>
+          </li> : ""
+          
+        }
           {/* <li className="nav-item">
              
 

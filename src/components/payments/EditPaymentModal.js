@@ -50,6 +50,7 @@ class EditPaymentModal extends React.Component {
             id: this.props.currentPayment.id,
             userId: Number(id),
             date: date,
+            teacherId: Number(sessionStorage.getItem("credentials")),
             amount: Number(document.querySelector("#paymentAmount").value),
             paymentMethodId: Number(document.querySelector("#paymentMethodId").value)
         };

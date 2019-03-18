@@ -10,6 +10,7 @@ import NewStudentForm from "../components/TeacherHome/Student/NewStudentForm"
 import StudentEditForm from "../components/TeacherHome/Student/StudentEditForm"
 import NotesDisplay from "../components/notes/NotesDisplay"
 import PaymentsDisplay from "../components/payments/PaymentDisplay"
+import PaymentSummary from "./payments/PaymentSummary";
 class TeacherApplicationViews extends Component {
   state = {
     students: [],
@@ -85,7 +86,7 @@ class TeacherApplicationViews extends Component {
             parents={this.state.parents}
             teacherName={this.props.activeUser}
             {...props} />
-        } else if  (Number(sessionStorage.getItem("userType")) === 2){
+        } else if (Number(sessionStorage.getItem("userType")) === 2) {
           console.log("studentt")
           id = sessionStorage.getItem("credentials")
           sessionStorage.setItem("studentId", id)
@@ -98,9 +99,9 @@ class TeacherApplicationViews extends Component {
           id = sessionStorage.getItem("credentials")
           sessionStorage.setItem("parentId", id)
           return <ParentHome {...props}
-          students={this.state.students}
-          parents={this.state.parents}
-          deleteStudent={this.deleteStudent} />
+            students={this.state.students}
+            parents={this.state.parents}
+            deleteStudent={this.deleteStudent} />
 
         }
 
@@ -134,6 +135,15 @@ class TeacherApplicationViews extends Component {
       }} />
       <Route exact path="/Students/:studentId(\d+)/payments" render={(props) => {
         return <PaymentsDisplay {...props}
+          students={this.state.students}
+          users={this.state.users}
+          payments={this.state.payments}
+          paymentMethods={this.state.paymentMethods}
+
+        />
+      }} />
+      <Route exact path="/paymentsummary" render={(props) => {
+        return <PaymentSummary {...props}
           students={this.state.students}
           users={this.state.users}
           payments={this.state.payments}
