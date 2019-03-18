@@ -65,66 +65,58 @@ class StudentDetail extends Component {
                     </button> : ""
                     }
                 </div>
-                <button type="button"
-                    onClick={() => {
-                        // let id = Number(studentId)
-                        console.log(typeof thisStudent.id)
-                        let answer = window.confirm("Are you sure you want to delete this student?")
-                        if (answer) {
+                {Number(sessionStorage.getItem("userType")) === 2 ?
+                    <div>
+                        <button type="button"
+                            onClick={() => {
+                                // let id = Number(studentId)
+                                console.log(typeof thisStudent.id)
+                                let answer = window.confirm("Are you sure you want to delete this student?")
+                                if (answer) {
 
-                            this.props.deleteStudent(thisStudent.id).then(() => this.props.history.push(`/TeacherHome`))
-                        }
-                    }
-                    }
-                    className="btn btn-success">
-                    Delete This Student
-                    </button>
-                <button type="button"
-                    onClick={() => {
+                                    this.props.deleteStudent(thisStudent.id).then(() => this.props.history.push(`/TeacherHome`))
+                                }
+                            }
+                            }
+                            className="btn btn-success">
+                            Delete This Student
+                                    </button>
+                        <button type="button"
+                            onClick={() => {
 
 
-                        this.props.history.push(`/students/${thisStudent.id}/edit`)
+                                this.props.history.push(`/students/${thisStudent.id}/edit`)
 
-                    }
+                            }
 
-                    }
-                    className="btn btn-success">
-                    Edit This Student's Info
-                    </button>
+                            }
+                            className="btn btn-success">
+                            Edit This Student's Info
+                                    </button>
+                    </div> : ""
+            
+            
+            }
 
 
                 {Number(sessionStorage.getItem("parentId") === null)
                     ? ""
                     : <Button className="button"
-                    type="button"
-                    onClick={() => {
-                        Number(sessionStorage.getItem("parentId")) === null ?
-                            this.props.history.push(`/`)
+                        type="button"
+                        onClick={() => {
+                            Number(sessionStorage.getItem("userType")) === null ?
+                                this.props.history.push(`/`)
 
-                            : (Number(sessionStorage.getItem("parentId")) !== 0 ?
 
-                                this.props.history.push(`/parents/${thisUser.id}`) :
-                                this.props.history.push(`/students/${thisUser.id}`))
-                    }}
-                >Back to {thisUser.name}'s Parent Info</Button>
+                                : (Number(sessionStorage.getItem("parentId")) !== 0 ?
+
+                                    this.props.history.push(`/parents/${thisUser.id}`) :
+                                    this.props.history.push(`/students/${thisUser.id}`))
+                            sessionStorage.removeItem("studentId")
+                        }}
+                    >Back to {thisUser.name}'s Parent Info</Button>
 
                 }
-                {/* <Button className="button"
-                    type="button"
-                    onClick={() => {
-                        Number(sessionStorage.getItem("userType")) !== 1 ? 
-                        this.props.history.push(`/`)
-                        
-                        : (Number(sessionStorage.getItem("parentId"))  !== 0 ? 
-                            
-                            this.props.history.push(`/parents/${thisUser.id}`) :
-                            this.props.history.push(`/students/${thisUser.id}`))
-                        
-
-                        
-                    }}
-                >Back to {thisUser.name}'s Info</Button> */}
-
 
             </React.Fragment>
         )

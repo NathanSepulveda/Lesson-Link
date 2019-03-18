@@ -7,8 +7,11 @@ import { BrowserRouter as Router } from "react-router-dom"
 
 ReactDOM.render(
   <Router>
+    <div className="container-fluid">
     <Nutshell />
+    </div> 
   </Router>,
+  
   document.getElementById("root")
 )
 

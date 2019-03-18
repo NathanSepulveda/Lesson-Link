@@ -5,6 +5,7 @@ import TeacherHome from "./TeacherHome/TeacherHome";
 import StudentHome from "../components/StudentHome/StudentHome";
 import StudentDetail from "../components/TeacherHome/Student/StudentDetail"
 import ParentDetail from "../components/TeacherHome/Parent/ParentDetail"
+import ParentHome from "../components/ParentHome/ParentHome"
 import NewStudentForm from "../components/TeacherHome/Student/NewStudentForm"
 import StudentEditForm from "../components/TeacherHome/Student/StudentEditForm"
 import NotesDisplay from "../components/notes/NotesDisplay"
@@ -23,6 +24,7 @@ class TeacherApplicationViews extends Component {
     lengths: [],
 
   }
+
   componentDidMount() {
     const newState = {}
     StudentAndParentManager.getAllStudents().then(students => {
@@ -45,6 +47,8 @@ class TeacherApplicationViews extends Component {
     return StudentAndParentManager.addUser(studentObj)
       .then(() => StudentAndParentManager.getAllStudents())
       .then(students => this.setState({ students: students }))
+      .then(() => StudentAndParentManager.getAllParents())
+      .then(parents => this.setState({ parents: parents }))
   }
 
 
@@ -52,6 +56,8 @@ class TeacherApplicationViews extends Component {
     return StudentAndParentManager.delete(id, "users")
       .then(() => StudentAndParentManager.getAllStudents())
       .then(students => this.setState({ students: students }))
+      .then(() => StudentAndParentManager.getAllParents())
+      .then(parents => this.setState({ parents: parents }))
 
   }
 
@@ -79,7 +85,7 @@ class TeacherApplicationViews extends Component {
             parents={this.state.parents}
             teacherName={this.props.activeUser}
             {...props} />
-        } else {
+        } else if  (Number(sessionStorage.getItem("userType")) === 2){
           console.log("studentt")
           id = sessionStorage.getItem("credentials")
           sessionStorage.setItem("studentId", id)
@@ -88,6 +94,14 @@ class TeacherApplicationViews extends Component {
             parents={this.state.parents}
             teacherName={this.props.activeUser}
             {...props} />
+        } else {
+          id = sessionStorage.getItem("credentials")
+          sessionStorage.setItem("parentId", id)
+          return <ParentHome {...props}
+          students={this.state.students}
+          parents={this.state.parents}
+          deleteStudent={this.deleteStudent} />
+
         }
 
 
