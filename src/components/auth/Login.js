@@ -55,7 +55,7 @@ export default class Login extends Component {
           UserManager.addUser(newUser).then(user => {
             sessionStorage.setItem("credentials", parseInt(user.id))
             sessionStorage.setItem("userType", 1)
-            
+
             this.props.setAuth()
           })
         }
@@ -84,6 +84,23 @@ export default class Login extends Component {
     }
   }
 
+  hideInfo = () => {
+    document.querySelector(".contactInfo").classList.toggle("hidden")
+    document.querySelector("#signInButton").classList.toggle("hidden")
+    // document.querySelector("#parents").classList.toggle("hidden")
+
+    // const stateToChange = {}
+    // stateToChange.emailAddress = 0
+    // stateToChange.phoneNumber = 0
+    // stateToChange.password = null
+    // stateToChange.password = 0
+    // stateToChange.parentId = document.querySelector("#parents").value
+    // this.setState(stateToChange)
+
+
+
+}
+
   render() {
     return (
       <React.Fragment>
@@ -106,7 +123,21 @@ export default class Login extends Component {
             placeholder={` Don't tell!`}
             required=""
           />
+          <div className="form-group">
+            <label htmlFor="register?">Are you registering for the first time?</label> <br></br>
+            <input type="checkbox"
+              name="register"
+
+              onChange={this.hideInfo}
+
+              id="registerStatus" />
+          </div>
+          <button type="submit" onClick={this.handleLogin} id="signInButton" >
+            Sign in
+        </button>
           <br></br>
+
+          <div className="contactInfo hidden" >
           <label htmlFor="inputEmail">Email</label>
           <input
             onChange={this.handleFieldChange}
@@ -123,12 +154,12 @@ export default class Login extends Component {
             placeholder={` Don't tell!`}
             required=""
           />
-          <button type="submit" onClick={this.handleLogin}>
-            Sign in
-        </button>
+
           <button type="submit" onClick={this.handleRegister}>
             Register
         </button>
+
+          </div>
         </form>
         <span></span>
 

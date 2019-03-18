@@ -1,3 +1,7 @@
 .loginForm {
     padding: 0 25px;
 }
+
+.hidden {
+    display: none
+}

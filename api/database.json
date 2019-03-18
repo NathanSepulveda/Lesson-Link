@@ -255,6 +255,22 @@
       "lengthId": 2,
       "userTypeId": 2,
       "id": 23
+    },
+    {
+      "name": "Nate Teach",
+      "accountId": 0,
+      "password": "1234",
+      "userTypeId": 1,
+      "phoneNumber": "6193876153",
+      "emailAddress": "",
+      "lessonDayId": 0,
+      "teacherId": 0,
+      "parentId": 0,
+      "lessonTime": 0,
+      "instrumentId": 0,
+      "locationId": 0,
+      "lengthId": 0,
+      "id": 24
     }
   ],
   "userTypes": [
