@@ -27,6 +27,7 @@ class TeacherHome extends Component {
     render() {
         sessionStorage.removeItem("studentId")
         sessionStorage.removeItem("parentId")
+        sessionStorage.removeItem("accountId")
 
 
 
@@ -52,7 +53,7 @@ class TeacherHome extends Component {
 
                 >
                     <option value="">Look for a student</option>
-                    {   this.props.students.filter(student => Number(student.parentId) === 0)
+                    {   this.props.students.filter(student => Number(student.parentId) === 0 && Number(student.teacherId) === Number(sessionStorage.getItem("credentials")))  
                         .map(e => (
                         <option key={e.id} id="students" value={e.id} >
                             {e.name}
@@ -79,7 +80,8 @@ class TeacherHome extends Component {
 
                 >
                     <option value="">Look for a Parent</option>
-                    {this.props.parents.map(e => (
+                    {   this.props.parents.filter(parent => Number(parent.teacherId) === Number(sessionStorage.getItem("credentials")))
+                        .map(e => (
                         <option key={e.id} id="parents" value={e.id} >
 
                                 {e.name}

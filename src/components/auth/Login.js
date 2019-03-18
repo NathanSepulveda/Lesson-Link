@@ -2,11 +2,24 @@ import React, { Component } from "react"
 import "./login.css"
 import UserManager from "../../modules/UserManager"
 
+// let makeid = () => {
+//   var text = "";
+//   var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+//   for (var i = 0; i < 5; i++)
+//       text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+//   return text;
+// }
 export default class Login extends Component {
   // Set initial state
   state = {
     password: "",
-    name: ""
+    name: "",
+    userTypeId: 1,
+    phoneNumber: "",
+    accountId: 0,
+    emailAddress: ""
   }
 
   // Update state whenever an input field is edited
@@ -20,15 +33,29 @@ export default class Login extends Component {
     e.preventDefault()
     const newUser = {
       name: this.state.name,
-      password: this.state.password
+      accountId: this.state.accountId,
+      password: this.state.password,
+      userTypeId: this.state.userTypeId,
+      phoneNumber: this.state.phoneNumber,
+      emailAddress: this.state.emailAddress,
+      lessonDayId: 0,
+      teacherId: 0,
+      parentId: 0,
+      lessonTime: 0,
+      instrumentId: 0,
+      locationId: 0,
+      lengthId: 0,
+
     }
     if (this.state.name && this.state.password) {
-      UserManager.searchname(this.state.name).then(users => {
+      UserManager.searchUsername(this.state.name).then(users => {
         if (users.length) {
           alert(`name ${this.state.name} already exits!`)
         } else {
           UserManager.addUser(newUser).then(user => {
             sessionStorage.setItem("credentials", parseInt(user.id))
+            sessionStorage.setItem("userType", 1)
+            
             this.props.setAuth()
           })
         }
@@ -79,6 +106,23 @@ export default class Login extends Component {
             placeholder={` Don't tell!`}
             required=""
           />
+          <br></br>
+          <label htmlFor="inputEmail">Email</label>
+          <input
+            onChange={this.handleFieldChange}
+            type="email"
+            id="email"
+            placeholder={` Don't tell!`}
+            required=""
+          />
+          <label htmlFor="inputPhoneNumber">Phone Number</label>
+          <input
+            onChange={this.handleFieldChange}
+            type="phoneNumber"
+            id="phoneNumber"
+            placeholder={` Don't tell!`}
+            required=""
+          />
           <button type="submit" onClick={this.handleLogin}>
             Sign in
         </button>
@@ -87,7 +131,7 @@ export default class Login extends Component {
         </button>
         </form>
         <span></span>
-        
+
 
       </React.Fragment>
     )

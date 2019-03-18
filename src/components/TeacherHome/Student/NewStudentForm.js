@@ -19,33 +19,33 @@ export default class EventForm extends Component {
     state = {
         "userTypeId": 2,
         "teacherId": Number(sessionStorage.getItem("credentials")),
-        "password": 0 ,
-        "accountId": 0 ,
+        "password": makeid(),
+        "accountId": makeid(),
         "parentId": 0
     };
 
 
     handleFieldChange = evt => {
-        let password = makeid()
+
         let accountId = makeid()
         const stateToChange = {};
-        stateToChange.password = password
+
         stateToChange.accountId = accountId
         stateToChange[evt.target.id] = evt.target.value;
         let parentId = document.querySelector("#parentId").value
-        sessionStorage.setItem("parentId", parentId )
-        
-        StudentAndParentManager.getOneParent(Number(sessionStorage.getItem("parentId"))).then(parent => {
-            sessionStorage.setItem("accountId" ,parent.accountId)
-            stateToChange.accountId = Number(sessionStorage.getItem("accountId"))
-            console.log(stateToChange)
-            this.setState(stateToChange)
-            console.log(this.state)
-        })
+        sessionStorage.setItem("parentId", parentId)
 
+        StudentAndParentManager.getOneParent(Number(sessionStorage.getItem("parentId"))).then(parent => {
+            sessionStorage.setItem("accountId", parent.accountId)
+            stateToChange.accountId = Number(sessionStorage.getItem("accountId"))
+            this.setState(stateToChange)
+
+        })
+        
     };
 
     NewStudent = evt => {
+        
         let accountId = makeid
         if (Number(sessionStorage.getItem("accountId")) !== null) {
             accountId = Number(sessionStorage.getItem("accountId"))
@@ -69,11 +69,21 @@ export default class EventForm extends Component {
                 instrumentId: Number(this.state.instrumentId),
                 locationId: Number(this.state.locationId),
                 lengthId: Number(this.state.lengthId),
-                userTypeId: this.state.userTypeId,
+                userTypeId: Number(this.state.userTypeId),
                 lessonTime: this.state.lessonTime
 
 
             };
+            console.log(student)
+            if (student.parentId === 0) {
+                student.accountId = makeid()
+            } else if 
+                (student.parentId !== 0 ) {
+                    student.accountId = sessionStorage.getItem("accountId")
+                    student.password = null
+                }
+            
+            console.log(student)
             this.props.addStudent(student)
                 .then(() => this.props.history.push("/TeacherHome"));
         }
@@ -82,24 +92,24 @@ export default class EventForm extends Component {
     hideInfo = () => {
         document.querySelector("#contactInfo").classList.toggle("hidden")
         document.querySelector("#parents").classList.toggle("hidden")
-        
+
         const stateToChange = {}
         stateToChange.emailAddress = 0
         stateToChange.phoneNumber = 0
-        stateToChange.password = 0
+        stateToChange.password = null
         stateToChange.password = 0
         stateToChange.parentId = document.querySelector("#parents").value
         this.setState(stateToChange)
 
 
-        
+
     }
 
 
     render() {
         return (
             <React.Fragment>
-                {console.log(this.state)}
+                
                 <form className="animalForm">
                     <div className="form-group">
                         <label htmlFor="eventName">Student Name</label>
@@ -112,6 +122,23 @@ export default class EventForm extends Component {
                             placeholder="First and last"
                         />
                     </div>
+                    <select
+                        defaultValue=""
+                        name="length"
+                        id="userTypeId"
+                        onChange={this.handleFieldChange}
+
+                    >
+                        <option value="Usertype">New Usertype</option>
+
+                        <option id="userTypes" value="3">
+                            Parent
+                        </option>
+                        <option id="userTypes" value="2">
+                            Student
+                        </option>
+
+                    </select>
                     <div className="form-group">
                         <label htmlFor="parent?">Does this student have a parent?</label> <br></br>
                         <input type="checkbox"
@@ -148,13 +175,13 @@ export default class EventForm extends Component {
                     </div>
                     <div id="parents" className="hidden">
                         Parents <br></br>
-                <select
+                        <select
                             defaultValue="Pick a Parent"
                             name="parentList"
                             id="parentId"
                             onChange={this.handleFieldChange}
 
-                            
+
 
                         >
                             <option value="">Look for a Parent</option>
@@ -182,7 +209,7 @@ export default class EventForm extends Component {
                     <div className="form-group">
                         <label htmlFor="instrument">Instrument</label>
                         <br></br>
-                        
+
                         <select
                             defaultValue=""
                             name="studentList"
