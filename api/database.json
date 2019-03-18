@@ -197,7 +197,7 @@
       "accountId": "undefined",
       "phoneNumber": 0,
       "emailAddress": 0,
-      "password": 0,
+      "password": null,
       "teacherId": 16,
       "lessonDayId": 1,
       "parentId": 18,
@@ -239,6 +239,22 @@
       "lengthId": 2,
       "userTypeId": 2,
       "id": 21
+    },
+    {
+      "name": "Test Child 2",
+      "accountId": "CXnLi",
+      "phoneNumber": 0,
+      "emailAddress": 0,
+      "password": null,
+      "teacherId": 2,
+      "lessonDayId": 2,
+      "parentId": 20,
+      "lessonTime": "a",
+      "instrumentId": 2,
+      "locationId": 3,
+      "lengthId": 2,
+      "userTypeId": 2,
+      "id": 23
     }
   ],
   "userTypes": [

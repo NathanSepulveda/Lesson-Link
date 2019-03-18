@@ -80,7 +80,7 @@ export default class EventForm extends Component {
             } else if 
                 (student.parentId !== 0 ) {
                     student.accountId = sessionStorage.getItem("accountId")
-                    student.password = 0
+                    student.password = null
                 }
             
             console.log(student)
@@ -96,6 +96,7 @@ export default class EventForm extends Component {
         const stateToChange = {}
         stateToChange.emailAddress = 0
         stateToChange.phoneNumber = 0
+        stateToChange.password = null
         stateToChange.password = 0
         stateToChange.parentId = document.querySelector("#parents").value
         this.setState(stateToChange)
