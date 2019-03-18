@@ -62,10 +62,10 @@ class NotesDisplay extends Component {
 
 
                 <h1>{this.state.thisStudent.name}'s Notes</h1>
-                {this.state.lessons.map(note =>
-                    <div id={note.id} className="notesCard">
-                        <div>{note.date}</div>
-                        <div>{note.note}</div>
+                {this.state.lessons.map(lesson =>
+                    <div id={lesson.id} className="notesCard">
+                        <div>{lesson.date}</div>
+                        <div>{lesson.note}</div>
 
                         {Number(sessionStorage.getItem("userType")) === 1 ?
 
@@ -73,11 +73,11 @@ class NotesDisplay extends Component {
                                 <Button className="button"
                                     color="danger"
                                     type="button"
-                                    onClick={() => this.deleteNote(note.id)}
+                                    onClick={() => this.deleteNote(lesson.id)}
 
                                 >Delete this note?</Button>
                                 <EditNotesModal
-                                    currentNote={note}
+                                    currentNote={lesson}
                                     editLessonNote={this.editLessonNote}
                                     {...this.props}
                                 />

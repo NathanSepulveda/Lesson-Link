@@ -17,17 +17,22 @@ if (id === null) {
 class PaymentsDisplay extends Component {
 
     state = {
-        payments: []
+        payments: [],
+        thisUser: {}
     }
 
 
     componentDidMount() {
 
         let newState = {}
-        StudentAndParentManager.getPaymentsOfStudent(id).then(payments => {
+        StudentAndParentManager.getStudent(Number(this.props.match.params.studentId))
+        .then(user => newState.thisUser = user)
+        .then(() => StudentAndParentManager.getPaymentsOfStudent(newState.thisUser.id))
+        .then(payments => {
             newState.payments = payments
             console.log(payments)
-        }).then(() => {
+        })
+        .then(() => {
             this.setState(newState)
         })
     }
@@ -55,13 +60,13 @@ class PaymentsDisplay extends Component {
     render() {
 
 
-        let thisUser = this.props.users.find(user => parseInt(user.id) === parseInt(id)) || {}
+        // let thisUser = this.props.users.find(user => parseInt(user.id) === parseInt(id)) || {}
 
         return (
             <React.Fragment>
                 {console.log(this.state)}
 
-                <h1>{thisUser.name}'s Payments</h1>
+                <h1>{this.state.thisUser.name}'s Payments</h1>
                 {this.state.payments.map(payment =>
                     <div className="paymentBox" id={payment.id}>
                         <div>{payment.date}</div>
@@ -113,13 +118,13 @@ class PaymentsDisplay extends Component {
                         
                         : (Number(sessionStorage.getItem("parentId"))  !== 0 ? 
                             
-                            this.props.history.push(`/parents/${thisUser.id}`) :
-                            this.props.history.push(`/students/${thisUser.id}`))
+                            this.props.history.push(`/parents/${this.state.thisUser.id}`) :
+                            this.props.history.push(`/students/${this.state.thisUser.id}`))
                         
 
                         
                     }}
-                >Back to {thisUser.name}'s Info</Button>
+                >Back to {this.state.thisUser.name}'s Info</Button>
 
             </React.Fragment>
         )
