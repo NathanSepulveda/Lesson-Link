@@ -319,6 +319,54 @@
       "lengthId": 0,
       "userTypeId": 3,
       "id": 31
+    },
+    {
+      "name": "jenna",
+      "accountId": 0,
+      "password": "1",
+      "userTypeId": 1,
+      "phoneNumber": "1",
+      "emailAddress": "",
+      "lessonDayId": 0,
+      "teacherId": 0,
+      "parentId": 0,
+      "lessonTime": 0,
+      "instrumentId": 0,
+      "locationId": 0,
+      "lengthId": 0,
+      "id": 32
+    },
+    {
+      "name": "Nathan Sepulveda",
+      "accountId": "CXX1c",
+      "phoneNumber": "6193876153",
+      "emailAddress": "nathans.composer@gmail.com",
+      "password": "hKlhO",
+      "teacherId": 32,
+      "lessonDayId": 4,
+      "parentId": 0,
+      "lessonTime": "7:00 PM",
+      "instrumentId": 1,
+      "locationId": 2,
+      "lengthId": 2,
+      "userTypeId": 2,
+      "id": 33
+    },
+    {
+      "name": "Parent",
+      "accountId": "eCgxm",
+      "phoneNumber": "6193876153",
+      "emailAddress": "nathans.composer@gmail.com",
+      "password": "U1BQk",
+      "teacherId": 32,
+      "lessonDayId": 0,
+      "parentId": 0,
+      "lessonTime": "7:00 PM",
+      "instrumentId": 0,
+      "locationId": 0,
+      "lengthId": 0,
+      "userTypeId": 3,
+      "id": 34
     }
   ],
   "userTypes": [
@@ -407,36 +455,68 @@
   ],
   "payments": [
     {
-      "id": 1,
-      "userId": 6,
+      "userId": 5,
       "date": "3/19/2019",
-      "teacherId": 2,
-      "amount": 60,
-      "paymentMethodId": 1
-    },
-    {
-      "userId": 4,
-      "date": "3/19/2019",
-      "amount": "1000",
+      "amount": "100",
       "paymentMethodId": "1",
       "teacherId": 2,
-      "id": 2
+      "id": 1
     },
     {
-      "id": 3,
-      "userId": 27,
-      "date": "3/19/2019",
+      "id": 2,
+      "userId": 5,
+      "date": "1/19/2019",
       "teacherId": 2,
       "amount": 120,
       "paymentMethodId": 1
     },
     {
-      "userId": 30,
-      "date": "3/19/2019",
+      "id": 3,
+      "userId": 6,
+      "date": "9/19/2019",
+      "teacherId": 2,
+      "amount": 45,
+      "paymentMethodId": 1
+    },
+    {
+      "id": 4,
+      "userId": 6,
+      "date": "10/19/2019",
+      "teacherId": 2,
+      "amount": 45,
+      "paymentMethodId": 1
+    },
+    {
+      "id": 5,
+      "userId": 5,
+      "date": "1/19/2019",
+      "teacherId": 2,
+      "amount": 60,
+      "paymentMethodId": 1
+    },
+    {
+      "userId": 5,
+      "date": "5/19/2019",
       "amount": "100",
       "paymentMethodId": "1",
-      "teacherId": 29,
-      "id": 4
+      "teacherId": 2,
+      "id": 6
+    },
+    {
+      "userId": 5,
+      "date": "11/19/2019",
+      "amount": "45",
+      "paymentMethodId": "1",
+      "teacherId": 2,
+      "id": 7
+    },
+    {
+      "userId": 5,
+      "date": "12/19/2019",
+      "amount": "45",
+      "paymentMethodId": "1",
+      "teacherId": 2,
+      "id": 8
     }
   ],
   "lessons": [
@@ -517,6 +597,12 @@
       "date": "3/19/2019",
       "note": "note for you",
       "id": 18
+    },
+    {
+      "studentId": 33,
+      "date": "3/19/2019",
+      "note": "lkj",
+      "id": 19
     }
   ],
   "paymentMethods": [

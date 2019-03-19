@@ -5,6 +5,7 @@ import EditPaymentModal from "./EditPaymentModal"
 import "./Payments.css"
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import * as Chart from "chart.js"
+const Json2csvParser = require('json2csv').Parser;
 
 let id = sessionStorage.getItem("studentId")
 if (id === null) {
@@ -53,6 +54,25 @@ class PaymentsDisplay extends Component {
             )
 
 
+    }
+
+        
+    outputCSV = evt => {
+
+        const fields = ["userId", "date", "amount", "paymentMethodId", "teacherId"]
+        StudentAndParentManager.getPayments()
+            .then(payments => payments.filter(payment => payment.userId === Number(sessionStorage.getItem("studentId"))))
+            .then(payments => {
+                console.log(payments)
+                const json2csvParser = new Json2csvParser({ fields });
+                const csv = json2csvParser.parse(payments)
+                console.log(csv)
+                return csv
+
+
+
+
+            }).then((csv) => window.open("data:text/csv;charset=utf-8," + escape(csv)))
     }
     addPayment = (paymentObj) => {
         return StudentAndParentManager.addPayment(paymentObj)
@@ -151,7 +171,9 @@ class PaymentsDisplay extends Component {
                 >Back to {this.state.thisUser.name}'s Info</Button>
                 <canvas id="myChart" width="400" height="100"></canvas>
 
-
+                <button type="button" onClick={() =>
+                    this.outputCSV()
+                }> Click Here to Download Payments Summary</button>
 
 
             </React.Fragment>
