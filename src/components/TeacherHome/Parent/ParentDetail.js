@@ -28,8 +28,8 @@ class ParentDetail extends Component {
 
 
         let parentId = sessionStorage.getItem("parentId")
-        console.log(typeof parentId)
-        console.log(this.props.students)
+        
+
         let thisParent = this.props.parents.find(parent => parseInt(parent.id) === parseInt(parentId)) || {}
         let instrument = thisParent.instrument || {}
         let length = thisParent.length || {}
@@ -41,7 +41,7 @@ class ParentDetail extends Component {
 
 
 
-        console.log(thisParent.id)
+        
 
 
         return (
@@ -88,7 +88,7 @@ class ParentDetail extends Component {
                         View Parent Payments
                     </button>
                 </div>
-                <button type="button"
+                <Button type="button" color="danger"
                     onClick={() => {
                         // let id = Number(parentId)
                         console.log(typeof thisParent.id)
@@ -101,8 +101,8 @@ class ParentDetail extends Component {
                     }
                     className="btn btn-success">
                     Delete This Parent
-                    </button>
-                <button type="button"
+                    </Button>
+                <Button type="button" color="info"
                     onClick={() => {
 
 
@@ -113,7 +113,7 @@ class ParentDetail extends Component {
                     }
                     className="btn btn-success">
                     Edit This Parents's Info
-                    </button>
+                    </Button>
 
             </React.Fragment>
         )

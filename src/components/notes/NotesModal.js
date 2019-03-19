@@ -30,26 +30,25 @@ class NotesModal extends React.Component {
     };
     NewLesson = evt => {
 
-        let today = new Date()
-        let date = (today.getMonth() + 1) + "/" + today.getDate() + "/" + today.getFullYear()
 
-        console.log(date)
+
         newLessonNote = {
             studentId: Number(sessionStorage.getItem("studentId")),
             date: document.querySelector("#date").value,
             note: document.querySelector("#notes").value
         };
-        console.log(newLessonNote)
-        this.props.addNote(newLessonNote).then(() => this.toggle()).then(() => {
-            var template_params = {
-                "user_email": "nathansepulveda127@gmail.com",
-                "text": newLessonNote.note
-            }
+        
+        this.props.addNote(newLessonNote).then(() => this.toggle())
+        // .then(() => {
+        //     var template_params = {
+        //         "user_email": "warnercarpenter@yahoo.com",
+        //         "text": newLessonNote.note
+        //     }
 
-            var service_id = "default_service";
-            var template_id = "studentnote";
-            emailjs.send(service_id, template_id, template_params);
-        })
+        //     var service_id = "default_service";
+        //     var template_id = "studentnote";
+        //     emailjs.send(service_id, template_id, template_params);
+        // })
 
     };
 

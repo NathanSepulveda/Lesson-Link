@@ -1,24 +1,30 @@
 import React, { Component } from "react"
 import "./StudentForm.css"
+import StudentAndParentManager from "../../../modules/StudentAndParentManager"
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 let id = sessionStorage.getItem("studentId")
-console.log(id)
 if (id === null) {
     id = sessionStorage.getItem("parentId")
 }
 
 
 class StudentDetail extends Component {
-    // state = {
-    //     student : []
-    // }
+    state = {
+        student: {}
+    }
+
+    componentDidMount() {
+        let newState = {}
+        StudentAndParentManager.getStudent(Number(this.props.match.params.studentId))
+            .then((student) => newState.student = student)
+            .then(() => this.setState(newState))
+    }
+
     render() {
 
 
         let studentId = sessionStorage.getItem("studentId")
-        console.log(typeof studentId)
-        console.log(this.props.students)
         let thisStudent = this.props.students.find(student => parseInt(student.id) === parseInt(studentId)) || {}
         let instrument = thisStudent.instrument || {}
         let length = thisStudent.length || {}
@@ -27,14 +33,14 @@ class StudentDetail extends Component {
 
 
 
-        console.log(thisStudent.id)
+ 
 
         let thisUser = this.props.students.find(user => parseInt(user.id) === parseInt(id)) || {}
         return (
 
             <React.Fragment>
                 <div id="studentInfo">
-                    <h1>{thisStudent.name}</h1>
+                    <h1>{this.state.student.name}</h1>
                     <h2>{instrument.name}</h2>
                     {Number(sessionStorage.getItem("parentId") === null) ?
 
@@ -65,7 +71,8 @@ class StudentDetail extends Component {
                     </button> : ""
                     }
                 </div>
-                {Number(sessionStorage.getItem("userType")) === 2 ?
+                {/* hide admin details */}
+                {Number(sessionStorage.getItem("userType")) === 1 ?
                     <div>
                         <button type="button"
                             onClick={() => {
@@ -94,12 +101,12 @@ class StudentDetail extends Component {
                             Edit This Student's Info
                                     </button>
                     </div> : ""
-            
-            
-            }
 
 
-                {Number(sessionStorage.getItem("parentId") === null)
+                }
+
+
+                {/* {Number(sessionStorage.getItem("parentId") === null)
                     ? ""
                     : <Button className="button"
                         type="button"
@@ -110,11 +117,29 @@ class StudentDetail extends Component {
 
                                 : (Number(sessionStorage.getItem("parentId")) !== 0 ?
 
-                                    this.props.history.push(`/parents/${thisUser.id}`) :
+                                    this.props.history.push(`/parents/${sessionStorage.getItem("parentId")}`) :
                                     this.props.history.push(`/students/${thisUser.id}`))
                             sessionStorage.removeItem("studentId")
                         }}
-                    >Back to {thisUser.name}'s Parent Info</Button>
+                    >Back to {this.state.student.name}'s Parent Info</Button>
+
+                } */}
+                {Number(sessionStorage.getItem("parentId") === null)
+                    ? ""
+                    : <Button className="button"
+                        type="button"
+                        onClick={() => {
+                            Number(sessionStorage.getItem("userType")) === 3 ?
+                                this.props.history.push(`/`)
+
+
+                                : (Number(sessionStorage.getItem("parentId")) !== 0 ?
+
+                                    this.props.history.push(`/parents/${sessionStorage.getItem("parentId")}`) :
+                                    this.props.history.push(`/students/${thisUser.id}`))
+                            sessionStorage.removeItem("studentId")
+                        }}
+                    >Back to {this.state.student.name}'s Parent Info</Button>
 
                 }
 

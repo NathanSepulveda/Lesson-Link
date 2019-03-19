@@ -3,7 +3,6 @@ import React from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import StudentAndParentManager from '../../modules/StudentAndParentManager';
 
-let newPayment = {}
 let editedPayment = {
 
 }
@@ -32,7 +31,6 @@ class EditPaymentModal extends React.Component {
     }
 
     handleFieldChange = evt => {
-        // const stateToChange = {};
         editedPayment[evt.target.id] = evt.target.value;
 
     };
@@ -45,15 +43,15 @@ class EditPaymentModal extends React.Component {
         if (id === null) {
             id = sessionStorage.getItem("parentId")
         }
-        console.log(date)
         editedPayment = {
             id: this.props.currentPayment.id,
             userId: Number(id),
-            date: date,
+            date:document.querySelector("#date").value,
+            teacherId: Number(sessionStorage.getItem("credentials")),
             amount: Number(document.querySelector("#paymentAmount").value),
             paymentMethodId: Number(document.querySelector("#paymentMethodId").value)
         };
-        console.log(editedPayment)
+        
         this.props.editPayment(editedPayment).then(() => this.toggle())
 
     };
@@ -73,6 +71,8 @@ class EditPaymentModal extends React.Component {
                     <ModalHeader toggle={this.toggle}>Edit Payment</ModalHeader>
                     <ModalBody>
                         <form>
+                        <label >Date</label>
+                            <input type="text" placeholder={this.props.date} id="date" defaultValue={this.props.date}></input>
                             <label htmlFor="paymentAmount"></label>
                             $<input placeholder="60" id="paymentAmount"
                                 onChange={this.handleFieldChange}

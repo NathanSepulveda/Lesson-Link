@@ -185,7 +185,8 @@ export default class EventForm extends Component {
 
                         >
                             <option value="">Look for a Parent</option>
-                            {this.props.parents.map(e => (
+                            {this.props.parents.filter(parent => Number(parent.teacherId) === Number(sessionStorage.getItem("credentials")))
+                            .map(e => (
                                 <option key={e.accountId} id="parentId" value={e.id} >
 
                                     {e.name}

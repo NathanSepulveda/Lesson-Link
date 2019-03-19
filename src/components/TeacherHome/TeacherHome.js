@@ -6,7 +6,10 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Input } from 'react
 
 
 class TeacherHome extends Component {
-    state = {}
+    state = {
+        parents : this.props.parents,
+
+    }
     
     handleFieldChange = evt => {
         
@@ -19,9 +22,17 @@ class TeacherHome extends Component {
         
         this.setState(stateToChange);
         
-        console.log(this.state)
     };
     
+    // componentDidMount() {
+    //     let newState = {}
+    //     let makeState = () => {
+    //         newState.parents = this.props.parents
+    //         this.setState
+    //     }
+
+
+    // }
     
     
     render() {

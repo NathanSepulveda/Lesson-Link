@@ -3,6 +3,8 @@ import React from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 let newPayment = {}
+let today = new Date()
+let date = (today.getMonth() + 1) + "/" + today.getDate() + "/" + today.getFullYear()
 class PaymentsModal extends React.Component {
 
 
@@ -34,18 +36,19 @@ class PaymentsModal extends React.Component {
         console.log(date)
         newPayment = {
             userId: Number(id),
-            date: date,
+            date:document.querySelector("#date").value,
             amount: document.querySelector("#notes").value,
-            paymentMethodId: document.querySelector("#paymentMethod").value
+            paymentMethodId: document.querySelector("#paymentMethod").value,
+            teacherId : Number(sessionStorage.getItem("credentials"))
         };
-        console.log(newPayment)
+        
         this.props.addPayment(newPayment).then(() => this.toggle())
 
     };
 
     render() {
 
-        { console.log(newPayment) }
+        
         return (
             <div>
                 <Button color="success" onClick={this.toggle}>Add Payment</Button>
@@ -53,6 +56,8 @@ class PaymentsModal extends React.Component {
                     <ModalHeader toggle={this.toggle}>Add Lesson Notes</ModalHeader>
                     <ModalBody>
                         <form>
+                        <label >Date</label>
+                            <input type="text" placeholder={date} id="date" defaultValue={date}></input>
                             <label htmlFor="paymentAmount"></label>
                             $<input placeholder="60" id="notes"
                                 onChange={this.handleFieldChange}
