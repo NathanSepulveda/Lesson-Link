@@ -7,7 +7,6 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import * as Chart from "chart.js"
 
 let id = sessionStorage.getItem("studentId")
-console.log(id)
 if (id === null) {
     id = sessionStorage.getItem("parentId")
 }
@@ -31,25 +30,25 @@ class PaymentsDisplay extends Component {
             .then(() => StudentAndParentManager.getPaymentsOfStudent(newState.thisUser.id))
             .then(payments => {
                 newState.payments = payments
-                console.log(payments)
+                
             })
             .then(() => {
                 this.setState(newState)
             }).then(() => {
 
-                let ctx = document.getElementById('myChart').getContext('2d');
-                new Chart(document.getElementById("myChart"), {
-                    "type": "bar", "data": {
-                        "labels": ["January", "February", "March", "April", "May", "June", "July"],
-                        "datasets": [{
-                            "label": `${this.state.thisUser.name}'s Monthly Payments`, "data": [30, this.state.payments[0].amount, 70, 81, 56, 55, 40],
-                            "fill": false, "backgroundColor": ["rgba(255, 99, 132, 0.2)", "rgba(255, 159, 64, 0.2)", "rgba(255, 205, 86, 0.2)", "rgba(75, 192, 192, 0.2)", "rgba(54, 162, 235, 0.2)", "rgba(153, 102, 255, 0.2)", "rgba(201, 203, 207, 0.2)"],
-                            "borderColor": ["rgb(255, 99, 132)", "rgb(255, 159, 64)", "rgb(255, 205, 86)", "rgb(75, 192, 192)", "rgb(54, 162, 235)", "rgb(153, 102, 255)", "rgb(101, 203, 207)"],
+                // let ctx = document.getElementById('myChart').getContext('2d');
+                // new Chart(document.getElementById("myChart"), {
+                //     "type": "bar", "data": {
+                //         "labels": ["January", "February", "March", "April", "May", "June", "July"],
+                //         "datasets": [{
+                //             "label": `${this.state.thisUser.name}'s Monthly Payments`, "data": [30, this.state.payments[0].amount, 70, 81, 56, 55, 40],
+                //             "fill": false, "backgroundColor": ["rgba(255, 99, 132, 0.2)", "rgba(255, 159, 64, 0.2)", "rgba(255, 205, 86, 0.2)", "rgba(75, 192, 192, 0.2)", "rgba(54, 162, 235, 0.2)", "rgba(153, 102, 255, 0.2)", "rgba(201, 203, 207, 0.2)"],
+                //             "borderColor": ["rgb(255, 99, 132)", "rgb(255, 159, 64)", "rgb(255, 205, 86)", "rgb(75, 192, 192)", "rgb(54, 162, 235)", "rgb(153, 102, 255)", "rgb(101, 203, 207)"],
 
-                            "borderWidth": 5
-                        }]
-                    }, "options": { "scales": { "yAxes": [{ "ticks": { "beginAtZero": true } }] } }
-                });
+                //             "borderWidth": 5
+                //         }]
+                //     }, "options": { "scales": { "yAxes": [{ "ticks": { "beginAtZero": true } }] } }
+                // });
             }
             )
 
@@ -57,13 +56,13 @@ class PaymentsDisplay extends Component {
     }
     addPayment = (paymentObj) => {
         return StudentAndParentManager.addPayment(paymentObj)
-            .then(() => StudentAndParentManager.getPaymentsOfStudent(id))
+            .then(() => StudentAndParentManager.getPaymentsOfStudent(this.state.thisUser.id))
             .then(payments => this.setState({ payments: payments }))
     }
 
     editPayment = (paymentObj) => {
         return StudentAndParentManager.editPayment(paymentObj)
-            .then(() => StudentAndParentManager.getPaymentsOfStudent(id))
+            .then(() => StudentAndParentManager.getPaymentsOfStudent(this.state.thisUser.id))
             .then(payments => this.setState({ payments: payments }))
     }
 
@@ -71,7 +70,7 @@ class PaymentsDisplay extends Component {
         let answer = window.confirm("Are you sure you want to delete this payment?")
         if (answer) {
             return StudentAndParentManager.delete(id, "payments")
-                .then(() => StudentAndParentManager.getPaymentsOfStudent(id))
+                .then(() => StudentAndParentManager.getPaymentsOfStudent(this.state.thisUser.id))
                 .then(payments => this.setState({ payments: payments }))
         }
     }
@@ -86,7 +85,7 @@ class PaymentsDisplay extends Component {
 
         return (
             <React.Fragment>
-                {console.log(this.state)}
+                
 
                 <h1>{this.state.thisUser.name}'s Payments</h1>
 
@@ -109,6 +108,7 @@ class PaymentsDisplay extends Component {
                                 <EditPaymentModal
                                     currentPayment={payment}
                                     {...this.props}
+                                    date={payment.date}
                                     addPayment={this.addPayment}
                                     editPayment={this.editPayment}
                                 />

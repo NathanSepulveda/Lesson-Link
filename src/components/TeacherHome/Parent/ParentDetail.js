@@ -28,8 +28,8 @@ class ParentDetail extends Component {
 
 
         let parentId = sessionStorage.getItem("parentId")
-        console.log(typeof parentId)
-        console.log(this.props.students)
+        
+
         let thisParent = this.props.parents.find(parent => parseInt(parent.id) === parseInt(parentId)) || {}
         let instrument = thisParent.instrument || {}
         let length = thisParent.length || {}
@@ -41,7 +41,7 @@ class ParentDetail extends Component {
 
 
 
-        console.log(thisParent.id)
+        
 
 
         return (

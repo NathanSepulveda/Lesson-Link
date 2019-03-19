@@ -87,17 +87,6 @@ export default class Login extends Component {
   hideInfo = () => {
     document.querySelector(".contactInfo").classList.toggle("hidden")
     document.querySelector("#signInButton").classList.toggle("hidden")
-    // document.querySelector("#parents").classList.toggle("hidden")
-
-    // const stateToChange = {}
-    // stateToChange.emailAddress = 0
-    // stateToChange.phoneNumber = 0
-    // stateToChange.password = null
-    // stateToChange.password = 0
-    // stateToChange.parentId = document.querySelector("#parents").value
-    // this.setState(stateToChange)
-
-
 
 }
 

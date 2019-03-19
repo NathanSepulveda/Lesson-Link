@@ -22,7 +22,6 @@ class TeacherHome extends Component {
         
         this.setState(stateToChange);
         
-        console.log(this.state)
     };
     
     // componentDidMount() {

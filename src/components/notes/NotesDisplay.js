@@ -16,7 +16,6 @@ class NotesDisplay extends Component {
 
 
     componentDidMount() {
-        console.log("ComponentDidMount -- NotesDisplay")
         let newState = {}
 
         StudentAndParentManager.getStudent(Number(this.props.match.params.studentId))
@@ -33,7 +32,7 @@ class NotesDisplay extends Component {
 
     addNote = (lessonObj) => {
         return StudentAndParentManager.addNote(lessonObj)
-            .then(() => StudentAndParentManager.getLessonsOfStudent(studentId))
+            .then(() => StudentAndParentManager.getLessonsOfStudent(this.state.thisStudent.id))
             .then(lessons => this.setState({ lessons: lessons }))
     }
 
@@ -41,13 +40,13 @@ class NotesDisplay extends Component {
         let answer = window.confirm("Are you sure you want to delete this note?")
         if (answer) {
             return StudentAndParentManager.deleteNote(id)
-                .then(() => StudentAndParentManager.getLessonsOfStudent(studentId))
+                .then(() => StudentAndParentManager.getLessonsOfStudent(this.state.thisStudent.id))
                 .then(lessons => this.setState({ lessons: lessons }))
         }
     }
     editLessonNote = (noteObj) => {
         return StudentAndParentManager.editLesson(noteObj)
-            .then(() => StudentAndParentManager.getLessonsOfStudent(studentId))
+            .then(() => StudentAndParentManager.getLessonsOfStudent(this.state.thisStudent.id))
             .then(lessons => this.setState({ lessons: lessons }))
     }
 
@@ -108,7 +107,7 @@ class NotesDisplay extends Component {
                 <Button className="button"
                     type="button"
                     onClick={() => {
-                        Number(sessionStorage.getItem("userType")) === 1 ?
+                        Number(sessionStorage.getItem("userType")) === 1 || Number(sessionStorage.getItem("userType")) === 3 ?
                             this.props.history.push(`/students/${this.state.thisStudent.id}`)
                             : this.props.history.push(`/`)
                     }}

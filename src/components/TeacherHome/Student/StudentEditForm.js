@@ -134,10 +134,10 @@ export default class StudentEditForm extends Component {
     }
 
     render() {
-        console.log(this.state)
+        
         return (
             <React.Fragment>
-                {console.log(this.state)}
+                
                 <form className="animalForm">
                     <div className="form-group">
                         <label htmlFor="eventName">Student Name</label>

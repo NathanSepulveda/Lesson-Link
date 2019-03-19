@@ -10,8 +10,6 @@ class StudentDetail extends Component {
 
 
         let studentId = sessionStorage.getItem("credentials")
-        console.log(typeof studentId)
-        console.log(this.props.students)
         let thisStudent = this.props.students.find(student => parseInt(student.id) === parseInt(studentId)) || {}
         let instrument = thisStudent.instrument || {}
         let length = thisStudent.length || {}
@@ -20,7 +18,7 @@ class StudentDetail extends Component {
 
 
 
-        console.log(thisStudent.id)
+        
 
 
         return (

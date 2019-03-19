@@ -1,9 +1,11 @@
 import React, { Component } from "react"
 import { Link } from "react-router-dom"
+import {withRouter} from "react-router"
 import "bootstrap/dist/css/bootstrap.min.css"
 class Nav extends Component {
   logout = () => {
     sessionStorage.clear("credentials")
+    this.props.history.push(`/`)
     this.props.setAuth()
   }
 
@@ -45,4 +47,4 @@ class Nav extends Component {
   }
 }
 
-export default Nav
+export default withRouter(Nav)

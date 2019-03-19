@@ -2,7 +2,6 @@
 import React from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
-let newLessonNote = {}
 let editedLessonNote = {}
 let today = new Date()
 let date = (today.getMonth() + 1) + "/" + today.getDate() + "/" + today.getFullYear()
@@ -30,14 +29,14 @@ class EditNotesModal extends React.Component {
         let today = new Date()
         let date = (today.getMonth() + 1) + "/" + today.getDate() + "/" + today.getFullYear()
 
-        console.log(date)
+        
         editedLessonNote = {
             id: this.props.currentNote.id,
             studentId: Number(sessionStorage.getItem("studentId")),
             date: document.querySelector("#date").value,
             note: document.querySelector("#notes").value
         };
-        console.log(newLessonNote)
+        
         this.props.editLessonNote(editedLessonNote).then(() => this.toggle())
 
     };

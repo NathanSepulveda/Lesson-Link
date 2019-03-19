@@ -22,14 +22,13 @@ class ParentDetail extends Component {
 
         this.setState(stateToChange);
 
-        console.log(this.state)
+
     };
     render() {
 
         sessionStorage.removeItem("studentId")
         let parentId = sessionStorage.getItem("parentId")
-        console.log(parentId)
-        console.log(this.props.students)
+
         let thisParent = this.props.parents.find(parent => parseInt(parent.id) === parseInt(parentId)) || {}
         let instrument = thisParent.instrument || {}
         let length = thisParent.length || {}
@@ -41,7 +40,7 @@ class ParentDetail extends Component {
 
 
 
-        console.log(thisParent.id)
+
 
 
         return (

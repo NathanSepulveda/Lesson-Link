@@ -11,7 +11,7 @@
       "lessonDayId": 7,
       "parentId": 0,
       "lessonTime": "10:15",
-      "instrumentId": "2",
+      "instrumentId": "1",
       "locationId": 1,
       "lengthId": 2,
       "userTypeId": 2
@@ -225,23 +225,7 @@
       "id": 24
     },
     {
-      "name": "Test Adult",
-      "accountId": "FEUQb",
-      "phoneNumber": "911",
-      "id": 25,
-      "emailAddress": "123",
-      "password": "yxMAg",
-      "teacherId": 2,
-      "lessonDayId": 1,
-      "parentId": 0,
-      "lessonTime": "7:00 PM",
-      "instrumentId": 2,
-      "locationId": 1,
-      "lengthId": 2,
-      "userTypeId": 2
-    },
-    {
-      "name": "Jim Sepulveda",
+      "name": "Jimmy Sepulveda",
       "accountId": "3",
       "phoneNumber": 0,
       "id": 26,
@@ -251,10 +235,90 @@
       "lessonDayId": 1,
       "parentId": 4,
       "lessonTime": "7:00 PM",
-      "instrumentId": "5",
+      "instrumentId": 5,
       "locationId": 1,
       "lengthId": 2,
       "userTypeId": 2
+    },
+    {
+      "name": "New Test Parental",
+      "accountId": "ntYSa",
+      "phoneNumber": "6193876153",
+      "id": 27,
+      "emailAddress": "nathans.composer@gmail.com",
+      "password": "LiUQ7",
+      "teacherId": 2,
+      "lessonDayId": 0,
+      "parentId": 0,
+      "lessonTime": "7:00 PM",
+      "instrumentId": 0,
+      "locationId": 0,
+      "lengthId": 0,
+      "userTypeId": 3
+    },
+    {
+      "name": "New KID",
+      "accountId": "ntYSa",
+      "phoneNumber": 0,
+      "emailAddress": 0,
+      "password": null,
+      "teacherId": 2,
+      "lessonDayId": 1,
+      "parentId": 27,
+      "lessonTime": "7:00 PM",
+      "instrumentId": 1,
+      "locationId": 2,
+      "lengthId": 2,
+      "userTypeId": 2,
+      "id": 28
+    },
+    {
+      "name": "Test Teacher",
+      "accountId": 0,
+      "password": "1111",
+      "userTypeId": 1,
+      "phoneNumber": "6193876153",
+      "emailAddress": "",
+      "lessonDayId": 0,
+      "teacherId": 0,
+      "parentId": 0,
+      "lessonTime": 0,
+      "instrumentId": 0,
+      "locationId": 0,
+      "lengthId": 0,
+      "id": 29
+    },
+    {
+      "name": "Student",
+      "accountId": "tQaPX",
+      "phoneNumber": "6193876153",
+      "emailAddress": "nathans.composer@gmail.com",
+      "password": "GNYDs",
+      "teacherId": 29,
+      "lessonDayId": 2,
+      "parentId": 0,
+      "lessonTime": "7:00 PM",
+      "instrumentId": 1,
+      "locationId": 1,
+      "lengthId": 1,
+      "userTypeId": 2,
+      "id": 30
+    },
+    {
+      "name": "Parent for New Teacher",
+      "accountId": "Andcx",
+      "phoneNumber": "6193876153",
+      "emailAddress": "nathans.composer@gmail.com",
+      "password": "3wmm8",
+      "teacherId": 29,
+      "lessonDayId": 0,
+      "parentId": 0,
+      "lessonTime": "7:00 PM",
+      "instrumentId": 0,
+      "locationId": 0,
+      "lengthId": 0,
+      "userTypeId": 3,
+      "id": 31
     }
   ],
   "userTypes": [
@@ -343,52 +407,39 @@
   ],
   "payments": [
     {
-      "id": 2,
+      "id": 1,
       "userId": 6,
-      "date": "3/18/2019",
-      "amount": 45,
-      "paymentMethodId": 2
-    },
-    {
-      "id": 3,
-      "userId": 5,
-      "date": "3/15/2019",
-      "amount": 45,
-      "paymentMethodId": 2,
-      "teacherId": 1
+      "date": "3/19/2019",
+      "teacherId": 2,
+      "amount": 60,
+      "paymentMethodId": 1
     },
     {
       "userId": 4,
-      "date": "3/15/2019",
-      "amount": "360",
+      "date": "3/19/2019",
+      "amount": "1000",
       "paymentMethodId": "1",
-      "id": 4,
-      "teacherId": 2
-    },
-    {
-      "userId": 6,
-      "date": "3/18/2019",
-      "amount": "60",
-      "paymentMethodId": "1",
-      "id": 6,
-      "teacherId": 2
-    },
-    {
-      "id": 7,
-      "userId": 6,
-      "date": "3/18/2019",
       "teacherId": 2,
-      "amount": 45,
-      "paymentMethodId": 2
+      "id": 2
+    },
+    {
+      "id": 3,
+      "userId": 27,
+      "date": "3/19/2019",
+      "teacherId": 2,
+      "amount": 120,
+      "paymentMethodId": 1
+    },
+    {
+      "userId": 30,
+      "date": "3/19/2019",
+      "amount": "100",
+      "paymentMethodId": "1",
+      "teacherId": 29,
+      "id": 4
     }
   ],
   "lessons": [
-    {
-      "studentId": 5,
-      "date": "1/29/19",
-      "note": "keep up the good work!",
-      "id": 1
-    },
     {
       "studentId": 6,
       "date": "3/13/19",
@@ -400,12 +451,6 @@
       "date": "3/13/2019",
       "note": "Note for Jake",
       "id": 3
-    },
-    {
-      "id": 4,
-      "studentId": 5,
-      "date": "3/13/2019",
-      "note": "123"
     },
     {
       "studentId": 7,
@@ -426,10 +471,52 @@
       "id": 9
     },
     {
-      "id": 10,
+      "studentId": 28,
+      "date": "3/19/2019",
+      "note": "Nota",
+      "id": 11
+    },
+    {
+      "studentId": 28,
+      "date": "3/19/2019",
+      "note": "Note dude",
+      "id": 12
+    },
+    {
+      "id": 13,
+      "studentId": 26,
+      "date": "3/19/2019",
+      "note": "k"
+    },
+    {
+      "studentId": 26,
+      "date": "3/19/2019",
+      "note": "Test again",
+      "id": 14
+    },
+    {
+      "id": 15,
+      "studentId": 26,
+      "date": "3/19/2019",
+      "note": "neat"
+    },
+    {
+      "id": 16,
       "studentId": 5,
-      "date": "3/18/2019",
-      "note": "Hey bud"
+      "date": "3/19/2019",
+      "note": "work it up"
+    },
+    {
+      "studentId": 5,
+      "date": "3/19/2019",
+      "note": "work yo!",
+      "id": 17
+    },
+    {
+      "studentId": 30,
+      "date": "3/19/2019",
+      "note": "note for you",
+      "id": 18
     }
   ],
   "paymentMethods": [

@@ -71,7 +71,8 @@ class TeacherApplicationViews extends Component {
   editParent = (parentObj) => {
     return StudentAndParentManager.editUser(parentObj)
       .then(() => StudentAndParentManager.getAllParents())
-      .then(parents => console.log(parents))
+      .then(parents => this.setState({parents: parents}))
+      
   }
 
 
@@ -96,6 +97,7 @@ class TeacherApplicationViews extends Component {
             teacherName={this.props.activeUser}
             {...props} />
         } else {
+          console.log("parent")
           id = sessionStorage.getItem("credentials")
           sessionStorage.setItem("parentId", id)
           return <ParentHome {...props}
