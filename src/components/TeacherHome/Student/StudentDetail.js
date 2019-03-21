@@ -40,13 +40,14 @@ class StudentDetail extends Component {
 
             <React.Fragment>
                 <div id="studentInfo">
+                    
                     <h1>{this.state.student.name}</h1>
                     <h2>{instrument.name}</h2>
                     {Number(sessionStorage.getItem("parentId") === null) ?
 
                         <div>
                             <h2>{thisStudent.emailAddress} </h2>
-                            <h2>{thisStudent.phoneNumber} </h2>
+                            <a href={'tel:' + thisStudent.phoneNumber} className="phone">{thisStudent.phoneNumber}</a>
 
                         </div> : ""
 
@@ -57,11 +58,11 @@ class StudentDetail extends Component {
                     <h2>{day.day}'s </h2>
                 </div>
                 <div id="buttonsDisplay">
-                    <button type="button"
+                    <Button type="button" color="secondary"
                         onClick={() => this.props.history.push(`/Students/${thisStudent.id}/notes`)}
-                        className="btn btn-success">
+                        >
                         View Student Notes
-                    </button>
+                    </Button>
                     <div id="divider"></div>
                     {Number(sessionStorage.getItem("parentId") === null) ?
                         <button type="button"
@@ -74,7 +75,8 @@ class StudentDetail extends Component {
                 {/* hide admin details */}
                 {Number(sessionStorage.getItem("userType")) === 1 ?
                     <div>
-                        <button type="button"
+                        <Button type="button"
+                        color="danger"
                             onClick={() => {
                                 // let id = Number(studentId)
                                 console.log(typeof thisStudent.id)
@@ -87,8 +89,8 @@ class StudentDetail extends Component {
                             }
                             className="btn btn-success">
                             Delete This Student
-                                    </button>
-                        <button type="button"
+                                    </Button>
+                        <Button type="button"  color="info"
                             onClick={() => {
 
 
@@ -97,9 +99,9 @@ class StudentDetail extends Component {
                             }
 
                             }
-                            className="btn btn-success">
+                            className="btn btn-success" >
                             Edit This Student's Info
-                                    </button>
+                                    </Button>
                     </div> : ""
 
 

@@ -1,8 +1,12 @@
 import React, { Component } from 'react'
 import "./TeacherHome.css"
 import { Link } from "react-router-dom"
+
 import { withRouter } from "react-router"
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Input } from 'reactstrap';
+
+
+
 
 
 class TeacherHome extends Component {
@@ -54,7 +58,8 @@ class TeacherHome extends Component {
         return (
 
             <React.Fragment>
-                <h1>Welcome {firstName}!</h1>
+                <h1>Welcome, {firstName}!</h1>
+                <div>
                 {this.props.students.filter(s => Number(s.teacherId) === Number(sessionStorage.getItem("credentials")))
                     .length === 0 ?
                     ""
@@ -90,7 +95,8 @@ class TeacherHome extends Component {
 
                 }
 
-                {this.props.parents.filter(p => p.teacherId === 32) ?
+                {this.props.parents.filter(p => p.teacherId === Number(sessionStorage.getItem("credentials")))
+                .length === 0 ?
                 "" : 
                 <div>
                 <br></br>
@@ -131,6 +137,7 @@ class TeacherHome extends Component {
                     className="btn btn-success">
                     Add New Student/Parent
                     </button>
+                    </div>
 
             </React.Fragment>
         )

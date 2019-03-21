@@ -22,3 +22,15 @@
 
 
 }
+
+.phone {
+    font-size: 30px;
+    color: blue;
+    
+}
+
+.phone:hover {
+    font-size: 40px;
+    color: grey;
+    
+}

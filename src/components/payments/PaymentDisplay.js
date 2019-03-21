@@ -111,7 +111,7 @@ class PaymentsDisplay extends Component {
 
 
                 {this.state.payments.map(payment =>
-                    <div className="paymentBox" id={payment.id}>
+                    <div className="paymentBox" key={payment.id} id={payment.id}>
                         <div>{payment.date}</div>
                         <div>${payment.amount} {payment.paymentMethod.method}</div>
 
@@ -169,11 +169,12 @@ class PaymentsDisplay extends Component {
 
                     }}
                 >Back to {this.state.thisUser.name}'s Info</Button>
-                <canvas id="myChart" width="400" height="100"></canvas>
+                <br></br>
+                
 
-                <button type="button" onClick={() =>
+                <Button type="button" onClick={() =>
                     this.outputCSV()
-                }> Click Here to Download Payments Summary</button>
+                }> Click Here to Download Payments Summary</Button>
 
 
             </React.Fragment>

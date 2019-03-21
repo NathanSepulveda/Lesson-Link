@@ -93,6 +93,7 @@ export default class Login extends Component {
   render() {
     return (
       <React.Fragment>
+        <h1>Welcome to Lesson Link</h1>
         <form className="loginForm">
           <h1 className="h3 mb-3 font-weight-normal">Please sign in</h1>
           <label htmlFor="inputname">name</label>

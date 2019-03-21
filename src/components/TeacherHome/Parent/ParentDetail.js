@@ -50,9 +50,11 @@ class ParentDetail extends Component {
                     <h1>{thisParent.name}</h1>
 
                     <h2>{thisParent.emailAddress} </h2>
-                    <h2>{thisParent.phoneNumber} </h2>
+                    <a href={'tel:' + thisParent.phoneNumber} className="phone">{thisParent.phoneNumber}</a>
+                    <br></br>
+                    
 
-                    Students
+                    
                 <Input
                         type="select"
                         defaultValue=""

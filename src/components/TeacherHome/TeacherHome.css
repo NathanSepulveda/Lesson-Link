@@ -1,3 +1,9 @@
 /* .divide {
     border: 50px solid black
 } */
+
+.bckg {
+    background-image: url("../../images/nateteacher.png");
+    background-repeat: no-repeat;
+    
+}

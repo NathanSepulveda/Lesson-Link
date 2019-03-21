@@ -4,6 +4,7 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import "./Notes.css"
 import NotesModal from "./NotesModal"
 import EditNotesModal from "./EditNotesModal"
+import * as emailjs from 'emailjs-com';
 
 let studentId = sessionStorage.getItem("studentId")
 
@@ -50,11 +51,26 @@ class NotesDisplay extends Component {
             .then(lessons => this.setState({ lessons: lessons }))
     }
 
+    emailNote = (note) => {
+
+        var template_params = {
+            "user_email": "6193876153@vtext.com",
+            "text": note
+        }
+
+        var service_id = "default_service";
+        var template_id = "studentnote";
+        emailjs.send(service_id, template_id, template_params);
+
+        alert("Note sent!")
+
+    }
+
 
     render() {
 
 
-        
+
 
         return (
             <React.Fragment>
@@ -65,6 +81,11 @@ class NotesDisplay extends Component {
                     <div id={lesson.id} className="notesCard">
                         <div>{lesson.date}</div>
                         <div>{lesson.note}</div>
+                        <Button
+                            className="button"
+                            color="info"
+                            onClick={() => this.emailNote(lesson.note)}
+                        >Send this note</Button>
 
                         {Number(sessionStorage.getItem("userType")) === 1 ?
 
@@ -114,6 +135,11 @@ class NotesDisplay extends Component {
 
 
                 >Back to {this.state.thisStudent.name}'s Info</Button>
+                                    <script type="text/javascript">
+                        (function(){
+                            emailjs.init("user_vcKdIHuDqkDlJfNRcsCfB")
+                        })();
+</script>
 
             </React.Fragment>
         )
