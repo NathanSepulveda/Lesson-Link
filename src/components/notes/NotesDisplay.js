@@ -54,7 +54,7 @@ class NotesDisplay extends Component {
     emailNote = (note) => {
 
         var template_params = {
-            "user_email": "6193876153@vtext.com",
+            "user_email": this.state.thisStudent.emailAddress,
             "text": note
         }
 

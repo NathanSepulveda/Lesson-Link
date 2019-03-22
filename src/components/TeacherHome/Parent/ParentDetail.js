@@ -1,7 +1,8 @@
 import React, { Component } from "react"
 import { Link } from "react-router-dom"
-import {withRouter} from "react-router"
+import { withRouter } from "react-router"
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Input } from 'reactstrap';
+import StudentAndParentManager from "../../../modules/StudentAndParentManager";
 
 
 
@@ -9,39 +10,56 @@ class ParentDetail extends Component {
     // state = {
     //     student : []
     // }
-    state = {}
+    state = {
+        parent: {},
+        teacher: {}
+    }
+
+
+
+    componentDidMount() {
+        console.log('hey')
+        let newState = {}
+        StudentAndParentManager.getOneParent(sessionStorage.getItem("credentials")).then(parent => {
+            newState.parent = parent
+            console.log(parent)
+        }).then(() => StudentAndParentManager.getTeacher(newState.parent.teacherId))
+            .then(teacher => {
+                newState.teacher = teacher
+            }).then(() => this.setState(newState))
+    }
 
     handleFieldChange = evt => {
-            
+
         // let selectedStudentId = Number(document.querySelector("#selectedStudentId").value)
         // console.log(selectedStudentId)
-        
+
         const stateToChange = {};
         stateToChange[evt.target.id] = Number(evt.target.value);
         // stateToChange.selectedStudentId = selectedStudentId 
-        
+
         this.setState(stateToChange);
-        
+
         console.log(this.state)
     };
     render() {
 
 
         let parentId = sessionStorage.getItem("parentId")
-        
+
 
         let thisParent = this.props.parents.find(parent => parseInt(parent.id) === parseInt(parentId)) || {}
         let instrument = thisParent.instrument || {}
         let length = thisParent.length || {}
         let location = thisParent.location || {}
         let day = thisParent.lessonDay || {}
-        
-    
 
 
 
 
-        
+
+
+
 
 
         return (
@@ -52,10 +70,10 @@ class ParentDetail extends Component {
                     <h2>{thisParent.emailAddress} </h2>
                     <a href={'tel:' + thisParent.phoneNumber} className="phone">{thisParent.phoneNumber}</a>
                     <br></br>
-                    
 
-                    
-                <Input
+
+
+                    <Input
                         type="select"
                         defaultValue=""
                         name="studentList"
@@ -64,17 +82,17 @@ class ParentDetail extends Component {
 
                     >
                         <option value="">Look for a student</option>
-                        {   this.props.students.filter(student => Number(student.parentId) === Number(parentId))
+                        {this.props.students.filter(student => Number(student.parentId) === Number(parentId))
                             .map(e => (
-                            <option key={e.id} id="students" value={e.id} >
-                                {e.name}
+                                <option key={e.id} id="students" value={e.id} >
+                                    {e.name}
 
-                            </option>
-                        ))}
+                                </option>
+                            ))}
                     </Input>
                     <Link to={"/students/" + this.state.selectedStudentId}><Button type="button" onClick={() => {
-                    sessionStorage.setItem("studentId", Number(this.state.selectedStudentId))
-                }}>Go to this student</Button></Link>
+                        sessionStorage.setItem("studentId", Number(this.state.selectedStudentId))
+                    }}>Go to this student</Button></Link>
 
                 </div>
                 <div id="buttonsDisplay">

@@ -16,7 +16,7 @@ class StudentDetail extends Component {
 
     componentDidMount() {
         let newState = {}
-        StudentAndParentManager.getStudent(Number(this.props.match.params.studentId))
+        StudentAndParentManager.getStudent(Number(sessionStorage.getItem('studentId')))
             .then((student) => newState.student = student)
             .then(() => this.setState(newState))
     }

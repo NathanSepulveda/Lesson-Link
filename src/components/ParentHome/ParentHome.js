@@ -2,6 +2,7 @@ import React, { Component } from "react"
 import { Link } from "react-router-dom"
 import { withRouter } from "react-router"
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Input } from 'reactstrap';
+import StudentAndParentManager from "../../modules/StudentAndParentManager";
 
 
 
@@ -9,7 +10,27 @@ class ParentDetail extends Component {
     // state = {
     //     student : []
     // }
-    state = {}
+  
+
+
+    state = {
+        parent: {},
+        teacher: {}
+    }
+
+
+
+    componentDidMount() {
+        console.log('hey')
+        let newState = {}
+        StudentAndParentManager.getOneParent(sessionStorage.getItem("credentials")).then(parent => {
+            newState.parent = parent
+            console.log(parent)
+        }).then(() => StudentAndParentManager.getTeacher(newState.parent.teacherId))
+            .then(teacher => {
+                newState.teacher = teacher
+            }).then(() => this.setState(newState))
+    }
 
     handleFieldChange = evt => {
 
@@ -48,10 +69,13 @@ class ParentDetail extends Component {
                 <div id="studentInfo">
                     <h1>{thisParent.name}</h1>
 
-                    <h2>{thisParent.emailAddress} </h2>
-                    <h2>{thisParent.phoneNumber} </h2>
+                    <h2>Your teacher's email :</h2>
+                    <h4>{this.state.teacher.emailAddress} </h4>
+                    <h2>Your teacher's Phone Number:</h2>
+                    <a href={'tel:' + this.state.teacher.phoneNumber} className="phone">{this.state.teacher.phoneNumber}</a>
+                    
 
-                    Students
+                    
                 <Input
                         type="select"
                         defaultValue=""

@@ -51,7 +51,7 @@
     {
       "name": "Jake Wehrly",
       "accountId": "G8Ddh",
-      "phoneNumber": "199",
+      "phoneNumber": "‭+1 (614) 365-1309‬",
       "id": 6,
       "emailAddress": "jake@gmail.com",
       "password": "1234",
@@ -341,7 +341,7 @@
       "accountId": "8ZcSx",
       "phoneNumber": "‭+1 (484) 574-5135‬",
       "id": 35,
-      "emailAddress": "123",
+      "emailAddress": "alysontrudan@gmail.com",
       "password": "T7Czk",
       "teacherId": 2,
       "lessonDayId": 3,
@@ -355,8 +355,9 @@
     {
       "name": "Netty Leach",
       "accountId": "qyJHR",
-      "phoneNumber": "6193876153",
-      "emailAddress": "nathans.composer@gmail.com",
+      "phoneNumber": "‭+1 (615) 589-2223‬",
+      "id": 36,
+      "emailAddress": "nettyleach@gmail.com",
       "password": "lgZi8",
       "teacherId": 2,
       "lessonDayId": 3,
@@ -365,8 +366,7 @@
       "instrumentId": 1,
       "locationId": 1,
       "lengthId": 1,
-      "userTypeId": 2,
-      "id": 36
+      "userTypeId": 2
     },
     {
       "name": "Rudi Wilhoite",
@@ -470,7 +470,7 @@
       "phoneNumber": "‭(615) 479-7375‬",
       "id": 44,
       "emailAddress": "sshanekl@gmail.com",
-      "password": "wxFxQ",
+      "password": "1234",
       "teacherId": 2,
       "lessonDayId": 0,
       "parentId": 0,
@@ -932,17 +932,17 @@
       "name": "Johhny Aquinas",
       "accountId": "euWYP",
       "phoneNumber": "‭+1 (716) 907-0937‬",
+      "id": 73,
       "emailAddress": "j.aquilina24@yahoo.com",
       "password": "6Sced",
       "teacherId": 2,
-      "lessonDayId": 8,
+      "lessonDayId": "7",
       "parentId": 0,
       "lessonTime": "n/a",
       "instrumentId": 1,
       "locationId": 1,
       "lengthId": 3,
-      "userTypeId": 2,
-      "id": 73
+      "userTypeId": 2
     }
   ],
   "userTypes": [
@@ -1167,12 +1167,12 @@
       "paymentMethodId": 3
     },
     {
+      "id": 28,
       "userId": 43,
-      "teacherId": 2,
       "date": "3/20/2019",
-      "amount": "45",
-      "paymentMethodId": "3",
-      "id": 28
+      "teacherId": 2,
+      "amount": 70,
+      "paymentMethodId": 3
     },
     {
       "userId": 43,
@@ -1191,12 +1191,12 @@
       "id": 30
     },
     {
+      "id": 31,
       "userId": 43,
       "date": "3/9/2019",
       "teacherId": 2,
-      "amount": "45",
-      "paymentMethodId": "3",
-      "id": 31
+      "amount": 90,
+      "paymentMethodId": 3
     },
     {
       "userId": 48,
@@ -1965,6 +1965,14 @@
       "paymentMethodId": "1",
       "teacherId": 2,
       "id": 129
+    },
+    {
+      "userId": 40,
+      "date": "3/21/2019",
+      "amount": "45",
+      "paymentMethodId": "1",
+      "teacherId": 2,
+      "id": 130
     }
   ],
   "lessons": [
@@ -2045,6 +2053,18 @@
       "date": "3/19/2019",
       "note": "Practice finger exercise at 80 BPM with hands together. Chord progressions: we made up Am F C G today. Practice with various ways of rhythm and breaking up the chord: quarter notes, half notes, top notes followed by lower note and vice versa. Practice pg 37 of book.",
       "id": 23
+    },
+    {
+      "studentId": 74,
+      "date": "3/21/2019",
+      "note": "good job bud",
+      "id": 24
+    },
+    {
+      "id": 25,
+      "studentId": 40,
+      "date": "3/21/2019",
+      "note": "\n1. C scale, hands together; G scale hands separate until comfortable with se-a rate \n2. When the saints, both versions, faster, louder. Transition between versions. \n3. Elvis- pedaling \n4. Rainbow "
     }
   ],
   "paymentMethods": [

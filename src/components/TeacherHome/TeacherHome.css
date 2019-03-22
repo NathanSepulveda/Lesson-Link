@@ -7,3 +7,11 @@
     background-repeat: no-repeat;
     
 }
+
+.teacherhome {
+    display: flex;
+
+}
+#search {
+    width: 50%;
+}
