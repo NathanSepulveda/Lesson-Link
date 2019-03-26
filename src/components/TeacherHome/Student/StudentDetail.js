@@ -2,6 +2,11 @@ import React, { Component } from "react"
 import "./StudentForm.css"
 import StudentAndParentManager from "../../../modules/StudentAndParentManager"
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import piano from "../../../images/piano.png"
+import guitar from "../../../images/icon.png"
+import uke from "../../../images/ukelele.png"
+import bass from "../../../images/bass-guitar.png"
+import prod from "../../../images/settings.png"
 
 let id = sessionStorage.getItem("studentId")
 if (id === null) {
@@ -16,7 +21,7 @@ class StudentDetail extends Component {
 
     componentDidMount() {
         let newState = {}
-        StudentAndParentManager.getStudent(Number(this.props.match.params.studentId))
+        StudentAndParentManager.getStudent(Number(sessionStorage.getItem('studentId')))
             .then((student) => newState.student = student)
             .then(() => this.setState(newState))
     }
@@ -27,9 +32,21 @@ class StudentDetail extends Component {
         let studentId = sessionStorage.getItem("studentId")
         let thisStudent = this.props.students.find(student => parseInt(student.id) === parseInt(studentId)) || {}
         let instrument = thisStudent.instrument || {}
+        let instrumentImage; 
         let length = thisStudent.length || {}
         let location = thisStudent.location || {}
         let day = thisStudent.lessonDay || {}
+        if (thisStudent.instrumentId === 1 ) {
+            instrumentImage = piano
+        } else if (thisStudent.instrumentId === 2) {
+            instrumentImage = guitar
+        } else if (thisStudent.instrumentId === 3) {
+            instrumentImage = uke
+        } else if (thisStudent.instrumentId === 4) {
+            instrumentImage = bass
+        } else if (thisStudent.instrumentId === 5) {
+            instrumentImage = prod
+        }
 
 
 
@@ -40,13 +57,17 @@ class StudentDetail extends Component {
 
             <React.Fragment>
                 <div id="studentInfo">
+                    
                     <h1>{this.state.student.name}</h1>
-                    <h2>{instrument.name}</h2>
+                    
+                    <div id="instruments">
+                    <img id="instruments" src={instrumentImage} alt={instrument.name}></img>
+                    </div>
                     {Number(sessionStorage.getItem("parentId") === null) ?
 
                         <div>
                             <h2>{thisStudent.emailAddress} </h2>
-                            <h2>{thisStudent.phoneNumber} </h2>
+                            <a href={'tel:' + thisStudent.phoneNumber} className="phone">{thisStudent.phoneNumber}</a>
 
                         </div> : ""
 
@@ -57,11 +78,11 @@ class StudentDetail extends Component {
                     <h2>{day.day}'s </h2>
                 </div>
                 <div id="buttonsDisplay">
-                    <button type="button"
+                    <Button type="button" color="secondary"
                         onClick={() => this.props.history.push(`/Students/${thisStudent.id}/notes`)}
-                        className="btn btn-success">
+                        >
                         View Student Notes
-                    </button>
+                    </Button>
                     <div id="divider"></div>
                     {Number(sessionStorage.getItem("parentId") === null) ?
                         <button type="button"
@@ -74,7 +95,8 @@ class StudentDetail extends Component {
                 {/* hide admin details */}
                 {Number(sessionStorage.getItem("userType")) === 1 ?
                     <div>
-                        <button type="button"
+                        <Button type="button"
+                        color="danger"
                             onClick={() => {
                                 // let id = Number(studentId)
                                 console.log(typeof thisStudent.id)
@@ -87,8 +109,8 @@ class StudentDetail extends Component {
                             }
                             className="btn btn-success">
                             Delete This Student
-                                    </button>
-                        <button type="button"
+                                    </Button>
+                        <Button type="button"  color="info"
                             onClick={() => {
 
 
@@ -97,9 +119,9 @@ class StudentDetail extends Component {
                             }
 
                             }
-                            className="btn btn-success">
+                            className="btn btn-success" >
                             Edit This Student's Info
-                                    </button>
+                                    </Button>
                     </div> : ""
 
 

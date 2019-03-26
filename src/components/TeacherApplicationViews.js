@@ -81,14 +81,14 @@ class TeacherApplicationViews extends Component {
     return <React.Fragment>
       <Route exact path="/" render={(props) => {
         if (Number(sessionStorage.getItem("userType")) === 1) {
-          console.log("teacher")
+         
           return <TeacherHome
             students={this.state.students}
             parents={this.state.parents}
             teacherName={this.props.activeUser}
             {...props} />
         } else if (Number(sessionStorage.getItem("userType")) === 2) {
-          console.log("studentt")
+          
           id = sessionStorage.getItem("credentials")
           sessionStorage.setItem("studentId", id)
           return <StudentHome
@@ -97,7 +97,7 @@ class TeacherApplicationViews extends Component {
             teacherName={this.props.activeUser}
             {...props} />
         } else {
-          console.log("parent")
+         
           id = sessionStorage.getItem("credentials")
           sessionStorage.setItem("parentId", id)
           return <ParentHome {...props}

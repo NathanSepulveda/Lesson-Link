@@ -1,24 +1,69 @@
 import React, { Component } from "react"
+import StudentAndParentManager from "../../modules/StudentAndParentManager";
 
 
+
+let studentId 
+let thisStudent
+let instrument 
+// let teacher =  StudentAndParentManager.getTeacher(thisStudent.teacherId).then(teacher => {
+//     return teacher
+// }) || {}
+// console.log(teacher)
+let length 
+let location
+let day 
 
 class StudentDetail extends Component {
     // state = {
     //     student : []
     // }
+    state = {
+        teacher: {},
+        student: {}
+    }
+    componentDidMount() {
+        let newState = {}
+        StudentAndParentManager.getStudent(sessionStorage.getItem("credentials")).then((student => 
+            newState.student = student))
+        .then(()=> StudentAndParentManager.getTeacher(newState.student.teacherId))
+        .then(teacher => {
+            newState.teacher = teacher
+        }).then(() => this.setState(newState))
+
+    }
+
+
+    // studentId = sessionStorage.getItem("credentials")
+    // thisStudent = this.props.students.find(student => parseInt(student.id) === parseInt(studentId)) || {}
+    // instrument = thisStudent.instrument || {}
+    // // let teacher =  StudentAndParentManager.getTeacher(thisStudent.teacherId).then(teacher => {
+    // //     return teacher
+    // // }) || {}
+    // // console.log(teacher)
+    // length = thisStudent.length || {}
+    // location = thisStudent.location || {}
+    // day = thisStudent.lessonDay || {}
     render() {
+
 
 
         let studentId = sessionStorage.getItem("credentials")
         let thisStudent = this.props.students.find(student => parseInt(student.id) === parseInt(studentId)) || {}
         let instrument = thisStudent.instrument || {}
+        // let teacher =  StudentAndParentManager.getTeacher(thisStudent.teacherId).then(teacher => {
+        //     return teacher
+        // }) || {}
+        // console.log(teacher)
         let length = thisStudent.length || {}
         let location = thisStudent.location || {}
         let day = thisStudent.lessonDay || {}
 
 
 
-        
+
+
+
 
 
         return (
@@ -26,8 +71,11 @@ class StudentDetail extends Component {
                 <div id="studentInfo">
                     <h1>{thisStudent.name}</h1>
                     <h2>{instrument.name}</h2>
-                    <h2>{thisStudent.emailAddress} </h2>
-                    <h2>{thisStudent.phoneNumber} </h2>
+                    <h2>Your teacher's email :</h2>
+                    <h4>{this.state.teacher.emailAddress} </h4>
+                    <h2>Your teacher's Phone Number:</h2>
+                    <a href={'tel:' + this.state.teacher.phoneNumber} className="phone">{this.state.teacher.phoneNumber}</a>
+                    
                     <h2>{length.length} Minute Lessons</h2>
                     <h2>{thisStudent.lessonTime} </h2>
                     <h2>{location.location} </h2>

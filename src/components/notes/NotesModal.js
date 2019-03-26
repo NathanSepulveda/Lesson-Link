@@ -39,16 +39,6 @@ class NotesModal extends React.Component {
         };
         
         this.props.addNote(newLessonNote).then(() => this.toggle())
-        // .then(() => {
-        //     var template_params = {
-        //         "user_email": "warnercarpenter@yahoo.com",
-        //         "text": newLessonNote.note
-        //     }
-
-        //     var service_id = "default_service";
-        //     var template_id = "studentnote";
-        //     emailjs.send(service_id, template_id, template_params);
-        // })
 
     };
 
@@ -77,7 +67,7 @@ class NotesModal extends React.Component {
 </script>
                     <ModalFooter>
                         <Button color="primary" onClick={this.NewLesson}>Add this note!</Button>{' '}
-                        {/* <Button color="primary" onClick={console.log(newFriendObject)}>Add Friend!</Button>{' '} */}
+                        
                         <Button color="secondary" onClick={this.toggle}>Cancel</Button>
                     </ModalFooter>
                 </Modal>

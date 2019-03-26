@@ -1,6 +1,7 @@
 import React, { Component } from "react"
 import { Link } from "react-router-dom"
 import {withRouter} from "react-router"
+import eightNote from "../../images/8thnote.png"
 import "bootstrap/dist/css/bootstrap.min.css"
 class Nav extends Component {
   logout = () => {
@@ -11,7 +12,7 @@ class Nav extends Component {
 
   render() {
     return (
-      <nav className="navbar navbar-light fixed-top light-blue flex-md-nowrap p-0 shadow">
+      <nav className="navbar fixed-top  flex-md-nowrap p-0 shadow">
         <ul className="nav nav-pills">
           <li className="nav-item">
             <Link className="nav-link" to="/">
@@ -35,7 +36,10 @@ class Nav extends Component {
             
           </li> */}
         </ul>
-        <a className="nav-link">Lesson Link</a>
+        
+        <h3 className="nav-link">Lesson Link ♪</h3>
+        {/* <img src={eightNote} widht="20" height="20"></img> */}
+
         <button
           type="button"
           className="btn btn-outline-info"

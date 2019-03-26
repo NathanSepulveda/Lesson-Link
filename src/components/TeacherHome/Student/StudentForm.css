@@ -16,9 +16,38 @@
     
 }
 
+
 .btn {
 
     margin: 20px
 
 
+}
+
+.phone {
+    font-size: 30px;
+    color: blue;
+    
+}
+
+.phone:hover {
+    font-size: 40px;
+    color: grey;
+    
+}
+
+#allinfo {
+    padding: 20px;
+    
+
+}
+
+#instruments {
+    width: 100px
+}
+
+#studentInfo {
+    border: 1px solid black;
+    border-radius: 20px;
+    width: 100%
 }

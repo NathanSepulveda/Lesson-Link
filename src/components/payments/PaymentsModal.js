@@ -5,6 +5,7 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 let newPayment = {}
 let today = new Date()
 let date = (today.getMonth() + 1) + "/" + today.getDate() + "/" + today.getFullYear()
+console.log(today.getHours())
 class PaymentsModal extends React.Component {
 
 
@@ -26,54 +27,50 @@ class PaymentsModal extends React.Component {
     };
     NewPayment = evt => {
         let id = sessionStorage.getItem("studentId")
-        console.log(id)
         if (id === null) {
             id = sessionStorage.getItem("parentId")
         }
         let today = new Date()
+        console.log(id)
         let date = (today.getMonth() + 1) + "/" + today.getDate() + "/" + today.getFullYear()
 
         console.log(date)
         newPayment = {
             userId: Number(id),
-            date:document.querySelector("#date").value,
+            date: document.querySelector("#date").value,
             amount: document.querySelector("#notes").value,
-            paymentMethodId: document.querySelector("#paymentMethod").value,
-            teacherId : Number(sessionStorage.getItem("credentials"))
+            paymentMethodId: document.querySelector("#paymentMethodId").value,
+            teacherId: Number(sessionStorage.getItem("credentials"))
         };
-        
+        console.log(newPayment)
         this.props.addPayment(newPayment).then(() => this.toggle())
 
     };
 
     render() {
 
-        
+        { console.log(newPayment) }
         return (
             <div>
                 <Button color="success" onClick={this.toggle}>Add Payment</Button>
                 <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
-                    <ModalHeader toggle={this.toggle}>Add Lesson Notes</ModalHeader>
+                    <ModalHeader toggle={this.toggle}>Add Payment</ModalHeader>
                     <ModalBody>
                         <form>
-                        <label >Date</label>
-                            <input type="text" placeholder={date} id="date" defaultValue={date}></input>
                             <label htmlFor="paymentAmount"></label>
                             $<input placeholder="60" id="notes"
                                 onChange={this.handleFieldChange}
                             ></input>
+                            <label >Date</label>
+                            <input type="text" placeholder={date} id="date" defaultValue={date}></input>
                             <select
                                 defaultValue=""
                                 name="paymentList"
-                                id="paymentList"
-                                onChange={this.handleFieldChange
-
-                                }
-
-                            >
+                                id="paymentMethodId"
+                                onChange={this.handleFieldChange}>
                                 <option value="">Method</option>
                                 {this.props.paymentMethods.map(e => (
-                                    <option key={e.id} id="paymentMethod" value={e.id} >
+                                    <option key={e.id} id="paymentMethodId" value={e.id} >
 
                                         {e.method}
 
