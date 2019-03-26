@@ -46,8 +46,26 @@
     width: 100px
 }
 
+/* #studentInfo {
+
+    
+} */
+
+#pagecontainer {
+    display: flex;
+    width: 100%;
+    padding: 10px
+}
+
+#name {
+    text-align: center;
+    padding: 10px
+}
+
+/* #notesPayments {
+    max-width: 80%;
+} */
+
 #studentInfo {
-    border: 1px solid black;
-    border-radius: 20px;
-    width: 100%
+    min-width: 33%;
 }

@@ -110,7 +110,8 @@ class PaymentsDisplay extends Component {
                 <h1>{this.state.thisUser.name}'s Payments</h1>
 
 
-                {this.state.payments.map(payment =>
+                {this.state.payments.reverse()
+                .map(payment =>
                     <div className="paymentBox" key={payment.id} id={payment.id}>
                         <div>{payment.date}</div>
                         <div>${payment.amount} {payment.paymentMethod.method}</div>

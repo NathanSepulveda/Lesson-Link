@@ -23,7 +23,8 @@ class NotesDisplay extends Component {
             .then(student => newState.thisStudent = student)
             .then(() => StudentAndParentManager.getLessonsOfStudent(this.props.match.params.studentId))
             .then(notes => {
-                newState.lessons = notes
+                let lessons = notes.reverse()
+                newState.lessons = lessons
             })
             .then(() => {
                 this.setState(newState)
@@ -34,6 +35,7 @@ class NotesDisplay extends Component {
     addNote = (lessonObj) => {
         return StudentAndParentManager.addNote(lessonObj)
             .then(() => StudentAndParentManager.getLessonsOfStudent(this.state.thisStudent.id))
+            .then(lessons => lessons.reverse())
             .then(lessons => this.setState({ lessons: lessons }))
     }
 
@@ -42,12 +44,14 @@ class NotesDisplay extends Component {
         if (answer) {
             return StudentAndParentManager.deleteNote(id)
                 .then(() => StudentAndParentManager.getLessonsOfStudent(this.state.thisStudent.id))
+                .then(lessons => lessons.reverse())
                 .then(lessons => this.setState({ lessons: lessons }))
         }
     }
     editLessonNote = (noteObj) => {
         return StudentAndParentManager.editLesson(noteObj)
             .then(() => StudentAndParentManager.getLessonsOfStudent(this.state.thisStudent.id))
+            .then(lessons => lessons.reverse())
             .then(lessons => this.setState({ lessons: lessons }))
     }
 
@@ -76,38 +80,42 @@ class NotesDisplay extends Component {
             <React.Fragment>
 
 
-                <h1>{this.state.thisStudent.name}'s Notes</h1>
-                {this.state.lessons.map(lesson =>
-                    <div id={lesson.id} className="notesCard">
-                        <div>{lesson.date}</div>
-                        <div>{lesson.note}</div>
-                        <Button
-                            className="button"
-                            color="info"
-                            onClick={() => this.emailNote(lesson.note)}
-                        >Send this note</Button>
+                {/* <h1>{this.state.thisStudent.name}'s Notes</h1> */}
+                {this.state.lessons
+                    .map(lesson =>
+                        <div id={lesson.id} className="notesCard">
+                            <div>{lesson.date}</div>
+                            <div>{lesson.note}</div>
+                            <div className="buttons">
 
-                        {Number(sessionStorage.getItem("userType")) === 1 ?
+                                <Button
+                                    className="button"
+                                    color="info"
+                                    onClick={() => this.emailNote(lesson.note)}
+                                >Send this note</Button>
 
-                            <div>
-                                <Button className="button"
-                                    color="danger"
-                                    type="button"
-                                    onClick={() => this.deleteNote(lesson.id)}
+                                {Number(sessionStorage.getItem("userType")) === 1 ?
 
-                                >Delete this note?</Button>
-                                <EditNotesModal
-                                    currentNote={lesson}
-                                    editLessonNote={this.editLessonNote}
-                                    {...this.props}
-                                />
+                                    <div className="buttons">
+                                        <Button className="button"
+                                            color="danger"
+                                            type="button"
+                                            onClick={() => this.deleteNote(lesson.id)}
+
+                                        >Delete this note?</Button>
+                                        <EditNotesModal
+                                            currentNote={lesson}
+                                            editLessonNote={this.editLessonNote}
+                                            {...this.props}
+                                        />
+                                    </div>
+
+                                    : ""}
                             </div>
+                        </div>
 
-                            : ""}
 
-                    </div>
-
-                )}
+                    )}
                 {Number(sessionStorage.getItem("userType")) === 1 ?
 
                     <div>
@@ -119,12 +127,8 @@ class NotesDisplay extends Component {
                         />
                     </div>
                     : ""
-
                 }
-                {/* <NotesModal
-                    {...this.props}
-                    addNote={this.addNote}
-                /> */}
+
                 <Button className="button"
                     type="button"
                     onClick={() => {
@@ -135,10 +139,13 @@ class NotesDisplay extends Component {
 
 
                 >Back to {this.state.thisStudent.name}'s Info</Button>
-                                    <script type="text/javascript">
-                        (function(){
-                            emailjs.init("user_vcKdIHuDqkDlJfNRcsCfB")
-                        })();
+
+
+
+                <script type="text/javascript">
+                    (function(){
+                        emailjs.init("user_vcKdIHuDqkDlJfNRcsCfB")
+                    })();
 </script>
 
             </React.Fragment>

@@ -1,3 +1,26 @@
 .notesCard {
-    border: 1px solid black
+    border: 1px solid black;
+    width: 100%;
+    padding-left: 1.5%;
+    line-height: 1.6em;
+    background-color: rgb(252, 241, 148);
+    max-width: 66%;
+
+
+background-image:
+
+linear-gradient(rgba(255, 0, 0, 0.274) .1em, transparent .1em);
+background-size: 100% 1.5em
+
+    
+    
 }
+
+
+.buttons {
+    display: flex;
+
+    max-width: 66%;
+
+}
+

@@ -11,7 +11,7 @@
       "lessonDayId": 7,
       "parentId": 0,
       "lessonTime": "10:15",
-      "instrumentId": "1",
+      "instrumentId": 1,
       "locationId": 1,
       "lengthId": 2,
       "userTypeId": 2
@@ -2010,13 +2010,13 @@
       "id": 16,
       "studentId": 5,
       "date": "3/19/2019",
-      "note": "work it up"
+      "note": "work it up. this note is longer than before. long notes. perhaps too long. you know? strange how that works. work it up. this note is longer than before. long notes. perhaps too long. you know? strange how that works"
     },
     {
+      "id": 17,
       "studentId": 5,
       "date": "3/19/2019",
-      "note": "work yo!",
-      "id": 17
+      "note": "This is a test note"
     },
     {
       "studentId": 30,

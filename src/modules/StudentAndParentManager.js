@@ -18,10 +18,10 @@ export default {
         return fetch(`${Settings.remoteURL}/users/${id}`).then(e => e.json())
     },
     getLessons() {
-        return fetch(`${Settings.remoteURL}/lessons`).then(e => e.json())
+        return fetch(`${Settings.remoteURL}/lessons?_order=desc`).then(e => e.json())
     },
     getLessonsOfStudent(stId) {
-        return fetch(`${Settings.remoteURL}/lessons?studentId=${stId}`).then(e => e.json())
+        return fetch(`${Settings.remoteURL}/lessons?studentId=${stId}&_order=desc`).then(e => e.json())
     },
     getPayments() {
         return fetch(`${Settings.remoteURL}/payments?_expand=paymentMethod`).then(e => e.json())

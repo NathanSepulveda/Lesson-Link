@@ -23,6 +23,7 @@ export default class EventForm extends Component {
         "accountId": makeid(),
         "parentId": 0
     };
+    
 
 
     handleFieldChange = evt => {
