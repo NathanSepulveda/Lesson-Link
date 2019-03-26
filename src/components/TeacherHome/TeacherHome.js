@@ -73,9 +73,9 @@ class TeacherHome extends Component {
                                 <Link to={"/Students/" + this.state.selectedStudentId}><Button type="button" onClick={() => {
                                     sessionStorage.setItem("studentId", Number(this.state.selectedStudentId))
                                 }}>Go to this student</Button></Link>
-                                <Button type="button" onClick={() => {
+                                {/* <Button type="button" onClick={() => {
                                     sessionStorage.setItem("studentId", Number(this.state.selectedStudentId))
-                                }}>Go to this student</Button>
+                                }}>Go to this student</Button> */}
 
 
 
@@ -126,14 +126,18 @@ class TeacherHome extends Component {
                             Add New Student/Parent
                     </button>
                     </div>
-                    <div>
-                        
+                    {/* {
+                        this.state.hasOwnProperty("selectedStudentId") ? <div>
+
                             <Test
-                            studentId ={this.state.selectedStudentId}
-                            {...this.props}
-                            ></Test> 
- 
-                    </div>
+                                studentId={this.state.selectedStudentId}
+                                {...this.props}
+                            ></Test>
+
+                        </div>
+                            :
+                            ""
+                    } */}
                 </div>
 
             </React.Fragment>

@@ -16,6 +16,7 @@
     
 }
 
+
 .btn {
 
     margin: 20px
@@ -39,4 +40,14 @@
     padding: 20px;
     
 
+}
+
+#instruments {
+    width: 100px
+}
+
+#studentInfo {
+    border: 1px solid black;
+    border-radius: 20px;
+    width: 100%
 }

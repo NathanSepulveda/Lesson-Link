@@ -2,6 +2,11 @@ import React, { Component } from "react"
 import "./StudentForm.css"
 import StudentAndParentManager from "../../../modules/StudentAndParentManager"
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import piano from "../../../images/piano.png"
+import guitar from "../../../images/icon.png"
+import uke from "../../../images/ukelele.png"
+import bass from "../../../images/bass-guitar.png"
+import prod from "../../../images/settings.png"
 
 let id = sessionStorage.getItem("studentId")
 if (id === null) {
@@ -27,9 +32,21 @@ class StudentDetail extends Component {
         let studentId = sessionStorage.getItem("studentId")
         let thisStudent = this.props.students.find(student => parseInt(student.id) === parseInt(studentId)) || {}
         let instrument = thisStudent.instrument || {}
+        let instrumentImage; 
         let length = thisStudent.length || {}
         let location = thisStudent.location || {}
         let day = thisStudent.lessonDay || {}
+        if (thisStudent.instrumentId === 1 ) {
+            instrumentImage = piano
+        } else if (thisStudent.instrumentId === 2) {
+            instrumentImage = guitar
+        } else if (thisStudent.instrumentId === 3) {
+            instrumentImage = uke
+        } else if (thisStudent.instrumentId === 4) {
+            instrumentImage = bass
+        } else if (thisStudent.instrumentId === 5) {
+            instrumentImage = prod
+        }
 
 
 
@@ -42,7 +59,10 @@ class StudentDetail extends Component {
                 <div id="studentInfo">
                     
                     <h1>{this.state.student.name}</h1>
-                    <h2>{instrument.name}</h2>
+                    
+                    <div id="instruments">
+                    <img id="instruments" src={instrumentImage} alt={instrument.name}></img>
+                    </div>
                     {Number(sessionStorage.getItem("parentId") === null) ?
 
                         <div>
