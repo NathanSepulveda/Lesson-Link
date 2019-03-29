@@ -112,21 +112,24 @@ class PaymentsDisplay extends Component {
 
                 {this.state.payments.reverse()
                     .map(payment =>
-                        <div className="row">
-                            <div className="paymentBox col-md-12" key={payment.id} id={payment.id}>
+                        <div className="row paymentBox">
+                            <div className="col-md-12" key={payment.id} id={payment.id}>
+
                                 <div>{payment.date}</div>
                                 <div>${payment.amount} {payment.paymentMethod.method}</div>
+                            {/* </div> */}
 
-
-                                {Number(sessionStorage.getItem("userType")) === 1 ?
-
+                            {Number(sessionStorage.getItem("userType")) === 1 ?
+                                <div className="row">
                                     <div className="col-md-6">
                                         <Button className="button"
                                             color="danger"
                                             type="button"
                                             onClick={() => this.deletePayment(payment.id)}
 
-                                        >Delete this payment?</Button>
+                                        >Delete payment?</Button>
+                                    </div>
+                                    <div className="col-md-6">
 
                                         <EditPaymentModal
                                             currentPayment={payment}
@@ -136,15 +139,17 @@ class PaymentsDisplay extends Component {
                                             editPayment={this.editPayment}
                                         />
                                     </div>
+                                </div>
 
-                                    : ""}
+                                : ""}
 
 
 
-                            </div>
+                        </div>
                         </div>
 
-                    )}
+
+            )}
                 {Number(sessionStorage.getItem("userType")) === 1 ?
 
                     <div>

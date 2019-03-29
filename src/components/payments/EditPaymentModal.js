@@ -66,7 +66,7 @@ class EditPaymentModal extends React.Component {
                 onClick={this.toggle}
 
                 
-                >Edit this payment</Button>
+                >Edit Payment</Button>
                 <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
                     <ModalHeader toggle={this.toggle}>Edit Payment</ModalHeader>
                     <ModalBody>
@@ -101,7 +101,7 @@ class EditPaymentModal extends React.Component {
                         </form>
                     </ModalBody>
                     <ModalFooter>
-                        <Button color="primary" onClick={this.EditPayment}>Edit this payment</Button>{' '}
+                        <Button color="primary" onClick={this.EditPayment}>Save</Button>{' '}
                         {/* <Button color="primary" onClick={console.log(newFriendObject)}>Add Friend!</Button>{' '} */}
                         <Button color="secondary" onClick={this.toggle}>Cancel</Button>
                     </ModalFooter>

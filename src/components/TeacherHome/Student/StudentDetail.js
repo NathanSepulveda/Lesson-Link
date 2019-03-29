@@ -172,7 +172,7 @@ class StudentDetail extends Component {
                     >Back to {this.state.student.name}'s Parent Info</Button>
 
                 } */}
-                    {/* {Number(sessionStorage.getItem("parentId") === null)
+                    {Number(sessionStorage.getItem("parentId") === null)
                         ? ""
                         : <Button className="button"
                             type="button"
@@ -189,7 +189,7 @@ class StudentDetail extends Component {
                             }}
                         >Back to {this.state.student.name}'s Parent Info</Button>
 
-                    } */}
+                    }
                 </div>
             </div>
 
