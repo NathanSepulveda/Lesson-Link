@@ -3,7 +3,7 @@ import StudentAndParentManager from "../../modules/StudentAndParentManager"
 import PaymentsModal from "./PaymentsModal"
 import EditPaymentModal from "./EditPaymentModal"
 import "./Payments.css"
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { UncontrolledCollapse, Button, Modal, ModalHeader, ModalBody, ModalFooter, Card, CardBody } from 'reactstrap';
 
 const Json2csvParser = require('json2csv').Parser;
 
@@ -22,19 +22,19 @@ class PaymentsDisplay extends Component {
         thisUser: {}
     }
 
-    
+
 
     componentDidMount() {
-        
+
         let newState = {}
-        let id = Number(sessionStorage.getItem("studentId")) 
+        let id = Number(sessionStorage.getItem("studentId"))
         console.log(id)
         if (id === 0) {
             id = Number(sessionStorage.getItem("parentId"))
         }
-        console.log(id) 
+        console.log(id)
 
-            StudentAndParentManager.getPaymentsOfStudent(id)
+        StudentAndParentManager.getPaymentsOfStudent(id)
             .then(payments => {
                 newState.payments = payments
 
@@ -96,84 +96,88 @@ class PaymentsDisplay extends Component {
         return (
             <React.Fragment>
 
+                <div>
+                    <Button color="primary" id="toggler" className="tl-btn" style={{ marginBottom: '1rem' }}>
+                        View Payments
+    </Button>
+                    <UncontrolledCollapse toggler="#toggler">
+                        {this.state.payments.reverse()
+                            .map(payment =>
+                                <div className="row paymentBox">
+                                    <div className="col-md-12" key={payment.id} id={payment.id}>
 
-                {/* <h1>{this.state.thisUser.name}'s Payments</h1> */}
+                                        <div>{payment.date}</div>
+                                        <div>${payment.amount} {payment.paymentMethod.method}</div>
+                                        {/* </div> */}
+
+                                        {Number(sessionStorage.getItem("userType")) === 1 ?
+                                            <div className="row">
+                                                <div className="col-md-6">
+                                                    <Button className="button"
+                                                        color="danger"
+                                                        type="button"
+                                                        onClick={() => this.deletePayment(payment.id)}
+
+                                                    >Delete payment?</Button>
+                                                </div>
+                                                <div className="col-md-6">
+
+                                                    <EditPaymentModal
+                                                        currentPayment={payment}
+                                                        {...this.props}
+                                                        date={payment.date}
+                                                        addPayment={this.addPayment}
+                                                        editPayment={this.editPayment}
+                                                    />
+                                                </div>
+                                            </div>
+
+                                            : ""}
 
 
-                {this.state.payments.reverse()
-                    .map(payment =>
-                        <div className="row paymentBox">
-                            <div className="col-md-12" key={payment.id} id={payment.id}>
 
-                                <div>{payment.date}</div>
-                                <div>${payment.amount} {payment.paymentMethod.method}</div>
-                            {/* </div> */}
-
-                            {Number(sessionStorage.getItem("userType")) === 1 ?
-                                <div className="row">
-                                    <div className="col-md-6">
-                                        <Button className="button"
-                                            color="danger"
-                                            type="button"
-                                            onClick={() => this.deletePayment(payment.id)}
-
-                                        >Delete payment?</Button>
-                                    </div>
-                                    <div className="col-md-6">
-
-                                        <EditPaymentModal
-                                            currentPayment={payment}
-                                            {...this.props}
-                                            date={payment.date}
-                                            addPayment={this.addPayment}
-                                            editPayment={this.editPayment}
-                                        />
                                     </div>
                                 </div>
 
-                                : ""}
+
+                            )}
+                        {Number(sessionStorage.getItem("userType")) === 1 ?
+
+                            <div>
+                                <PaymentsModal
+
+                                    {...this.props}
+                                    addPayment={this.addPayment}
+
+                                />
+                            </div>
+                            : ""
+
+                        }
+                        {/* <Button className="button"
+type="button"
+onClick={() => {
+    Number(sessionStorage.getItem("userType")) !== 1 ?
+        this.props.history.push(`/`)
+
+        : (Number(sessionStorage.getItem("parentId")) !== 0 ?
+
+            this.props.history.push(`/parents/${this.state.thisUser.id}`) :
+            this.props.history.push(`/students/${this.state.thisUser.id}`))
 
 
 
-                        </div>
-                        </div>
+}}
+>Back to {this.state.thisUser.name}'s Info</Button> */}
+                        <br></br>
 
 
-            )}
-                {Number(sessionStorage.getItem("userType")) === 1 ?
+                        <Button type="button" onClick={() =>
+                            this.outputCSV()
+                        }> Click Here to Download Payments Summary</Button>
+                    </UncontrolledCollapse>
+                </div>
 
-                    <div>
-                        <PaymentsModal
-
-                            {...this.props}
-                            addPayment={this.addPayment}
-
-                        />
-                    </div>
-                    : ""
-
-                }
-                {/* <Button className="button"
-                    type="button"
-                    onClick={() => {
-                        Number(sessionStorage.getItem("userType")) !== 1 ?
-                            this.props.history.push(`/`)
-
-                            : (Number(sessionStorage.getItem("parentId")) !== 0 ?
-
-                                this.props.history.push(`/parents/${this.state.thisUser.id}`) :
-                                this.props.history.push(`/students/${this.state.thisUser.id}`))
-
-
-
-                    }}
-                >Back to {this.state.thisUser.name}'s Info</Button> */}
-                <br></br>
-
-
-                <Button type="button" onClick={() =>
-                    this.outputCSV()
-                }> Click Here to Download Payments Summary</Button>
 
 
             </React.Fragment>

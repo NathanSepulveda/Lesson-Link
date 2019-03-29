@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 // import "./StudentForm.css"
 import StudentAndParentManager from "../../../modules/StudentAndParentManager"
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter, UncontrolledCollapse, Card, CardBody } from 'reactstrap';
 import piano from "../../../images/piano.png"
 import guitar from "../../../images/icon.png"
 import uke from "../../../images/ukelele.png"
@@ -60,9 +60,10 @@ class StudentDetail extends Component {
         return (
 
             <React.Fragment>
+
                 <div className="page-component-wrapper row d-flex justify-content-center">
                     <div className="page-component teacherhome col-md-6">
-                        <h1 id="name">{this.state.student.name}</h1>
+                        <h1 className="align-middle" id="name">{this.state.student.name}</h1>
                         <div id="pagecontainer">
                             <div id="studentInfo">
                                 <h2>Student Info</h2>
@@ -75,8 +76,7 @@ class StudentDetail extends Component {
 
                                     <div>
                                         <h2>Email: {thisStudent.emailAddress} </h2>
-                                        <h2>Phone:</h2>
-                                        <a href={'tel:' + thisStudent.phoneNumber} className="phone">{thisStudent.phoneNumber}</a>
+                                        <h2>Phone: <a href={'tel:' + thisStudent.phoneNumber} className="phone">{thisStudent.phoneNumber}</a></h2>
 
                                     </div> : ""
 

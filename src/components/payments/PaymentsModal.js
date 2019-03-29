@@ -52,7 +52,7 @@ class PaymentsModal extends React.Component {
         { console.log(newPayment) }
         return (
             <div>
-                <Button color="success" onClick={this.toggle}>Add Payment</Button>
+                <Button className="tl-btn" color="success" onClick={this.toggle}>Add Payment</Button>
                 <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
                     <ModalHeader toggle={this.toggle}>Add Payment</ModalHeader>
                     <ModalBody>

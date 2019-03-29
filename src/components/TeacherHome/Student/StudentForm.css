@@ -30,11 +30,11 @@
     
 }
 
-.phone:hover {
+/* .phone:hover {
     font-size: 40px;
     color: grey;
     
-}
+} */
 
 #allinfo {
     padding: 20px;
@@ -58,7 +58,7 @@
 } */
 
 #name {
-    text-align: center;
+    /* text-align: center; */
     padding: 10px
 }
 

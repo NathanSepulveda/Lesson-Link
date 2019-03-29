@@ -71,8 +71,8 @@ class ParentDetail extends Component {
                             <h1>{this.state.parent.name}</h1>
 
                             <h2>Email: {thisParent.emailAddress} </h2>
-                            <h2>Phone Number</h2>
-                            <a href={'tel:' + thisParent.phoneNumber} className="phone">{thisParent.phoneNumber}</a>
+                            <h2>Phone Number:
+                            <a href={'tel:' + thisParent.phoneNumber} className="phone">{thisParent.phoneNumber}</a></h2>
                             <br></br>
 
 
