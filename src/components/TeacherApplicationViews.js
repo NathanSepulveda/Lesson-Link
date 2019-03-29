@@ -120,7 +120,8 @@ class TeacherApplicationViews extends Component {
       <Route exact path="/Students/:studentId(\d+)" render={(props) => {
         return <StudentDetail {...props}
           students={this.state.students}
-          deleteStudent={this.deleteStudent} />
+          deleteStudent={this.deleteStudent}
+          paymentMethods={this.state.paymentMethods} />
       }} />
       <Route exact path="/parents/:parentId(\d+)" render={(props) => {
         return <ParentDetail {...props}

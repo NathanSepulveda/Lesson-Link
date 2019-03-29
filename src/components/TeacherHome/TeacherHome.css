@@ -3,18 +3,68 @@
 } */
 
 .bckg {
-    background-image: url("../../images/nateteacher.png");
+    background-image: url("../../images/pianoBlue.jpg");
     background-repeat: no-repeat;
     
 }
 
 .teacherhome {
     margin: 2%;
+
+    background-repeat: no-repeat;
     display: flex;
-    justify-content: center
+    justify-content: center;
+    
     
 
+}
+.teacherhome:after {
+    content: ' ';
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+    height: 90%;
+    z-index: -1;
+    opacity: 0.6;
+
+    /* background-image: url("../../images/darkerPiano.jpg"); */
+    background-size: 100%;
+   
+    
+    background-repeat: no-repeat;
 }
 #search {
     width: 50%;
 }
+
+.background-img {
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0.6;
+    background-image: url("../../images/darkerPiano.jpg");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+
+.containter-fluid:after {
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0.6;
+    background-image: url("../../images/darkerPiano.jpg");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    position: fixed;
+    top: 0;
+    left: 0;
+  }

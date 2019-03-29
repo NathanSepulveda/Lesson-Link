@@ -46,7 +46,7 @@ class NotesModal extends React.Component {
 
         return (
             <div>
-                <Button color="success" onClick={this.toggle}>Add Lesson Notes</Button>
+                <Button color="success" size="sm"onClick={this.toggle}>Add Lesson Notes</Button>
                 <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
                     <ModalHeader toggle={this.toggle}>Add Lesson Notes</ModalHeader>
                     <ModalBody>
@@ -54,6 +54,7 @@ class NotesModal extends React.Component {
                             <label htmlFor="note"></label>
                             <label >Date</label>
                             <input type="text" placeholder={date} id="date" defaultValue={date}></input>
+                            <br></br>
                             <textarea placeholder="write about the lesson!" id="notes"
                                 onChange={this.handleFieldChange}
                             ></textarea>

@@ -8,6 +8,7 @@ import uke from "../../../images/ukelele.png"
 import bass from "../../../images/bass-guitar.png"
 import prod from "../../../images/settings.png"
 import NotesDisplay from "../../notes/NotesDisplay";
+import PaymentsDisplay from "../../payments/PaymentDisplay";
 
 let id = sessionStorage.getItem("studentId")
 if (id === null) {
@@ -62,8 +63,8 @@ class StudentDetail extends Component {
                 <h1 id="name">{this.state.student.name}</h1>
                 <div id="pagecontainer">
                     <div id="studentInfo">
-                    <h2>Student Info</h2>
-                        
+                        <h2>Student Info</h2>
+
 
                         <div id="instruments">
                             <img id="instruments" src={instrumentImage} alt={instrument.name}></img>
@@ -116,11 +117,16 @@ class StudentDetail extends Component {
                         }
                     </div>
                     <div id="notesPayments">
-                    <h2>Notes</h2>
-                    <NotesDisplay
-                        {...this.props}
-                    />
+                        <h2>Notes</h2>
+                        <NotesDisplay
+                            {...this.props}
+                        />
                     </div>
+                    {/* <div id="payments">
+                        <h2>Payments</h2>
+                        <PaymentsDisplay
+                        {...this.props}/>
+                    </div> */}
                 </div>
 
 

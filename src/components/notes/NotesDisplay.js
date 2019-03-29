@@ -89,15 +89,18 @@ class NotesDisplay extends Component {
                             <div className="buttons">
 
                                 <Button
+                                    
+                                    size="sm"
                                     className="button"
                                     color="info"
                                     onClick={() => this.emailNote(lesson.note)}
-                                >Send this note</Button>
+                                >Email this note</Button>
 
                                 {Number(sessionStorage.getItem("userType")) === 1 ?
 
                                     <div className="buttons">
                                         <Button className="button"
+                                        size="sm"   
                                             color="danger"
                                             type="button"
                                             onClick={() => this.deleteNote(lesson.id)}

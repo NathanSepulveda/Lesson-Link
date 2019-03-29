@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import "./TeacherHome.css"
+// import "./TeacherHome.css"
 import { Link } from "react-router-dom"
 import StudentDetail from "./Student/StudentDetail"
 import Test from "./Student/Test"
@@ -22,7 +22,7 @@ class TeacherHome extends Component {
 
         const stateToChange = {};
         stateToChange[evt.target.id] = Number(evt.target.value);
-
+ 
         this.setState(stateToChange);
 
     };

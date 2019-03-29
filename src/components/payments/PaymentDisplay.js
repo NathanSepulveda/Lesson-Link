@@ -107,7 +107,7 @@ class PaymentsDisplay extends Component {
             <React.Fragment>
                 
 
-                <h1>{this.state.thisUser.name}'s Payments</h1>
+                {/* <h1>{this.state.thisUser.name}'s Payments</h1> */}
 
 
                 {this.state.payments.reverse()
