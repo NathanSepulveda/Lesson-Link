@@ -51,11 +51,11 @@
     
 } */
 
-#pagecontainer {
+/* #pagecontainer {
     display: flex;
     width: 100%;
     padding: 10px
-}
+} */
 
 #name {
     text-align: center;

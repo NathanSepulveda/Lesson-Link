@@ -10,21 +10,17 @@
 
 .teacherhome {
     margin: 2%;
-
     background-repeat: no-repeat;
     display: flex;
     justify-content: center;
-    
-    
-
 }
+
 .teacherhome:after {
     content: ' ';
     display: block;
     position: absolute;
     left: 0;
     top: 0;
-    
     margin-left: auto;
     margin-right: auto;
     width: 70%;
@@ -34,8 +30,6 @@
 
     /* background-image: url("../../images/darkerPiano.jpg"); */
     background-size: 100%;
-   
-    
     background-repeat: no-repeat;
 }
 #search {

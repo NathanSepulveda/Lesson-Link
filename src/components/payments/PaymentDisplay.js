@@ -31,7 +31,7 @@ class PaymentsDisplay extends Component {
             .then(() => StudentAndParentManager.getPaymentsOfStudent(newState.thisUser.id))
             .then(payments => {
                 newState.payments = payments
-                
+
             })
             .then(() => {
                 this.setState(newState)
@@ -56,7 +56,7 @@ class PaymentsDisplay extends Component {
 
     }
 
-        
+
     outputCSV = evt => {
 
         const fields = ["userId", "date", "amount", "paymentMethodId", "teacherId"]
@@ -105,43 +105,46 @@ class PaymentsDisplay extends Component {
 
         return (
             <React.Fragment>
-                
+
 
                 {/* <h1>{this.state.thisUser.name}'s Payments</h1> */}
 
 
                 {this.state.payments.reverse()
-                .map(payment =>
-                    <div className="paymentBox" key={payment.id} id={payment.id}>
-                        <div>{payment.date}</div>
-                        <div>${payment.amount} {payment.paymentMethod.method}</div>
+                    .map(payment =>
+                        <div className="row">
+                            <div className="paymentBox col-md-12" key={payment.id} id={payment.id}>
+                                <div>{payment.date}</div>
+                                <div>${payment.amount} {payment.paymentMethod.method}</div>
 
 
-                        {Number(sessionStorage.getItem("userType")) === 1 ?
+                                {Number(sessionStorage.getItem("userType")) === 1 ?
 
-                            <div>
-                                <Button className="button"
-                                    color="danger"
-                                    type="button"
-                                    onClick={() => this.deletePayment(payment.id)}
+                                    <div className="col-md-6">
+                                        <Button className="button"
+                                            color="danger"
+                                            type="button"
+                                            onClick={() => this.deletePayment(payment.id)}
 
-                                >Delete this payment?</Button>
-                                <EditPaymentModal
-                                    currentPayment={payment}
-                                    {...this.props}
-                                    date={payment.date}
-                                    addPayment={this.addPayment}
-                                    editPayment={this.editPayment}
-                                />
+                                        >Delete this payment?</Button>
+
+                                        <EditPaymentModal
+                                            currentPayment={payment}
+                                            {...this.props}
+                                            date={payment.date}
+                                            addPayment={this.addPayment}
+                                            editPayment={this.editPayment}
+                                        />
+                                    </div>
+
+                                    : ""}
+
+
+
                             </div>
+                        </div>
 
-                            : ""}
-
-
-
-                    </div>
-
-                )}
+                    )}
                 {Number(sessionStorage.getItem("userType")) === 1 ?
 
                     <div>
@@ -155,7 +158,7 @@ class PaymentsDisplay extends Component {
                     : ""
 
                 }
-                <Button className="button"
+                {/* <Button className="button"
                     type="button"
                     onClick={() => {
                         Number(sessionStorage.getItem("userType")) !== 1 ?
@@ -169,9 +172,9 @@ class PaymentsDisplay extends Component {
 
 
                     }}
-                >Back to {this.state.thisUser.name}'s Info</Button>
+                >Back to {this.state.thisUser.name}'s Info</Button> */}
                 <br></br>
-                
+
 
                 <Button type="button" onClick={() =>
                     this.outputCSV()

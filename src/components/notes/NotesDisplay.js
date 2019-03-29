@@ -84,28 +84,35 @@ class NotesDisplay extends Component {
                 {this.state.lessons
                     .map(lesson =>
                         <div id={lesson.id} className="notesCard">
-                            <div>{lesson.date}</div>
-                            <div>{lesson.note}</div>
-                            <div className="buttons">
+                            <div className="row">
+                                <div className="col-md-12">
+                                    <div>{lesson.date}</div>
+                                    <div>{lesson.note}</div>
+                                </div>
+                            </div>
+                            {Number(sessionStorage.getItem("userType")) === 1 ?
+                                <div className="row">
+                                    <div className="col-md-4">
+                                        <Button
+                                            size="sm"
+                                            className="button"
+                                            color="info"
+                                            onClick={() => this.emailNote(lesson.note)}
+                                        >Email this note</Button>
 
-                                <Button
-                                    
-                                    size="sm"
-                                    className="button"
-                                    color="info"
-                                    onClick={() => this.emailNote(lesson.note)}
-                                >Email this note</Button>
+                                    </div>
 
-                                {Number(sessionStorage.getItem("userType")) === 1 ?
 
-                                    <div className="buttons">
+                                    <div className="col-md-4">
                                         <Button className="button"
-                                        size="sm"   
+                                            size="sm"
                                             color="danger"
                                             type="button"
                                             onClick={() => this.deleteNote(lesson.id)}
 
                                         >Delete this note?</Button>
+                                    </div>
+                                    <div className="col-md-4">
                                         <EditNotesModal
                                             currentNote={lesson}
                                             editLessonNote={this.editLessonNote}
@@ -113,8 +120,9 @@ class NotesDisplay extends Component {
                                         />
                                     </div>
 
-                                    : ""}
-                            </div>
+
+                                </div>
+                                : ""}
                         </div>
 
 
@@ -132,7 +140,7 @@ class NotesDisplay extends Component {
                     : ""
                 }
 
-                <Button className="button"
+                {/* <Button className="button"
                     type="button"
                     onClick={() => {
                         Number(sessionStorage.getItem("userType")) === 1 || Number(sessionStorage.getItem("userType")) === 3 ?
@@ -141,7 +149,7 @@ class NotesDisplay extends Component {
                     }}
 
 
-                >Back to {this.state.thisStudent.name}'s Info</Button>
+                >Back to {this.state.thisStudent.name}'s Info</Button> */}
 
 
 
