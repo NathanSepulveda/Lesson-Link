@@ -22,7 +22,7 @@ class TeacherHome extends Component {
 
         const stateToChange = {};
         stateToChange[evt.target.id] = Number(evt.target.value);
- 
+
         this.setState(stateToChange);
 
     };
@@ -42,91 +42,89 @@ class TeacherHome extends Component {
         return (
 
             <React.Fragment>
-                <div className="teacherhome">
-                    <div id='search'>
-                        <h1>Welcome, {firstName}!</h1>
-                        {this.props.students.filter(s => Number(s.teacherId) === Number(sessionStorage.getItem("credentials")))
-                            .length === 0 ?
-                            ""
-                            :
-                            <div>
-                                Students
+                <div className="page-component-wrapper row d-flex justify-content-center">
+                    <div className="page-component teacherhome col-md-6">
+                        <div id='search' className="">
+                            <h1 className="tl-heading">Welcome, {firstName}!</h1>
+                            {this.props.students.filter(s => Number(s.teacherId) === Number(sessionStorage.getItem("credentials")))
+                                .length === 0 ?
+                                ""
+                                :
+                                <div className="search-section">
                                 <Input
-                                    type="select"
-                                    defaultValue=""
-                                    name="studentList"
-                                    id="selectedStudentId"
-                                    onChange={this.handleFieldChange}
+                                        type="select"
+                                        defaultValue=""
+                                        name="studentList"
+                                        id="selectedStudentId"
+                                        onChange={this.handleFieldChange}
 
-                                >
-                                    <option value="">Look for a student</option>
-                                    {this.props.students.filter(student => Number(student.parentId) === 0 && Number(student.teacherId) === Number(sessionStorage.getItem("credentials")))
-                                        .map(e => (
-                                            <option key={e.id} id="students" value={e.id} >
-                                                {e.name}
+                                    >
+                                        <option value="">Look for a student</option>
+                                        {this.props.students.filter(student => Number(student.parentId) === 0 && Number(student.teacherId) === Number(sessionStorage.getItem("credentials")))
+                                            .map(e => (
+                                                <option key={e.id} id="students" value={e.id} >
+                                                    {e.name}
 
-                                            </option>
-                                        ))}
-                                </Input>
-                                <br></br>
+                                                </option>
+                                            ))}
+                                    </Input>
 
-                                <Link to={"/Students/" + this.state.selectedStudentId}><Button type="button" onClick={() => {
-                                    sessionStorage.setItem("studentId", Number(this.state.selectedStudentId))
-                                }}>Go to this student</Button></Link>
-                                {/* <Button type="button" onClick={() => {
+                                    <Link to={"/Students/" + this.state.selectedStudentId}><Button className="btn btn-info tl-btn" type="button" onClick={() => {
+                                        sessionStorage.setItem("studentId", Number(this.state.selectedStudentId))
+                                    }}>Go to this student</Button></Link>
+                                    {/* <Button type="button" onClick={() => {
                                     sessionStorage.setItem("studentId", Number(this.state.selectedStudentId))
                                 }}>Go to this student</Button> */}
 
 
 
-                            </div>
+                                </div>
 
-                        }
+                            }
 
-                        {this.props.parents.filter(p => p.teacherId === Number(sessionStorage.getItem("credentials")))
-                            .length === 0 ?
-                            "" :
-                            <div>
-                                <br></br>
-                                Parents
+                            {this.props.parents.filter(p => p.teacherId === Number(sessionStorage.getItem("credentials")))
+                                .length === 0 ?
+                                "" :
+                                <div className="search-section">
+                                    
                 <Input
-                                    type="select"
-                                    defaultValue=""
-                                    name="parentList"
-                                    id="selectedParentId"
-                                    onChange={this.handleFieldChange
+                                        type="select"
+                                        defaultValue=""
+                                        name="parentList"
+                                        id="selectedParentId"
+                                        onChange={this.handleFieldChange
 
-                                    }
+                                        }
 
-                                >
-                                    <option value="">Look for a Parent</option>
-                                    {this.props.parents.filter(parent => Number(parent.teacherId) === Number(sessionStorage.getItem("credentials")))
-                                        .map(e => (
-                                            <option key={e.id} id="parents" value={e.id} >
+                                    >
+                                        <option value="">Look for a Parent</option>
+                                        {this.props.parents.filter(parent => Number(parent.teacherId) === Number(sessionStorage.getItem("credentials")))
+                                            .map(e => (
+                                                <option key={e.id} id="parents" value={e.id} >
 
-                                                {e.name}
+                                                    {e.name}
 
 
-                                            </option>
-                                        ))}
-                                </Input>
-                                <br></br>
-                                <Link to={"/parents/" + this.state.selectedParentId}><Button type="button" onClick={() => {
-                                    sessionStorage.setItem("parentId", Number(this.state.selectedParentId))
+                                                </option>
+                                            ))}
+                                    </Input>
+                                    <Link to={"/parents/" + this.state.selectedParentId}><Button type="button" className="btn btn-info tl-btn" onClick={() => {
+                                        sessionStorage.setItem("parentId", Number(this.state.selectedParentId))
 
-                                }}>Go to this Parent</Button></Link>
-                            </div>
-                        }
+                                    }}>Go to this Parent</Button></Link>
+                                </div>
+                            }
 
-                        <span className="divide"></span>
-                        <br></br>
-                        <button type="button"
-                            onClick={() => this.props.history.push("/students/new")}
-                            className="btn btn-success">
-                            Add New Student/Parent
+                            <span className="divide"></span>
+                           <div className="search-section">
+                            <button type="button"
+                                onClick={() => this.props.history.push("/students/new")}
+                                className="btn btn-success tl-btn">
+                                Add New Student/Parent
                     </button>
                     </div>
-                    {/* {
+                        </div>
+                        {/* {
                         this.state.hasOwnProperty("selectedStudentId") ? <div>
 
                             <Test
@@ -138,8 +136,9 @@ class TeacherHome extends Component {
                             :
                             ""
                     } */}
+                    </div>
+                    
                 </div>
-
             </React.Fragment>
         )
     }

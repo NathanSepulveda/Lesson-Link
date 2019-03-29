@@ -1,10 +1,33 @@
-body {
+.navbar {
+  background: white;
+}
+.tl-btn {
+  margin: 15px 0 !important;
+}
+
+.tl-heading {
+  text-align: center;
+  margin-bottom: 30px;
+}
+.page-component-wrapper {
+  padding-top: 80px;
+}
+
+.page-component {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+/* TeacherHome */
+.search-section {
+  margin-bottom: 15px;
+}
+/* body {
   margin: 0;
   padding: 70px 0 0 0;
   font-family: sans-serif;
-  
+} */
 
-}
 /* body:after {
   content: ' ';
   display: block;
@@ -22,7 +45,7 @@ body {
 
 } */
 
-.card-link {
+/* .card-link {
   margin: 12px 0 0 0;
   font-size: 0.7em;
-}
+} */
