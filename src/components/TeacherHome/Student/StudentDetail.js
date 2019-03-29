@@ -74,16 +74,17 @@ class StudentDetail extends Component {
                                 {Number(sessionStorage.getItem("parentId") === null) ?
 
                                     <div>
-                                        <h2>{thisStudent.emailAddress} </h2>
+                                        <h2>Email: {thisStudent.emailAddress} </h2>
+                                        <h2>Phone:</h2>
                                         <a href={'tel:' + thisStudent.phoneNumber} className="phone">{thisStudent.phoneNumber}</a>
 
                                     </div> : ""
 
                                 }
                                 <h2>{length.length} Minute Lessons</h2>
-                                <h2>{thisStudent.lessonTime} </h2>
-                                <h2>{location.location} </h2>
-                                <h2>{day.day}'s </h2>
+                                <h2>Lesson Time: {thisStudent.lessonTime} </h2>
+                                <h2>Lesson Location: {location.location} </h2>
+                                <h2>Lesson Day: {day.day}'s </h2>
                                 {Number(sessionStorage.getItem("userType")) === 1 ?
                                     <div>
                                         <Button type="button"
@@ -131,7 +132,8 @@ class StudentDetail extends Component {
                                 : <div id="payments">
                                     <h2>Payments</h2>
                                     <PaymentsDisplay
-                                        {...this.props} />
+                                        {...this.props}
+                                        user={this.state.student} />
                                 </div>
 
                             }

@@ -8,6 +8,9 @@ export default {
     getStudent(id) {
         return fetch(`${Settings.remoteURL}/users/${id}/?userTypeId=2&_expand=length&_expand=instrument&_expand=location&_expand=length&_expand=lessonDay`).then(e => e.json())
     },
+    getUser(id) {
+        return fetch(`${Settings.remoteURL}/users/${id}/?_expand=length&_expand=instrument&_expand=location&_expand=length&_expand=lessonDay`).then(e => e.json())
+    },
     getAllParents() {
         return fetch(`${Settings.remoteURL}/users/?userTypeId=3`).then(e => e.json())
     },

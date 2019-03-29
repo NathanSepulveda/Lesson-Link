@@ -21,7 +21,7 @@ class ParentDetail extends Component {
     componentDidMount() {
         console.log('hey')
         let newState = {}
-        StudentAndParentManager.getOneParent(sessionStorage.getItem("credentials")).then(parent => {
+        StudentAndParentManager.getOneParent(sessionStorage.getItem("parentId")).then(parent => {
             newState.parent = parent
             console.log(parent)
         }).then(() => StudentAndParentManager.getTeacher(newState.parent.teacherId))
@@ -68,9 +68,10 @@ class ParentDetail extends Component {
                 <div className="page-component-wrapper row d-flex justify-content-center">
                     <div className="page-component teacherhome col-md-6">
                         <div id="studentInfo">
-                            <h1>{thisParent.name}</h1>
+                            <h1>{this.state.parent.name}</h1>
 
-                            <h2>{thisParent.emailAddress} </h2>
+                            <h2>Email: {thisParent.emailAddress} </h2>
+                            <h2>Phone Number</h2>
                             <a href={'tel:' + thisParent.phoneNumber} className="phone">{thisParent.phoneNumber}</a>
                             <br></br>
 
@@ -105,11 +106,11 @@ class ParentDetail extends Component {
                         View Student Notes
                     </button> */}
 
-                            <button type="button"
+                            {/* <button type="button"
                                 onClick={() => this.props.history.push(`/Students/${thisParent.id}/payments`)}
                                 className="btn btn-success">
                                 View Parent Payments
-                    </button>
+                    </button> */}
                         </div>
                         <Button type="button" color="danger"
                             onClick={() => {
@@ -140,7 +141,9 @@ class ParentDetail extends Component {
                         <div id="payments">
                             <h2>Payments</h2>
                             <PaymentsDisplay
-                                {...this.props} />
+                                
+                                {...this.props}
+                                user={this.state.parent} />
                         </div>
 
                     </div>
