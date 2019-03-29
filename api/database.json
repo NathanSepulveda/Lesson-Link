@@ -1791,12 +1791,12 @@
       "id": 107
     },
     {
+      "id": 108,
       "userId": 5,
       "date": "3/2/2019",
-      "amount": "45",
-      "paymentMethodId": "1",
       "teacherId": 2,
-      "id": 108
+      "amount": 45,
+      "paymentMethodId": 1
     },
     {
       "userId": 65,

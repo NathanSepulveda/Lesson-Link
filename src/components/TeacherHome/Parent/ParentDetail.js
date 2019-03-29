@@ -3,6 +3,7 @@ import { Link } from "react-router-dom"
 import { withRouter } from "react-router"
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Input } from 'reactstrap';
 import StudentAndParentManager from "../../../modules/StudentAndParentManager";
+import PaymentsDisplay from "../../payments/PaymentDisplay";
 
 
 
@@ -64,77 +65,86 @@ class ParentDetail extends Component {
 
         return (
             <React.Fragment>
-                <div id="studentInfo">
-                    <h1>{thisParent.name}</h1>
+                <div className="page-component-wrapper row d-flex justify-content-center">
+                    <div className="page-component teacherhome col-md-6">
+                        <div id="studentInfo">
+                            <h1>{thisParent.name}</h1>
 
-                    <h2>{thisParent.emailAddress} </h2>
-                    <a href={'tel:' + thisParent.phoneNumber} className="phone">{thisParent.phoneNumber}</a>
-                    <br></br>
+                            <h2>{thisParent.emailAddress} </h2>
+                            <a href={'tel:' + thisParent.phoneNumber} className="phone">{thisParent.phoneNumber}</a>
+                            <br></br>
 
 
 
-                    <Input
-                        type="select"
-                        defaultValue=""
-                        name="studentList"
-                        id="selectedStudentId"
-                        onChange={this.handleFieldChange}
+                            <Input
+                                type="select"
+                                defaultValue=""
+                                name="studentList"
+                                id="selectedStudentId"
+                                onChange={this.handleFieldChange}
 
-                    >
-                        <option value="">Look for a student</option>
-                        {this.props.students.filter(student => Number(student.parentId) === Number(parentId))
-                            .map(e => (
-                                <option key={e.id} id="students" value={e.id} >
-                                    {e.name}
+                            >
+                                <option value="">Look for a student</option>
+                                {this.props.students.filter(student => Number(student.parentId) === Number(parentId))
+                                    .map(e => (
+                                        <option key={e.id} id="students" value={e.id} >
+                                            {e.name}
 
-                                </option>
-                            ))}
-                    </Input>
-                    <Link to={"/students/" + this.state.selectedStudentId}><Button type="button" onClick={() => {
-                        sessionStorage.setItem("studentId", Number(this.state.selectedStudentId))
-                    }}>Go to this student</Button></Link>
+                                        </option>
+                                    ))}
+                            </Input>
+                            <Link to={"/students/" + this.state.selectedStudentId}><Button type="button" onClick={() => {
+                                sessionStorage.setItem("studentId", Number(this.state.selectedStudentId))
+                            }}>Go to this student</Button></Link>
 
-                </div>
-                <div id="buttonsDisplay">
-                    {/* <button type="button"
+                        </div>
+                        <div id="buttonsDisplay">
+                            {/* <button type="button"
                         onClick={() => this.props.history.push(`/Students/${thisParent.id}/notes`)}
                         className="btn btn-success">
                         View Student Notes
                     </button> */}
-                    <div id="divider"></div>
-                    <button type="button"
-                        onClick={() => this.props.history.push(`/Students/${thisParent.id}/payments`)}
-                        className="btn btn-success">
-                        View Parent Payments
+
+                            <button type="button"
+                                onClick={() => this.props.history.push(`/Students/${thisParent.id}/payments`)}
+                                className="btn btn-success">
+                                View Parent Payments
                     </button>
+                        </div>
+                        <Button type="button" color="danger"
+                            onClick={() => {
+                                // let id = Number(parentId)
+                                console.log(typeof thisParent.id)
+                                let answer = window.confirm("Are you sure you want to delete this student?")
+                                if (answer) {
+
+                                    this.props.deleteStudent(thisParent.id).then(() => this.props.history.push(`/TeacherHome`))
+                                }
+                            }
+                            }
+                            className="btn btn-success">
+                            Delete This Parent
+                    </Button>
+                        <Button type="button" color="info"
+                            onClick={() => {
+
+
+                                this.props.history.push(`/students/${thisParent.id}/edit`)
+
+                            }
+
+                            }
+                            className="btn btn-success">
+                            Edit This Parents's Info
+                    </Button>
+                        <div id="payments">
+                            <h2>Payments</h2>
+                            <PaymentsDisplay
+                                {...this.props} />
+                        </div>
+
+                    </div>
                 </div>
-                <Button type="button" color="danger"
-                    onClick={() => {
-                        // let id = Number(parentId)
-                        console.log(typeof thisParent.id)
-                        let answer = window.confirm("Are you sure you want to delete this student?")
-                        if (answer) {
-
-                            this.props.deleteStudent(thisParent.id).then(() => this.props.history.push(`/TeacherHome`))
-                        }
-                    }
-                    }
-                    className="btn btn-success">
-                    Delete This Parent
-                    </Button>
-                <Button type="button" color="info"
-                    onClick={() => {
-
-
-                        this.props.history.push(`/students/${thisParent.id}/edit`)
-
-                    }
-
-                    }
-                    className="btn btn-success">
-                    Edit This Parents's Info
-                    </Button>
-
             </React.Fragment>
         )
     }
