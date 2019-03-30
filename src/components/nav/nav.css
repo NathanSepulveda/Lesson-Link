@@ -1,3 +1,17 @@
 .navbar {
-    background-color: #ffffff;
+    background:rgb(107, 148, 107);
+    color: aliceblue
+}
+
+/* .nav {
+    color: aliceblue;
+    
+} */
+
+.nav-link {
+    color: aliceblue
+}
+
+.btn{
+    margin: 0px;
 }

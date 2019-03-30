@@ -1,6 +1,4 @@
-/* .divide {
-    border: 50px solid black
-} */
+/* 
 
 .bckg {
     background-image: url("../../images/pianoBlue.jpg");
@@ -28,7 +26,7 @@
     z-index: -1;
     opacity: 0.6;
 
-    /* background-image: url("../../images/darkerPiano.jpg"); */
+ 
     background-size: 100%;
     background-repeat: no-repeat;
 }
@@ -61,4 +59,22 @@
     position: fixed;
     top: 0;
     left: 0;
+  } */
+
+  #HM:after {
+    content: ' ';
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0.45;
+    /* background: lightgoldenrodyellow; */
+    background-image: url("../../images/darkerPiano.jpg");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    
+  
   }

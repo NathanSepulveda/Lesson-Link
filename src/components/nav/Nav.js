@@ -1,8 +1,13 @@
 import React, { Component } from "react"
 import { Link } from "react-router-dom"
 import {withRouter} from "react-router"
+import "./nav.css"
 import eightNote from "../../images/8thnote.png"
 import "bootstrap/dist/css/bootstrap.min.css"
+let style = { 
+  color: "aliceblue",
+  margin: "5px"
+}
 class Nav extends Component {
   logout = () => {
     sessionStorage.clear("credentials")
@@ -12,8 +17,8 @@ class Nav extends Component {
 
   render() {
     return (
-      <nav className="navbar fixed-top  flex-md-nowrap p-0 shadow">
-        <ul className="nav nav-pills">
+      <nav className="navbar fixed-top  flex-md-nowrap p-1 shadow">
+        <ul className="nav nav-pills ">
           <li className="nav-item">
             <Link className="nav-link" to="/">
               Home
@@ -42,7 +47,8 @@ class Nav extends Component {
 
         <button
           type="button"
-          className="btn btn-outline-info"
+          style={style}
+          className="btn btn-outline-info "
           onClick={this.logout}>
           Logout
         </button>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-// import "./TeacherHome.css"
+import "./TeacherHome.css"
 import { Link } from "react-router-dom"
 import StudentDetail from "./Student/StudentDetail"
 import Test from "./Student/Test"
@@ -42,7 +42,7 @@ class TeacherHome extends Component {
         return (
 
             <React.Fragment>
-                <div className="page-component-wrapper row d-flex justify-content-center">
+                <div className="page-component-wrapper row d-flex justify-content-center" id="HM">
                     <div className="page-component teacherhome col-md-6">
                         <div id='search' className="">
                             <h1 className="tl-heading">Welcome, {firstName}!</h1>

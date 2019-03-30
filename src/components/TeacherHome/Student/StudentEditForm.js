@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 // import "./StudentForm.css"
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Input } from 'reactstrap';
 import StudentAndParentManager from "../../../modules/StudentAndParentManager"
 
 let makeid = () => {
@@ -185,8 +186,9 @@ export default class StudentEditForm extends Component {
                             }
                             <div id="parents" className="hidden">
                                 Parents <br></br>
-                                <select
+                                <Input
                                     // defaultValue="Pick a Parent"
+                                    type="select"
                                     name="parentList"
                                     id="parentId"
                                     onChange={this.handleFieldChange}
@@ -203,7 +205,7 @@ export default class StudentEditForm extends Component {
 
                                         </option>
                                     ))}
-                                </select>
+                                </Input>
                             </div>
                             <div className="form-group">
                                 <label htmlFor="lessonTime">Typical Lesson Time</label>
@@ -221,8 +223,9 @@ export default class StudentEditForm extends Component {
                                 <label htmlFor="instrument">Instrument</label>
                                 <br></br>
 
-                                <select
+                                <Input
                                     // defaultValue=""
+                                    type="select"
                                     name="studentList"
                                     id="instrumentId"
                                     value={this.state.instrumentId}
@@ -235,13 +238,13 @@ export default class StudentEditForm extends Component {
                                             {e.name}
                                         </option>
                                     ))}
-                                </select>
+                                </Input>
                             </div>
                             <div className="form-group">
                                 <label htmlFor="location">Lesson Location</label>
                                 <br></br>
-                                <select
-
+                                <Input
+                                    type="select"
                                     name="locationList"
                                     id="locationId"
                                     onChange={this.handleFieldChange}
@@ -254,13 +257,14 @@ export default class StudentEditForm extends Component {
                                             {e.location}
                                         </option>
                                     ))}
-                                </select>
+                                </Input>
                             </div>
                             <div className="form-group">
                                 <label htmlFor="lengths">Lesson Lengths</label>
                                 <br></br>
-                                <select
+                                <Input
                                     // defaultValue=""
+                                    type="select"
                                     name="length"
                                     id="lengthId"
                                     value={this.state.lengthId}
@@ -273,13 +277,14 @@ export default class StudentEditForm extends Component {
                                             {e.length}
                                         </option>
                                     ))}
-                                </select>
+                                </Input>
                             </div>
                             <div className="form-group">
                                 <label htmlFor="days">Lesson Days</label>
                                 <br></br>
-                                <select
+                                <Input
                                     // defaultValue=""
+                                    type="select"
                                     name="lessonDay"
                                     id="lessonDayId"
                                     value={this.state.lessonDayId}
@@ -292,7 +297,7 @@ export default class StudentEditForm extends Component {
                                             {e.day}
                                         </option>
                                     ))}
-                                </select>
+                                </Input>
                             </div>
 
                             {this.state.userTypeId === 2
