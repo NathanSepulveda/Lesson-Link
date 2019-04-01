@@ -19,9 +19,16 @@ class NotesDisplay extends Component {
     componentDidMount() {
         let newState = {}
 
-        StudentAndParentManager.getStudent(Number(this.props.match.params.studentId))
+        let id = Number(sessionStorage.getItem("studentId"))
+        console.log(id)
+        if (id === 0) {
+            id = Number(sessionStorage.getItem("parentId"))
+        } else if (sessionStorage.getItem("parentId") !== 0 && sessionStorage.getItem("studentId") !== 0) {
+            id=Number(sessionStorage.getItem("studentId"))
+        }
+        StudentAndParentManager.getStudent(id)
             .then(student => newState.thisStudent = student)
-            .then(() => StudentAndParentManager.getLessonsOfStudent(this.props.match.params.studentId))
+            .then(() => StudentAndParentManager.getLessonsOfStudent(id))
             .then(notes => {
                 let lessons = notes.reverse()
                 newState.lessons = lessons
@@ -79,9 +86,9 @@ class NotesDisplay extends Component {
         return (
             <React.Fragment>
 
-
-                {/* <h1>{this.state.thisStudent.name}'s Notes</h1> */}
-                {this.state.lessons
+                {this.state.lessons.length === 0 ? <h1>No notes yet!</h1> : 
+            
+            this.state.lessons
                     .map(lesson =>
                         <div id={lesson.id} className="notesCard">
                             <div className="row">
@@ -126,7 +133,57 @@ class NotesDisplay extends Component {
                         </div>
 
 
-                    )}
+                    )
+            }
+                {/* <h1>{this.state.thisStudent.name}'s Notes</h1> */}
+                {/* {
+                    this.state.lessons
+                    .map(lesson =>
+                        <div id={lesson.id} className="notesCard">
+                            <div className="row">
+                                <div className="col-md-12">
+                                    <div>{lesson.date}</div>
+                                    <div>{lesson.note}</div>
+                                </div>
+                            </div>
+                            {Number(sessionStorage.getItem("userType")) === 1 ?
+                                <div className="row">
+                                    <div className="col-md-4">
+                                        <Button
+                                            size="sm"
+                                            className="button"
+                                            color="info"
+                                            onClick={() => this.emailNote(lesson.note)}
+                                        >Email this note</Button>
+
+                                    </div>
+
+
+                                    <div className="col-md-4">
+                                        <Button className="button"
+                                            size="sm"
+                                            color="danger"
+                                            type="button"
+                                            onClick={() => this.deleteNote(lesson.id)}
+
+                                        >Delete this note?</Button>
+                                    </div>
+                                    <div className="col-md-4">
+                                        <EditNotesModal
+                                            currentNote={lesson}
+                                            editLessonNote={this.editLessonNote}
+                                            {...this.props}
+                                        />
+                                    </div>
+
+
+                                </div>
+                                : ""}
+                        </div>
+
+
+                    )
+                    } */}
                 {Number(sessionStorage.getItem("userType")) === 1 ?
 
                     <div>

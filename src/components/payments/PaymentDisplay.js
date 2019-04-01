@@ -101,7 +101,9 @@ class PaymentsDisplay extends Component {
                         View Payments
     </Button>
                     <UncontrolledCollapse toggler="#toggler">
-                        {this.state.payments.reverse()
+                        {this.state.payments
+                        .sort((a,b)=> b-a)
+                        
                             .map(payment =>
                                 <div className="row paymentBox">
                                     <div className="col-md-12" key={payment.id} id={payment.id}>

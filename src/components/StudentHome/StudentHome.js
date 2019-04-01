@@ -14,6 +14,7 @@ let length
 let location
 let day 
 
+
 class StudentDetail extends Component {
     // state = {
     //     student : []

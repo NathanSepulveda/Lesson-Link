@@ -61,10 +61,11 @@ class StudentDetail extends Component {
 
             <React.Fragment>
 
-                <div className="page-component-wrapper row d-flex justify-content-center">
-                    <div className="page-component teacherhome col-md-6">
+                <div className="page-component-wrapper row d-flex studenthome justify-content-center">
+                    <div className="page-component studenthome col-md-6">
                         <h1 className="align-middle" id="name">{this.state.student.name}</h1>
                         <div id="pagecontainer">
+                        
                             <div id="studentInfo">
                                 <h2>Student Info</h2>
 

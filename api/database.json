@@ -469,7 +469,7 @@
       "accountId": "CbZIC",
       "phoneNumber": "‭(615) 479-7375‬",
       "id": 44,
-      "emailAddress": "sshanekl@gmail.com",
+      "emailAddress": "shanekl@gmail.com",
       "password": "1234",
       "teacherId": 2,
       "lessonDayId": 0,
@@ -1973,6 +1973,14 @@
       "paymentMethodId": "1",
       "teacherId": 2,
       "id": 130
+    },
+    {
+      "userId": 38,
+      "date": "4/1/2019",
+      "amount": "100",
+      "paymentMethodId": "1",
+      "teacherId": 2,
+      "id": 131
     }
   ],
   "lessons": [
@@ -2065,6 +2073,12 @@
       "studentId": 40,
       "date": "3/21/2019",
       "note": "\n1. C scale, hands together; G scale hands separate until comfortable with se-a rate \n2. When the saints, both versions, faster, louder. Transition between versions. \n3. Elvis- pedaling \n4. Rainbow "
+    },
+    {
+      "id": 26,
+      "studentId": 45,
+      "date": "3/30/2019",
+      "note": "Stella did awesome today!"
     }
   ],
   "paymentMethods": [

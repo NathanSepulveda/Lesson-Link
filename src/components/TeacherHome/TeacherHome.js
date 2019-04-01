@@ -3,7 +3,7 @@ import "./TeacherHome.css"
 import { Link } from "react-router-dom"
 import StudentDetail from "./Student/StudentDetail"
 import Test from "./Student/Test"
-
+import piano from "../../images/darkerPiano.jpg"
 import { withRouter } from "react-router"
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Input } from 'reactstrap';
 
@@ -27,6 +27,19 @@ class TeacherHome extends Component {
 
     };
 
+    // componentDidMount () {
+    //     function myFunction(x) {
+    //         if (x.matches) { // If media query matches
+    //             document.body.style.backgroundColor = "green";
+    //         } else {
+    //          document.body.style.backgroundColor = "pink";
+    //         }
+    //       }
+          
+    //       var x = window.matchMedia("(max-width: 700px)")
+    //       myFunction(x) // Call listener function at run time
+    //       x.addListener(myFunction) // Attach listener function on state changes
+    // }
 
 
     render() {

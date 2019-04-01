@@ -91,7 +91,7 @@ class TeacherApplicationViews extends Component {
           
           id = sessionStorage.getItem("credentials")
           sessionStorage.setItem("studentId", id)
-          return <StudentHome
+          return <StudentDetail
             students={this.state.students}
             parents={this.state.parents}
             teacherName={this.props.activeUser}
@@ -100,7 +100,7 @@ class TeacherApplicationViews extends Component {
          
           id = sessionStorage.getItem("credentials")
           sessionStorage.setItem("parentId", id)
-          return <ParentHome {...props}
+          return <ParentDetail {...props}
             students={this.state.students}
             parents={this.state.parents}
             deleteStudent={this.deleteStudent} />
