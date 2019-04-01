@@ -349,7 +349,7 @@ class PaymentSummary extends Component {
                     this.paymentChart()
                     this.percentageChart()
                 }}></Button> */}
-                <div className="page-component-wrapper row d-flex justify-content-center">
+                <div className="page-component-wrapper row d-flex paymentsummary justify-content-center">
                     <div className="page-component teacherhome col-md-10">
                         <h1>Monthly Incomes</h1>
                         <canvas id="myChart" width="200" height="50"></canvas>

@@ -46,7 +46,7 @@ class EditNotesModal extends React.Component {
         return (
             <div>
                 <Button color="info" size="sm" onClick={this.toggle}>Edit This Note</Button>
-                <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
+                <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className} id="modal">
                     <ModalHeader toggle={this.toggle}>Edit Lesson Notes</ModalHeader>
                     <ModalBody>
                         <form>
@@ -59,7 +59,7 @@ class EditNotesModal extends React.Component {
                             ></textarea>
                         </form>
                     </ModalBody>
-                    <ModalFooter>
+                    <ModalFooter id="footer">
                         <Button color="primary" onClick={this.NewLesson}>Add this note!</Button>{' '}
                         {/* <Button color="primary" onClick={console.log(newFriendObject)}>Add Friend!</Button>{' '} */}
                         <Button color="secondary" onClick={this.toggle}>Cancel</Button>

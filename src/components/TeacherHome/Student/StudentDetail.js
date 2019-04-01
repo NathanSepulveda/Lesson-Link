@@ -10,6 +10,7 @@ import prod from "../../../images/settings.png"
 import NotesDisplay from "../../notes/NotesDisplay";
 import PaymentsDisplay from "../../payments/PaymentDisplay";
 
+
 let id = sessionStorage.getItem("studentId")
 if (id === null) {
     id = sessionStorage.getItem("parentId")
@@ -62,10 +63,10 @@ class StudentDetail extends Component {
             <React.Fragment>
 
                 <div className="page-component-wrapper row d-flex studenthome justify-content-center">
-                    <div className="page-component studenthome col-md-6">
+                    <div className="page-component studenthome col-md-8">
                         <h1 className="align-middle" id="name">{this.state.student.name}</h1>
                         <div id="pagecontainer">
-                        
+                            <Card>
                             <div id="studentInfo">
                                 <h2>Student Info</h2>
 
@@ -120,6 +121,8 @@ class StudentDetail extends Component {
 
                                 }
                             </div>
+
+                            </Card>
 
                             <div id="notesPayments">
                                 <h2>Notes</h2>

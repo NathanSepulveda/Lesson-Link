@@ -72,8 +72,8 @@ class ParentDetail extends Component {
 
         return (
             <React.Fragment>
-                <div className="page-component-wrapper row d-flex justify-content-center">
-                    <div className="page-component teacherhome col-md-6">
+                <div className="page-component-wrapper  parenthome row d-flex justify-content-center">
+                    <div className="page-component  col-md-6">
                         {Number(sessionStorage.getItem("userType")) === 1 ?
 
                             <div id="studentInfo">
@@ -86,7 +86,7 @@ class ParentDetail extends Component {
                                 <br></br>
                             </div>
                             :
-                            
+
                             <div id="studentInfo">
                                 <h1>Hi, {this.state.name}!</h1>
                                 <h2>Your teacher's name:  {this.state.teacher.name}</h2>
@@ -98,43 +98,9 @@ class ParentDetail extends Component {
                             </div>
 
                         }
+                        {/* <div id="buttonsDisplay">
 
-
-                        <Input
-                            type="select"
-                            defaultValue=""
-                            name="studentList"
-                            id="selectedStudentId"
-                            onChange={this.handleFieldChange}
-
-                        >
-                            <option value="">Look for a student</option>
-                            {this.props.students.filter(student => Number(student.parentId) === Number(parentId))
-                                .map(e => (
-                                    <option key={e.id} id="students" value={e.id} >
-                                        {e.name}
-
-                                    </option>
-                                ))}
-                        </Input>
-                        <Link to={"/students/" + this.state.selectedStudentId}><Button type="button" onClick={() => {
-                            sessionStorage.setItem("studentId", Number(this.state.selectedStudentId))
-                        }}>Go to this student</Button></Link>
-
-
-                        <div id="buttonsDisplay">
-                            {/* <button type="button"
-                        onClick={() => this.props.history.push(`/Students/${thisParent.id}/notes`)}
-                        className="btn btn-success">
-                        View Student Notes
-                    </button> */}
-
-                            {/* <button type="button"
-                                onClick={() => this.props.history.push(`/Students/${thisParent.id}/payments`)}
-                                className="btn btn-success">
-                                View Parent Payments
-                    </button> */}
-                        </div>
+                        </div> */}
                         {Number(sessionStorage.getItem("userType")) === 1
                             ?
                             <div>
@@ -167,6 +133,42 @@ class ParentDetail extends Component {
                             </div>
                             : ""
                         }
+
+
+                        <Input
+                            type="select"
+                            defaultValue=""
+                            name="studentList"
+                            id="selectedStudentId"
+                            onChange={this.handleFieldChange}
+
+                        >
+                            {this.state.hasOwnProperty("selectedStudentId") === false ?
+                                <option value="">Look for a student</option> : ""}
+                            {this.props.students.filter(student => Number(student.parentId) === Number(parentId))
+                                .map(e => (
+                                    <option key={e.id} id="students" value={e.id} >
+                                        {e.name}
+
+                                    </option>
+                                ))}
+                        </Input>
+
+                        {this.state.hasOwnProperty("selectedStudentId") === false ?
+                            ""
+                            :
+                            <Link to={"/Students/" + this.state.selectedStudentId}><Button type="button" className="btn btn-info tl-btn" onClick={() => {
+
+
+
+                                sessionStorage.setItem("studentId", Number(this.state.selectedStudentId))
+
+
+                            }}>Go to this Student</Button></Link>
+                        }
+
+
+
                         <div id="payments">
                             <h2>Payments</h2>
                             <PaymentsDisplay

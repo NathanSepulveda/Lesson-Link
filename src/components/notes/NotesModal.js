@@ -66,7 +66,7 @@ class NotesModal extends React.Component {
                             emailjs.init("user_vcKdIHuDqkDlJfNRcsCfB")
                         })();
 </script>
-                    <ModalFooter>
+                    <ModalFooter id="footer">
                         <Button color="primary" onClick={this.NewLesson}>Add this note!</Button>{' '}
                         
                         <Button color="secondary" onClick={this.toggle}>Cancel</Button>

@@ -58,7 +58,7 @@ class PaymentsModal extends React.Component {
                     <ModalBody>
                         <form>
                             <label htmlFor="paymentAmount"></label>
-                            $<input placeholder="60" id="notes"
+                            $<input placeholder="60" 
                                 onChange={this.handleFieldChange}
                             ></input>
                             <label >Date</label>

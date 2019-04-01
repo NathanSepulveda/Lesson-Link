@@ -1,10 +1,10 @@
 import React, { Component } from "react"
 import { Link } from "react-router-dom"
-import {withRouter} from "react-router"
+import { withRouter } from "react-router"
 import "./nav.css"
 import eightNote from "../../images/8thnote.png"
 import "bootstrap/dist/css/bootstrap.min.css"
-let style = { 
+let style = {
   color: "aliceblue",
   margin: "5px"
 }
@@ -21,37 +21,24 @@ class Nav extends Component {
         <ul className="nav nav-pills ">
           <li className="nav-item">
             <Link className="nav-link" to="/">
-              Home
+              Lesson Link ♪
             </Link>
           </li>
-          {Number(sessionStorage.getItem("userType")) === 1 ? 
-          <li className="nav-item">
-            <Link className="nav-link" to="/paymentsummary">
-              Payment Summary
+          {Number(sessionStorage.getItem("userType")) === 1 ?
+            <li className="nav-item">
+              <Link className="nav-link" to="/paymentsummary">
+                Payment Summary
             </Link>
-          </li> : ""
-          
-        }
-          {/* <li className="nav-item">
-             
+            </li> : ""
 
-            <Link className="nav-link" to="/TeacherHome">
-              Home
+          }
+
+          <li className="nav-item" onClick={this.logout}>
+            <Link className="nav-link" to="/">
+              Log Out  
             </Link>
-            
-          </li> */}
+          </li>
         </ul>
-        
-        <h3 className="nav-link">Lesson Link ♪</h3>
-        {/* <img src={eightNote} widht="20" height="20"></img> */}
-
-        <button
-          type="button"
-          style={style}
-          className="btn btn-outline-info "
-          onClick={this.logout}>
-          Logout
-        </button>
       </nav>
     )
   }

@@ -35,7 +35,7 @@ class TeacherHome extends Component {
     //          document.body.style.backgroundColor = "pink";
     //         }
     //       }
-          
+
     //       var x = window.matchMedia("(max-width: 700px)")
     //       myFunction(x) // Call listener function at run time
     //       x.addListener(myFunction) // Attach listener function on state changes
@@ -64,7 +64,7 @@ class TeacherHome extends Component {
                                 ""
                                 :
                                 <div className="search-section">
-                                <Input
+                                    <Input
                                         type="select"
                                         defaultValue=""
                                         name="studentList"
@@ -72,7 +72,8 @@ class TeacherHome extends Component {
                                         onChange={this.handleFieldChange}
 
                                     >
-                                        <option value="">Look for a student</option>
+                                        {this.state.hasOwnProperty("selectedStudentId") === false ?
+                                            <option value="">Look for a student</option> : ""}
                                         {this.props.students.filter(student => Number(student.parentId) === 0 && Number(student.teacherId) === Number(sessionStorage.getItem("credentials")))
                                             .map(e => (
                                                 <option key={e.id} id="students" value={e.id} >
@@ -82,9 +83,22 @@ class TeacherHome extends Component {
                                             ))}
                                     </Input>
 
-                                    <Link to={"/Students/" + this.state.selectedStudentId}><Button className="btn btn-info tl-btn" type="button" onClick={() => {
+                                    {this.state.hasOwnProperty("selectedStudentId") === false ?
+                                        ""
+                                        :
+                                        <Link to={"/Students/" + this.state.selectedStudentId}><Button type="button" className="btn btn-info tl-btn" onClick={() => {
+
+
+
+                                            sessionStorage.setItem("studentId", Number(this.state.selectedStudentId))
+
+
+                                        }}>Go to this Student</Button></Link>
+                                    }
+
+                                    {/* <Link to={"/Students/" + this.state.selectedStudentId}><Button className="btn btn-info tl-btn" type="button" onClick={() => {
                                         sessionStorage.setItem("studentId", Number(this.state.selectedStudentId))
-                                    }}>Go to this student</Button></Link>
+                                    }}>Go to this student</Button></Link> */}
                                     {/* <Button type="button" onClick={() => {
                                     sessionStorage.setItem("studentId", Number(this.state.selectedStudentId))
                                 }}>Go to this student</Button> */}
@@ -99,8 +113,8 @@ class TeacherHome extends Component {
                                 .length === 0 ?
                                 "" :
                                 <div className="search-section">
-                                    
-                <Input
+
+                                    <Input
                                         type="select"
                                         defaultValue=""
                                         name="parentList"
@@ -110,7 +124,9 @@ class TeacherHome extends Component {
                                         }
 
                                     >
-                                        <option value="">Look for a Parent</option>
+
+                                        {this.state.hasOwnProperty("selectedParentId") === false ?
+                                            <option value="">Look for a parent</option> : ""}
                                         {this.props.parents.filter(parent => Number(parent.teacherId) === Number(sessionStorage.getItem("credentials")))
                                             .map(e => (
                                                 <option key={e.id} id="parents" value={e.id} >
@@ -121,21 +137,55 @@ class TeacherHome extends Component {
                                                 </option>
                                             ))}
                                     </Input>
-                                    <Link to={"/parents/" + this.state.selectedParentId}><Button type="button" className="btn btn-info tl-btn" onClick={() => {
+
+
+                                    {this.state.hasOwnProperty("selectedParentId") === false ?
+                                        ""
+                                        :
+                                        <Link to={"/parents/" + this.state.selectedParentId}><Button type="button" className="btn btn-info tl-btn" onClick={() => {
+
+
+
+                                            sessionStorage.setItem("parentId", Number(this.state.selectedParentId))
+
+
+                                        }}>Go to this Parent</Button></Link>
+                                    }
+                                    {/* <Link to={"/parents/" + this.state.selectedParentId}><Button type="button" className="btn btn-info tl-btn" onClick={() => 
+                                    {   
+                                        if (this.state.hasOwnProperty("selectedParentId") === false) {
+                                        alert("Please Select a Parent")
+                                    }
+                                     else if (this.state.hasOwnProperty("selectedParentId") === true) {
+
                                         sessionStorage.setItem("parentId", Number(this.state.selectedParentId))
+                                    }
 
                                     }}>Go to this Parent</Button></Link>
+
+
+                                    <Link to={"/parents/" + this.state.selectedParentId}><Button type="button" className="btn btn-info tl-btn" onClick={() => 
+                                    {   
+                                        if (this.state.hasOwnProperty("selectedParentId") === false) {
+                                        alert("Please Select a Parent")
+                                    }
+                                     else if (this.state.hasOwnProperty("selectedParentId") === true) {
+
+                                        sessionStorage.setItem("parentId", Number(this.state.selectedParentId))
+                                    }
+
+                                    }}>Go to this Parent</Button></Link> */}
                                 </div>
                             }
 
                             <span className="divide"></span>
-                           <div className="search-section">
-                            <button type="button"
-                                onClick={() => this.props.history.push("/students/new")}
-                                className="btn btn-success tl-btn">
-                                Add New Student/Parent
+                            <div className="search-section">
+                                <button type="button"
+                                    onClick={() => this.props.history.push("/students/new")}
+                                    className="btn btn-success tl-btn">
+                                    Add New Student/Parent
                     </button>
-                    </div>
+                            </div>
                         </div>
                         {/* {
                         this.state.hasOwnProperty("selectedStudentId") ? <div>
@@ -150,7 +200,7 @@ class TeacherHome extends Component {
                             ""
                     } */}
                     </div>
-                    
+
                 </div>
             </React.Fragment>
         )

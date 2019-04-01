@@ -1,17 +1,24 @@
 .navbar {
     background:rgb(107, 148, 107);
-    color: aliceblue
+    color: aliceblue;
+
+}
+ 
+.nav-pills{
+    
+    display: flex;
+    
+    justify-content: space-between
 }
 
-/* .nav {
-    color: aliceblue;
-    
-} */
-
 .nav-link {
-    color: aliceblue
+    color: aliceblue;
 }
 
 .btn{
     margin: 0px;
+}
+
+.nav-item {
+    size: 15px;
 }
