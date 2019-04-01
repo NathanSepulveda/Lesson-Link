@@ -3,7 +3,7 @@ import StudentAndParentManager from "../../modules/StudentAndParentManager"
 import PaymentsModal from "./PaymentsModal"
 import EditPaymentModal from "./EditPaymentModal"
 import "./Payments.css"
-import { UncontrolledCollapse, Button, Modal, ModalHeader, ModalBody, ModalFooter, Card, CardBody } from 'reactstrap';
+import { UncontrolledCollapse, Collapse, Button, Modal, ModalHeader, ModalBody, ModalFooter, Card, CardBody } from 'reactstrap';
 
 const Json2csvParser = require('json2csv').Parser;
 
@@ -17,10 +17,71 @@ if (id === null) {
 
 class PaymentsDisplay extends Component {
 
-    state = {
-        payments: [],
-        thisUser: {}
+    // state = {
+    //     payments: [],
+    //     thisUser: {}
+    // }
+
+    constructor(props) {
+        super(props);
+        this.toggle = this.toggle.bind(this);
+        // this.onExited = this.onExited.bind(this);
+        this.state = {
+            collapse: false,
+            payments: [],
+            thisUser: {}
+        };
     }
+
+    toggle() {
+        let newState = {
+            collapse: !this.state.collapse,
+            payments: [],
+            thisUser: {}
+        }
+        let id = Number(sessionStorage.getItem("studentId"))
+        console.log(id)
+        if (id === 0) {
+            id = Number(sessionStorage.getItem("parentId"))
+        }
+        console.log(id)
+
+        StudentAndParentManager.getPaymentsOfStudent(id)
+            .then(payments => {
+                newState.payments = payments
+
+            })
+            .then(() => {
+                this.setState(newState)
+            })
+        this.setState(newState)
+
+    }
+    // onExited() {
+
+    //     let newState = {
+    //         status: 'Closed',
+    //         payments: [],
+    //         thisUser: {}
+    //     }
+    //     let id = Number(sessionStorage.getItem("studentId"))
+    //     console.log(id)
+    //     if (id === 0) {
+    //         id = Number(sessionStorage.getItem("parentId"))
+    //     }
+    //     console.log(id)
+
+    //     StudentAndParentManager.getPaymentsOfStudent(id)
+    //         .then(payments => {
+    //             newState.payments = payments
+
+    //         })
+    //         .then(() => {
+    //             this.setState(newState)
+    //         })
+    //     this.setState(newState)
+    // }
+
 
 
 
@@ -67,13 +128,18 @@ class PaymentsDisplay extends Component {
     addPayment = (paymentObj) => {
         return StudentAndParentManager.addPayment(paymentObj)
             .then(() => StudentAndParentManager.getPaymentsOfStudent(this.state.thisUser.id))
-            .then(payments => this.setState({ payments: payments }))
+            .then(payments => this.setState({ payments: payments,
+                collapse: !this.state.collapse
+            }))
     }
 
     editPayment = (paymentObj) => {
         return StudentAndParentManager.editPayment(paymentObj)
             .then(() => StudentAndParentManager.getPaymentsOfStudent(this.state.thisUser.id))
-            .then(payments => this.setState({ payments: payments }))
+            .then(payments => this.setState({
+                payments: payments,
+                collapse: !this.state.collapse
+               }))
     }
 
     deletePayment = (id) => {
@@ -81,7 +147,10 @@ class PaymentsDisplay extends Component {
         if (answer) {
             return StudentAndParentManager.delete(id, "payments")
                 .then(() => StudentAndParentManager.getPaymentsOfStudent(this.state.thisUser.id))
-                .then(payments => this.setState({ payments: payments }))
+                .then(payments => this.setState({
+                     payments: payments,
+                     collapse: !this.state.collapse
+                    }))
         }
     }
 
@@ -95,90 +164,87 @@ class PaymentsDisplay extends Component {
 
         return (
             <React.Fragment>
+                <Button color="primary" onClick={this.toggle} style={{ marginBottom: '1rem' }}>View Payments</Button>
+                <Collapse isOpen={this.state.collapse}
+                    // onExited={this.onExited}
+                >
+                    {this.state.payments
+                        .map(payment =>
+                            <div className="row paymentBox">
+                                <div className="col-md-12" key={payment.id} id={payment.id}>
 
-                <div>
-                    <Button color="primary" id="toggler" className="tl-btn" style={{ marginBottom: '1rem' }}>
-                        View Payments
-    </Button>
-                    <UncontrolledCollapse toggler="#toggler">
-                        {this.state.payments
-                        .sort((a,b)=> b-a)
-                        
-                            .map(payment =>
-                                <div className="row paymentBox">
-                                    <div className="col-md-12" key={payment.id} id={payment.id}>
+                                    <div>{payment.date}</div>
+                                    <div>${payment.amount} {payment.paymentMethod.method}</div>
+                                    {/* </div> */}
 
-                                        <div>{payment.date}</div>
-                                        <div>${payment.amount} {payment.paymentMethod.method}</div>
-                                        {/* </div> */}
+                                    {Number(sessionStorage.getItem("userType")) === 1 ?
+                                        <div className="row">
+                                            <div className="col-md-6">
+                                                <Button className="button"
+                                                    color="danger"
+                                                    type="button"
+                                                    onClick={() => this.deletePayment(payment.id)}
 
-                                        {Number(sessionStorage.getItem("userType")) === 1 ?
-                                            <div className="row">
-                                                <div className="col-md-6">
-                                                    <Button className="button"
-                                                        color="danger"
-                                                        type="button"
-                                                        onClick={() => this.deletePayment(payment.id)}
-
-                                                    >Delete payment?</Button>
-                                                </div>
-                                                <div className="col-md-6">
-
-                                                    <EditPaymentModal
-                                                        currentPayment={payment}
-                                                        {...this.props}
-                                                        date={payment.date}
-                                                        addPayment={this.addPayment}
-                                                        editPayment={this.editPayment}
-                                                    />
-                                                </div>
+                                                >Delete payment?</Button>
                                             </div>
+                                            <div className="col-md-6">
 
-                                            : ""}
+                                                <EditPaymentModal
+                                                    currentPayment={payment}
+                                                    {...this.props}
+                                                    date={payment.date}
+                                                    addPayment={this.addPayment}
+                                                    editPayment={this.editPayment}
+                                                />
+                                            </div>
+                                        </div>
+
+                                        : ""}
 
 
 
-                                    </div>
                                 </div>
-
-
-                            )}
-                        {Number(sessionStorage.getItem("userType")) === 1 ?
-
-                            <div>
-                                <PaymentsModal
-
-                                    {...this.props}
-                                    addPayment={this.addPayment}
-
-                                />
                             </div>
-                            : ""
 
-                        }
-                        {/* <Button className="button"
+
+                        )}
+                    {Number(sessionStorage.getItem("userType")) === 1 ?
+
+                        <div>
+                            <PaymentsModal
+
+                                {...this.props}
+                                addPayment={this.addPayment}
+
+                            />
+                        </div>
+                        : ""
+
+                    }
+                    {/* <Button className="button"
 type="button"
 onClick={() => {
-    Number(sessionStorage.getItem("userType")) !== 1 ?
-        this.props.history.push(`/`)
+Number(sessionStorage.getItem("userType")) !== 1 ?
+this.props.history.push(`/`)
 
-        : (Number(sessionStorage.getItem("parentId")) !== 0 ?
+: (Number(sessionStorage.getItem("parentId")) !== 0 ?
 
-            this.props.history.push(`/parents/${this.state.thisUser.id}`) :
-            this.props.history.push(`/students/${this.state.thisUser.id}`))
+this.props.history.push(`/parents/${this.state.thisUser.id}`) :
+this.props.history.push(`/students/${this.state.thisUser.id}`))
 
 
 
 }}
 >Back to {this.state.thisUser.name}'s Info</Button> */}
-                        <br></br>
+                    <br></br>
 
 
-                        <Button type="button" onClick={() =>
-                            this.outputCSV()
-                        }> Click Here to Download Payments Summary</Button>
-                    </UncontrolledCollapse>
-                </div>
+                    <Button type="button" onClick={() =>
+                        this.outputCSV()
+                    }> Click Here to Download Payments Summary</Button>
+                </Collapse>
+
+
 
 
 

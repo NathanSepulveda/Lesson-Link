@@ -1695,22 +1695,6 @@
       "id": 95
     },
     {
-      "userId": 6,
-      "date": "3/6/2019",
-      "amount": "40",
-      "paymentMethodId": "1",
-      "teacherId": 2,
-      "id": 96
-    },
-    {
-      "userId": 6,
-      "date": "3/12/2019",
-      "amount": "60",
-      "paymentMethodId": "1",
-      "teacherId": 2,
-      "id": 97
-    },
-    {
       "userId": 40,
       "date": "1/15/2019",
       "amount": "45",
@@ -1789,14 +1773,6 @@
       "paymentMethodId": "1",
       "teacherId": 2,
       "id": 107
-    },
-    {
-      "id": 108,
-      "userId": 5,
-      "date": "3/2/2019",
-      "teacherId": 2,
-      "amount": 45,
-      "paymentMethodId": 1
     },
     {
       "userId": 65,
@@ -1973,14 +1949,6 @@
       "paymentMethodId": "1",
       "teacherId": 2,
       "id": 130
-    },
-    {
-      "userId": 38,
-      "date": "4/1/2019",
-      "amount": "100",
-      "paymentMethodId": "1",
-      "teacherId": 2,
-      "id": 131
     }
   ],
   "lessons": [
