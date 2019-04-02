@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import { Link } from "react-router-dom"
 import { withRouter } from "react-router"
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Input } from 'reactstrap';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Input, Card } from 'reactstrap';
 import StudentAndParentManager from "../../../modules/StudentAndParentManager";
 import PaymentsDisplay from "../../payments/PaymentDisplay";
 
@@ -74,6 +74,7 @@ class ParentDetail extends Component {
             <React.Fragment>
                 <div className="page-component-wrapper  parenthome row d-flex justify-content-center">
                     <div className="page-component  col-md-6">
+                        <Card>
                         {Number(sessionStorage.getItem("userType")) === 1 ?
 
                             <div id="studentInfo">
@@ -99,7 +100,6 @@ class ParentDetail extends Component {
 
                         }
                         {/* <div id="buttonsDisplay">
-
                         </div> */}
                         {Number(sessionStorage.getItem("userType")) === 1
                             ?
@@ -110,31 +110,32 @@ class ParentDetail extends Component {
                                         console.log(typeof thisParent.id)
                                         let answer = window.confirm("Are you sure you want to delete this student?")
                                         if (answer) {
-
+                                            
                                             this.props.deleteStudent(thisParent.id).then(() => this.props.history.push(`/TeacherHome`))
                                         }
                                     }
-                                    }
-                                    className="btn btn-success">
+                                }
+                                className="btn btn-success modalBtn">
                                     Delete This Parent
                     </Button>
                                 <Button type="button" color="info"
                                     onClick={() => {
-
-
+                                        
+                                        
                                         this.props.history.push(`/students/${thisParent.id}/edit`)
-
+                                        
                                     }
-
-                                    }
-                                    className="btn btn-success">
+                                    
+                                }
+                                className="btn btn-success modalBtn">
                                     Edit This Parents's Info
                     </Button>
                             </div>
                             : ""
                         }
 
-
+                        </Card>
+                        <br></br>
                         <Input
                             type="select"
                             defaultValue=""

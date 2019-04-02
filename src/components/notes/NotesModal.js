@@ -67,9 +67,9 @@ class NotesModal extends React.Component {
                         })();
 </script>
                     <ModalFooter id="footer">
-                        <Button color="primary" onClick={this.NewLesson}>Add this note!</Button>{' '}
+                        <Button className="modalBtn" color="primary" onClick={this.NewLesson}>Add this note!</Button>{' '}
                         
-                        <Button color="secondary" onClick={this.toggle}>Cancel</Button>
+                        <Button className="modalBtn" color="secondary" onClick={this.toggle}>Cancel</Button>
                     </ModalFooter>
                 </Modal>
             </div>

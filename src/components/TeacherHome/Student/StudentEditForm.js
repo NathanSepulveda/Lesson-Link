@@ -60,7 +60,7 @@ export default class StudentEditForm extends Component {
 
             };
             this.props.editStudent(student)
-                .then(() => this.props.history.push("/TeacherHome"));
+                .then(() => this.props.history.push(`/Students/${this.state.id}`));
         }
     };
 
@@ -92,7 +92,7 @@ export default class StudentEditForm extends Component {
                 parent.parentId = 0
             }
             this.props.editParent(parent)
-                .then(() => this.props.history.push("/TeacherHome"));
+                .then(() => this.props.history.push(`/parents/${this.state.id}`));
         }
     };
 

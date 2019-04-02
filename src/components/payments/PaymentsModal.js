@@ -81,10 +81,10 @@ class PaymentsModal extends React.Component {
                             </select>
                         </form>
                     </ModalBody>
-                    <ModalFooter>
-                        <Button color="primary" onClick={this.NewPayment}>Add this payment</Button>{' '}
+                    <ModalFooter id="footer">
+                        <Button className="modalBtn" color="primary" onClick={this.NewPayment}>Add this payment</Button>{' '}
                         {/* <Button color="primary" onClick={console.log(newFriendObject)}>Add Friend!</Button>{' '} */}
-                        <Button color="secondary" onClick={this.toggle}>Cancel</Button>
+                        <Button className="modalBtn" color="secondary" onClick={this.toggle}>Cancel</Button>
                     </ModalFooter>
                 </Modal>
             </div>

@@ -89,7 +89,8 @@ class EditPaymentModal extends React.Component {
 
                             >
                                 <option value={this.props.currentPayment.paymentMethodId}>{this.props.currentPayment.paymentMethod.method}</option>
-                                {this.props.paymentMethods.map(e => (
+                                {this.props.paymentMethods.filter(e => Number(e.id) !== Number(this.props.currentPayment.paymentMethodId) )
+                                .map(e => (
                                     <option key={e.id} id="paymentMethodId" value={e.id} >
 
                                         {e.method}
@@ -100,10 +101,10 @@ class EditPaymentModal extends React.Component {
                             </select>
                         </form>
                     </ModalBody>
-                    <ModalFooter>
-                        <Button color="primary" onClick={this.EditPayment}>Save</Button>{' '}
+                    <ModalFooter id="footer">
+                        <Button className="modalBtn" color="primary" onClick={this.EditPayment}>Save</Button>{' '}
                         {/* <Button color="primary" onClick={console.log(newFriendObject)}>Add Friend!</Button>{' '} */}
-                        <Button color="secondary" onClick={this.toggle}>Cancel</Button>
+                        <Button className="modalBtn" color="secondary" onClick={this.toggle}>Cancel</Button>
                     </ModalFooter>
                 </Modal>
             </div>

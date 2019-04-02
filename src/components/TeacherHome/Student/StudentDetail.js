@@ -91,6 +91,7 @@ class StudentDetail extends Component {
                                     <div>
                                         <Button type="button"
                                             color="danger"
+                                            
                                             onClick={() => {
                                                 // let id = Number(studentId)
                                                 console.log(typeof thisStudent.id)
@@ -101,10 +102,10 @@ class StudentDetail extends Component {
                                                 }
                                             }
                                             }
-                                            className="btn btn-success">
+                                            className="btn btn-success modalBtn">
                                             Delete This Student
                                     </Button>
-                                        <Button type="button" color="info"
+                                        <Button type="button" color="info"  
                                             onClick={() => {
 
 
@@ -113,7 +114,7 @@ class StudentDetail extends Component {
                                             }
 
                                             }
-                                            className="btn btn-success" >
+                                            className="btn btn-success modalBtn " >
                                             Edit This Student's Info
                                     </Button>
                                     </div> : ""

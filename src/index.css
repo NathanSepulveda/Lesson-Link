@@ -5,6 +5,7 @@
   margin: 15px 0 !important;
 }
 
+
 .tl-heading {
   text-align: center;
   margin-bottom: 30px;
@@ -37,6 +38,9 @@
 /* StudentForm */
 
 
+.modalBtn {
+  margin-left: 15px !important
+}
 
 
 /* body:after {

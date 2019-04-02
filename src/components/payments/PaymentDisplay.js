@@ -114,9 +114,9 @@ class PaymentsDisplay extends Component {
         StudentAndParentManager.getPayments()
             .then(payments => payments.filter(payment => payment.userId === Number(sessionStorage.getItem("studentId"))))
             .then(payments => {
-                console.log(payments)
+                console.log(this.state.payments)
                 const json2csvParser = new Json2csvParser({ fields });
-                const csv = json2csvParser.parse(payments)
+                const csv = json2csvParser.parse(this.state.payments)
                 console.log(csv)
                 return csv
 
