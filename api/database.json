@@ -11,7 +11,7 @@
       "lessonDayId": 7,
       "parentId": 0,
       "lessonTime": "10:15",
-      "instrumentId": 1,
+      "instrumentId": "1",
       "locationId": 1,
       "lengthId": 2,
       "userTypeId": 2
@@ -469,7 +469,7 @@
       "accountId": "CbZIC",
       "phoneNumber": "‭(615) 479-7375‬",
       "id": 44,
-      "emailAddress": "shanekl@gmail.com",
+      "emailAddress": "sshanekl@gmail.com",
       "password": "1234",
       "teacherId": 2,
       "lessonDayId": 0,
@@ -943,6 +943,38 @@
       "locationId": 1,
       "lengthId": 3,
       "userTypeId": 2
+    },
+    {
+      "name": "New Teacher",
+      "accountId": 0,
+      "password": "1234",
+      "userTypeId": 1,
+      "phoneNumber": "6193876153",
+      "emailAddress": "",
+      "lessonDayId": 0,
+      "teacherId": 0,
+      "parentId": 0,
+      "lessonTime": 0,
+      "instrumentId": 0,
+      "locationId": 0,
+      "lengthId": 0,
+      "id": 74
+    },
+    {
+      "name": "New Test",
+      "accountId": "dYwWv",
+      "phoneNumber": "6193876153",
+      "emailAddress": "nathans.composer@gmail.com",
+      "password": "Kwrtp",
+      "teacherId": 74,
+      "lessonDayId": 1,
+      "parentId": 0,
+      "lessonTime": "7:00 PM",
+      "instrumentId": 1,
+      "locationId": 2,
+      "lengthId": 2,
+      "userTypeId": 2,
+      "id": 75
     }
   ],
   "userTypes": [
@@ -1695,6 +1727,22 @@
       "id": 95
     },
     {
+      "userId": 6,
+      "date": "3/6/2019",
+      "amount": "40",
+      "paymentMethodId": "1",
+      "teacherId": 2,
+      "id": 96
+    },
+    {
+      "userId": 6,
+      "date": "3/12/2019",
+      "amount": "60",
+      "paymentMethodId": "1",
+      "teacherId": 2,
+      "id": 97
+    },
+    {
       "userId": 40,
       "date": "1/15/2019",
       "amount": "45",
@@ -1773,6 +1821,14 @@
       "paymentMethodId": "1",
       "teacherId": 2,
       "id": 107
+    },
+    {
+      "userId": 5,
+      "date": "3/2/2019",
+      "amount": "45",
+      "paymentMethodId": "1",
+      "teacherId": 2,
+      "id": 108
     },
     {
       "userId": 65,
@@ -1949,6 +2005,14 @@
       "paymentMethodId": "1",
       "teacherId": 2,
       "id": 130
+    },
+    {
+      "userId": 52,
+      "date": "4/1/2019",
+      "amount": "360",
+      "paymentMethodId": "1",
+      "teacherId": 2,
+      "id": 131
     }
   ],
   "lessons": [
@@ -1986,13 +2050,13 @@
       "id": 16,
       "studentId": 5,
       "date": "3/19/2019",
-      "note": "new note"
+      "note": "work it up"
     },
     {
-      "id": 17,
       "studentId": 5,
       "date": "3/19/2019",
-      "note": "This is a test note"
+      "note": "work yo!",
+      "id": 17
     },
     {
       "studentId": 30,
@@ -2022,7 +2086,7 @@
       "id": 22,
       "studentId": 37,
       "date": "3/19/2019",
-      "note": "Practice C, G, and D scales. Use more thumb under more than rotating your arm/wrist. Continue practicing the Tenuto app, especially bass clef. Play pg 40 of book doing \"important\" section. Continute to practice \"Elvis\" and have fun with The Office theme."
+      "note": "Practice C, G, and D scales. Use more thumb under more than rotating your arm/wrist. \n\nContinue practicing the Tenuto app, especially bass clef.\n\nPlay pg 40 of book doing \"important\" section. Continute to practice \"Elvis\" and have fun with The Office theme. "
     },
     {
       "studentId": 38,
@@ -2041,12 +2105,6 @@
       "studentId": 40,
       "date": "3/21/2019",
       "note": "\n1. C scale, hands together; G scale hands separate until comfortable with se-a rate \n2. When the saints, both versions, faster, louder. Transition between versions. \n3. Elvis- pedaling \n4. Rainbow "
-    },
-    {
-      "id": 26,
-      "studentId": 45,
-      "date": "3/30/2019",
-      "note": "Stella did awesome today!"
     }
   ],
   "paymentMethods": [

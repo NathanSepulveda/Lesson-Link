@@ -208,6 +208,9 @@ class PaymentsDisplay extends Component {
 
 
                         )}
+                    <br></br>
+
+                </Collapse>
                     {Number(sessionStorage.getItem("userType")) === 1 ?
 
                         <div>
@@ -221,28 +224,11 @@ class PaymentsDisplay extends Component {
                         : ""
 
                     }
-                    {/* <Button className="button"
-type="button"
-onClick={() => {
-Number(sessionStorage.getItem("userType")) !== 1 ?
-this.props.history.push(`/`)
-
-: (Number(sessionStorage.getItem("parentId")) !== 0 ?
-
-this.props.history.push(`/parents/${this.state.thisUser.id}`) :
-this.props.history.push(`/students/${this.state.thisUser.id}`))
-
-
-
-}}
->Back to {this.state.thisUser.name}'s Info</Button> */}
-                    <br></br>
-
+                <br></br>
 
                     <Button type="button" onClick={() =>
                         this.outputCSV()
                     }> Click Here to Download Payments Summary</Button>
-                </Collapse>
 
 
 

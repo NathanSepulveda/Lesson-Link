@@ -38,7 +38,7 @@ class PaymentsModal extends React.Component {
         newPayment = {
             userId: Number(id),
             date: document.querySelector("#date").value,
-            amount: document.querySelector("#notes").value,
+            amount: document.querySelector("#payment").value,
             paymentMethodId: document.querySelector("#paymentMethodId").value,
             teacherId: Number(sessionStorage.getItem("credentials"))
         };
@@ -54,12 +54,13 @@ class PaymentsModal extends React.Component {
             <div>
                 <Button className="tl-btn" color="success" onClick={this.toggle}>Add Payment</Button>
                 <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
-                    <ModalHeader toggle={this.toggle}>Add Payment</ModalHeader>
+                    <ModalHeader toggle={this.toggle}>New Payment</ModalHeader>
                     <ModalBody>
                         <form>
                             <label htmlFor="paymentAmount"></label>
                             $<input placeholder="60" 
                                 onChange={this.handleFieldChange}
+                                id="payment"
                             ></input>
                             <label >Date</label>
                             <input type="text" placeholder={date} id="date" defaultValue={date}></input>
