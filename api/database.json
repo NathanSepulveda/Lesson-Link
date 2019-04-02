@@ -353,7 +353,7 @@
       "userTypeId": 2
     },
     {
-      "name": "Netty Leach",
+      "name": "Netty Beach",
       "accountId": "qyJHR",
       "phoneNumber": "‭+1 (615) 589-2223‬",
       "id": 36,
@@ -548,7 +548,8 @@
       "name": "Kim Simpson",
       "accountId": "8cWtk",
       "phoneNumber": "‭+1 (615) 668-5504‬",
-      "emailAddress": "n/a",
+      "id": 49,
+      "emailAddress": "Danandkimsipmson@gmail.com",
       "password": "PXkDB",
       "teacherId": 2,
       "lessonDayId": 0,
@@ -557,8 +558,7 @@
       "instrumentId": 0,
       "locationId": 0,
       "lengthId": 0,
-      "userTypeId": 3,
-      "id": 49
+      "userTypeId": 3
     },
     {
       "name": "Marshall Simpson",
@@ -943,6 +943,38 @@
       "locationId": 1,
       "lengthId": 3,
       "userTypeId": 2
+    },
+    {
+      "name": "New Teacher",
+      "accountId": 0,
+      "password": "1234",
+      "userTypeId": 1,
+      "phoneNumber": "6193876153",
+      "emailAddress": "",
+      "lessonDayId": 0,
+      "teacherId": 0,
+      "parentId": 0,
+      "lessonTime": 0,
+      "instrumentId": 0,
+      "locationId": 0,
+      "lengthId": 0,
+      "id": 74
+    },
+    {
+      "name": "New Test",
+      "accountId": "dYwWv",
+      "phoneNumber": "6193876153",
+      "emailAddress": "nathans.composer@gmail.com",
+      "password": "Kwrtp",
+      "teacherId": 74,
+      "lessonDayId": 1,
+      "parentId": 0,
+      "lessonTime": "7:00 PM",
+      "instrumentId": 1,
+      "locationId": 2,
+      "lengthId": 2,
+      "userTypeId": 2,
+      "id": 75
     }
   ],
   "userTypes": [
@@ -1973,6 +2005,14 @@
       "paymentMethodId": "1",
       "teacherId": 2,
       "id": 130
+    },
+    {
+      "userId": 52,
+      "date": "4/1/2019",
+      "amount": "360",
+      "paymentMethodId": "1",
+      "teacherId": 2,
+      "id": 131
     }
   ],
   "lessons": [

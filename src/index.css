@@ -1,10 +1,66 @@
-body {
-  margin: 0;
-  padding: 70px 0 0 0;
-  font-family: sans-serif;
+.navbar {
+  background: white;
+}
+.tl-btn {
+  margin: 15px 0 !important;
 }
 
-.card-link {
+
+.tl-heading {
+  text-align: center;
+  margin-bottom: 30px;
+}
+.page-component-wrapper {
+  padding-top: 80px;
+}
+
+.page-component {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+/* TeacherHome */
+.search-section {
+  margin-bottom: 15px;
+}
+
+.studenthome {
+  background: #f6f7f8;
+}
+
+.parenthome {
+  background: #f6f7f8;
+}
+
+.paymentsummary {
+  background: #f6f7f8;
+}
+/* StudentForm */
+
+
+.modalBtn {
+  margin-left: 15px !important
+}
+
+
+/* body:after {
+  content: ' ';
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  opacity: 0.65;
+  background-image: url("../src/images/darkerPiano.jpg");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  
+
+} */
+
+/* .card-link {
   margin: 12px 0 0 0;
   font-size: 0.7em;
-}
+} */

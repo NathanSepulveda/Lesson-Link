@@ -1,3 +1,41 @@
 .notesCard {
-    border: 1px solid black
+    border: 1px solid black;
+    padding-left: 1.5%;
+    line-height: 1.6em;
+    background-color: rgb(252, 241, 148);
+
+background-image:
+
+linear-gradient(rgba(255, 0, 0, 0.274) .1em, transparent .1em);
+background-size: 100% 1.5em
+
+    
+    
+}
+
+
+
+
+#notes  {
+    width: 85%;
+    height: 130px;
+    padding-left: 1.5%;
+    line-height: 1.6em;
+    background-color: rgb(252, 241, 148);
+
+background-image:
+
+linear-gradient(rgba(255, 0, 0, 0.274) .1em, transparent .1em);
+background-size: 100% 1.5em
+}
+
+#footer {
+    height: 60px;
+    display: flex;
+    justify-content: left;
+    padding: 0px
+}
+
+#modal {
+    background-color: green
 }

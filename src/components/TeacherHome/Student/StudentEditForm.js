@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import "./StudentForm.css"
+// import "./StudentForm.css"
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Input } from 'reactstrap';
 import StudentAndParentManager from "../../../modules/StudentAndParentManager"
 
 let makeid = () => {
@@ -59,7 +60,7 @@ export default class StudentEditForm extends Component {
 
             };
             this.props.editStudent(student)
-                .then(() => this.props.history.push("/TeacherHome"));
+                .then(() => this.props.history.push(`/Students/${this.state.id}`));
         }
     };
 
@@ -88,10 +89,10 @@ export default class StudentEditForm extends Component {
 
             };
             if (Number(parent.parentId) !== 0) {
-                parent.parentId = 0 
+                parent.parentId = 0
             }
             this.props.editParent(parent)
-                .then(() => this.props.history.push("/TeacherHome"));
+                .then(() => this.props.history.push(`/parents/${this.state.id}`));
         }
     };
 
@@ -134,184 +135,191 @@ export default class StudentEditForm extends Component {
     }
 
     render() {
-        
+
         return (
             <React.Fragment>
-                
-                <form className="animalForm">
-                    <div className="form-group">
-                        <label htmlFor="eventName">Student Name</label>
-                        <input
-                            type="text"
-                            required
-                            className="form-control"
-                            onChange={this.handleFieldChange}
-                            id="name"
-                            placeholder="First and last"
-                            value={this.state.name}
-                        />
-                    </div>
-                    {Number(this.state.parentId) === 0 ? 
-                    
-                    <div id="contactInfo">
+                <div className="page-component-wrapper row d-flex justify-content-center">
+                    <div className="page-component teacherhome col-md-6">
+                        <form className="animalForm">
+                            <div className="form-group">
+                                <label htmlFor="eventName">Student Name</label>
+                                <input
+                                    type="text"
+                                    required
+                                    className="form-control"
+                                    onChange={this.handleFieldChange}
+                                    id="name"
+                                    placeholder="First and last"
+                                    value={this.state.name}
+                                />
+                            </div>
+                            {Number(this.state.parentId) === 0 ?
 
-                        <div className="form-group">
-                            <label htmlFor="phoneNumber">Phone Number</label>
-                            <input
-                                type="text"
-                                required
-                                className="form-control"
-                                onChange={this.handleFieldChange}
-                                id="phoneNumber"
-                                value={this.state.phoneNumber}
-                                placeholder="xxx-xxx-xxxx"
-                            />
-                        </div>
+                                <div id="contactInfo">
 
-                        <div className="form-group">
-                            <label htmlFor="emailAddress">Email Address</label>
-                            <input
-                                type="text"
-                                required
-                                className="form-control"
-                                onChange={this.handleFieldChange}
-                                id="emailAddress"
-                                placeholder=""
-                                value={this.state.emailAddress}
-                            />
-                        </div>
-                    </div> : ""
-                }
-                    <div id="parents" className="hidden">
-                        Parents <br></br>
-                        <select
-                            // defaultValue="Pick a Parent"
-                            name="parentList"
-                            id="parentId"
-                            onChange={this.handleFieldChange}
+                                    <div className="form-group">
+                                        <label htmlFor="phoneNumber">Phone Number</label>
+                                        <input
+                                            type="text"
+                                            required
+                                            className="form-control"
+                                            onChange={this.handleFieldChange}
+                                            id="phoneNumber"
+                                            value={this.state.phoneNumber}
+                                            placeholder="xxx-xxx-xxxx"
+                                        />
+                                    </div>
 
-
-
-                        >
-                            <option value="">Look for a Parent</option>
-                            {this.props.parents.map(e => (
-                                <option key={e.accountId} id="parentId" value={e.id} >
-
-                                    {e.name}
+                                    <div className="form-group">
+                                        <label htmlFor="emailAddress">Email Address</label>
+                                        <input
+                                            type="text"
+                                            required
+                                            className="form-control"
+                                            onChange={this.handleFieldChange}
+                                            id="emailAddress"
+                                            placeholder=""
+                                            value={this.state.emailAddress}
+                                        />
+                                    </div>
+                                </div> : ""
+                            }
+                            <div id="parents" className="hidden">
+                                Parents <br></br>
+                                <Input
+                                    // defaultValue="Pick a Parent"
+                                    type="select"
+                                    name="parentList"
+                                    id="parentId"
+                                    onChange={this.handleFieldChange}
 
 
-                                </option>
-                            ))}
-                        </select>
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="lessonTime">Typical Lesson Time</label>
-                        <input
-                            type="text"
-                            required
-                            className="form-control"
-                            onChange={this.handleFieldChange}
-                            id="lessonTime"
-                            value={this.state.lessonTime}
-                            placeholder="5:30 pm"
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="instrument">Instrument</label>
-                        <br></br>
 
-                        <select
-                            // defaultValue=""
-                            name="studentList"
-                            id="instrumentId"
-                            value={this.state.instrumentId}
-                            onChange={this.handleFieldChange}
+                                >
+                                    <option value="">Look for a Parent</option>
+                                    {this.props.parents.map(e => (
+                                        <option key={e.accountId} id="parentId" value={e.id} >
 
-                        >
-                            <option value=""></option>
-                            {this.props.instruments.map(e => (
-                                <option key={e.id} id="instruments" value={e.id}>
-                                    {e.name}
-                                </option>
-                            ))}
-                        </select>
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="location">Lesson Location</label>
-                        <br></br>
-                        <select
+                                            {e.name}
 
-                            name="locationList"
-                            id="locationId"
-                            onChange={this.handleFieldChange}
-                            value={this.state.locationId}
 
-                        >
-                            <option value=""></option>
-                            {this.props.locations.map(e => (
-                                <option key={e.id} id="locations" value={e.id}>
-                                    {e.location}
-                                </option>
-                            ))}
-                        </select>
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="lengths">Lesson Lengths</label>
-                        <br></br>
-                        <select
-                            // defaultValue=""
-                            name="length"
-                            id="lengthId"
-                            value={this.state.lengthId}
-                            onChange={this.handleFieldChange}
+                                        </option>
+                                    ))}
+                                </Input>
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="lessonTime">Typical Lesson Time</label>
+                                <input
+                                    type="text"
+                                    required
+                                    className="form-control"
+                                    onChange={this.handleFieldChange}
+                                    id="lessonTime"
+                                    value={this.state.lessonTime}
+                                    placeholder="5:30 pm"
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="instrument">Instrument</label>
+                                <br></br>
 
-                        >
-                            <option value=""></option>
-                            {this.props.lengths.map(e => (
-                                <option key={e.id} id="lengths" value={e.id}>
-                                    {e.length}
-                                </option>
-                            ))}
-                        </select>
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="days">Lesson Days</label>
-                        <br></br>
-                        <select
-                            // defaultValue=""
-                            name="lessonDay"
-                            id="lessonDayId"
-                            value={this.state.lessonDayId}
-                            onChange={this.handleFieldChange}
+                                <Input
+                                    // defaultValue=""
+                                    type="select"
+                                    name="studentList"
+                                    id="instrumentId"
+                                    value={this.state.instrumentId}
+                                    onChange={this.handleFieldChange}
 
-                        >
-                            <option value=""></option>
-                            {this.props.lessonDays.map(e => (
-                                <option key={Number(e.id)} id="days" value={Number(e.id)}>
-                                    {e.day}
-                                </option>
-                            ))}
-                        </select>
-                    </div>
+                                >
+                                    <option value=""></option>
+                                    {this.props.instruments.map(e => (
+                                        <option key={e.id} id="instruments" value={e.id}>
+                                            {e.name}
+                                        </option>
+                                    ))}
+                                </Input>
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="location">Lesson Location</label>
+                                <br></br>
+                                <Input
+                                    type="select"
+                                    name="locationList"
+                                    id="locationId"
+                                    onChange={this.handleFieldChange}
+                                    value={this.state.locationId}
 
-                    {this.state.userTypeId === 2
-                        ?
-                        <button
-                            type="submit"
-                            onClick={this.EditStudent}
-                            className="btn btn-primary">
-                            Edit Student
+                                >
+                                    <option value=""></option>
+                                    {this.props.locations.map(e => (
+                                        <option key={e.id} id="locations" value={e.id}>
+                                            {e.location}
+                                        </option>
+                                    ))}
+                                </Input>
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="lengths">Lesson Lengths</label>
+                                <br></br>
+                                <Input
+                                    // defaultValue=""
+                                    type="select"
+                                    name="length"
+                                    id="lengthId"
+                                    value={this.state.lengthId}
+                                    onChange={this.handleFieldChange}
+
+                                >
+                                    <option value=""></option>
+                                    {this.props.lengths.map(e => (
+                                        <option key={e.id} id="lengths" value={e.id}>
+                                            {e.length}
+                                        </option>
+                                    ))}
+                                </Input>
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="days">Lesson Days</label>
+                                <br></br>
+                                <Input
+                                    // defaultValue=""
+                                    type="select"
+                                    name="lessonDay"
+                                    id="lessonDayId"
+                                    value={this.state.lessonDayId}
+                                    onChange={this.handleFieldChange}
+
+                                >
+                                    <option value=""></option>
+                                    {this.props.lessonDays.map(e => (
+                                        <option key={Number(e.id)} id="days" value={Number(e.id)}>
+                                            {e.day}
+                                        </option>
+                                    ))}
+                                </Input>
+                            </div>
+
+                            {this.state.userTypeId === 2
+                                ?
+                                <button
+                                    type="submit"
+                                    onClick={this.EditStudent}
+                                    className="btn btn-primary">
+                                    Edit Student
                     </button> :
 
-                        <button
-                            type="submit"
-                            onClick={this.EditParents}
-                            className="btn btn-primary">
-                            Edit Parent
+                                <button
+                                    type="submit"
+                                    onClick={this.EditParents}
+                                    className="btn btn-primary">
+                                    Edit Parent
 </button>
 
-                    }
-                </form>
+                            }
+                        </form>
+                    </div>
+                </div>
             </React.Fragment>
         );
     }

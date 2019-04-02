@@ -45,23 +45,24 @@ class EditNotesModal extends React.Component {
 
         return (
             <div>
-                <Button color="info" onClick={this.toggle}>Edit This Note</Button>
-                <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
-                    <ModalHeader toggle={this.toggle}>Add Lesson Notes</ModalHeader>
+                <Button color="info" size="sm" onClick={this.toggle}>Edit This Note</Button>
+                <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className} id="modal">
+                    <ModalHeader toggle={this.toggle}>Edit Lesson Notes</ModalHeader>
                     <ModalBody>
                         <form>
                             <label htmlFor="note"></label>
                             <label >Date</label>
                             <input type="text" placeholder={this.props.currentNote.date} id="date" defaultValue={this.props.currentNote.date}></input>
+                            <br></br>
                             <textarea placeholder="write about the lesson!" defaultValue={this.props.currentNote.note} id="notes"
                                 onChange={this.handleFieldChange}
                             ></textarea>
                         </form>
                     </ModalBody>
-                    <ModalFooter>
-                        <Button color="primary" onClick={this.NewLesson}>Add this note!</Button>{' '}
+                    <ModalFooter id="footer">
+                        <Button className="modalBtn" color="primary" onClick={this.NewLesson}>Add this note!</Button>{' '}
                         {/* <Button color="primary" onClick={console.log(newFriendObject)}>Add Friend!</Button>{' '} */}
-                        <Button color="secondary" onClick={this.toggle}>Cancel</Button>
+                        <Button className="modalBtn" color="secondary" onClick={this.toggle}>Cancel</Button>
                     </ModalFooter>
                 </Modal>
             </div>

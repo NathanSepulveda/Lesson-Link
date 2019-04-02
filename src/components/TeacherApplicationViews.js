@@ -91,7 +91,7 @@ class TeacherApplicationViews extends Component {
           
           id = sessionStorage.getItem("credentials")
           sessionStorage.setItem("studentId", id)
-          return <StudentHome
+          return <StudentDetail
             students={this.state.students}
             parents={this.state.parents}
             teacherName={this.props.activeUser}
@@ -100,7 +100,7 @@ class TeacherApplicationViews extends Component {
          
           id = sessionStorage.getItem("credentials")
           sessionStorage.setItem("parentId", id)
-          return <ParentHome {...props}
+          return <ParentDetail {...props}
             students={this.state.students}
             parents={this.state.parents}
             deleteStudent={this.deleteStudent} />
@@ -120,12 +120,14 @@ class TeacherApplicationViews extends Component {
       <Route exact path="/Students/:studentId(\d+)" render={(props) => {
         return <StudentDetail {...props}
           students={this.state.students}
-          deleteStudent={this.deleteStudent} />
+          deleteStudent={this.deleteStudent}
+          paymentMethods={this.state.paymentMethods} />
       }} />
       <Route exact path="/parents/:parentId(\d+)" render={(props) => {
         return <ParentDetail {...props}
           students={this.state.students}
           parents={this.state.parents}
+          paymentMethods={this.state.paymentMethods}
           deleteStudent={this.deleteStudent} />
       }} />
       <Route exact path="/Students/:studentId(\d+)/notes" render={(props) => {

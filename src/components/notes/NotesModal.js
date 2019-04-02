@@ -46,7 +46,7 @@ class NotesModal extends React.Component {
 
         return (
             <div>
-                <Button color="success" onClick={this.toggle}>Add Lesson Notes</Button>
+                <Button color="success" size="sm"onClick={this.toggle}>Add Lesson Notes</Button>
                 <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
                     <ModalHeader toggle={this.toggle}>Add Lesson Notes</ModalHeader>
                     <ModalBody>
@@ -54,6 +54,7 @@ class NotesModal extends React.Component {
                             <label htmlFor="note"></label>
                             <label >Date</label>
                             <input type="text" placeholder={date} id="date" defaultValue={date}></input>
+                            <br></br>
                             <textarea placeholder="write about the lesson!" id="notes"
                                 onChange={this.handleFieldChange}
                             ></textarea>
@@ -65,10 +66,10 @@ class NotesModal extends React.Component {
                             emailjs.init("user_vcKdIHuDqkDlJfNRcsCfB")
                         })();
 </script>
-                    <ModalFooter>
-                        <Button color="primary" onClick={this.NewLesson}>Add this note!</Button>{' '}
+                    <ModalFooter id="footer">
+                        <Button className="modalBtn" color="primary" onClick={this.NewLesson}>Add this note!</Button>{' '}
                         
-                        <Button color="secondary" onClick={this.toggle}>Cancel</Button>
+                        <Button className="modalBtn" color="secondary" onClick={this.toggle}>Cancel</Button>
                     </ModalFooter>
                 </Modal>
             </div>

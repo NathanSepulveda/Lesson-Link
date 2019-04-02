@@ -38,7 +38,7 @@ class PaymentsModal extends React.Component {
         newPayment = {
             userId: Number(id),
             date: document.querySelector("#date").value,
-            amount: document.querySelector("#notes").value,
+            amount: document.querySelector("#payment").value,
             paymentMethodId: document.querySelector("#paymentMethodId").value,
             teacherId: Number(sessionStorage.getItem("credentials"))
         };
@@ -52,14 +52,15 @@ class PaymentsModal extends React.Component {
         { console.log(newPayment) }
         return (
             <div>
-                <Button color="success" onClick={this.toggle}>Add Payment</Button>
+                <Button className="tl-btn" color="success" onClick={this.toggle}>Add Payment</Button>
                 <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
-                    <ModalHeader toggle={this.toggle}>Add Payment</ModalHeader>
+                    <ModalHeader toggle={this.toggle}>New Payment</ModalHeader>
                     <ModalBody>
                         <form>
                             <label htmlFor="paymentAmount"></label>
-                            $<input placeholder="60" id="notes"
+                            $<input placeholder="60" 
                                 onChange={this.handleFieldChange}
+                                id="payment"
                             ></input>
                             <label >Date</label>
                             <input type="text" placeholder={date} id="date" defaultValue={date}></input>
@@ -80,10 +81,10 @@ class PaymentsModal extends React.Component {
                             </select>
                         </form>
                     </ModalBody>
-                    <ModalFooter>
-                        <Button color="primary" onClick={this.NewPayment}>Add this payment</Button>{' '}
+                    <ModalFooter id="footer">
+                        <Button className="modalBtn" color="primary" onClick={this.NewPayment}>Add this payment</Button>{' '}
                         {/* <Button color="primary" onClick={console.log(newFriendObject)}>Add Friend!</Button>{' '} */}
-                        <Button color="secondary" onClick={this.toggle}>Cancel</Button>
+                        <Button className="modalBtn" color="secondary" onClick={this.toggle}>Cancel</Button>
                     </ModalFooter>
                 </Modal>
             </div>

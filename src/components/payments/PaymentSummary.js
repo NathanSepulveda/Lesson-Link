@@ -33,15 +33,15 @@ class PaymentSummary extends Component {
         electronicPaymentAmount: 0
 
     }
-    
+
     paymentChart = () => {
 
         new Chart(document.getElementById("myChart"), {
             "type": "bar", "data": {
-                "labels": ["January", "February", "March", "April", "May", "June", "July", "Aug", "Sep", "Oct", "Nov", "Dec" ],
+                "labels": ["January", "February", "March", "April", "May", "June", "July", "Aug", "Sep", "Oct", "Nov", "Dec"],
                 "datasets": [{
-                    "label": "Monthly Incomes", "data": [`$ ${this.state.janTotal}`, this.state.febTotal, this.state.marchTotal, this.state.aprilTotal, 
-                        this.state.mayTotal, this.state.juneTotal, this.state.julyTotal, this.state.augTotal, this.state.sepTotal,
+                    "label": "Monthly Incomes", "data": [`$ ${this.state.janTotal}`, this.state.febTotal, this.state.marchTotal, this.state.aprilTotal,
+                    this.state.mayTotal, this.state.juneTotal, this.state.julyTotal, this.state.augTotal, this.state.sepTotal,
                     this.state.octTotal, this.state.novTotal, this.state.decTotal],
                     "fill": false, "backgroundColor": ["rgba(255, 99, 132, 0.2)", "rgba(255, 159, 64, 0.2)", "rgba(255, 205, 86, 0.2)", "rgba(75, 192, 192, 0.2)", "rgba(54, 162, 235, 0.2)", "rgba(153, 102, 255, 0.2)", "rgba(201, 203, 207, 0.2)"],
                     "borderColor": ["rgb(255, 99, 132)", "rgb(255, 159, 64)", "rgb(255, 205, 86)", "rgb(75, 192, 192)", "rgb(54, 162, 235)", "rgb(153, 102, 255)", "rgb(101, 203, 207)"],
@@ -54,9 +54,15 @@ class PaymentSummary extends Component {
 
     percentageChart = () => {
         new Chart(document.getElementById("myPieChart"),
-        {"type":"doughnut","data":{"labels":["Cash","Check","ElectronicPayment"],
-        "datasets":[{"label":"My First Dataset","data":[this.state.cashPercentage,this.state.checkPercentage,this.state.electronicpaymentPercentage],
-        "backgroundColor":["rgb(0, 255, 0)","rgb(54, 162, 235)","rgb(255, 205, 86)"]}]}});
+            {
+                "type": "doughnut", "data": {
+                    "labels": ["Cash", "Check", "ElectronicPayment"],
+                    "datasets": [{
+                        "label": "My First Dataset", "data": [this.state.cashPercentage, this.state.checkPercentage, this.state.electronicpaymentPercentage],
+                        "backgroundColor": ["rgb(0, 255, 0)", "rgb(54, 162, 235)", "rgb(255, 205, 86)"]
+                    }]
+                }
+            });
     }
 
 
@@ -94,7 +100,7 @@ class PaymentSummary extends Component {
                 newState.febTotal = febTotal
 
                 let march = this.state.payments.filter(p => p.date.charAt(0) === "3")
-                
+
 
                 let marchTotal = march.reduce((currentTotal, nextValue) => {
 
@@ -250,28 +256,28 @@ class PaymentSummary extends Component {
                 })
                 console.log(cashAmount)
                 newState.cashAmount = cashAmount
-                
-                newState.cashPercentage = Number((cashAmount/newState.yearlyTotal).toFixed(2))
+
+                newState.cashPercentage = Number((cashAmount / newState.yearlyTotal).toFixed(2))
 
 
 
                 let check = this.state.payments.filter(payment => Number(payment.paymentMethodId) === 2)
-             
+
                 let checkAmount = 0
                 check.forEach(payment => {
                     checkAmount += Number(payment.amount)
                 })
                 newState.checkAmount = checkAmount
-                newState.checkPercentage = Number((checkAmount/newState.yearlyTotal).toFixed(2))
+                newState.checkPercentage = Number((checkAmount / newState.yearlyTotal).toFixed(2))
 
                 let electronicPayment = this.state.payments.filter(payment => Number(payment.paymentMethodId) === 3)
-                
+
                 let elAmount = 0
                 electronicPayment.forEach(payment => {
                     elAmount += Number(payment.amount)
                 })
                 newState.electronicPaymentAmount = elAmount
-                newState.electronicpaymentPercentage = Number((elAmount/newState.yearlyTotal).toFixed(2))
+                newState.electronicpaymentPercentage = Number((elAmount / newState.yearlyTotal).toFixed(2))
 
 
 
@@ -282,31 +288,37 @@ class PaymentSummary extends Component {
 
                     new Chart(document.getElementById("myChart"), {
                         "type": "bar", "data": {
-                            "labels": ["January", "February", "March", "April", "May", "June", "July", "Aug", "Sep", "Oct", "Nov", "Dec" ],
+                            "labels": ["January", "February", "March", "April", "May", "June", "July", "Aug", "Sep", "Oct", "Nov", "Dec"],
                             "datasets": [{
-                                "label": "Monthly Incomes", "data": [this.state.janTotal, this.state.febTotal, this.state.marchTotal, this.state.aprilTotal, 
-                                    this.state.mayTotal, this.state.juneTotal, this.state.julyTotal, this.state.augTotal, this.state.sepTotal,
+                                "label": "Monthly Incomes", "data": [this.state.janTotal, this.state.febTotal, this.state.marchTotal, this.state.aprilTotal,
+                                this.state.mayTotal, this.state.juneTotal, this.state.julyTotal, this.state.augTotal, this.state.sepTotal,
                                 this.state.octTotal, this.state.novTotal, this.state.decTotal],
                                 "fill": false, "backgroundColor": ["rgba(25, 99, 132, 0.2)", "rgba(255, 159, 64, 0.2)", "rgba(255, 205, 86, 0.2)", "rgba(75, 192, 192, 0.2)", "rgba(54, 162, 235, 0.2)", "rgba(153, 102, 255, 0.2)", "rgba(201, 203, 207, 0.2)"],
                                 "borderColor": ["rgb(25, 99, 132)", "rgb(255, 159, 64)", "rgb(255, 205, 86)", "rgb(75, 192, 192)", "rgb(54, 162, 235)", "rgb(153, 102, 255)", "rgb(101, 203, 207)", "rgb(14, 12, 235)"],
-            
+
                                 "borderWidth": 5
                             }]
                         }, "options": { "scales": { "yAxes": [{ "ticks": { "beginAtZero": true } }] } }
                     });
                 }
-            
+
                 let percentageChart = () => {
                     new Chart(document.getElementById("myPieChart"),
-                    {"type":"doughnut","data":{"labels":["Cash","Check","ElectronicPayment"],
-                    "datasets":[{"label":"My First Dataset","data":[this.state.cashPercentage,this.state.checkPercentage,this.state.electronicpaymentPercentage],
-                    "backgroundColor":["rgb(40, 200, 40)","rgb(54, 162, 235)","rgb(255, 205, 86)"]}]}});
+                        {
+                            "type": "doughnut", "data": {
+                                "labels": ["Cash", "Check", "ElectronicPayment"],
+                                "datasets": [{
+                                    "label": "My First Dataset", "data": [this.state.cashPercentage, this.state.checkPercentage, this.state.electronicpaymentPercentage],
+                                    "backgroundColor": ["rgb(40, 200, 40)", "rgb(54, 162, 235)", "rgb(255, 205, 86)"]
+                                }]
+                            }
+                        });
                 }
 
                 paymentChart()
                 percentageChart()
             })
-            
+
 
 
     }
@@ -337,18 +349,20 @@ class PaymentSummary extends Component {
                     this.paymentChart()
                     this.percentageChart()
                 }}></Button> */}
-                <h1>Monthly Incomes</h1>
-                <canvas id="myChart" width="200" height="50"></canvas>
-                <br></br>
-                <h1>Type of Payments</h1>
-                <canvas id="myPieChart" width="200" height="50">Type of Payments</canvas>
-                
-                <div>
+                <div className="page-component-wrapper row d-flex paymentsummary justify-content-center">
+                    <div className="page-component teacherhome col-md-10">
+                        <h1>Monthly Incomes</h1>
+                        <canvas id="myChart" width="200" height="50"></canvas>
+                        <br></br>
+                        <h1>Type of Payments</h1>
+                        <canvas id="myPieChart" width="200" height="50">Type of Payments</canvas>
 
-                
-                </div>
-                
-                {/* <div>
+                        <div>
+
+
+                        </div>
+
+                        {/* <div>
                     <h1>January</h1>
                     {this.state.payments.filter(p => p.date.substring(0, 1) === "1")
                         .map(payment =>
@@ -540,20 +554,22 @@ class PaymentSummary extends Component {
                     </div>
 
                 </div> */}
-                <div>
-                    <h1>Yearly Total $
+                        <div>
+                            <h1>Yearly Total $
                     {
-                        this.state.payments.reduce((currentTotal, nextValue) => {
-                            return currentTotal += Number(nextValue.amount)
+                                    this.state.payments.reduce((currentTotal, nextValue) => {
+                                        return currentTotal += Number(nextValue.amount)
 
 
-                        }, 0
-                        )}
-                </h1>
+                                    }, 0
+                                    )}
+                            </h1>
+                        </div>
+                        <Button type="button" onClick={() =>
+                            this.outputCSV()
+                        }> Click Here to Download Payments Summary</Button>
+                    </div>
                 </div>
-                <Button type="button" onClick={() =>
-                    this.outputCSV()
-                }> Click Here to Download Payments Summary</Button>
             </React.Fragment>
         )
     }
