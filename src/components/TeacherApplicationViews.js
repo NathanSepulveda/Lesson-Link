@@ -41,7 +41,16 @@ class TeacherApplicationViews extends Component {
       .then(() => StudentAndParentManager.getLessonDays().then(lessonDays => newState.lessonDays = lessonDays))
       .then(() => {
         this.setState(newState)
+      }).then(() => {
+        this.state.students.forEach(student => {
+          delete student.password
+        })
+        // console.log(this.state.students[0])
+        // delete this.state.students[0].password
+      }).then(() => {
+        this.setState(newState)
       })
+
 
   }
   addStudent = (studentObj) => {
@@ -71,8 +80,8 @@ class TeacherApplicationViews extends Component {
   editParent = (parentObj) => {
     return StudentAndParentManager.editUser(parentObj)
       .then(() => StudentAndParentManager.getAllParents())
-      .then(parents => this.setState({parents: parents}))
-      
+      .then(parents => this.setState({ parents: parents }))
+
   }
 
 
@@ -81,14 +90,14 @@ class TeacherApplicationViews extends Component {
     return <React.Fragment>
       <Route exact path="/" render={(props) => {
         if (Number(sessionStorage.getItem("userType")) === 1) {
-         
+
           return <TeacherHome
             students={this.state.students}
             parents={this.state.parents}
             teacherName={this.props.activeUser}
             {...props} />
         } else if (Number(sessionStorage.getItem("userType")) === 2) {
-          
+
           id = sessionStorage.getItem("credentials")
           sessionStorage.setItem("studentId", id)
           return <StudentDetail
@@ -97,7 +106,7 @@ class TeacherApplicationViews extends Component {
             teacherName={this.props.activeUser}
             {...props} />
         } else {
-         
+
           id = sessionStorage.getItem("credentials")
           sessionStorage.setItem("parentId", id)
           return <ParentDetail {...props}
