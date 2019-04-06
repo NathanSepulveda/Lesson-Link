@@ -1,4 +1,5 @@
 import React, { Component } from "react"
+
 // import "./StudentForm.css"
 import StudentAndParentManager from "../../../modules/StudentAndParentManager"
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, UncontrolledCollapse, Card, CardBody } from 'reactstrap';
@@ -9,12 +10,15 @@ import bass from "../../../images/bass-guitar.png"
 import prod from "../../../images/settings.png"
 import NotesDisplay from "../../notes/NotesDisplay";
 import PaymentsDisplay from "../../payments/PaymentDisplay";
+import ImageUpload from "../../imageUpload";
 
 
 let id = sessionStorage.getItem("studentId")
 if (id === null) {
     id = sessionStorage.getItem("parentId")
 }
+
+
 
 
 class StudentDetail extends Component {
@@ -61,7 +65,6 @@ class StudentDetail extends Component {
         return (
 
             <React.Fragment>
-
                 <div className="page-component-wrapper row d-flex studenthome justify-content-center">
                     <div className="page-component studenthome col-md-8">
                         <h1 className="align-middle" id="name">{this.state.student.name}</h1>
@@ -97,23 +100,23 @@ class StudentDetail extends Component {
                                                 console.log(typeof thisStudent.id)
                                                 let answer = window.confirm("Are you sure you want to delete this student?")
                                                 if (answer) {
-
+                                                    
                                                     this.props.deleteStudent(thisStudent.id).then(() => this.props.history.push(`/TeacherHome`))
                                                 }
                                             }
-                                            }
+                                        }
                                             className="btn btn-success modalBtn">
                                             Delete This Student
                                     </Button>
                                         <Button type="button" color="info"  
                                             onClick={() => {
-
-
+                                                
+                                                
                                                 this.props.history.push(`/students/${thisStudent.id}/edit`)
-
+                                                
                                             }
-
-                                            }
+                                            
+                                        }
                                             className="btn btn-success modalBtn " >
                                             Edit This Student's Info
                                     </Button>
@@ -124,6 +127,8 @@ class StudentDetail extends Component {
                             </div>
 
                             </Card>
+                            <ImageUpload >Hi</ImageUpload>
+                            <a  target="_blank" rel="noopener noreferrer" href={"https://firebasestorage.googleapis.com/v0/b/lesson-link.appspot.com/o/images%2FExample.mp4?alt=media&token=b106a038-827c-46af-94ab-b968ab8e3702"}>File</a>
 
                             <div id="notesPayments">
                                 <h2>Notes</h2>

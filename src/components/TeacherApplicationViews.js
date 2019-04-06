@@ -11,6 +11,7 @@ import StudentEditForm from "../components/TeacherHome/Student/StudentEditForm"
 import NotesDisplay from "../components/notes/NotesDisplay"
 import PaymentsDisplay from "../components/payments/PaymentDisplay"
 import PaymentSummary from "./payments/PaymentSummary";
+import FileManager from "../modules/FileManager";
 class TeacherApplicationViews extends Component {
   state = {
     students: [],
@@ -23,6 +24,7 @@ class TeacherApplicationViews extends Component {
     locations: [],
     lessonDays: [],
     lengths: [],
+    studentMaterials: []
 
   }
 
@@ -32,6 +34,7 @@ class TeacherApplicationViews extends Component {
       newState.students = students
     }).then(() => StudentAndParentManager.getAllParents().then(parents => newState.parents = parents))
       .then(() => StudentAndParentManager.getLessons().then(lessons => newState.lessons = lessons))
+      .then(() => FileManager.getAll().then(materials => newState.studentMaterials = materials))
       .then(() => StudentAndParentManager.getPayments().then(payments => newState.payments = payments))
       .then(() => StudentAndParentManager.getInstruments().then(instruments => newState.instruments = instruments))
       .then(() => StudentAndParentManager.getLocations().then(locations => newState.locations = locations))
