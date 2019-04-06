@@ -25,23 +25,26 @@ if (id === null) {
 class StudentDetail extends Component {
     state = {
         student: {},
-        studentMaterials: []
+        studentMaterials: [],
+        studentMaterialsIds: []
     }
 
     componentDidMount() {
 
         let newState = {
-            studentMaterials: []
+            studentMaterials: [],
+            studentMaterialsIds: []
         }
         StudentAndParentManager.getStudent(Number(sessionStorage.getItem('studentId')))
             .then((student) => newState.student = student)
             .then(() => newState.student.lessonMaterialsIds.forEach(id => {
                 FileManager.getOneFile(id).then(file => {
                     newState.studentMaterials.push(file)
+                    newState.studentMaterialsIds.push(file.id)
                     console.log(newState)
 
                 })
-            }) )
+            }))
 
             .then(() => this.setState(newState))
 
@@ -142,7 +145,10 @@ class StudentDetail extends Component {
                                 </div>
 
                             </Card>
-                            <ImageUpload >Hi</ImageUpload>
+                            <ImageUpload student={this.state.student} studentMaterials={this.state.studentMaterials}
+                                studentMaterialsIds={this.state.studentMaterialsIds}
+
+                            >Hi</ImageUpload>
                             {/* {this.state.student.lessonMaterialsIds.map(l => {
                                 <a target="_blank" rel="noopener noreferrer" href={l.url}>File</a>
                             })} */}

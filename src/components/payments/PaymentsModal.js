@@ -49,7 +49,6 @@ class PaymentsModal extends React.Component {
 
     render() {
 
-        { console.log(newPayment) }
         return (
             <div>
                 <Button className="tl-btn" color="success" onClick={this.toggle}>Add Payment</Button>
