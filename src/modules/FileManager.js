@@ -7,6 +7,9 @@ export default {
     getAll() {
         return fetch(`${Settings.remoteURL}/studentMaterials`).then(e => e.json())
     },
+    getOneFile(id) {
+        return fetch(`${Settings.remoteURL}/studentMaterials/${id}`).then(e => e.json())
+    },
 
     addFile(obj) {
         return fetch(`${Settings.remoteURL}/studentMaterials`, {

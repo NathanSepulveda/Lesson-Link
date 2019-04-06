@@ -11,6 +11,7 @@ import prod from "../../../images/settings.png"
 import NotesDisplay from "../../notes/NotesDisplay";
 import PaymentsDisplay from "../../payments/PaymentDisplay";
 import ImageUpload from "../../imageUpload";
+import FileManager from "../../../modules/FileManager";
 
 
 let id = sessionStorage.getItem("studentId")
@@ -23,15 +24,29 @@ if (id === null) {
 
 class StudentDetail extends Component {
     state = {
-        student: {}
+        student: {},
+        studentMaterials: []
     }
 
     componentDidMount() {
 
-        let newState = {}
+        let newState = {
+            studentMaterials: []
+        }
         StudentAndParentManager.getStudent(Number(sessionStorage.getItem('studentId')))
             .then((student) => newState.student = student)
+            .then(() => newState.student.lessonMaterialsIds.forEach(id => {
+                FileManager.getOneFile(id).then(file => {
+                    newState.studentMaterials.push(file)
+                    console.log(newState)
+
+                })
+            }) )
+
             .then(() => this.setState(newState))
+
+
+
     }
 
 
@@ -70,65 +85,77 @@ class StudentDetail extends Component {
                         <h1 className="align-middle" id="name">{this.state.student.name}</h1>
                         <div id="pagecontainer">
                             <Card>
-                            <div id="studentInfo">
-                                <h2>Student Info</h2>
+                                <div id="studentInfo">
+                                    <h2>Student Info</h2>
 
 
-                                <div id="instruments">
-                                    <img id="instruments" src={instrumentImage} alt={instrument.name}></img>
-                                </div>
-                                {Number(sessionStorage.getItem("parentId") === null) ?
+                                    <div id="instruments">
+                                        <img id="instruments" src={instrumentImage} alt={instrument.name}></img>
+                                    </div>
+                                    {Number(sessionStorage.getItem("parentId") === null) ?
 
-                                    <div>
-                                        <h2>Email: {thisStudent.emailAddress} </h2>
-                                        <h2>Phone: <a href={'tel:' + thisStudent.phoneNumber} className="phone">{thisStudent.phoneNumber}</a></h2>
+                                        <div>
+                                            <h2>Email: {thisStudent.emailAddress} </h2>
+                                            <h2>Phone: <a href={'tel:' + thisStudent.phoneNumber} className="phone">{thisStudent.phoneNumber}</a></h2>
 
-                                    </div> : ""
+                                        </div> : ""
 
-                                }
-                                <h2>{length.length} Minute Lessons</h2>
-                                <h2>Lesson Time: {thisStudent.lessonTime} </h2>
-                                <h2>Lesson Location: {location.location} </h2>
-                                <h2>Lesson Day: {day.day}'s </h2>
-                                {Number(sessionStorage.getItem("userType")) === 1 ?
-                                    <div>
-                                        <Button type="button"
-                                            color="danger"
-                                            
-                                            onClick={() => {
-                                                // let id = Number(studentId)
-                                                console.log(typeof thisStudent.id)
-                                                let answer = window.confirm("Are you sure you want to delete this student?")
-                                                if (answer) {
-                                                    
-                                                    this.props.deleteStudent(thisStudent.id).then(() => this.props.history.push(`/TeacherHome`))
+                                    }
+                                    <h2>{length.length} Minute Lessons</h2>
+                                    <h2>Lesson Time: {thisStudent.lessonTime} </h2>
+                                    <h2>Lesson Location: {location.location} </h2>
+                                    <h2>Lesson Day: {day.day}'s </h2>
+                                    {Number(sessionStorage.getItem("userType")) === 1 ?
+                                        <div>
+                                            <Button type="button"
+                                                color="danger"
+
+                                                onClick={() => {
+                                                    // let id = Number(studentId)
+                                                    console.log(typeof thisStudent.id)
+                                                    let answer = window.confirm("Are you sure you want to delete this student?")
+                                                    if (answer) {
+
+                                                        this.props.deleteStudent(thisStudent.id).then(() => this.props.history.push(`/TeacherHome`))
+                                                    }
                                                 }
-                                            }
-                                        }
-                                            className="btn btn-success modalBtn">
-                                            Delete This Student
+                                                }
+                                                className="btn btn-success modalBtn">
+                                                Delete This Student
                                     </Button>
-                                        <Button type="button" color="info"  
-                                            onClick={() => {
-                                                
-                                                
-                                                this.props.history.push(`/students/${thisStudent.id}/edit`)
-                                                
-                                            }
-                                            
-                                        }
-                                            className="btn btn-success modalBtn " >
-                                            Edit This Student's Info
-                                    </Button>
-                                    </div> : ""
+                                            <Button type="button" color="info"
+                                                onClick={() => {
 
 
-                                }
-                            </div>
+                                                    this.props.history.push(`/students/${thisStudent.id}/edit`)
+
+                                                }
+
+                                                }
+                                                className="btn btn-success modalBtn " >
+                                                Edit This Student's Info
+                                    </Button>
+                                        </div> : ""
+
+
+                                    }
+                                </div>
 
                             </Card>
                             <ImageUpload >Hi</ImageUpload>
-                            <a  target="_blank" rel="noopener noreferrer" href={"https://firebasestorage.googleapis.com/v0/b/lesson-link.appspot.com/o/images%2FExample.mp4?alt=media&token=b106a038-827c-46af-94ab-b968ab8e3702"}>File</a>
+                            {/* {this.state.student.lessonMaterialsIds.map(l => {
+                                <a target="_blank" rel="noopener noreferrer" href={l.url}>File</a>
+                            })} */}
+                            {this.state.studentMaterials
+                                .map(e => (
+                                    <a key={e.id} target="_blank" rel="noopener noreferrer" className="files" href={e.url} >
+
+                                        {e.name}
+
+
+                                    </a>
+                                ))}
+                            <a target="_blank" rel="noopener noreferrer" href={"https://firebasestorage.googleapis.com/v0/b/lesson-link.appspot.com/o/images%2FExample.mp4?alt=media&token=b106a038-827c-46af-94ab-b968ab8e3702"}>File</a>
 
                             <div id="notesPayments">
                                 <h2>Notes</h2>

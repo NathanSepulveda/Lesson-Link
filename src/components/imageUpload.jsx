@@ -67,7 +67,7 @@ class ImageUpload extends Component {
 
     handleUpload = () => {
         const {image} = this.state
-      const uploadTask =   storage.ref(`images/${image.name}`).put(image)
+      const uploadTask =   storage.ref(`files/${image.name}`).put(image)
         uploadTask.on("state_changed", 
         (snapshot) => {
             //progress function ...
@@ -78,7 +78,7 @@ class ImageUpload extends Component {
         }, 
         () => {
             //complete function
-            storage.ref('images').child(image.name).getDownloadURL().then(url => {
+            storage.ref('files').child(image.name).getDownloadURL().then(url => {
                 this.setState({url})
                 console.log(this.state)
                 delete this.state.image 
