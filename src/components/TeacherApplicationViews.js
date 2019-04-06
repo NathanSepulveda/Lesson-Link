@@ -53,8 +53,6 @@ class TeacherApplicationViews extends Component {
       }).then(() => {
         this.setState(newState)
       })
-
-
   }
   addStudent = (studentObj) => {
     return StudentAndParentManager.addUser(studentObj)

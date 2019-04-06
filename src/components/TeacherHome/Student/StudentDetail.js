@@ -154,12 +154,14 @@ class StudentDetail extends Component {
                             })} */}
                             {this.state.studentMaterials
                                 .map(e => (
+                                    <p>
                                     <a key={e.id} target="_blank" rel="noopener noreferrer" className="files" href={e.url} >
 
                                         {e.name}
 
 
                                     </a>
+                                    </p>
                                 ))}
                             <a target="_blank" rel="noopener noreferrer" href={"https://firebasestorage.googleapis.com/v0/b/lesson-link.appspot.com/o/images%2FExample.mp4?alt=media&token=b106a038-827c-46af-94ab-b968ab8e3702"}>File</a>
 
