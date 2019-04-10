@@ -56,7 +56,9 @@ export default class StudentEditForm extends Component {
                 locationId: this.state.locationId,
                 lengthId: this.state.lengthId,
                 userTypeId: this.state.userTypeId,
-                lessonTime: this.state.lessonTime
+                lessonTime: this.state.lessonTime,
+                lessonMaterialsIds: this.state.lessonMaterialsIds,
+                active: Boolean(this.state.active)
 
             };
             this.props.editStudent(student)
@@ -127,7 +129,9 @@ export default class StudentEditForm extends Component {
                     locationId: Number(student.locationId),
                     lengthId: Number(student.lengthId),
                     lessonTime: student.lessonTime,
-                    lessonDayId: student.lessonDayId
+                    lessonDayId: student.lessonDayId,
+                    lessonMaterialsIds: student.lessonMaterialsIds
+
 
 
                 })
@@ -206,6 +210,7 @@ export default class StudentEditForm extends Component {
                                         </option>
                                     ))}
                                 </Input>
+
                             </div>
                             <div className="form-group">
                                 <label htmlFor="lessonTime">Typical Lesson Time</label>
@@ -298,6 +303,18 @@ export default class StudentEditForm extends Component {
                                         </option>
                                     ))}
                                 </Input>
+                                <br></br>
+                                Active <br></br>
+                                <Input
+                                    type="select"
+                                    id="active"
+                                    name="active"
+                                    onChange={this.handleFieldChange}
+                                    defaultValue="true"
+                                >
+                                    <option value="true">Yes</option>
+                                    <option value="false">No</option>
+                                </Input>
                             </div>
 
                             {this.state.userTypeId === 2
@@ -320,6 +337,7 @@ export default class StudentEditForm extends Component {
                         </form>
                     </div>
                 </div>
+
             </React.Fragment>
         );
     }

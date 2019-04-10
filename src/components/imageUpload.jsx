@@ -16,8 +16,8 @@ class ImageUpload extends Component {
             url: "",
             name: "",
             fileType: ""
-            
-            
+
+
         }
         this.handleChange = this.handleChange.bind(this)
         this.handleUpload = this.handleUpload.bind(this)
@@ -29,66 +29,83 @@ class ImageUpload extends Component {
 
 
     handleChange = evt => {
-        
-        
+
+
         if (evt.target.files[0]) {
             const image = evt.target.files[0]
             const name = image.name
             const fileType = image.type
-            
-            this.setState(() => ({image}))
-            this.setState(() => ({name}))
-            this.setState(() => ({fileType}))
+
+            this.setState(() => ({ image }))
+            this.setState(() => ({ name }))
+            this.setState(() => ({ fileType }))
 
             console.log(image.name, image.type)
         }
     }
 
-    
+
 
     handleUpload = () => {
-        const {image} = this.state
-      const uploadTask =   storage.ref(`files/${image.name}`).put(image)
-        uploadTask.on("state_changed", 
-        (snapshot) => {
-            //progress function ...
-        }, 
-        (error) => {
-            //err function
-            console.log(error)
-        }, 
-        () => {
-            //complete function
-            storage.ref('files').child(image.name).getDownloadURL().then(url => {
-                let filesIdsArray = this.props.studentMaterialsIds
-                let student = this.props.student
-                this.setState({url})
-                console.log(this.state)
-                delete this.state.image 
-                console.log(this.state)
-                FileManager.addFile(this.state).then( res => {
-                    console.log(res)
-                    filesIdsArray.push(res.id)
-                    console.log(filesIdsArray)
-                    student.lessonMaterialsIds = filesIdsArray
-                    delete student.instrument
-                    delete student.lessonDay
-                    delete student.location
-                    delete student.length
+        const { image } = this.state
+        let name = image.name.split(".")[0]
+        this.state.name = name
+        const uploadTask = storage.ref(`files/${name}`).put(image)
+        uploadTask.on("state_changed",
+            (snapshot) => {
+                //progress function ...
+            },
+            (error) => {
+                //err function
+                console.log(error)
+            },
+            () => {
+                //complete function
 
-                    console.log(student)
-                    StudentAndParentManager.editUser(student)
+                storage.ref('files').child(image.name).getDownloadURL().then(url => {
+                    let filesIdsArray = this.props.studentMaterialsIds
+                    let student = this.props.student
+                    this.setState({ url })
+                    console.log(this.state)
+                    delete this.state.image
+                    console.log(this.state)
+                    FileManager.addFile(this.state).then(res => {
+                        console.log(res)
+                        filesIdsArray.push(res.id)
+                        console.log(filesIdsArray)
+                        student.lessonMaterialsIds = filesIdsArray
+                        delete student.instrument
+                        delete student.lessonDay
+                        delete student.location
+                        delete student.length
+
+                        console.log(student)
+                        StudentAndParentManager.editUser(student)
+                    })
+                    alert("File uploaded")
+
                 })
+                // :
+                // storage.ref('files').child(name).getDownloadURL().then(url => {
+
+                //     this.setState({ url })
+                //     FileManager.addFile(this.state).then(res => {
+                //         console.log(res)
+
+                //     })
+
+                // })
                 alert("File uploaded")
 
+
+
             })
-        })
 
     }
 
     onImageUploaded = () => {
         this.props.imageUploaded(this.state.url)
-        
+
     }
 
     errorHandler = (type) => {

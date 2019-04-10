@@ -12,6 +12,7 @@ import NotesDisplay from "../components/notes/NotesDisplay"
 import PaymentsDisplay from "../components/payments/PaymentDisplay"
 import PaymentSummary from "./payments/PaymentSummary";
 import FileManager from "../modules/FileManager";
+import FileUpload from "./FileUpload/FileUpload";
 class TeacherApplicationViews extends Component {
   state = {
     students: [],
@@ -139,6 +140,11 @@ class TeacherApplicationViews extends Component {
           parents={this.state.parents}
           paymentMethods={this.state.paymentMethods}
           deleteStudent={this.deleteStudent} />
+      }} />
+      <Route exact path="/fileupload" render={(props) => {
+        return <FileUpload {...props}
+        
+           />
       }} />
       <Route exact path="/Students/:studentId(\d+)/notes" render={(props) => {
         return <NotesDisplay {...props}

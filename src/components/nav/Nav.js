@@ -38,6 +38,11 @@ class Nav extends Component {
               Log Out  
             </Link>
           </li>
+          <li className="nav-item">
+              <Link className="nav-link" to="/fileupload">
+                File Upload
+            </Link>
+            </li> 
         </ul>
       </nav>
     )

@@ -37,14 +37,14 @@ class StudentDetail extends Component {
         }
         StudentAndParentManager.getStudent(Number(sessionStorage.getItem('studentId')))
             .then((student) => newState.student = student)
-            .then(() => newState.student.lessonMaterialsIds.forEach(id => {
-                FileManager.getOneFile(id).then(file => {
-                    newState.studentMaterials.push(file)
-                    newState.studentMaterialsIds.push(file.id)
-                    console.log(newState)
+            // .then(() => newState.student.lessonMaterialsIds.forEach(id => {
+            //     FileManager.getOneFile(id).then(file => {
+            //         newState.studentMaterials.push(file)
+            //         newState.studentMaterialsIds.push(file.id)
+            //         console.log(newState)
 
-                })
-            }))
+            //     })
+            // }))
 
             .then(() => this.setState(newState))
 
@@ -152,7 +152,7 @@ class StudentDetail extends Component {
                             {/* {this.state.student.lessonMaterialsIds.map(l => {
                                 <a target="_blank" rel="noopener noreferrer" href={l.url}>File</a>
                             })} */}
-                            {this.state.studentMaterials
+                            {/* {this.state.studentMaterials
                                 .map(e => (
                                     <p>
                                     <a key={e.id} target="_blank" rel="noopener noreferrer" className="files" href={e.url} >
@@ -162,7 +162,7 @@ class StudentDetail extends Component {
 
                                     </a>
                                     </p>
-                                ))}
+                                ))} */}
                             <a target="_blank" rel="noopener noreferrer" href={"https://firebasestorage.googleapis.com/v0/b/lesson-link.appspot.com/o/images%2FExample.mp4?alt=media&token=b106a038-827c-46af-94ab-b968ab8e3702"}>File</a>
 
                             <div id="notesPayments">
