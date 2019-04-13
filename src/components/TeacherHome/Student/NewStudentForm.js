@@ -73,7 +73,9 @@ export default class EventForm extends Component {
                 locationId: Number(this.state.locationId),
                 lengthId: Number(this.state.lengthId),
                 userTypeId: Number(this.state.userTypeId),
-                lessonTime: this.state.lessonTime
+                lessonTime: this.state.lessonTime,
+                active: true,
+                lessonMaterialsIds: []
 
 
             };

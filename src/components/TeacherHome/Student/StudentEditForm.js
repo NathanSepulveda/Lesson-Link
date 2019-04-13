@@ -56,7 +56,9 @@ export default class StudentEditForm extends Component {
                 locationId: this.state.locationId,
                 lengthId: this.state.lengthId,
                 userTypeId: this.state.userTypeId,
-                lessonTime: this.state.lessonTime
+                lessonTime: this.state.lessonTime,
+                active: true,
+                lessonMaterialsIds: []
 
             };
             this.props.editStudent(student)
@@ -85,7 +87,9 @@ export default class StudentEditForm extends Component {
                 locationId: this.state.locationId,
                 lengthId: this.state.lengthId,
                 userTypeId: this.state.userTypeId,
-                lessonTime: this.state.lessonTime
+                lessonTime: this.state.lessonTime,
+                active: true,
+                lessonMaterialsIds: []
 
             };
             if (Number(parent.parentId) !== 0) {
