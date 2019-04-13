@@ -35,7 +35,18 @@ export default class StudentEditForm extends Component {
         this.setState(stateToChange);
     };
 
+    handleCheckBox = evt => {
+        console.log(evt.target.checked)
+        const stateToChange = {};
+        stateToChange[evt.target.id] = evt.target.checked;
+        this.setState(stateToChange);
+    }
+    
     EditStudent = evt => {
+       
+
+        
+        
         evt.preventDefault();
         if (this.state.eventName === "") {
             window.alert("Please Enter Event Name");
@@ -57,10 +68,15 @@ export default class StudentEditForm extends Component {
                 lengthId: this.state.lengthId,
                 userTypeId: this.state.userTypeId,
                 lessonTime: this.state.lessonTime,
-                active: true,
+                active: this.state.active,
                 lessonMaterialsIds: []
 
             };
+            if (document.querySelector("#active").checked) {
+                this.state.active = true
+            } else {
+                this.state.active = false
+            }
             this.props.editStudent(student)
                 .then(() => this.props.history.push(`/Students/${this.state.id}`));
         }
@@ -118,6 +134,9 @@ export default class StudentEditForm extends Component {
     componentDidMount() {
         StudentAndParentManager.getStudent(Number(this.props.match.params.studentId))
             .then(student => {
+                if (student.active) {
+                    document.querySelector("#active").checked = true
+                }
                 this.setState({
                     name: student.name,
                     userTypeId: student.userTypeId,
@@ -131,19 +150,29 @@ export default class StudentEditForm extends Component {
                     locationId: Number(student.locationId),
                     lengthId: Number(student.lengthId),
                     lessonTime: student.lessonTime,
-                    lessonDayId: student.lessonDayId
+                    lessonDayId: student.lessonDayId,
+                    active: student.active
 
 
                 })
+
             })
     }
 
     render() {
+        
 
         return (
             <React.Fragment>
                 <div className="page-component-wrapper row d-flex justify-content-center">
                     <div className="page-component teacherhome col-md-6">
+                        <label htmlFor="active">Active Student?</label> <br></br>
+                        <input type="checkbox"
+                            name="completed"
+                            onClick={this.handleCheckBox}
+                            
+
+                            id="active" />
                         <form className="animalForm">
                             <div className="form-group">
                                 <label htmlFor="eventName">Student Name</label>
