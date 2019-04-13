@@ -45,6 +45,8 @@ export default class Login extends Component {
       instrumentId: 0,
       locationId: 0,
       lengthId: 0,
+      active: true,
+      lessonMaterialsIds: []
 
     }
     if (this.state.name && this.state.password) {
