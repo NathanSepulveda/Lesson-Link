@@ -60,6 +60,7 @@ class TeacherHome extends Component {
                         <div id='search' className="">
                             <h1 className="tl-heading">Welcome, {firstName}!</h1>
                             {this.props.students.filter(s => Number(s.teacherId) === Number(sessionStorage.getItem("credentials")))
+                            
                                 .length === 0 ?
                                 ""
                                 :
@@ -74,7 +75,7 @@ class TeacherHome extends Component {
                                     >
                                         {this.state.hasOwnProperty("selectedStudentId") === false ?
                                             <option value="">Look for a student</option> : ""}
-                                        {this.props.students.filter(student => Number(student.parentId) === 0 && Number(student.teacherId) === Number(sessionStorage.getItem("credentials")))
+                                        {this.props.students.filter(student => Number(student.parentId) === 0 && Number(student.teacherId) === Number(sessionStorage.getItem("credentials")) && student.active ===true)
                                             .map(e => (
                                                 <option key={e.id} id="students" value={e.id} >
                                                     {e.name}
