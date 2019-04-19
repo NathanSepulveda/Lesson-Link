@@ -62,7 +62,8 @@ class ImageUpload extends Component {
             () => {
                 //complete function
 
-                storage.ref('files').child(image.name).getDownloadURL().then(url => {
+                storage.ref('files').child(name).getDownloadURL().then(url => {
+                    console.log(url)
                     let filesIdsArray = this.props.studentMaterialsIds
                     let student = this.props.student
                     this.setState({ url })
