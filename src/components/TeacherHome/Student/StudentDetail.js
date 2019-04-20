@@ -12,6 +12,7 @@ import NotesDisplay from "../../notes/NotesDisplay";
 import PaymentsDisplay from "../../payments/PaymentDisplay";
 import ImageUpload from "../../imageUpload";
 import FileManager from "../../../modules/FileManager";
+import FilesDisplay from "./FilesDisplay";
 
 
 let id = sessionStorage.getItem("studentId")
@@ -152,7 +153,8 @@ class StudentDetail extends Component {
                             {/* {this.state.student.lessonMaterialsIds.map(l => {
                                 <a target="_blank" rel="noopener noreferrer" href={l.url}>File</a>
                             })} */}
-                            {this.state.studentMaterials
+                            <FilesDisplay></FilesDisplay>
+                            {/* {this.state.studentMaterials
                                 .map(e => (
                                     <p>
                                     <a key={e.id} target="_blank" rel="noopener noreferrer" className="files" href={e.url} >
@@ -162,7 +164,7 @@ class StudentDetail extends Component {
 
                                     </a>
                                     </p>
-                                ))}
+                                ))} */}
 
                             <div id="notesPayments">
                                 <h2>Notes</h2>

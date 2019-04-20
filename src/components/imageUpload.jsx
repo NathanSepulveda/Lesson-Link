@@ -72,18 +72,24 @@ class ImageUpload extends Component {
                     console.log(this.state)
                     FileManager.addFile(this.state).then(res => {
                         console.log(res)
-                        filesIdsArray.push(res.id)
-                        console.log(filesIdsArray)
-                        student.lessonMaterialsIds = filesIdsArray
-                        delete student.instrument
-                        delete student.lessonDay
-                        delete student.location
-                        delete student.length
+                        if (this.props.hasOwnProperty("student")) {
 
-                        console.log(student)
-                        StudentAndParentManager.editUser(student)
+                            filesIdsArray.push(res.id)
+                            console.log(filesIdsArray)
+                            student.lessonMaterialsIds = filesIdsArray
+                            delete student.instrument
+                            delete student.lessonDay
+                            delete student.location
+                            delete student.length
+    
+                            console.log(student)
+                            alert("File uploaded")
+                            StudentAndParentManager.editUser(student)
+                        } 
+                        else {
+                            alert("Uploaded to teacher")
+                        }
                     })
-                    alert("File uploaded")
 
                 })
                 // :
@@ -96,7 +102,7 @@ class ImageUpload extends Component {
                 //     })
 
                 // })
-                alert("File uploaded")
+                
 
 
 

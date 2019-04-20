@@ -25,7 +25,8 @@ class FileUpload extends Component {
 
 
     render() {
-
+        sessionStorage.removeItem("studentId")
+        sessionStorage.removeItem("parentId")
 
 
         return (
