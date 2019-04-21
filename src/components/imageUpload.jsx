@@ -58,7 +58,7 @@ class ImageUpload extends Component {
     //                     this.setState({ url })
     //                 })
     //                 .then(() => this.onImageUploaded())
-    //                 .then(() => {
+    //                 .then(() = {
     //                     document.querySelector("#cropper-container").innerHTML = `<img src="${this.state.url}" />`
     //                 })
     //         }
