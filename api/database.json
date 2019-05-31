@@ -2013,6 +2013,494 @@
       "paymentMethodId": "1",
       "teacherId": 2,
       "id": 131
+    },
+    {
+      "userId": 36,
+      "date": "4/2/2019",
+      "amount": "30",
+      "paymentMethodId": "3",
+      "teacherId": 2,
+      "id": 132
+    },
+    {
+      "userId": 6,
+      "date": "4/3/2019",
+      "amount": "60",
+      "paymentMethodId": "1",
+      "teacherId": 2,
+      "id": 133
+    },
+    {
+      "userId": 40,
+      "date": "4/3/2019",
+      "amount": "50",
+      "paymentMethodId": "1",
+      "teacherId": 2,
+      "id": 134
+    },
+    {
+      "userId": 60,
+      "date": "4/4/2019",
+      "amount": "180",
+      "paymentMethodId": "3",
+      "teacherId": 2,
+      "id": 136
+    },
+    {
+      "userId": 58,
+      "date": "4/3/2019",
+      "amount": "20",
+      "paymentMethodId": "3",
+      "teacherId": 2,
+      "id": 137
+    },
+    {
+      "userId": 42,
+      "date": "4/6/2019",
+      "amount": "30",
+      "paymentMethodId": "3",
+      "teacherId": 2,
+      "id": 138
+    },
+    {
+      "userId": 36,
+      "date": "4/10/2019",
+      "amount": "30",
+      "paymentMethodId": "3",
+      "teacherId": 2,
+      "id": 139
+    },
+    {
+      "userId": 35,
+      "date": "4/6/2019",
+      "amount": "30",
+      "paymentMethodId": "3",
+      "teacherId": 2,
+      "id": 140
+    },
+    {
+      "userId": 73,
+      "date": "4/9/2019",
+      "amount": "60",
+      "paymentMethodId": "1",
+      "teacherId": 2,
+      "id": 141
+    },
+    {
+      "userId": 48,
+      "date": "4/13/2019",
+      "amount": "30",
+      "paymentMethodId": "2",
+      "teacherId": 2,
+      "id": 142
+    },
+    {
+      "userId": 57,
+      "date": "4/06/2019",
+      "amount": "110",
+      "paymentMethodId": "3",
+      "teacherId": 2,
+      "id": 143
+    },
+    {
+      "userId": 76,
+      "date": "4/12/2019",
+      "amount": "45",
+      "paymentMethodId": "3",
+      "teacherId": 2,
+      "id": 144
+    },
+    {
+      "userId": 6,
+      "date": "4/10/2019",
+      "amount": "50",
+      "paymentMethodId": "1",
+      "teacherId": 2,
+      "id": 145
+    },
+    {
+      "userId": 6,
+      "date": "4/15/2019",
+      "amount": "60",
+      "paymentMethodId": "1",
+      "teacherId": 2,
+      "id": 146
+    },
+    {
+      "userId": 56,
+      "date": "4/14/2019",
+      "amount": "55",
+      "paymentMethodId": "3",
+      "teacherId": 2,
+      "id": 147
+    },
+    {
+      "userId": 35,
+      "date": "4/16/2019",
+      "amount": "30",
+      "paymentMethodId": "3",
+      "teacherId": 2,
+      "id": 148
+    },
+    {
+      "userId": 36,
+      "date": "4/16/2019",
+      "amount": "30",
+      "paymentMethodId": "3",
+      "teacherId": 2,
+      "id": 149
+    },
+    {
+      "userId": 37,
+      "date": "4/17/2019",
+      "amount": "45",
+      "paymentMethodId": "3",
+      "teacherId": 2,
+      "id": 150
+    },
+    {
+      "userId": 44,
+      "date": "4/28/2019",
+      "amount": "340",
+      "paymentMethodId": "3",
+      "teacherId": 2,
+      "id": 151
+    },
+    {
+      "userId": 43,
+      "date": "4/27/2019",
+      "amount": "45",
+      "paymentMethodId": "3",
+      "teacherId": 2,
+      "id": 152
+    },
+    {
+      "userId": 43,
+      "date": "4/20/2019",
+      "amount": "45",
+      "paymentMethodId": "3",
+      "teacherId": 2,
+      "id": 153
+    },
+    {
+      "userId": 76,
+      "date": "4/26/2019",
+      "amount": "45",
+      "paymentMethodId": "1",
+      "teacherId": 2,
+      "id": 154
+    },
+    {
+      "userId": 42,
+      "date": "4/20/2019",
+      "amount": "45",
+      "paymentMethodId": "3",
+      "teacherId": 2,
+      "id": 155
+    },
+    {
+      "userId": 36,
+      "date": "4/24/2019",
+      "amount": "30",
+      "paymentMethodId": "3",
+      "teacherId": 2,
+      "id": 156
+    },
+    {
+      "userId": 37,
+      "date": "4/23/2019",
+      "amount": "45",
+      "paymentMethodId": "3",
+      "teacherId": 2,
+      "id": 157
+    },
+    {
+      "userId": 69,
+      "date": "4/25/2019",
+      "amount": "315",
+      "paymentMethodId": "3",
+      "teacherId": 2,
+      "id": 158
+    },
+    {
+      "userId": 48,
+      "date": "4/24/2019",
+      "amount": "30",
+      "paymentMethodId": "3",
+      "teacherId": 2,
+      "id": 159
+    },
+    {
+      "userId": 76,
+      "date": "5/3/2019",
+      "amount": "45",
+      "paymentMethodId": "1",
+      "teacherId": 2,
+      "id": 160
+    },
+    {
+      "userId": 43,
+      "date": "5/4/2019",
+      "amount": "45",
+      "paymentMethodId": "3",
+      "teacherId": 2,
+      "id": 161
+    },
+    {
+      "userId": 77,
+      "date": "5/4/2019",
+      "amount": "30",
+      "paymentMethodId": "3",
+      "teacherId": 2,
+      "id": 162
+    },
+    {
+      "userId": 35,
+      "date": "5/4/2019",
+      "amount": "30",
+      "paymentMethodId": "3",
+      "teacherId": 2,
+      "id": 163
+    },
+    {
+      "userId": 52,
+      "date": "5/4/2019",
+      "amount": "110",
+      "paymentMethodId": "1",
+      "teacherId": 2,
+      "id": 164
+    },
+    {
+      "userId": 6,
+      "date": "5/6/2019",
+      "amount": "60",
+      "paymentMethodId": "1",
+      "teacherId": 2,
+      "id": 165
+    },
+    {
+      "userId": 76,
+      "date": "5/6/2019",
+      "amount": "45",
+      "paymentMethodId": "3",
+      "teacherId": 2,
+      "id": 166
+    },
+    {
+      "userId": 49,
+      "date": "5/8/2019",
+      "amount": "70",
+      "paymentMethodId": "3",
+      "teacherId": 2,
+      "id": 167
+    },
+    {
+      "userId": 37,
+      "date": "5/8/2019",
+      "amount": "45",
+      "paymentMethodId": "3",
+      "teacherId": 2,
+      "id": 168
+    },
+    {
+      "userId": 35,
+      "date": "5/8/2019",
+      "amount": "30",
+      "paymentMethodId": "3",
+      "teacherId": 2,
+      "id": 169
+    },
+    {
+      "userId": 48,
+      "date": "5/5/2019",
+      "amount": "30",
+      "paymentMethodId": "1",
+      "teacherId": 2,
+      "id": 170
+    },
+    {
+      "userId": 36,
+      "date": "5/7/2019",
+      "amount": "30",
+      "paymentMethodId": "3",
+      "teacherId": 2,
+      "id": 171
+    },
+    {
+      "userId": 6,
+      "date": "5/13/2019",
+      "amount": "60",
+      "paymentMethodId": "1",
+      "teacherId": 2,
+      "id": 172
+    },
+    {
+      "userId": 36,
+      "date": "5/14/2019",
+      "amount": "30",
+      "paymentMethodId": "3",
+      "teacherId": 2,
+      "id": 173
+    },
+    {
+      "userId": 77,
+      "date": "5/11/2019",
+      "amount": "30",
+      "paymentMethodId": "3",
+      "teacherId": 2,
+      "id": 174
+    },
+    {
+      "userId": 52,
+      "date": "5/11/2019",
+      "amount": "250",
+      "paymentMethodId": "1",
+      "teacherId": 2,
+      "id": 175
+    },
+    {
+      "userId": 37,
+      "date": "5/15/2019",
+      "amount": "45",
+      "paymentMethodId": "3",
+      "teacherId": 2,
+      "id": 176
+    },
+    {
+      "userId": 40,
+      "date": "5/10/2019",
+      "amount": "50",
+      "paymentMethodId": "1",
+      "teacherId": 2,
+      "id": 177
+    },
+    {
+      "userId": 40,
+      "date": "4/17/2019",
+      "amount": "40",
+      "paymentMethodId": "1",
+      "teacherId": 2,
+      "id": 178
+    },
+    {
+      "userId": 77,
+      "date": "5/19/2019",
+      "amount": "30",
+      "paymentMethodId": "3",
+      "teacherId": 2,
+      "id": 179
+    },
+    {
+      "userId": 43,
+      "date": "5/19/2019",
+      "amount": "45",
+      "paymentMethodId": "3",
+      "teacherId": 2,
+      "id": 180
+    },
+    {
+      "userId": 43,
+      "date": "5/13/2019",
+      "amount": "45",
+      "paymentMethodId": "3",
+      "teacherId": 2,
+      "id": 181
+    },
+    {
+      "userId": 56,
+      "date": "5/19/2019",
+      "amount": "30",
+      "paymentMethodId": "1",
+      "teacherId": 2,
+      "id": 182
+    },
+    {
+      "userId": 56,
+      "date": "5/19/2019",
+      "amount": "25",
+      "paymentMethodId": "3",
+      "teacherId": 2,
+      "id": 183
+    },
+    {
+      "userId": 48,
+      "date": "5/17/2019",
+      "amount": "45",
+      "paymentMethodId": "1",
+      "teacherId": 2,
+      "id": 184
+    },
+    {
+      "userId": 60,
+      "date": "5/17/2019",
+      "amount": "60",
+      "paymentMethodId": "3",
+      "teacherId": 2,
+      "id": 185
+    },
+    {
+      "userId": 35,
+      "date": "5/17/2019",
+      "amount": "30",
+      "paymentMethodId": "3",
+      "teacherId": 2,
+      "id": 186
+    },
+    {
+      "userId": 35,
+      "date": "5/30/2019",
+      "amount": "30",
+      "paymentMethodId": "3",
+      "teacherId": 2,
+      "id": 187
+    },
+    {
+      "userId": 6,
+      "date": "5/21/2019",
+      "amount": "60",
+      "paymentMethodId": "1",
+      "teacherId": 2,
+      "id": 188
+    },
+    {
+      "userId": 43,
+      "date": "5/31/2019",
+      "amount": "45",
+      "paymentMethodId": "3",
+      "teacherId": 2,
+      "id": 189
+    },
+    {
+      "userId": 44,
+      "date": "5/29/2019",
+      "amount": "350",
+      "paymentMethodId": "3",
+      "teacherId": 2,
+      "id": 190
+    },
+    {
+      "userId": 49,
+      "date": "5/30/2019",
+      "amount": "35",
+      "paymentMethodId": "3",
+      "teacherId": 2,
+      "id": 191
+    },
+    {
+      "userId": 60,
+      "date": "5/28/2019",
+      "amount": "60",
+      "paymentMethodId": "3",
+      "teacherId": 2,
+      "id": 192
+    },
+    {
+      "userId": 69,
+      "date": "5/31/2019",
+      "amount": "230",
+      "paymentMethodId": "3",
+      "teacherId": 2,
+      "id": 193
     }
   ],
   "lessons": [
