@@ -78,7 +78,7 @@ class PaymentSummary extends Component {
             .then(() =>
                 this.setState(newState))
             .then(() => {
-                let jan = this.state.payments.filter(p => p.date.substring(0, 1) === "1")
+                let jan = this.state.payments.filter(p => p.date.substring(0, 2) === "1/")
 
                 let janTotal = jan.reduce((currentTotal, nextValue) => {
 
