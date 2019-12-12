@@ -43,7 +43,7 @@ class PaymentSummary extends Component {
                     "label": "Monthly Incomes", "data": [`$ ${this.state.janTotal}`, this.state.febTotal, this.state.marchTotal, this.state.aprilTotal,
                     this.state.mayTotal, this.state.juneTotal, this.state.julyTotal, this.state.augTotal, this.state.sepTotal,
                     this.state.octTotal, this.state.novTotal, this.state.decTotal],
-                    "fill": false, "backgroundColor": ["rgba(255, 99, 132, 0.2)", "rgba(255, 159, 64, 0.2)", "rgba(255, 205, 86, 0.2)", "rgba(75, 192, 192, 0.2)", "rgba(54, 162, 235, 0.2)", "rgba(153, 102, 255, 0.2)", "rgba(201, 203, 207, 0.2)"],
+                    "fill": false, "backgroundColor": ["rgba(255, 99, 132, 0.2)", "rgba(255, 159, 64, 0.2)", "rgba(255, 205, 86, 0.2)", "rgba(75, 192, 192, 0.2)", "rgba(54, 162, 235, 0.2)", "rgba(153, 102, 255, 0.2)", "rgba(201, 203, 207, 0.2)", "rgba(255, 2, 5, 0.2)"],
                     "borderColor": ["rgb(255, 99, 132)", "rgb(255, 159, 64)", "rgb(255, 205, 86)", "rgb(75, 192, 192)", "rgb(54, 162, 235)", "rgb(153, 102, 255)", "rgb(101, 203, 207)"],
 
                     "borderWidth": 5
@@ -234,7 +234,7 @@ class PaymentSummary extends Component {
                 }, 0
                 )
 
-                newState.dec = decTotal
+                newState.decTotal = decTotal
 
 
 
