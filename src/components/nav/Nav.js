@@ -1,19 +1,19 @@
-import React, { Component } from "react"
-import { Link } from "react-router-dom"
-import { withRouter } from "react-router"
-import "./nav.css"
-import eightNote from "../../images/8thnote.png"
-import "bootstrap/dist/css/bootstrap.min.css"
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import { withRouter } from "react-router";
+import "./nav.css";
+import eightNote from "../../images/8thnote.png";
+import "bootstrap/dist/css/bootstrap.min.css";
 let style = {
   color: "aliceblue",
   margin: "5px"
-}
+};
 class Nav extends Component {
   logout = () => {
-    sessionStorage.clear("credentials")
-    this.props.history.push(`/`)
-    this.props.setAuth()
-  }
+    sessionStorage.clear("credentials");
+    this.props.history.push(`/`);
+    this.props.setAuth();
+  };
 
   render() {
     return (
@@ -24,24 +24,34 @@ class Nav extends Component {
               Lesson Link ♪
             </Link>
           </li>
-          {Number(sessionStorage.getItem("userType")) === 1 ?
+          {Number(sessionStorage.getItem("userType")) === 1 ? (
             <li className="nav-item">
               <Link className="nav-link" to="/paymentsummary">
                 Payment Summary
-            </Link>
-            </li> : ""
-
-          }
+              </Link>
+            </li>
+          ) : (
+            ""
+          )}
+          {Number(sessionStorage.getItem("userType")) === 1 ? (
+            <li className="nav-item">
+              <Link className="nav-link" to="/mileage">
+                Mileage
+              </Link>
+            </li>
+          ) : (
+            ""
+          )}
 
           <li className="nav-item" onClick={this.logout}>
             <Link className="nav-link" to="/">
-              Log Out  
+              Log Out
             </Link>
           </li>
         </ul>
       </nav>
-    )
+    );
   }
 }
 
-export default withRouter(Nav)
+export default withRouter(Nav);

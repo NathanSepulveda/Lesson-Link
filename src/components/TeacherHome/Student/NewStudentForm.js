@@ -38,12 +38,19 @@ export default class EventForm extends Component {
         let parentId = document.querySelector("#parentId").value
         sessionStorage.setItem("parentId", parentId)
 
-        StudentAndParentManager.getOneParent(Number(sessionStorage.getItem("parentId"))).then(parent => {
-            sessionStorage.setItem("accountId", parent.accountId)
-            stateToChange.accountId = Number(sessionStorage.getItem("accountId"))
-            this.setState(stateToChange)
+        // bad, but not a big deal
+        // defining parent id state should be defined in a separate event handler
 
-        })
+        if (this.state.parentId !== 0) {
+
+            StudentAndParentManager.getOneParent(Number(sessionStorage.getItem("parentId"))).then(parent => {
+                sessionStorage.setItem("accountId", parent.accountId)
+                stateToChange.accountId = Number(sessionStorage.getItem("accountId"))
+                this.setState(stateToChange)
+    
+            })
+        }
+        this.setState(stateToChange)
 
     };
 

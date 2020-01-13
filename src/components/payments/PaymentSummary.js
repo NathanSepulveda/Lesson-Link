@@ -78,7 +78,7 @@ class PaymentSummary extends Component {
             .then(() =>
                 this.setState(newState))
             .then(() => {
-                let jan = this.state.payments.filter(p => p.date.substring(0, 2) === "1/")
+                let jan = this.state.payments.filter(p => new Date(p.date).getMonth() === 0)
 
                 let janTotal = jan.reduce((currentTotal, nextValue) => {
 
@@ -88,7 +88,7 @@ class PaymentSummary extends Component {
                 }, 0
                 )
                 newState.janTotal = janTotal
-                let feb = this.state.payments.filter(p => p.date.charAt(0) === "2")
+                let feb = this.state.payments.filter(p => new Date(p.date).getMonth() === 1)
 
                 let febTotal = feb.reduce((currentTotal, nextValue) => {
 
@@ -99,7 +99,7 @@ class PaymentSummary extends Component {
                 )
                 newState.febTotal = febTotal
 
-                let march = this.state.payments.filter(p => p.date.charAt(0) === "3")
+                let march = this.state.payments.filter(p => new Date(p.date).getMonth() === 2)
 
 
                 let marchTotal = march.reduce((currentTotal, nextValue) => {
@@ -112,7 +112,7 @@ class PaymentSummary extends Component {
                 console.log(marchTotal)
                 newState.marchTotal = marchTotal
 
-                let april = this.state.payments.filter(p => p.date.charAt(0) === "4")
+                let april = this.state.payments.filter(p => new Date(p.date).getMonth() === 3)
                 console.log(april)
 
                 let aprilTotal = april.reduce((currentTotal, nextValue) => {
@@ -125,7 +125,7 @@ class PaymentSummary extends Component {
 
                 newState.aprilTotal = aprilTotal
 
-                let may = this.state.payments.filter(p => p.date.charAt(0) === "5")
+                let may = this.state.payments.filter(p => new Date(p.date).getMonth() === 4)
 
 
                 let mayTotal = may.reduce((currentTotal, nextValue) => {
@@ -138,7 +138,7 @@ class PaymentSummary extends Component {
 
                 newState.mayTotal = mayTotal
 
-                let june = this.state.payments.filter(p => p.date.charAt(0) === "6")
+                let june = this.state.payments.filter(p => new Date(p.date).getMonth() === 5)
 
 
                 let juneTotal = june.reduce((currentTotal, nextValue) => {
@@ -152,7 +152,7 @@ class PaymentSummary extends Component {
                 newState.juneTotal = juneTotal
 
 
-                let july = this.state.payments.filter(p => p.date.charAt(0) === "7")
+                let july = this.state.payments.filter(p => p.date.charAt(0) === 6)
 
 
                 let julyTotal = july.reduce((currentTotal, nextValue) => {
@@ -166,7 +166,7 @@ class PaymentSummary extends Component {
                 newState.julyTotal = julyTotal
 
 
-                let aug = this.state.payments.filter(p => p.date.charAt(0) === "8")
+                let aug = this.state.payments.filter(p => new Date(p.date).getMonth() === 7)
 
 
                 let augTotal = aug.reduce((currentTotal, nextValue) => {
@@ -180,7 +180,7 @@ class PaymentSummary extends Component {
                 newState.augTotal = augTotal
 
 
-                let sep = this.state.payments.filter(p => p.date.charAt(0) === "9")
+                let sep = this.state.payments.filter(p => new Date(p.date).getMonth() === 8)
 
 
                 let sepTotal = sep.reduce((currentTotal, nextValue) => {
@@ -194,7 +194,7 @@ class PaymentSummary extends Component {
                 newState.sepTotal = sepTotal
 
 
-                let oct = this.state.payments.filter(p => p.date.charAt(1) === "0")
+                let oct = this.state.payments.filter(p => new Date(p.date).getMonth() === 9)
 
 
 
@@ -208,7 +208,7 @@ class PaymentSummary extends Component {
 
                 newState.octTotal = octTotal
 
-                let nov = this.state.payments.filter(p => p.date.charAt(1) === "1")
+                let nov = this.state.payments.filter(p => new Date(p.date).getMonth() === 10)
 
 
 
@@ -222,7 +222,7 @@ class PaymentSummary extends Component {
 
                 newState.novTotal = novTotal
 
-                let dec = this.state.payments.filter(p => p.date.charAt(1) === "2")
+                let dec = this.state.payments.filter(p => new Date(p.date).getMonth() === 11)
 
 
 

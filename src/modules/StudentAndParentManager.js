@@ -29,6 +29,9 @@ export default {
     getPayments() {
         return fetch(`${Settings.remoteURL}/payments?_expand=paymentMethod`).then(e => e.json())
     },
+    getMiles() {
+        return fetch(`${Settings.remoteURL}/milage`).then(e => e.json())
+    },
     getPaymentsOfStudent(usId) {
         return fetch(`${Settings.remoteURL}/payments?userId=${usId}&_expand=paymentMethod`).then(e => e.json())
     },
@@ -83,7 +86,18 @@ export default {
         }).then(data => data.json())
     },
     addPayment(obj) {
+        console.log(obj)
         return fetch(`${Settings.remoteURL}/payments`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(obj)
+        }).then(data => data.json())
+    },
+    addMiles(obj) {
+        console.log(obj)
+        return fetch(`${Settings.remoteURL}/milage`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
