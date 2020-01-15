@@ -20,6 +20,16 @@ if (id === null) {
 }
 
 
+const materialsList = {
+    display: 'flex', 
+    flexDirection: 'column'
+}
+
+const headings = {
+    margin: '30px 0 5px 0',
+    textDecoration :"underline"
+}
+
 
 
 class StudentDetail extends Component {
@@ -159,11 +169,14 @@ class StudentDetail extends Component {
                             <ImageUpload student={this.state.student}
                             updateStudentMaterials={this.updateStudentMaterials}
                             changeNumber={this.changeNumber}
-                            >Hi</ImageUpload>
+                            >
+
+                            </ImageUpload>
                             {/* {this.state.student.lessonMaterialsIds.map(l => {
                                 <a target="_blank" rel="noopener noreferrer" href={l.url}>File</a>
                             })} */}
-                            <h1>Student Materials</h1>
+                            <h1 style={headings}>Student Materials</h1>
+                            <div style={materialsList}>
                             {this.state.studentMaterials
                                 .map(e => (
                                     <a key={e.id} target="_blank" rel="noopener noreferrer" className="files" href={e.url} >
@@ -173,10 +186,10 @@ class StudentDetail extends Component {
 
                                     </a>
                                 ))}
-                            
+                            </div>
 
                             <div id="notesPayments">
-                                <h2>Notes</h2>
+                                <h2 style={headings}>Notes</h2>
                                 <NotesDisplay
                                     {...this.props}
                                 />
@@ -185,7 +198,7 @@ class StudentDetail extends Component {
 
                                 ""
                                 : <div id="payments">
-                                    <h2>Payments</h2>
+                                    <h2 style={headings}>Payments </h2>
                                     <PaymentsDisplay
                                         {...this.props}
                                         user={this.state.student} />

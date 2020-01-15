@@ -8,6 +8,9 @@ let style = {
   color: "aliceblue",
   margin: "5px"
 };
+
+
+
 class Nav extends Component {
   logout = () => {
     sessionStorage.clear("credentials");
@@ -16,6 +19,14 @@ class Nav extends Component {
   };
 
   render() {
+    let mobileConditions
+      if (Number(sessionStorage.getItem("userType")) !== 1) {
+        return false
+      }
+      if (window.matchMedia("(min-width: 700px)").matches) {
+        mobileConditions = false
+      }
+    
     return (
       <nav className="navbar fixed-top  flex-md-nowrap p-1 shadow">
         <ul className="nav nav-pills ">
@@ -24,7 +35,7 @@ class Nav extends Component {
               Lesson Link ♪
             </Link>
           </li>
-          {Number(sessionStorage.getItem("userType")) === 1 ? (
+          {mobileConditions ? (
             <li className="nav-item">
               <Link className="nav-link" to="/paymentsummary">
                 Payment Summary
@@ -33,7 +44,7 @@ class Nav extends Component {
           ) : (
             ""
           )}
-          {Number(sessionStorage.getItem("userType")) === 1 ? (
+          {mobileConditions ? (
             <li className="nav-item">
               <Link className="nav-link" to="/mileage">
                 Mileage
