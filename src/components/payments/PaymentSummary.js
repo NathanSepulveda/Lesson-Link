@@ -1,6 +1,6 @@
 import StudentAndParentManager from "../../modules/StudentAndParentManager"
 import React, { Component } from "react"
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Button} from 'reactstrap';
 import { Route } from "react-router-dom"
 import * as Chart from "chart.js"
 

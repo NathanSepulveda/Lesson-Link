@@ -25,7 +25,8 @@ if (id === null) {
 class StudentDetail extends Component {
     state = {
         student: {},
-        studentMaterials: []
+        studentMaterials: [],
+        number: 2
     }
 
     componentDidMount() {
@@ -38,16 +39,27 @@ class StudentDetail extends Component {
             .then(() => newState.student.lessonMaterialsIds.forEach(id => {
                 FileManager.getOneFile(id).then(file => {
                     newState.studentMaterials.push(file)
-                    console.log(newState)
 
                 })
             }) )
 
             .then(() => this.setState(newState))
-
-
-
     }
+    updateStudentMaterials = (materialsIds) => {
+        let newState = {
+            studentMaterials : []
+        }
+        materialsIds.forEach(id => {
+            FileManager.getOneFile(id).then(file => {
+                newState.studentMaterials.push(file)
+                console.log(newState)
+                this.setState(newState)
+
+            })
+        })
+    }
+
+
 
 
     render() {
@@ -77,6 +89,7 @@ class StudentDetail extends Component {
 
 
         let thisUser = this.props.students.find(user => parseInt(user.id) === parseInt(id)) || {}
+        let studentMats = this.state.studentMaterials || []
         return (
 
             <React.Fragment>
@@ -111,6 +124,7 @@ class StudentDetail extends Component {
                                                 color="danger"
 
                                                 onClick={() => {
+                                                    this.changeNumber()
                                                     // let id = Number(studentId)
                                                     console.log(typeof thisStudent.id)
                                                     let answer = window.confirm("Are you sure you want to delete this student?")
@@ -142,10 +156,14 @@ class StudentDetail extends Component {
                                 </div>
 
                             </Card>
-                            <ImageUpload >Hi</ImageUpload>
+                            <ImageUpload student={this.state.student}
+                            updateStudentMaterials={this.updateStudentMaterials}
+                            changeNumber={this.changeNumber}
+                            >Hi</ImageUpload>
                             {/* {this.state.student.lessonMaterialsIds.map(l => {
                                 <a target="_blank" rel="noopener noreferrer" href={l.url}>File</a>
                             })} */}
+                            <h1>Student Materials</h1>
                             {this.state.studentMaterials
                                 .map(e => (
                                     <a key={e.id} target="_blank" rel="noopener noreferrer" className="files" href={e.url} >
@@ -155,7 +173,7 @@ class StudentDetail extends Component {
 
                                     </a>
                                 ))}
-                            <a target="_blank" rel="noopener noreferrer" href={"https://firebasestorage.googleapis.com/v0/b/lesson-link.appspot.com/o/images%2FExample.mp4?alt=media&token=b106a038-827c-46af-94ab-b968ab8e3702"}>File</a>
+                            
 
                             <div id="notesPayments">
                                 <h2>Notes</h2>

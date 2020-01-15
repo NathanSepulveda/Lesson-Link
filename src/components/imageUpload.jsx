@@ -5,6 +5,7 @@ import FileManager from "../modules/FileManager"
 
 
 import AvatarImageCropper from 'react-avatar-image-cropper'
+import StudentAndParentManager from "../modules/StudentAndParentManager"
 
 
 class ImageUpload extends Component {
@@ -83,7 +84,16 @@ class ImageUpload extends Component {
                 console.log(this.state)
                 delete this.state.image 
                 console.log(this.state)
-                FileManager.addFile(this.state)
+                this.props.changeNumber()
+                let studentToUpdate = this.props.student
+                FileManager.addFile(this.state).then(file => {
+                    studentToUpdate.lessonMaterialsIds.push(file.id)
+                    StudentAndParentManager.editUser(studentToUpdate).then(student => {
+                        this.props.updateStudentMaterials(student.lessonMaterialsIds)
+
+                    })
+
+                })
                 alert("File uploaded")
 
             })

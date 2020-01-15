@@ -5,7 +5,6 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 let newPayment = {}
 let today = new Date()
 let date = (today.getMonth() + 1) + "/" + today.getDate() + "/" + today.getFullYear()
-console.log(today.getHours())
 class PaymentsModal extends React.Component {
 
 
@@ -30,9 +29,6 @@ class PaymentsModal extends React.Component {
         if (id === null) {
             id = sessionStorage.getItem("parentId")
         }
-        let today = new Date()
-        console.log(id)
-        let date = (today.getMonth() + 1) + "/" + today.getDate() + "/" + today.getFullYear()
 
         console.log(date)
         newPayment = {
@@ -48,8 +44,6 @@ class PaymentsModal extends React.Component {
     };
 
     render() {
-
-        { console.log(newPayment) }
         return (
             <div>
                 <Button className="tl-btn" color="success" onClick={this.toggle}>Add Payment</Button>
