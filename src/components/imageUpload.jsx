@@ -1,10 +1,8 @@
 import React, { Component } from "react"
-import { Button } from 'reactstrap'
 import { storage } from '../firebase'
 import FileManager from "../modules/FileManager"
 
 
-import AvatarImageCropper from 'react-avatar-image-cropper'
 import StudentAndParentManager from "../modules/StudentAndParentManager"
 
 
@@ -38,34 +36,6 @@ class ImageUpload extends Component {
         }
     }
 
-    // handleUpload = (imageBlob) => {
-    //     document.querySelector("#cropper-container").innerHTML = `<img class="spinner" src="/images/spinner.gif" />`
-    //     const dateTime = Date.parse(new Date())
-    //     const imagePath = `${dateTime}-${imageBlob.name}`
-    //     const uploadTask = storage.ref(`images/${imagePath}`).put(imageBlob)
-    //     uploadTask.on("state_changed",
-    //         (snapshot) => {
-    //             // progress function
-    //             const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100)
-    //             this.setState({ progress })
-    //         },
-    //         (error) => {
-    //             // error function
-    //         },
-    //         () => {
-    //             // complete function
-    //             storage.ref("images").child(imagePath).getDownloadURL()
-    //                 .then(url => {
-    //                     this.setState({ url })
-    //                 })
-    //                 .then(() => this.onImageUploaded())
-    //                 .then(() = {
-    //                     document.querySelector("#cropper-container").innerHTML = `<img src="${this.state.url}" />`
-    //                 })
-    //         }
-    //     )
-    // }
-
     handleUpload = () => {
         const {image} = this.state
       const uploadTask =   storage.ref(`files/${image.name}`).put(image)
@@ -81,10 +51,8 @@ class ImageUpload extends Component {
             //complete function
             storage.ref('files').child(image.name).getDownloadURL().then(url => {
                 this.setState({url})
-                console.log(this.state)
+
                 delete this.state.image 
-                console.log(this.state)
-                this.props.changeNumber()
                 let studentToUpdate = this.props.student
                 FileManager.addFile(this.state).then(file => {
                     studentToUpdate.lessonMaterialsIds.push(file.id)

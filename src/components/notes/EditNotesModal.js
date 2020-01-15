@@ -3,8 +3,6 @@ import React from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 let editedLessonNote = {}
-let today = new Date()
-let date = (today.getMonth() + 1) + "/" + today.getDate() + "/" + today.getFullYear()
 class EditNotesModal extends React.Component {
 
 
@@ -25,9 +23,6 @@ class EditNotesModal extends React.Component {
 
     };
     NewLesson = evt => {
-
-        let today = new Date()
-        let date = (today.getMonth() + 1) + "/" + today.getDate() + "/" + today.getFullYear()
 
         
         editedLessonNote = {

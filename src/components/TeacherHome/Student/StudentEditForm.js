@@ -1,17 +1,9 @@
 import React, { Component } from "react";
 // import "./StudentForm.css"
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Input } from 'reactstrap';
+import {Input } from 'reactstrap';
 import StudentAndParentManager from "../../../modules/StudentAndParentManager"
 
-let makeid = () => {
-    var text = "";
-    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
-    for (var i = 0; i < 5; i++)
-        text += possible.charAt(Math.floor(Math.random() * possible.length));
-
-    return text;
-}
 
 
 export default class StudentEditForm extends Component {
@@ -21,16 +13,16 @@ export default class StudentEditForm extends Component {
         "teacherId": Number(sessionStorage.getItem("credentials")),
         "password": 0,
         "accountId": 0,
-        "parentId": 0
+        "parentId": 0,
+        "name" : "",
+        "phoneNumber" : "",
+        "emailAddress" : "",
+        lessonTime: ""
     };
 
 
     handleFieldChange = evt => {
-        // let password = makeid()
-        // let accountId = makeid()
         const stateToChange = {};
-        // stateToChange.password = password
-        // stateToChange.accountId = accountId
         stateToChange[evt.target.id] = evt.target.value;
         this.setState(stateToChange);
     };
@@ -62,7 +54,7 @@ export default class StudentEditForm extends Component {
                 teacherId: this.state.teacherId,
                 lessonDayId: this.state.lessonDayId,
                 parentId: Number(this.state.parentId),
-                lessonTime: this.state.lessonTime,
+
                 instrumentId: this.state.instrumentId,
                 locationId: this.state.locationId,
                 lengthId: this.state.lengthId,
@@ -73,9 +65,9 @@ export default class StudentEditForm extends Component {
 
             };
             if (document.querySelector("#active").checked) {
-                this.state.active = true
+                this.setState({active: true})
             } else {
-                this.state.active = false
+                this.setState({active: false})
             }
             this.props.editStudent(student)
                 .then(() => this.props.history.push(`/Students/${this.state.id}`));
@@ -103,7 +95,7 @@ export default class StudentEditForm extends Component {
                 locationId: this.state.locationId,
                 lengthId: this.state.lengthId,
                 userTypeId: this.state.userTypeId,
-                lessonTime: this.state.lessonTime,
+
                 active: true,
                 lessonMaterialsIds: []
 

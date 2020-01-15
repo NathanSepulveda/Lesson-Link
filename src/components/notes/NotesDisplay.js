@@ -1,12 +1,12 @@
 import React, { Component } from "react"
 import StudentAndParentManager from "../../modules/StudentAndParentManager"
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Button} from 'reactstrap';
 import "./Notes.css"
 import NotesModal from "./NotesModal"
 import EditNotesModal from "./EditNotesModal"
 import * as emailjs from 'emailjs-com';
 
-let studentId = sessionStorage.getItem("studentId")
+
 
 class NotesDisplay extends Component {
 
@@ -20,7 +20,7 @@ class NotesDisplay extends Component {
         let newState = {}
 
         let id = Number(sessionStorage.getItem("studentId"))
-        console.log(id)
+
         if (id === 0) {
             id = Number(sessionStorage.getItem("parentId"))
         } else if (sessionStorage.getItem("parentId") !== 0 && sessionStorage.getItem("studentId") !== 0) {
@@ -90,7 +90,7 @@ class NotesDisplay extends Component {
             
             this.state.lessons
                     .map(lesson =>
-                        <div id={lesson.id} className="notesCard">
+                        <div id={lesson.id} key={lesson.id} className="notesCard">
                             <div className="row">
                                 <div className="col-md-12">
                                     <div>{lesson.date}</div>

@@ -2,12 +2,9 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { withRouter } from "react-router";
 import "./nav.css";
-import eightNote from "../../images/8thnote.png";
+
 import "bootstrap/dist/css/bootstrap.min.css";
-let style = {
-  color: "aliceblue",
-  margin: "5px"
-};
+
 
 
 
@@ -19,11 +16,11 @@ class Nav extends Component {
   };
 
   render() {
-    let mobileConditions
+    let mobileConditions = true
       if (Number(sessionStorage.getItem("userType")) !== 1) {
         return false
       }
-      if (window.matchMedia("(min-width: 700px)").matches) {
+      if (window.matchMedia("(max-width: 414px)").matches) {
         mobileConditions = false
       }
     

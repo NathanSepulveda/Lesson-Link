@@ -1,16 +1,12 @@
 import React, { Component } from "react"
 import { Link } from "react-router-dom"
-import { withRouter } from "react-router"
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Input, Card } from 'reactstrap';
+import { Button, Input, Card } from 'reactstrap';
 import StudentAndParentManager from "../../../modules/StudentAndParentManager";
 import PaymentsDisplay from "../../payments/PaymentDisplay";
 
 
 
 class ParentDetail extends Component {
-    // state = {
-    //     student : []
-    // }
     state = {
         parent: {},
         teacher: {},
@@ -20,11 +16,9 @@ class ParentDetail extends Component {
 
 
     componentDidMount() {
-        console.log('hey')
         let newState = {}
         StudentAndParentManager.getOneParent(sessionStorage.getItem("parentId")).then(parent => {
             newState.parent = parent
-            console.log(parent)
         }).then(() => StudentAndParentManager.getTeacher(newState.parent.teacherId))
             .then(teacher => {
                 newState.teacher = teacher
@@ -39,12 +33,10 @@ class ParentDetail extends Component {
 
     handleFieldChange = evt => {
 
-        // let selectedStudentId = Number(document.querySelector("#selectedStudentId").value)
-        // console.log(selectedStudentId)
 
         const stateToChange = {};
         stateToChange[evt.target.id] = Number(evt.target.value);
-        // stateToChange.selectedStudentId = selectedStudentId 
+
 
         this.setState(stateToChange);
 
@@ -57,10 +49,6 @@ class ParentDetail extends Component {
 
 
         let thisParent = this.props.parents.find(parent => parseInt(parent.id) === parseInt(parentId)) || {}
-        let instrument = thisParent.instrument || {}
-        let length = thisParent.length || {}
-        let location = thisParent.location || {}
-        let day = thisParent.lessonDay || {}
 
 
 

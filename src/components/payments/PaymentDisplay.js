@@ -3,7 +3,7 @@ import StudentAndParentManager from "../../modules/StudentAndParentManager"
 import PaymentsModal from "./PaymentsModal"
 import EditPaymentModal from "./EditPaymentModal"
 import "./Payments.css"
-import { UncontrolledCollapse, Collapse, Button, Modal, ModalHeader, ModalBody, ModalFooter, Card, CardBody } from 'reactstrap';
+import { Collapse, Button} from 'reactstrap';
 
 const Json2csvParser = require('json2csv').Parser;
 
@@ -17,15 +17,11 @@ if (id === null) {
 
 class PaymentsDisplay extends Component {
 
-    // state = {
-    //     payments: [],
-    //     thisUser: {}
-    // }
 
     constructor(props) {
         super(props);
         this.toggle = this.toggle.bind(this);
-        // this.onExited = this.onExited.bind(this);
+
         this.state = {
             collapse: false,
             payments: [],
@@ -40,11 +36,11 @@ class PaymentsDisplay extends Component {
             thisUser: {}
         }
         let id = Number(sessionStorage.getItem("studentId"))
-        console.log(id)
+
         if (id === 0) {
             id = Number(sessionStorage.getItem("parentId"))
         }
-        console.log(id)
+
 
         StudentAndParentManager.getPaymentsOfStudent(id)
             .then(payments => {
@@ -57,30 +53,6 @@ class PaymentsDisplay extends Component {
         this.setState(newState)
 
     }
-    // onExited() {
-
-    //     let newState = {
-    //         status: 'Closed',
-    //         payments: [],
-    //         thisUser: {}
-    //     }
-    //     let id = Number(sessionStorage.getItem("studentId"))
-    //     console.log(id)
-    //     if (id === 0) {
-    //         id = Number(sessionStorage.getItem("parentId"))
-    //     }
-    //     console.log(id)
-
-    //     StudentAndParentManager.getPaymentsOfStudent(id)
-    //         .then(payments => {
-    //             newState.payments = payments
-
-    //         })
-    //         .then(() => {
-    //             this.setState(newState)
-    //         })
-    //     this.setState(newState)
-    // }
 
 
 
@@ -89,11 +61,11 @@ class PaymentsDisplay extends Component {
 
         let newState = {}
         let id = Number(sessionStorage.getItem("studentId"))
-        console.log(id)
+
         if (id === 0) {
             id = Number(sessionStorage.getItem("parentId"))
         }
-        console.log(id)
+
 
         StudentAndParentManager.getPaymentsOfStudent(id)
             .then(payments => {
@@ -114,7 +86,7 @@ class PaymentsDisplay extends Component {
         StudentAndParentManager.getPayments()
             .then(payments => payments.filter(payment => payment.userId === Number(sessionStorage.getItem("studentId"))))
             .then(payments => {
-                console.log(this.state.payments)
+
                 const json2csvParser = new Json2csvParser({ fields });
                 const csv = json2csvParser.parse(this.state.payments)
                 console.log(csv)

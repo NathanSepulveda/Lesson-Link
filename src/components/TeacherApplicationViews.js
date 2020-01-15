@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import { Route } from "react-router-dom";
 import StudentAndParentManager from "../modules/StudentAndParentManager";
 import TeacherHome from "./TeacherHome/TeacherHome";
-import StudentHome from "../components/StudentHome/StudentHome";
+
 import StudentDetail from "../components/TeacherHome/Student/StudentDetail";
 import ParentDetail from "../components/TeacherHome/Parent/ParentDetail";
-import ParentHome from "../components/ParentHome/ParentHome";
+
 import NewStudentForm from "../components/TeacherHome/Student/NewStudentForm";
 import StudentEditForm from "../components/TeacherHome/Student/StudentEditForm";
 import NotesDisplay from "../components/notes/NotesDisplay";

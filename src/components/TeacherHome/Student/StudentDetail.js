@@ -2,7 +2,7 @@ import React, { Component } from "react"
 
 // import "./StudentForm.css"
 import StudentAndParentManager from "../../../modules/StudentAndParentManager"
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter, UncontrolledCollapse, Card, CardBody } from 'reactstrap';
+import { Button, Card} from 'reactstrap';
 import piano from "../../../images/piano.png"
 import guitar from "../../../images/icon.png"
 import uke from "../../../images/ukelele.png"
@@ -99,7 +99,6 @@ class StudentDetail extends Component {
 
 
         let thisUser = this.props.students.find(user => parseInt(user.id) === parseInt(id)) || {}
-        let studentMats = this.state.studentMaterials || []
         return (
 
             <React.Fragment>

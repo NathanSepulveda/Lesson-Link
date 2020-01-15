@@ -1,11 +1,11 @@
 import StudentAndParentManager from "../../modules/StudentAndParentManager"
 import React, { Component } from "react"
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-import { Route } from "react-router-dom"
+
+
 import * as Chart from "chart.js"
 import MileageModal from "./MileageModal"
 
-const Json2csvParser = require('json2csv').Parser;
+
 
 
 
@@ -65,7 +65,7 @@ class Mileage extends Component {
                 this.setState(newState))
             .then(() => {
                 let jan = this.state.miles.filter(p => new Date(p.date).getMonth() === 0)
-                console.log(jan)
+
 
                 let janTotal = jan.reduce((currentTotal, nextValue) => {
 
@@ -97,11 +97,11 @@ class Mileage extends Component {
 
                 }, 0
                 )
-                console.log(marchTotal)
+
                 newState.marchTotal = marchTotal
 
                 let april = this.state.miles.filter(p => new Date(p.date).getMonth() === 3)
-                console.log(april)
+
 
                 let aprilTotal = april.reduce((currentTotal, nextValue) => {
 
@@ -237,12 +237,12 @@ class Mileage extends Component {
 
 
                 let cash = this.state.miles.filter(payment => Number(payment.paymentMethodId) === 1)
-                console.log(cash)
+
                 let cashAmount = 0
                 cash.forEach(payment => {
                     cashAmount += Number(payment.amount)
                 })
-                console.log(cashAmount)
+
                 newState.cashAmount = cashAmount
 
                 newState.cashPercentage = Number((cashAmount / newState.yearlyTotal).toFixed(2))
@@ -330,9 +330,9 @@ class Mileage extends Component {
 
                         
                             <h1> 2020 Starting Miles: 32,800 </h1>
-                            <h1>Total Business Miles: {totals}
+                            <h1>Total Business Miles: {totals} </h1>
                             <h1>Mileage Expenses: ${(totals * .575).toFixed(2)}</h1>
-                            </h1>
+                            
                         
 
                     </div>

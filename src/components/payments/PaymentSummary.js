@@ -1,7 +1,6 @@
 import StudentAndParentManager from "../../modules/StudentAndParentManager"
 import React, { Component } from "react"
 import { Button} from 'reactstrap';
-import { Route } from "react-router-dom"
 import * as Chart from "chart.js"
 
 const Json2csvParser = require('json2csv').Parser;
@@ -109,11 +108,11 @@ class PaymentSummary extends Component {
 
                 }, 0
                 )
-                console.log(marchTotal)
+
                 newState.marchTotal = marchTotal
 
                 let april = this.state.payments.filter(p => new Date(p.date).getMonth() === 3)
-                console.log(april)
+
 
                 let aprilTotal = april.reduce((currentTotal, nextValue) => {
 
@@ -249,12 +248,12 @@ class PaymentSummary extends Component {
 
 
                 let cash = this.state.payments.filter(payment => Number(payment.paymentMethodId) === 1)
-                console.log(cash)
+
                 let cashAmount = 0
                 cash.forEach(payment => {
                     cashAmount += Number(payment.amount)
                 })
-                console.log(cashAmount)
+
                 newState.cashAmount = cashAmount
 
                 newState.cashPercentage = Number((cashAmount / newState.yearlyTotal).toFixed(2))

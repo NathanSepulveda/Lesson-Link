@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./StudentForm.css"
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Input } from 'reactstrap';
+import {Input } from 'reactstrap';
 
 import StudentAndParentManager from "../../../modules/StudentAndParentManager";
 
@@ -67,7 +67,6 @@ export default class EventForm extends Component {
         else {
             const student = {
                 name: this.state.name,
-                accountId: makeid(),
                 phoneNumber: this.state.phoneNumber,
                 accountId: accountId,
                 emailAddress: this.state.emailAddress,
@@ -80,7 +79,6 @@ export default class EventForm extends Component {
                 locationId: Number(this.state.locationId),
                 lengthId: Number(this.state.lengthId),
                 userTypeId: Number(this.state.userTypeId),
-                lessonTime: this.state.lessonTime,
                 active: true,
                 lessonMaterialsIds: []
 

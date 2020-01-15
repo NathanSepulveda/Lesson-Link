@@ -1,11 +1,8 @@
 import React, { Component } from 'react'
 import "./TeacherHome.css"
 import { Link } from "react-router-dom"
-import StudentDetail from "./Student/StudentDetail"
-import Test from "./Student/Test"
-import piano from "../../images/darkerPiano.jpg"
 import { withRouter } from "react-router"
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Input } from 'reactstrap';
+import { Button, Input } from 'reactstrap';
 
 
 

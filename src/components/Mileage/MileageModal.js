@@ -5,7 +5,6 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 let newMiles = {}
 let today = new Date()
 let date = (today.getMonth() + 1) + "/" + today.getDate() + "/" + today.getFullYear()
-console.log(today.getHours())
 class MileageModal extends React.Component {
 
 

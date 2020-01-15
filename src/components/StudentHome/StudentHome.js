@@ -3,22 +3,8 @@ import StudentAndParentManager from "../../modules/StudentAndParentManager";
 
 
 
-let studentId 
-let thisStudent
-let instrument 
-// let teacher =  StudentAndParentManager.getTeacher(thisStudent.teacherId).then(teacher => {
-//     return teacher
-// }) || {}
-// console.log(teacher)
-let length 
-let location
-let day 
-
-
 class StudentDetail extends Component {
-    // state = {
-    //     student : []
-    // }
+
     state = {
         teacher: {},
         student: {}
@@ -35,16 +21,6 @@ class StudentDetail extends Component {
     }
 
 
-    // studentId = sessionStorage.getItem("credentials")
-    // thisStudent = this.props.students.find(student => parseInt(student.id) === parseInt(studentId)) || {}
-    // instrument = thisStudent.instrument || {}
-    // // let teacher =  StudentAndParentManager.getTeacher(thisStudent.teacherId).then(teacher => {
-    // //     return teacher
-    // // }) || {}
-    // // console.log(teacher)
-    // length = thisStudent.length || {}
-    // location = thisStudent.location || {}
-    // day = thisStudent.lessonDay || {}
     render() {
 
 
@@ -52,10 +28,6 @@ class StudentDetail extends Component {
         let studentId = sessionStorage.getItem("credentials")
         let thisStudent = this.props.students.find(student => parseInt(student.id) === parseInt(studentId)) || {}
         let instrument = thisStudent.instrument || {}
-        // let teacher =  StudentAndParentManager.getTeacher(thisStudent.teacherId).then(teacher => {
-        //     return teacher
-        // }) || {}
-        // console.log(teacher)
         let length = thisStudent.length || {}
         let location = thisStudent.location || {}
         let day = thisStudent.lessonDay || {}

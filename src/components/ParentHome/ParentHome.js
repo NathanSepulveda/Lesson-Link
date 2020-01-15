@@ -1,7 +1,6 @@
 import React, { Component } from "react"
 import { Link } from "react-router-dom"
-import { withRouter } from "react-router"
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Input } from 'reactstrap';
+import { Button, Input } from 'reactstrap';
 import StudentAndParentManager from "../../modules/StudentAndParentManager";
 
 
@@ -21,7 +20,6 @@ class ParentDetail extends Component {
 
 
     componentDidMount() {
-        console.log('hey')
         let newState = {}
         StudentAndParentManager.getOneParent(sessionStorage.getItem("credentials")).then(parent => {
             newState.parent = parent
@@ -51,10 +49,6 @@ class ParentDetail extends Component {
         let parentId = sessionStorage.getItem("parentId")
 
         let thisParent = this.props.parents.find(parent => parseInt(parent.id) === parseInt(parentId)) || {}
-        let instrument = thisParent.instrument || {}
-        let length = thisParent.length || {}
-        let location = thisParent.location || {}
-        let day = thisParent.lessonDay || {}
 
 
 
@@ -99,11 +93,6 @@ class ParentDetail extends Component {
 
                 </div>
                 <div id="buttonsDisplay">
-                    {/* <button type="button"
-                        onClick={() => this.props.history.push(`/Students/${thisParent.id}/notes`)}
-                        className="btn btn-success">
-                        View Student Notes
-                    </button> */}
                     <div id="divider"></div>
                     <button type="button"
                         onClick={() => this.props.history.push(`/Students/${thisParent.id}/payments`)}
@@ -111,32 +100,7 @@ class ParentDetail extends Component {
                         View Parent Payments
                     </button>
                 </div>
-                {/* <button type="button"
-                    onClick={() => {
-                        // let id = Number(parentId)
-                        console.log(typeof thisParent.id)
-                        let answer = window.confirm("Are you sure you want to delete this student?")
-                        if (answer) {
 
-                            this.props.deleteStudent(thisParent.id).then(() => this.props.history.push(`/TeacherHome`))
-                        }
-                    }
-                    }
-                    className="btn btn-success">
-                    Delete This Parent
-                    </button>
-                <button type="button"
-                    onClick={() => {
-
-
-                        this.props.history.push(`/students/${thisParent.id}/edit`)
-
-                    }
-
-                    }
-                    className="btn btn-success">
-                    Edit This Parents's Info
-                    </button> */}
 
             </React.Fragment>
         )

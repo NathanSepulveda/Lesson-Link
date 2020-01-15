@@ -36,8 +36,6 @@ class EditPaymentModal extends React.Component {
     };
     EditPayment = evt => {
 
-        let today = new Date()
-        let date = (today.getMonth()+1)+"/"+today.getDate()+"/"+today.getFullYear()
         let id = sessionStorage.getItem("studentId")
         console.log(id)
         if (id === null) {
