@@ -56,9 +56,14 @@ class ImageUpload extends Component {
                 let studentToUpdate = this.props.student
                 FileManager.addFile(this.state).then(file => {
                     studentToUpdate.lessonMaterialsIds.push(file.id)
-                    StudentAndParentManager.editUser(studentToUpdate).then(student => {
-                        this.props.updateStudentMaterials(student.lessonMaterialsIds)
-
+                    StudentAndParentManager.getUnexpandedStudent(studentToUpdate.id).then(returnedStudent => {
+                        returnedStudent.lessonMaterialsIds.push(file.id)
+                        return returnedStudent
+                    }).then(rStudent => {
+                        StudentAndParentManager.editUser(rStudent).then(student => {
+                            this.props.updateStudentMaterials(student.lessonMaterialsIds)
+                    })
+                    
                     })
 
                 })
