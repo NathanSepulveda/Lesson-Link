@@ -15,8 +15,13 @@ export default {
         return fetch(`${Settings.remoteURL}/users/${id}/?_expand=length&_expand=instrument&_expand=location&_expand=length&_expand=lessonDay`).then(e => e.json())
     },
     getAllParents() {
-        return fetch(`${Settings.remoteURL}/users/?userTypeId=3`).then(e => e.json())
+        return fetch(`${Settings.remoteURL}/users`).then(user => user).then(u => u.json())
     },
+    // getAllParents() {
+    //     return fetch(`${Settings.remoteURL}/users`).then(e => 
+            
+    //         e.filter(e.userTypeId === 3).then(e => e.json))
+    // },
     getOneParent(id) {
         return fetch(`${Settings.remoteURL}/users/${id}`).then(e => e.json())
     },

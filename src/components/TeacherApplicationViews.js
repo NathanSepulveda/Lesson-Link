@@ -36,7 +36,7 @@ class TeacherApplicationViews extends Component {
       })
       .then(() =>
         StudentAndParentManager.getAllParents().then(
-          parents => (newState.parents = parents)
+          parents => (newState.parents = parents.filter(p => p.userTypeId === 3))
         )
       )
       .then(() =>
