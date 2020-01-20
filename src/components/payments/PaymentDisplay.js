@@ -4,6 +4,7 @@ import PaymentsModal from "./PaymentsModal"
 import EditPaymentModal from "./EditPaymentModal"
 import "./Payments.css"
 import { Collapse, Button} from 'reactstrap';
+import LessonDetaiInfo from "../../modules/LessonDetaiInfo"
 
 const Json2csvParser = require('json2csv').Parser;
 
@@ -129,6 +130,11 @@ class PaymentsDisplay extends Component {
     render() {
 
 
+        let findMethod = payment => {
+           let r = LessonDetaiInfo.paymentMethods.find(p => p.id == payment.paymentMethodId )
+           return r.method
+        }
+
 
 
 
@@ -146,7 +152,7 @@ class PaymentsDisplay extends Component {
                                 <div className="col-md-12" key={payment.id} id={payment.id}>
 
                                     <div>{payment.date}</div>
-                                    <div>${payment.amount} {payment.paymentMethod.method}</div>
+                                    <div>${payment.amount} {findMethod(payment)}</div>
                                     {/* </div> */}
 
                                     {Number(sessionStorage.getItem("userType")) === 1 ?

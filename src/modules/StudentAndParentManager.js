@@ -12,17 +12,9 @@ export default {
     getUnexpandedStudent(id) {
         return fetch(`${Settings.remoteURL}/users/${id}`).then(e => e.json())
     },
-    // getUser(id) {
-    //     return fetch(`${Settings.remoteURL}/users/${id}/?_expand=length&_expand=instrument&_expand=location&_expand=length&_expand=lessonDay`).then(e => e.json())
-    // },
     getAllParents() {
         return fetch(`${Settings.remoteURL}/users`).then(user => user).then(u => u.json().then(parents => parents.filter(p => p.userTypeId === 3)))
     },
-    // getAllParents() {
-    //     return fetch(`${Settings.remoteURL}/users`).then(e => 
-            
-    //         e.filter(e.userTypeId === 3).then(e => e.json))
-    // },
     getOneParent(id) {
         return fetch(`${Settings.remoteURL}/users/${id}`).then(e => e.json())
     },
@@ -36,13 +28,13 @@ export default {
         return fetch(`${Settings.remoteURL}/lessons?studentId=${stId}&_order=desc`).then(e => e.json())
     },
     getPayments() {
-        return fetch(`${Settings.remoteURL}/payments?_expand=paymentMethod`).then(e => e.json())
+        return fetch(`${Settings.remoteURL}/payments`).then(e => e.json())
     },
     getMiles() {
         return fetch(`${Settings.remoteURL}/milage`).then(e => e.json())
     },
     getPaymentsOfStudent(usId) {
-        return fetch(`${Settings.remoteURL}/payments?userId=${usId}&_expand=paymentMethod`).then(e => e.json())
+        return fetch(`${Settings.remoteURL}/payments?userId=${usId}`).then(e => e.json())
     },
     getOnePayment(id) {
         return fetch(`${Settings.remoteURL}/payments/${id}`).then(e => e.json())

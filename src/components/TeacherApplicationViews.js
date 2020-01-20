@@ -20,11 +20,6 @@ class TeacherApplicationViews extends Component {
     parents: [],
     lessons: [],
     payments: [],
-    paymentMethods: [],
-    instruments: [],
-    locations: [],
-    lessonDays: [],
-    lengths: [],
     studentMaterials: []
   };
 
@@ -55,31 +50,11 @@ class TeacherApplicationViews extends Component {
         )
       )
       .then(() =>
-        StudentAndParentManager.getInstruments().then(
-          instruments => (newState.instruments = instruments)
-        )
-      )
-      .then(() =>
-        StudentAndParentManager.getLocations().then(
-          locations => (newState.locations = locations)
-        )
-      )
-      .then(() =>
-        StudentAndParentManager.getLengths().then(
-          lengths => (newState.lengths = lengths)
-        )
-      )
-      .then(() =>
         StudentAndParentManager.getAll().then(users => (newState.users = users))
       )
       .then(() =>
         StudentAndParentManager.getPaymentMethods().then(
           paymentMethods => (newState.paymentMethods = paymentMethods)
-        )
-      )
-      .then(() =>
-        StudentAndParentManager.getLessonDays().then(
-          lessonDays => (newState.lessonDays = lessonDays)
         )
       )
       .then(() => {
@@ -291,7 +266,6 @@ class TeacherApplicationViews extends Component {
                 {...props}
                 addStudent={this.addStudent}
                 parents={this.state.parents}
-                // addArticle={this.addArticle}
               />
             );
           }}

@@ -121,7 +121,21 @@ export default {
             "id": 8,
             "day": "Sporadic"
         }
-    ]
+    ],
+    "paymentMethods": [
+        {
+            "id": 1,
+            "method": "cash"
+        },
+        {
+            "id": 2,
+            "method": "check"
+        },
+        {
+            "id": 3,
+            "method": "electronic payment"
+        }
+    ],
     
 
 
