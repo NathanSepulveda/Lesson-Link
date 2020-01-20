@@ -36,7 +36,7 @@ class TeacherApplicationViews extends Component {
       })
       .then(() =>
         StudentAndParentManager.getAllParents().then(
-          parents => (newState.parents = parents.filter(p => p.userTypeId === 3))
+          parents => newState.parents = parents
         )
       )
       .then(() =>
@@ -275,12 +275,8 @@ class TeacherApplicationViews extends Component {
             return (
               <StudentEditForm
                 {...props}
-                instruments={this.state.instruments}
-                locations={this.state.locations}
                 editStudent={this.editStudent}
                 editParent={this.editParent}
-                lengths={this.state.lengths}
-                lessonDays={this.state.lessonDays}
                 addStudent={this.addStudent}
                 parents={this.state.parents}
               />
@@ -293,10 +289,6 @@ class TeacherApplicationViews extends Component {
             return (
               <NewStudentForm
                 {...props}
-                instruments={this.state.instruments}
-                locations={this.state.locations}
-                lengths={this.state.lengths}
-                lessonDays={this.state.lessonDays}
                 addStudent={this.addStudent}
                 parents={this.state.parents}
                 // addArticle={this.addArticle}

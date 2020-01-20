@@ -2,6 +2,7 @@ import React, { Component } from "react";
 // import "./StudentForm.css"
 import {Input } from 'reactstrap';
 import StudentAndParentManager from "../../../modules/StudentAndParentManager"
+import LessonDetaiInfo from "../../../modules/LessonDetaiInfo";
 
 
 
@@ -258,7 +259,7 @@ export default class StudentEditForm extends Component {
 
                                 >
                                     <option value=""></option>
-                                    {this.props.instruments.map(e => (
+                                    {LessonDetaiInfo.instruments.map(e => (
                                         <option key={e.id} id="instruments" value={e.id}>
                                             {e.name}
                                         </option>
@@ -277,7 +278,7 @@ export default class StudentEditForm extends Component {
 
                                 >
                                     <option value=""></option>
-                                    {this.props.locations.map(e => (
+                                    {LessonDetaiInfo.locations.map(e => (
                                         <option key={e.id} id="locations" value={e.id}>
                                             {e.location}
                                         </option>
@@ -297,7 +298,7 @@ export default class StudentEditForm extends Component {
 
                                 >
                                     <option value=""></option>
-                                    {this.props.lengths.map(e => (
+                                    {LessonDetaiInfo.lengths.map(e => (
                                         <option key={e.id} id="lengths" value={e.id}>
                                             {e.length}
                                         </option>
@@ -317,7 +318,7 @@ export default class StudentEditForm extends Component {
 
                                 >
                                     <option value=""></option>
-                                    {this.props.lessonDays.map(e => (
+                                    {LessonDetaiInfo.lessonDays.map(e => (
                                         <option key={Number(e.id)} id="days" value={Number(e.id)}>
                                             {e.day}
                                         </option>

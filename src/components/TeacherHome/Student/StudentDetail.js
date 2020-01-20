@@ -1,5 +1,6 @@
 import React, { Component } from "react"
 
+
 // import "./StudentForm.css"
 import StudentAndParentManager from "../../../modules/StudentAndParentManager"
 import { Button, Card} from 'reactstrap';
@@ -12,6 +13,7 @@ import NotesDisplay from "../../notes/NotesDisplay";
 import PaymentsDisplay from "../../payments/PaymentDisplay";
 import ImageUpload from "../../imageUpload";
 import FileManager from "../../../modules/FileManager";
+import LessonDetaiInfo from "../../../modules/LessonDetaiInfo";
 
 
 let id = sessionStorage.getItem("studentId")
@@ -74,14 +76,12 @@ class StudentDetail extends Component {
 
     render() {
 
-
-        let studentId = sessionStorage.getItem("studentId")
-        let thisStudent = this.props.students.find(student => parseInt(student.id) === parseInt(studentId)) || {}
-        let instrument = thisStudent.instrument || {}
+        let thisStudent = this.state.student || {}
+        let instrument = LessonDetaiInfo.instruments.find(inst => inst.id == thisStudent.instrumentId) || {}
         let instrumentImage;
-        let length = thisStudent.length || {}
-        let location = thisStudent.location || {}
-        let day = thisStudent.lessonDay || {}
+        let length = LessonDetaiInfo.lengths.find(len => len.id == thisStudent.lengthId) || {}
+        let location = LessonDetaiInfo.locations.find(loc => loc.id == thisStudent.locationId) || {}
+        let day = LessonDetaiInfo.lessonDays.find(ld => ld.id == thisStudent.lessonDayId) || {}
         if (thisStudent.instrumentId === 1) {
             instrumentImage = piano
         } else if (thisStudent.instrumentId === 2) {
@@ -117,8 +117,8 @@ class StudentDetail extends Component {
                                     {Number(sessionStorage.getItem("parentId") === null) ?
 
                                         <div>
-                                            <h2>Email: {thisStudent.emailAddress} </h2>
-                                            <h2>Phone: <a href={'tel:' + thisStudent.phoneNumber} className="phone">{thisStudent.phoneNumber}</a></h2>
+                                            <h2>Email: {this.state.student.emailAddress} </h2>
+                                            <h2>Phone: <a href={'tel:' + this.state.student.phoneNumber} className="phone">{thisStudent.phoneNumber}</a></h2>
 
                                         </div> : ""
 

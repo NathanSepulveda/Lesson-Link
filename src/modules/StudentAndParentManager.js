@@ -3,19 +3,20 @@ import Settings from "./Settings"
 
 export default {
     getAllStudents() {
-        return fetch(`${Settings.remoteURL}/users/?userTypeId=2&_expand=length&_expand=instrument&_expand=location&_expand=length&_expand=lessonDay`).then(e => e.json())
+        return fetch(`${Settings.remoteURL}/users`).then(e => e.json()
+        .then(users => users.filter(u => u.userTypeId == 2)))
     },
     getStudent(id) {
-        return fetch(`${Settings.remoteURL}/users/${id}/?userTypeId=2&_expand=length&_expand=instrument&_expand=location&_expand=length&_expand=lessonDay`).then(e => e.json())
+        return fetch(`${Settings.remoteURL}/users/${id}`).then(e => e.json())
     },
     getUnexpandedStudent(id) {
         return fetch(`${Settings.remoteURL}/users/${id}`).then(e => e.json())
     },
-    getUser(id) {
-        return fetch(`${Settings.remoteURL}/users/${id}/?_expand=length&_expand=instrument&_expand=location&_expand=length&_expand=lessonDay`).then(e => e.json())
-    },
+    // getUser(id) {
+    //     return fetch(`${Settings.remoteURL}/users/${id}/?_expand=length&_expand=instrument&_expand=location&_expand=length&_expand=lessonDay`).then(e => e.json())
+    // },
     getAllParents() {
-        return fetch(`${Settings.remoteURL}/users`).then(user => user).then(u => u.json())
+        return fetch(`${Settings.remoteURL}/users`).then(user => user).then(u => u.json().then(parents => parents.filter(p => p.userTypeId === 3)))
     },
     // getAllParents() {
     //     return fetch(`${Settings.remoteURL}/users`).then(e => 
