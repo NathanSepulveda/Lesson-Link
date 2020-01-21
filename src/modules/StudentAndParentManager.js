@@ -22,10 +22,10 @@ export default {
         return fetch(`${Settings.remoteURL}/users/${id}`).then(e => e.json())
     },
     getLessons() {
-        return fetch(`${Settings.remoteURL}/lessons?_order=desc`).then(e => e.json())
+        return fetch(`${Settings.remoteURL}/lessons`).then(e => e.json())
     },
     getLessonsOfStudent(stId) {
-        return fetch(`${Settings.remoteURL}/lessons?studentId=${stId}&_order=desc`).then(e => e.json())
+        return fetch(`${Settings.remoteURL}/lessons`).then(e => e.json().then(lessons => lessons.filter(ls => ls.studentId == stId)))
     },
     getPayments() {
         return fetch(`${Settings.remoteURL}/payments`).then(e => e.json())
@@ -34,7 +34,7 @@ export default {
         return fetch(`${Settings.remoteURL}/milage`).then(e => e.json())
     },
     getPaymentsOfStudent(usId) {
-        return fetch(`${Settings.remoteURL}/payments?userId=${usId}`).then(e => e.json())
+        return fetch(`${Settings.remoteURL}/payments`).then(e => e.json().then(payments => payments.filter(ps => ps.userId == usId)))
     },
     getOnePayment(id) {
         return fetch(`${Settings.remoteURL}/payments/${id}`).then(e => e.json())

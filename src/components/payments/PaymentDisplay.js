@@ -84,19 +84,17 @@ class PaymentsDisplay extends Component {
     outputCSV = evt => {
 
         const fields = ["userId", "date", "amount", "paymentMethodId", "teacherId"]
-        StudentAndParentManager.getPayments()
-            .then(payments => payments.filter(payment => payment.userId === Number(sessionStorage.getItem("studentId"))))
-            .then(payments => {
+            
+            
 
-                const json2csvParser = new Json2csvParser({ fields });
-                const csv = json2csvParser.parse(this.state.payments)
-                console.log(csv)
-                return csv
-
+        const json2csvParser = new Json2csvParser({ fields });
+        const csv = json2csvParser.parse(this.state.payments)
+        console.log(csv)
+        window.open("data:text/csv;charset=utf-8," + escape(csv))
 
 
 
-            }).then((csv) => window.open("data:text/csv;charset=utf-8," + escape(csv)))
+
     }
     addPayment = (paymentObj) => {
         return StudentAndParentManager.addPayment(paymentObj)
@@ -138,7 +136,6 @@ class PaymentsDisplay extends Component {
 
 
 
-        // let thisUser = this.props.users.find(user => parseInt(user.id) === parseInt(id)) || {}
 
         return (
             <React.Fragment>

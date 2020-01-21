@@ -18,7 +18,6 @@ class TeacherApplicationViews extends Component {
     students: [],
     users: [],
     parents: [],
-    lessons: [],
     payments: [],
     studentMaterials: []
   };
@@ -32,11 +31,6 @@ class TeacherApplicationViews extends Component {
       .then(() =>
         StudentAndParentManager.getAllParents().then(
           parents => newState.parents = parents
-        )
-      )
-      .then(() =>
-        StudentAndParentManager.getLessons().then(
-          lessons => (newState.lessons = lessons)
         )
       )
       .then(() =>
@@ -164,7 +158,6 @@ class TeacherApplicationViews extends Component {
                 {...props}
                 students={this.state.students}
                 deleteStudent={this.deleteStudent}
-                paymentMethods={this.state.paymentMethods}
               />
             );
           }}
@@ -178,7 +171,6 @@ class TeacherApplicationViews extends Component {
                 {...props}
                 students={this.state.students}
                 parents={this.state.parents}
-                paymentMethods={this.state.paymentMethods}
                 deleteStudent={this.deleteStudent}
               />
             );
@@ -192,7 +184,6 @@ class TeacherApplicationViews extends Component {
               <NotesDisplay
                 {...props}
                 students={this.state.students}
-                lessons={this.state.lessons}
               />
             );
           }}
@@ -203,11 +194,8 @@ class TeacherApplicationViews extends Component {
           render={props => {
             return (
               <PaymentsDisplay
-                {...props}
-                students={this.state.students}
-                users={this.state.users}
                 payments={this.state.payments}
-                paymentMethods={this.state.paymentMethods}
+
               />
             );
           }}
