@@ -23,12 +23,12 @@ export default {
   },
   searchUP(username, password) {
     return fetch(
-      `${Settings.remoteURL}/users?name=${username}&password=${password}`
-    ).then(e => e.json())
+      `${Settings.remoteURL}/users`
+    ).then(e => e.json().then(users => users.filter(u => u.name === username && u.password === password)))
   },
   searchUsername(username) {
     return fetch(`${Settings.remoteURL}/users?name=${username}`).then(e =>
-      e.json()
+      e.json().then(users => users.filter(u => u.name === username))
     )
   }
 }
