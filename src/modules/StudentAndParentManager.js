@@ -35,8 +35,23 @@ export default {
     },
     getPaymentsOfStudent(usId) {
         return fetch(`${Settings.remoteURL}/payments.json`).then(e => e.json().then(payments => 
-            {console.log(payments)
-            payments.filter(ps => ps.userId == usId)}))
+            {
+                console.log(payments['-Lz5KJF9yxFgOyhATDmR'])
+                if (payments.length) {
+                    
+                    let p = payments.filter(ps => ps.userId == usId)
+                    console.log(p)
+                    return p
+                    }
+                else {
+                    return []
+                }
+                }
+                
+                
+                )
+            
+            )
     },
     getOnePayment(id) {
         return fetch(`${Settings.remoteURL}/payments/${id}.json`).then(e => e.json())
