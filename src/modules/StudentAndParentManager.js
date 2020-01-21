@@ -34,7 +34,9 @@ export default {
         return fetch(`${Settings.remoteURL}/milage.json`).then(e => e.json())
     },
     getPaymentsOfStudent(usId) {
-        return fetch(`${Settings.remoteURL}/payments.json`).then(e => e.json().then(payments => payments.filter(ps => ps.userId == usId)))
+        return fetch(`${Settings.remoteURL}/payments.json`).then(e => e.json().then(payments => 
+            {console.log(payments)
+            payments.filter(ps => ps.userId == usId)}))
     },
     getOnePayment(id) {
         return fetch(`${Settings.remoteURL}/payments/${id}.json`).then(e => e.json())

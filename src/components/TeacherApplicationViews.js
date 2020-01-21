@@ -46,11 +46,6 @@ class TeacherApplicationViews extends Component {
       .then(() =>
         StudentAndParentManager.getAll().then(users => (newState.users = users))
       )
-      .then(() =>
-        StudentAndParentManager.getPaymentMethods().then(
-          paymentMethods => (newState.paymentMethods = paymentMethods)
-        )
-      )
       .then(() => {
         this.setState(newState);
       })

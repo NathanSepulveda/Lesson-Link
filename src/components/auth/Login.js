@@ -71,12 +71,14 @@ export default class Login extends Component {
     e.preventDefault()
     if (this.state.name && this.state.password) {
       UserManager.searchUP(this.state.name, this.state.password).then(
+        
         user => {
-          if (!user.length) {
+          
+          if (!user) {
             alert("Wrong name or password!")
           } else {
-            sessionStorage.setItem("credentials", parseInt(user[0].id))
-            sessionStorage.setItem("userType", user[0].userTypeId)
+            sessionStorage.setItem("credentials", parseInt(user.id))
+            sessionStorage.setItem("userType", user.userTypeId)
             this.props.setAuth()
           }
         }

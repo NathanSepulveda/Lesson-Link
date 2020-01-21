@@ -48,12 +48,15 @@ class StudentDetail extends Component {
         }
         StudentAndParentManager.getStudent(Number(sessionStorage.getItem('studentId')))
             .then((student) => newState.student = student)
-            .then(() => newState.student.lessonMaterialsIds.forEach(id => {
-                FileManager.getOneFile(id).then(file => {
-                    newState.studentMaterials.push(file)
+            // .then(() => newState.student.lessonMaterialsIds.forEach(id => {
+            //     if (id) {
 
-                })
-            }) )
+            //         FileManager.getOneFile(id).then(file => {
+            //             newState.studentMaterials.push(file)
+    
+            //         })
+            //     }
+            // }) )
 
             .then(() => this.setState(newState))
     }
