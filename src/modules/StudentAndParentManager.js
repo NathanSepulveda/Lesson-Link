@@ -3,73 +3,57 @@ import Settings from "./Settings"
 
 export default {
     getAllStudents() {
-        return fetch(`${Settings.remoteURL}/users`).then(e => e.json()
+        return fetch(`${Settings.remoteURL}/users.json`).then(e => e.json()
         .then(users => users.filter(u => u.userTypeId == 2)))
     },
     getStudent(id) {
-        return fetch(`${Settings.remoteURL}/users/${id}`).then(e => e.json())
+        return fetch(`${Settings.remoteURL}/users/${id}.json`).then(e => e.json())
     },
     getUnexpandedStudent(id) {
-        return fetch(`${Settings.remoteURL}/users/${id}`).then(e => e.json())
+        return fetch(`${Settings.remoteURL}/users/${id}.json`).then(e => e.json())
     },
     getAllParents() {
-        return fetch(`${Settings.remoteURL}/users`).then(user => user).then(u => u.json().then(parents => parents.filter(p => p.userTypeId === 3)))
+        return fetch(`${Settings.remoteURL}/users.json`).then(user => user).then(u => u.json().then(parents => parents.filter(p => p.userTypeId === 3)))
     },
     getOneParent(id) {
-        return fetch(`${Settings.remoteURL}/users/${id}`).then(e => e.json())
+        return fetch(`${Settings.remoteURL}/users/${id}.json`).then(e => e.json())
     },
     getTeacher(id) {
-        return fetch(`${Settings.remoteURL}/users/${id}`).then(e => e.json())
+        return fetch(`${Settings.remoteURL}/users/${id}.json`).then(e => e.json())
     },
     getLessons() {
-        return fetch(`${Settings.remoteURL}/lessons`).then(e => e.json())
+        return fetch(`${Settings.remoteURL}/lessons.json`).then(e => e.json())
     },
     getLessonsOfStudent(stId) {
-        return fetch(`${Settings.remoteURL}/lessons`).then(e => e.json().then(lessons => lessons.filter(ls => ls.studentId == stId)))
+        return fetch(`${Settings.remoteURL}/lessons.json`).then(e => e.json().then(lessons => lessons.filter(ls => ls.studentId == stId)))
     },
     getPayments() {
-        return fetch(`${Settings.remoteURL}/payments`).then(e => e.json())
+        return fetch(`${Settings.remoteURL}/payments.json`).then(e => e.json())
     },
     getMiles() {
-        return fetch(`${Settings.remoteURL}/milage`).then(e => e.json())
+        return fetch(`${Settings.remoteURL}/milage.json`).then(e => e.json())
     },
     getPaymentsOfStudent(usId) {
-        return fetch(`${Settings.remoteURL}/payments`).then(e => e.json().then(payments => payments.filter(ps => ps.userId == usId)))
+        return fetch(`${Settings.remoteURL}/payments.json`).then(e => e.json().then(payments => payments.filter(ps => ps.userId == usId)))
     },
     getOnePayment(id) {
-        return fetch(`${Settings.remoteURL}/payments/${id}`).then(e => e.json())
-    },
-    
-    getInstruments() {
-        return fetch(`${Settings.remoteURL}/instruments`).then(e => e.json())
-    },
-    getLocations() {
-        return fetch(`${Settings.remoteURL}/locations`).then(e => e.json())
-    },
-    getLengths() {
-        return fetch(`${Settings.remoteURL}/lengths`).then(e => e.json())
-    },
-    getPaymentMethods() {
-        return fetch(`${Settings.remoteURL}/paymentMethods`).then(e => e.json())
-    },
-    getLessonDays() {
-        return fetch(`${Settings.remoteURL}/lessonDays`).then(e => e.json())
+        return fetch(`${Settings.remoteURL}/payments/${id}.json`).then(e => e.json())
     },
     delete(id, collection) {
-        return fetch(`${Settings.remoteURL}/${collection}/${id}`, {
+        return fetch(`${Settings.remoteURL}/${collection}/${id}.json`, {
             method: "DELETE"
         })
     },
     deleteNote(id) {
-        return fetch(`${Settings.remoteURL}/lessons/${id}`, {
+        return fetch(`${Settings.remoteURL}/lessons/${id}.json`, {
             method: "DELETE"
         })
     },
     getAll() {
-        return fetch(`${Settings.remoteURL}/users`).then(e => e.json())
+        return fetch(`${Settings.remoteURL}/users.json`).then(e => e.json())
     },
     addUser(obj) {
-        return fetch(`${Settings.remoteURL}/users`, {
+        return fetch(`${Settings.remoteURL}/users.json`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -78,7 +62,7 @@ export default {
         }).then(data => data.json())
     },
     addNote(obj) {
-        return fetch(`${Settings.remoteURL}/lessons`, {
+        return fetch(`${Settings.remoteURL}/lessons.json`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -88,7 +72,7 @@ export default {
     },
     addPayment(obj) {
         console.log(obj)
-        return fetch(`${Settings.remoteURL}/payments`, {
+        return fetch(`${Settings.remoteURL}/payments.json`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -98,7 +82,7 @@ export default {
     },
     addMiles(obj) {
         console.log(obj)
-        return fetch(`${Settings.remoteURL}/milage`, {
+        return fetch(`${Settings.remoteURL}/milage.json`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -107,7 +91,7 @@ export default {
         }).then(data => data.json())
     },
     editUser(obj) {
-        return fetch(`${Settings.remoteURL}/users/${obj.id}`, {
+        return fetch(`${Settings.remoteURL}/users/${obj.id}.json`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
@@ -117,7 +101,7 @@ export default {
 
     },
     editPayment(obj) {
-        return fetch(`${Settings.remoteURL}/payments/${obj.id}`, {
+        return fetch(`${Settings.remoteURL}/payments/${obj.id}.json`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
@@ -127,7 +111,7 @@ export default {
 
     },
     editLesson(obj) {
-        return fetch(`${Settings.remoteURL}/lessons/${obj.id}`, {
+        return fetch(`${Settings.remoteURL}/lessons/${obj.id}.json`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
@@ -138,7 +122,7 @@ export default {
     },
 
     searchUsername(username) {
-        return fetch(`${Settings.remoteURL}/users?username=${username}`).then(e =>
+        return fetch(`${Settings.remoteURL}/users?username=${username}.json`).then(e =>
             e.json()
         )
     }

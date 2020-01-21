@@ -2,18 +2,18 @@ import Settings from "./Settings"
 
 export default {
   get(id) {
-    return fetch(`${Settings.remoteURL}/users/${id}`).then(e => e.json())
+    return fetch(`${Settings.remoteURL}/users/${id}.json`).then(e => e.json())
   },
   delete(id) {
-    return fetch(`${Settings.remoteURL}/users/${id}`, {
+    return fetch(`${Settings.remoteURL}/users/${id}.json`, {
       method: "DELETE"
     }).then(e => e.json())
   },
   getAll() {
-    return fetch(`${Settings.remoteURL}/users`).then(e => e.json())
+    return fetch(`${Settings.remoteURL}/users.json`).then(e => e.json())
   },
   addUser(obj) {
-    return fetch(`${Settings.remoteURL}/users`, {
+    return fetch(`${Settings.remoteURL}/users.json`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
