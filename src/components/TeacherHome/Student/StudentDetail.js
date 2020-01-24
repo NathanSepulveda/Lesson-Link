@@ -46,7 +46,7 @@ class StudentDetail extends Component {
         let newState = {
             studentMaterials: []
         }
-        StudentAndParentManager.getStudent(Number(sessionStorage.getItem('studentId')))
+        StudentAndParentManager.getStudent(sessionStorage.getItem('studentId'))
             .then((student) => newState.student = student)
             // .then(() => newState.student.lessonMaterialsIds.forEach(id => {
             //     if (id) {
@@ -153,7 +153,7 @@ class StudentDetail extends Component {
                                                 onClick={() => {
 
 
-                                                    this.props.history.push(`/students/${thisStudent.id}/edit`)
+                                                    this.props.history.push(`/students/${this.state.student.id}/edit`)
 
                                                 }
 

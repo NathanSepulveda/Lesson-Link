@@ -146,7 +146,7 @@ class TeacherApplicationViews extends Component {
         />
         <Route
           exact
-          path="/Students/:studentId(\d+)"
+          path="/Students/:studentId"
           render={props => {
             return (
               <StudentDetail
@@ -173,7 +173,7 @@ class TeacherApplicationViews extends Component {
         />
         <Route
           exact
-          path="/Students/:studentId(\d+)/notes"
+          path="/Students/:studentId/notes"
           render={props => {
             return (
               <NotesDisplay

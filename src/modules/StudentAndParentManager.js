@@ -3,7 +3,20 @@ import Settings from "./Settings"
 
 export default {
     getAllStudents() {
-        return fetch(`${Settings.remoteURL}/users.json`).then(e => e.json()
+        return fetch(`${Settings.remoteURL}/users.json`).then(e => e.json().then(studentObject => {
+            
+                let studentsArr = []
+                let keys = Object.keys(studentObject)
+                console.log(keys)
+                keys.forEach(key => {
+                    studentObject[key].id = key
+                    studentsArr.push(studentObject[key])
+
+                })
+                console.log(studentsArr)
+                return studentsArr
+                
+        })
         .then(users => users.filter(u => u.userTypeId == 2)))
     },
     getStudent(id) {
@@ -13,7 +26,21 @@ export default {
         return fetch(`${Settings.remoteURL}/users/${id}.json`).then(e => e.json())
     },
     getAllParents() {
-        return fetch(`${Settings.remoteURL}/users.json`).then(user => user).then(u => u.json().then(parents => parents.filter(p => p.userTypeId === 3)))
+        return fetch(`${Settings.remoteURL}/users.json`).then(e => e.json().then(parentObject => {
+            
+                let parentsArr = []
+                let keys = Object.keys(parentObject)
+                console.log(keys)
+                keys.forEach(key => {
+                    parentObject[key].id = key
+                    parentsArr.push(parentObject[key])
+
+                })
+                console.log(parentsArr)
+                return parentsArr
+                
+        })
+        .then(users => users.filter(u => u.userTypeId == 2)))
     },
     getOneParent(id) {
         return fetch(`${Settings.remoteURL}/users/${id}.json`).then(e => e.json())
