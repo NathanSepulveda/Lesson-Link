@@ -36,16 +36,16 @@ export default {
     getPaymentsOfStudent(usId) {
         return fetch(`${Settings.remoteURL}/payments.json`).then(e => e.json().then(payments => 
             {
-                console.log(payments['-Lz5KJF9yxFgOyhATDmR'])
-                if (payments.length) {
-                    
-                    let p = payments.filter(ps => ps.userId == usId)
-                    console.log(p)
-                    return p
-                    }
-                else {
-                    return []
-                }
+                let paymentsArr = []
+                let keys = Object.keys(payments)
+                console.log(keys)
+                keys.forEach(key => {
+                    payments[key].id = key
+                    paymentsArr.push(payments[key])
+
+                })
+                console.log(paymentsArr)
+                return paymentsArr
                 }
                 
                 
