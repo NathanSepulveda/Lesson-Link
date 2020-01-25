@@ -101,7 +101,7 @@ class StudentDetail extends Component {
 
 
 
-        let thisUser = this.props.students.find(user => parseInt(user.id) === parseInt(id)) || {}
+        let thisUser = this.props.students.find(user => user.id == id) || {}
         return (
 
             <React.Fragment>
@@ -117,7 +117,7 @@ class StudentDetail extends Component {
                                     <div id="instruments">
                                         <img id="instruments" src={instrumentImage} alt={instrument.name}></img>
                                     </div>
-                                    {Number(sessionStorage.getItem("parentId") === null) ?
+                                    {(sessionStorage.getItem("parentId") === null) ?
 
                                         <div>
                                             <h2>Email: {this.state.student.emailAddress} </h2>
@@ -250,7 +250,7 @@ class StudentDetail extends Component {
                     >Back to {this.state.student.name}'s Parent Info</Button>
 
                 } */}
-                        {Number(sessionStorage.getItem("parentId") === null)
+                        {sessionStorage.getItem("parentId") === null
                             ? ""
                             : <Button className="button"
                                 type="button"

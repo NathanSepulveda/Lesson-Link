@@ -147,7 +147,7 @@ class TeacherHome extends Component {
 
 
 
-                                            sessionStorage.setItem("parentId", Number(this.state.selectedParentId))
+                                            sessionStorage.setItem("parentId", this.state.selectedParentId)
 
 
                                         }}>Go to this Parent</Button></Link>
@@ -182,10 +182,10 @@ class TeacherHome extends Component {
                             <span className="divide"></span>
                             <div className="search-section">
                                 <button type="button"
-                                    onClick={() => this.props.history.push("/students/new")}
+                                    onClick={() => this.props.history.push("/newstudent")}
                                     className="btn btn-success tl-btn">
                                     Add New Student/Parent
-                    </button>
+                            </button>
                             </div>
                         </div>
                         {/* {

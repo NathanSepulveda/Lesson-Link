@@ -101,7 +101,7 @@ export default class StudentEditForm extends Component {
                 lessonMaterialsIds: []
 
             };
-            if (Number(parent.parentId) !== 0) {
+            if (parent.parentId !== 0) {
                 parent.parentId = 0
             }
             this.props.editParent(parent)
@@ -125,7 +125,7 @@ export default class StudentEditForm extends Component {
     }
 
     componentDidMount() {
-        StudentAndParentManager.getStudent(Number(this.props.match.params.studentId))
+        StudentAndParentManager.getStudent(this.props.match.params.studentId)
             .then(student => {
                 if (student.active) {
                     document.querySelector("#active").checked = true

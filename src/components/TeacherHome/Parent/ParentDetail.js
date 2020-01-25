@@ -48,7 +48,7 @@ class ParentDetail extends Component {
         let parentId = sessionStorage.getItem("parentId")
 
 
-        let thisParent = this.props.parents.find(parent => parseInt(parent.id) === parseInt(parentId)) || {}
+        let thisParent = this.props.parents.find(parent => parent.id === parentId) || {}
 
 
 
@@ -134,7 +134,7 @@ class ParentDetail extends Component {
                         >
                             {this.state.hasOwnProperty("selectedStudentId") === false ?
                                 <option value="">Look for a student</option> : ""}
-                            {this.props.students.filter(student => Number(student.parentId) === Number(parentId))
+                            {this.props.students.filter(student => student.parentId == parentId)
                                 .map(e => (
                                     <option key={e.id} id="students" value={e.id} >
                                         {e.name}

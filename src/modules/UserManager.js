@@ -35,7 +35,7 @@ export default {
 
         })
         console.log(userArr)
-        if (userArr.length() === 1) {
+        if (userArr.length === 1) {
           return userArr[0]
         }
         return userArr

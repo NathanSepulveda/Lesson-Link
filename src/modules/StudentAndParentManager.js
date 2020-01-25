@@ -1,5 +1,17 @@
 import Settings from "./Settings"
 
+function objectToArray(obj) {
+    console.log(obj)
+    let arr = []
+    let keys = Object.keys(obj)
+    console.log(keys)
+    keys.forEach(key => {
+        obj[key].id = key
+        arr.push(obj[key])
+
+    })
+    return arr
+}
 
 export default {
     getAllStudents() {
@@ -19,8 +31,20 @@ export default {
         })
         .then(users => users.filter(u => u.userTypeId == 2)))
     },
-    getStudent(id) {
-        return fetch(`${Settings.remoteURL}/users/${id}.json`).then(e => e.json())
+    getStudent(ID) {
+        return fetch(`${Settings.remoteURL}/users/${ID}.json`).then(e => e.json().then(stud => {
+            // let studentsArr = []
+            // let keys = Object.keys(stud)
+            // console.log(stud)
+            // keys.forEach(key => {
+            //     stud[key].id = key
+            //     studentsArr.push(stud[key])
+
+            // })
+            // console.log(studentsArr)
+            return stud
+            
+        }))
     },
     getUnexpandedStudent(id) {
         return fetch(`${Settings.remoteURL}/users/${id}.json`).then(e => e.json())
