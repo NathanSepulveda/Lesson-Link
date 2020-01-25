@@ -33,7 +33,7 @@ class PaymentsModal extends React.Component {
 
         console.log(date)
         newPayment = {
-            userId: Number(id),
+            userId: id,
             date: document.querySelector("#date").value,
             amount: document.querySelector("#payment").value,
             paymentMethodId: document.querySelector("#paymentMethodId").value,

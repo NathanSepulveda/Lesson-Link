@@ -24,7 +24,25 @@ export default {
   searchUP(username, password) {
     return fetch(
       `${Settings.remoteURL}/users.json`
-    ).then(e => e.json().then(users => users.find(u => u.name === username)))
+    ).then(e => e.json().then(userObject => 
+      {
+        let userArr = []
+        let keys = Object.keys(userObject)
+        console.log(keys)
+        keys.forEach(key => {
+          userObject[key].id = key
+          userArr.push(userObject[key])
+
+        })
+        console.log(userArr)
+        if (userArr.length() === 1) {
+          return userArr[0]
+        }
+        return userArr
+
+    })
+    
+    .then(users => users.find(u => u.name === username)))
   },
   searchUsername(username) {
     return fetch(`${Settings.remoteURL}/users.json`).then(e =>

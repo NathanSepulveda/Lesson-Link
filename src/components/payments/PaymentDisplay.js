@@ -36,10 +36,10 @@ class PaymentsDisplay extends Component {
             payments: [],
             thisUser: {}
         }
-        let id = Number(sessionStorage.getItem("studentId"))
+        let id = sessionStorage.getItem("studentId")
 
         if (id === 0) {
-            id = Number(sessionStorage.getItem("parentId"))
+            id = sessionStorage.getItem("parentId")
         }
 
 
@@ -61,10 +61,10 @@ class PaymentsDisplay extends Component {
     componentDidMount() {
 
         let newState = {}
-        let id = Number(sessionStorage.getItem("studentId"))
+        let id = sessionStorage.getItem("studentId")
 
         if (id === 0) {
-            id = Number(sessionStorage.getItem("parentId"))
+            id = sessionStorage.getItem("parentId")
         }
 
 

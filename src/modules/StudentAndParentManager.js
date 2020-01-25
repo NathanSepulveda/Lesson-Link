@@ -40,7 +40,7 @@ export default {
                 return parentsArr
                 
         })
-        .then(users => users.filter(u => u.userTypeId == 2)))
+        .then(users => users.filter(u => u.userTypeId == 3)))
     },
     getOneParent(id) {
         return fetch(`${Settings.remoteURL}/users/${id}.json`).then(e => e.json())
@@ -72,7 +72,9 @@ export default {
 
                 })
                 console.log(paymentsArr)
-                return paymentsArr
+                let filteredPayments = paymentsArr.filter(payment => payment.userId == usId)
+                console.log(filteredPayments)
+                return filteredPayments
                 }
                 
                 
