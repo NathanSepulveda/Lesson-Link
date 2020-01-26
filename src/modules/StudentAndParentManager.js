@@ -85,7 +85,9 @@ export default {
         }))
     },
     getMiles() {
-        return fetch(`${Settings.remoteURL}/milage.json`).then(e => e.json())
+        return fetch(`${Settings.remoteURL}/milage.json`).then(e => e.json().then(mileageObj => {
+            return objectToArray(mileageObj)
+        }))
     },
     getPaymentsOfStudent(usId) {
         return fetch(`${Settings.remoteURL}/payments.json`).then(e => e.json().then(payments => 

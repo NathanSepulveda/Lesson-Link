@@ -38,7 +38,7 @@ class PaymentsDisplay extends Component {
         }
         let id = sessionStorage.getItem("studentId")
 
-        if (id === 0) {
+        if (id === null) {
             id = sessionStorage.getItem("parentId")
         }
 
