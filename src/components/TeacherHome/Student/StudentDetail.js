@@ -46,8 +46,9 @@ class StudentDetail extends Component {
         let newState = {
             studentMaterials: []
         }
-        StudentAndParentManager.getStudent(sessionStorage.getItem('studentId'))
-            .then((student) => newState.student = student)
+        let ID = sessionStorage.getItem('studentId')
+        StudentAndParentManager.getStudent(ID)
+            .then((student) => newState.student = student).then(student => newState.student.id = ID)
             // .then(() => newState.student.lessonMaterialsIds.forEach(id => {
             //     if (id) {
 

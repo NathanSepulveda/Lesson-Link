@@ -110,7 +110,7 @@ class TeacherHome extends Component {
 
                             }
 
-                            {this.props.parents.filter(p => p.teacherId === Number(sessionStorage.getItem("credentials")))
+                            {this.props.parents.filter(p => p.teacherId == Number(sessionStorage.getItem("credentials")))
                                 .length === 0 ?
                                 "" :
                                 <div className="search-section">

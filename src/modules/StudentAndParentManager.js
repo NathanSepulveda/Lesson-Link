@@ -42,6 +42,7 @@ export default {
 
             // })
             // console.log(studentsArr)
+            // stud[ID].id = ID
             return stud
             
         }))
@@ -79,7 +80,9 @@ export default {
         return fetch(`${Settings.remoteURL}/lessons.json`).then(e => e.json().then(lessons => lessons.filter(ls => ls.studentId == stId)))
     },
     getPayments() {
-        return fetch(`${Settings.remoteURL}/payments.json`).then(e => e.json())
+        return fetch(`${Settings.remoteURL}/payments.json`).then(e => e.json().then(paymentObject => {
+            return objectToArray(paymentObject)
+        }))
     },
     getMiles() {
         return fetch(`${Settings.remoteURL}/milage.json`).then(e => e.json())

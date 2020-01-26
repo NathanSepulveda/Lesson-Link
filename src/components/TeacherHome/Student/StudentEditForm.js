@@ -11,7 +11,7 @@ export default class StudentEditForm extends Component {
     // Set initial state
     state = {
         "userTypeId": 2,
-        "teacherId": Number(sessionStorage.getItem("credentials")),
+        "teacherId": sessionStorage.getItem("credentials"),
         "password": 0,
         "accountId": 0,
         "parentId": 0,
@@ -125,8 +125,10 @@ export default class StudentEditForm extends Component {
     }
 
     componentDidMount() {
-        StudentAndParentManager.getStudent(this.props.match.params.studentId)
+        let ID = this.props.match.params.studentId
+        StudentAndParentManager.getStudent(ID)
             .then(student => {
+                student.id = ID
                 if (student.active) {
                     document.querySelector("#active").checked = true
                 }
