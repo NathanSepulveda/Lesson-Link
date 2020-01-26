@@ -74,7 +74,7 @@ export default class EventForm extends Component {
                 password: makeid(),
                 teacherId: this.state.teacherId,
                 lessonDayId: Number(this.state.lessonDayId),
-                parentId: Number(this.state.parentId),
+                parentId: this.state.parentId,
                 lessonTime: this.state.lessonTime,
                 instrumentId: Number(this.state.instrumentId),
                 locationId: Number(this.state.locationId),
