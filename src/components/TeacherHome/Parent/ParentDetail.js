@@ -17,7 +17,8 @@ class ParentDetail extends Component {
 
     componentDidMount() {
         let newState = {}
-        StudentAndParentManager.getOneParent(sessionStorage.getItem("parentId")).then(parent => {
+        let parentId = sessionStorage.getItem("parentId")
+        StudentAndParentManager.getOneParent(parentId).then(parent => {
             newState.parent = parent
         }).then(() => StudentAndParentManager.getTeacher(newState.parent.teacherId))
             .then(teacher => {
@@ -35,7 +36,7 @@ class ParentDetail extends Component {
 
 
         const stateToChange = {};
-        stateToChange[evt.target.id] = Number(evt.target.value);
+        stateToChange[evt.target.id] = evt.target.value;
 
 
         this.setState(stateToChange);
@@ -49,6 +50,9 @@ class ParentDetail extends Component {
 
 
         let thisParent = this.props.parents.find(parent => parent.id === parentId) || {}
+
+        let thisParentsStudents = this.props.students
+        console.log(thisParentsStudents)
 
 
 
@@ -134,7 +138,8 @@ class ParentDetail extends Component {
                         >
                             {this.state.hasOwnProperty("selectedStudentId") === false ?
                                 <option value="">Look for a student</option> : ""}
-                            {this.props.students.filter(student => student.parentId == parentId)
+                            {thisParentsStudents
+                            .filter(student => student.accountId == this.state.parent.accountId)
                                 .map(e => (
                                     <option key={e.id} id="students" value={e.id} >
                                         {e.name}
@@ -150,7 +155,7 @@ class ParentDetail extends Component {
 
 
 
-                                sessionStorage.setItem("studentId", Number(this.state.selectedStudentId))
+                                sessionStorage.setItem("studentId", this.state.selectedStudentId)
 
 
                             }}>Go to this Student</Button></Link>

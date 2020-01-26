@@ -44,9 +44,9 @@ export default class EventForm extends Component {
 
         if (this.state.parentId !== 0) {
 
-            StudentAndParentManager.getOneParent(Number(sessionStorage.getItem("parentId"))).then(parent => {
+            StudentAndParentManager.getOneParent(sessionStorage.getItem("parentId")).then(parent => {
                 sessionStorage.setItem("accountId", parent.accountId)
-                stateToChange.accountId = Number(sessionStorage.getItem("accountId"))
+                stateToChange.accountId = sessionStorage.getItem("accountId")
                 this.setState(stateToChange)
     
             })
@@ -58,8 +58,8 @@ export default class EventForm extends Component {
     NewStudent = evt => {
 
         let accountId = makeid
-        if (Number(sessionStorage.getItem("accountId")) !== null) {
-            accountId = Number(sessionStorage.getItem("accountId"))
+        if (sessionStorage.getItem("accountId") !== null) {
+            accountId = sessionStorage.getItem("accountId")
         }
         evt.preventDefault();
         if (this.state.eventName === "") {
@@ -199,7 +199,7 @@ export default class EventForm extends Component {
 
                                 >
                                     <option value="">Look for a Parent</option>
-                                    {this.props.parents.filter(parent => Number(parent.teacherId) === Number(sessionStorage.getItem("credentials")))
+                                    {this.props.parents.filter(parent => parent.teacherId == sessionStorage.getItem("credentials"))
                                         .map(e => (
                                             <option key={e.accountId} id="parentId" value={e.id} >
 
