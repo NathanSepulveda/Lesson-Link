@@ -77,7 +77,11 @@ export default {
         return fetch(`${Settings.remoteURL}/lessons.json`).then(e => e.json())
     },
     getLessonsOfStudent(stId) {
-        return fetch(`${Settings.remoteURL}/lessons.json`).then(e => e.json().then(lessons => lessons.filter(ls => ls.studentId == stId)))
+        return fetch(`${Settings.remoteURL}/lessons.json`).then(e => e.json().then(lessonObj => {
+            return objectToArray(lessonObj)
+        })
+        
+        .then(lessons => lessons.filter(ls => ls.studentId == stId)))
     },
     getPayments() {
         return fetch(`${Settings.remoteURL}/payments.json`).then(e => e.json().then(paymentObject => {

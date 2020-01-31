@@ -33,7 +33,7 @@ class NotesModal extends React.Component {
 
 
         newLessonNote = {
-            studentId: Number(sessionStorage.getItem("studentId")),
+            studentId: sessionStorage.getItem("studentId"),
             date: document.querySelector("#date").value,
             note: document.querySelector("#notes").value
         };

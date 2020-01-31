@@ -19,15 +19,15 @@ class NotesDisplay extends Component {
     componentDidMount() {
         let newState = {}
 
-        let id = Number(sessionStorage.getItem("studentId"))
+        let id = sessionStorage.getItem("studentId")
 
         if (id === 0) {
-            id = Number(sessionStorage.getItem("parentId"))
+            id = sessionStorage.getItem("parentId")
         } else if (sessionStorage.getItem("parentId") !== 0 && sessionStorage.getItem("studentId") !== 0) {
-            id=Number(sessionStorage.getItem("studentId"))
+            id=sessionStorage.getItem("studentId")
         }
         StudentAndParentManager.getStudent(id)
-            .then(student => newState.thisStudent = student)
+            .then(student => newState.thisStudent = student).then(() => newState.thisStudent.id = id)
             .then(() => StudentAndParentManager.getLessonsOfStudent(id))
             .then(notes => {
                 let lessons = notes.reverse()
