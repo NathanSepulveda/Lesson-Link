@@ -49,15 +49,15 @@ class StudentDetail extends Component {
         let ID = sessionStorage.getItem('studentId')
         StudentAndParentManager.getStudent(ID)
             .then((student) => newState.student = student).then(student => newState.student.id = ID)
-            // .then(() => newState.student.lessonMaterialsIds.forEach(id => {
-            //     if (id) {
+            .then(() => newState.student.lessonMaterialsIds.forEach(id => {
+                if (id) {
 
-            //         FileManager.getOneFile(id).then(file => {
-            //             newState.studentMaterials.push(file)
+                    FileManager.getOneFile(id).then(file => {
+                        newState.studentMaterials.push(file)
     
-            //         })
-            //     }
-            // }) )
+                    })
+                }
+            }) )
 
             .then(() => this.setState(newState))
     }

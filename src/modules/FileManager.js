@@ -1,11 +1,26 @@
 import Settings from "./Settings"
 
+function objectToArray(obj) {
+    console.log(obj)
+    let arr = []
+    let keys = Object.keys(obj)
+    console.log(keys)
+    keys.forEach(key => {
+        obj[key].id = key
+        arr.push(obj[key])
+
+    })
+    return arr
+}
+
 
 export default {
 
 
     getAll() {
-        return fetch(`${Settings.remoteURL}/studentMaterials.json`).then(e => e.json())
+        return fetch(`${Settings.remoteURL}/studentMaterials.json`).then(e => e.json().then(fileObj => {
+            return objectToArray(fileObj)
+        }))
     },
     getOneFile(id) {
         return fetch(`${Settings.remoteURL}/studentMaterials/${id}.json`).then(e => e.json())
