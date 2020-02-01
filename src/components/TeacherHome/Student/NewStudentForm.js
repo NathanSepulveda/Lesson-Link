@@ -81,7 +81,7 @@ export default class EventForm extends Component {
                 lengthId: Number(this.state.lengthId),
                 userTypeId: Number(this.state.userTypeId),
                 active: true,
-                lessonMaterialsIds: []
+                lessonMaterialsIds: [2]
 
 
             };
@@ -96,7 +96,12 @@ export default class EventForm extends Component {
 
             console.log(student)
             this.props.addStudent(student)
-                .then(() => this.props.history.push("/TeacherHome"));
+                .then(stud => 
+                {
+                    console.log(stud)
+                    this.props.history.push("/TeacherHome")
+                }
+                );
         }
     };
 

@@ -62,7 +62,7 @@ export default class StudentEditForm extends Component {
                 userTypeId: this.state.userTypeId,
                 lessonTime: this.state.lessonTime,
                 active: this.state.active,
-                lessonMaterialsIds: []
+                lessonMaterialsIds: this.state.lessonMaterialsIds
 
             };
             if (document.querySelector("#active").checked) {
@@ -146,7 +146,8 @@ export default class StudentEditForm extends Component {
                     lengthId: Number(student.lengthId),
                     lessonTime: student.lessonTime,
                     lessonDayId: student.lessonDayId,
-                    active: student.active
+                    active: student.active, 
+                    lessonMaterialsIds: student.lessonMaterialsIds
 
 
                 })

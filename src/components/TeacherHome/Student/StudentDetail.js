@@ -137,7 +137,7 @@ class StudentDetail extends Component {
                                                 color="danger"
 
                                                 onClick={() => {
-                                                    this.changeNumber()
+                                                    // this.changeNumber() i do not know where this came from
                                                     // let id = Number(studentId)
                                                     console.log(typeof thisStudent.id)
                                                     let answer = window.confirm("Are you sure you want to delete this student?")
