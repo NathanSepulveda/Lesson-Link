@@ -4,7 +4,9 @@ import { Button, Input, Card } from 'reactstrap';
 import StudentAndParentManager from "../../../modules/StudentAndParentManager";
 import PaymentsDisplay from "../../payments/PaymentDisplay";
 
-
+const cardContent = {
+    padding: "10px 10px 0 10px"
+}
 
 class ParentDetail extends Component {
     state = {
@@ -69,7 +71,7 @@ class ParentDetail extends Component {
                         <Card>
                         {Number(sessionStorage.getItem("userType")) === 1 ?
 
-                            <div id="studentInfo">
+                            <div id="parentInfo" style={cardContent} >
 
                                 <h1>{this.state.parent.name}</h1>
 

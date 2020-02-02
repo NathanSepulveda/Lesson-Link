@@ -1,10 +1,10 @@
 import Settings from "./Settings"
 
 function objectToArray(obj) {
-    console.log(obj)
+
     let arr = []
     let keys = Object.keys(obj)
-    console.log(keys)
+
     keys.forEach(key => {
         obj[key].id = key
         arr.push(obj[key])

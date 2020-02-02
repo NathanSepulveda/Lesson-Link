@@ -1,10 +1,10 @@
 import Settings from "./Settings"
 
 function objectToArray(obj) {
-    console.log(obj)
+
     let arr = []
     let keys = Object.keys(obj)
-    console.log(keys)
+
     keys.forEach(key => {
         obj[key].id = key
         arr.push(obj[key])
@@ -19,13 +19,13 @@ export default {
             
                 let studentsArr = []
                 let keys = Object.keys(studentObject)
-                console.log(keys)
+
                 keys.forEach(key => {
                     studentObject[key].id = key
                     studentsArr.push(studentObject[key])
 
                 })
-                console.log(studentsArr)
+
                 return studentsArr
                 
         })
@@ -55,13 +55,13 @@ export default {
             
                 let parentsArr = []
                 let keys = Object.keys(parentObject)
-                console.log(keys)
+
                 keys.forEach(key => {
                     parentObject[key].id = key
                     parentsArr.push(parentObject[key])
 
                 })
-                console.log(parentsArr)
+
                 return parentsArr
                 
         })
@@ -98,15 +98,15 @@ export default {
             {
                 let paymentsArr = []
                 let keys = Object.keys(payments)
-                console.log(keys)
+
                 keys.forEach(key => {
                     payments[key].id = key
                     paymentsArr.push(payments[key])
 
                 })
-                console.log(paymentsArr)
+
                 let filteredPayments = paymentsArr.filter(payment => payment.userId == usId)
-                console.log(filteredPayments)
+
                 return filteredPayments
                 }
                 
