@@ -48,7 +48,7 @@ export default class Login extends Component {
           alert(`name ${this.state.name} already exits!`);
         } else {
           UserManager.addUser(newUser).then(user => {
-            sessionStorage.setItem("credentials", parseInt(user.id));
+            sessionStorage.setItem("credentials", user.id);
             sessionStorage.setItem("userType", 1);
 
             this.props.setAuth();
@@ -67,7 +67,7 @@ export default class Login extends Component {
         if (!user) {
           alert("Wrong name or password!");
         } else {
-          sessionStorage.setItem("credentials", parseInt(user.id));
+          sessionStorage.setItem("credentials", user.id);
           sessionStorage.setItem("userType", user.userTypeId);
           this.props.setAuth();
         }
@@ -85,9 +85,11 @@ export default class Login extends Component {
   render() {
     return (
       <React.Fragment>
-        <div id="LG" className="page-component ">
-          <div className="col-md-6">
+        <div id="LG" className="page-component-wrapper row d-flex justify-content-center logg">
+          <div className="col-md-6 cont">
+            <div id="banner">
           <h2>Welcome to Lesson Link!</h2>
+          </div>
 
           <form className="loginForm">
             <div className=" form-group row">
@@ -122,6 +124,7 @@ export default class Login extends Component {
               id="registerStatus" />
           </div> */}
             </div>
+            <div id="buttonCont">
             <Button
               type="submit"
               onClick={this.handleLogin}
@@ -130,6 +133,7 @@ export default class Login extends Component {
             >
               Sign in
             </Button>
+            </div>
             <br></br>
 
             <div className="contactInfo hidden">
