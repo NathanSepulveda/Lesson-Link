@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 // import "./StudentForm.css"
 import StudentAndParentManager from "../../../modules/StudentAndParentManager";
-import { Button, Card } from "reactstrap";
+import { Button, Card, Container, Col, Row } from "reactstrap";
 import piano from "../../../images/piano.png";
 import guitar from "../../../images/icon.png";
 import uke from "../../../images/ukelele.png";
@@ -109,6 +109,7 @@ class StudentDetail extends Component {
               {this.state.student.name}
             </h1>
             <div id="pagecontainer">
+            {Number(sessionStorage.getItem("userType")) === 1 ? (
               <Card>
                 <div id="studentInfo" style ={cardContent}>
                   <h2>Student Info</h2>
@@ -120,7 +121,7 @@ class StudentDetail extends Component {
                       alt={instrument.name}
                     ></img>
                   </div>
-                  {sessionStorage.getItem("parentId") === null ? (
+
                     <div>
                       <h2>Email: {this.state.student.emailAddress} </h2>
                       <h2>
@@ -133,19 +134,19 @@ class StudentDetail extends Component {
                         </a>
                       </h2>
                     </div>
-                  ) : (
-                    ""
-                  )}
+
                   <h2>{length.length} Minute Lessons</h2>
                   <h2>Lesson Time: {thisStudent.lessonTime} </h2>
                   <h2>Lesson Location: {location.location} </h2>
                   <h2>Lesson Day: {day.day}'s </h2>
                 </div>
-                  {Number(sessionStorage.getItem("userType")) === 1 ? (
-                    <div >
+                  
+                    <Container>
+                      <Row xs="2">
                       <Button
                         type="button"
                         color="danger"
+                        className="col-6"
                         onClick={() => {
                           // this.changeNumber() i do not know where this came from
                           // let id = Number(studentId)
@@ -165,6 +166,7 @@ class StudentDetail extends Component {
                         Delete This Student
                       </Button>
                       <Button
+                      className="col-6"
                         type="button"
                         color="info"
                         onClick={() => {
@@ -176,19 +178,17 @@ class StudentDetail extends Component {
                       >
                         Edit This Student's Info
                       </Button>
-                    </div>
-                  ) : (
-                    ""
-                  )}
+                      </Row>
+                      </Container>
+                  
               </Card>
+              ) : ""}
               <ImageUpload
                 student={this.state.student}
                 updateStudentMaterials={this.updateStudentMaterials}
                 changeNumber={this.changeNumber}
               ></ImageUpload>
-              {/* {this.state.student.lessonMaterialsIds.map(l => {
-                                <a target="_blank" rel="noopener noreferrer" href={l.url}>File</a>
-                            })} */}
+
               <h1 style={headings}>Student Materials</h1>
               <div style={materialsList}>
                 {this.state.studentMaterials.map(e => (
