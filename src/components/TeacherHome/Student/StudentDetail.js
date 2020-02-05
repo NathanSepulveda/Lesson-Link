@@ -121,6 +121,7 @@ class StudentDetail extends Component {
                       alt={instrument.name}
                     ></img>
                   </div>
+                        {sessionStorage.getItem("parentId") === null ? (
 
                     <div>
                       <h2>Email: {this.state.student.emailAddress} </h2>
@@ -133,7 +134,7 @@ class StudentDetail extends Component {
                           {thisStudent.phoneNumber}
                         </a>
                       </h2>
-                    </div>
+                        </div> ) : ""}
 
                   <h2>{length.length} Minute Lessons</h2>
                   <h2>Lesson Time: {thisStudent.lessonTime} </h2>

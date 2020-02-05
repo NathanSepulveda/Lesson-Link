@@ -1,9 +1,14 @@
 import React, { Component } from "react"
 import { storage } from '../firebase'
 import FileManager from "../modules/FileManager"
+import {Input, Button } from 'reactstrap';
 
 
 import StudentAndParentManager from "../modules/StudentAndParentManager"
+
+const container = {
+    paddingTop: "20px"
+}
 
 
 class ImageUpload extends Component {
@@ -45,6 +50,10 @@ class ImageUpload extends Component {
         }, 
         (error) => {
             //err function
+            if (error) {
+
+                this.errorHandler()
+            }
             console.log(error)
         }, 
         () => {
@@ -90,9 +99,9 @@ class ImageUpload extends Component {
             <React.Fragment>
 
 
-                <div>
-                    <input type="file" onChange={this.handleChange}></input>
-                    <button onClick={this.handleUpload} >Upload</button>
+                <div style={container}>
+                    <Input type="file" onChange={this.handleChange}></Input>
+                    <Button onClick={this.handleUpload} >Upload</Button>
                 </div>
 
 
