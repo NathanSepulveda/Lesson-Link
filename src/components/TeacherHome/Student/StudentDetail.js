@@ -13,6 +13,7 @@ import PaymentsDisplay from "../../payments/PaymentDisplay";
 import ImageUpload from "../../imageUpload";
 import FileManager from "../../../modules/FileManager";
 import LessonDetaiInfo from "../../../modules/LessonDetaiInfo";
+import "./student.css"
 
 let id = sessionStorage.getItem("studentId");
 if (id === null) {
@@ -104,7 +105,7 @@ class StudentDetail extends Component {
     return (
       <React.Fragment>
         <div className="page-component-wrapper row d-flex studenthome justify-content-center">
-          <div className="page-component studenthome col-md-8">
+          <div className="page-component col-md-8">
             <h1 className="align-middle" id="name">
               {this.state.student.name}
             </h1>

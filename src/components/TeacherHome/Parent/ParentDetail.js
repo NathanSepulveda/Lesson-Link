@@ -3,10 +3,13 @@ import { Link } from "react-router-dom";
 import { Button, Input, Card } from "reactstrap";
 import StudentAndParentManager from "../../../modules/StudentAndParentManager";
 import PaymentsDisplay from "../../payments/PaymentDisplay";
+import "./parent.css";
 
 const cardContent = {
   padding: "10px 10px 0 10px"
 };
+
+
 
 class ParentDetail extends Component {
   state = {
@@ -43,6 +46,7 @@ class ParentDetail extends Component {
   };
   render() {
     let parentId = sessionStorage.getItem("parentId");
+    sessionStorage.removeItem("studentId")
 
     let thisParent =
       this.props.parents.find(parent => parent.id === parentId) || {};
@@ -134,7 +138,7 @@ class ParentDetail extends Component {
             ) : (
                 <h1>Welcome, {fullName}</h1>
             )}
-            <br></br>
+            {/* <br></br> */}
             <Input
               type="select"
               defaultValue=""
