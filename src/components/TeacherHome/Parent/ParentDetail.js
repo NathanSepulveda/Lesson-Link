@@ -52,7 +52,11 @@ class ParentDetail extends Component {
       this.props.parents.find(parent => parent.id === parentId) || {};
 
     let thisParentsStudents = this.props.students;
-    let fullName = thisParent.name|| "Parent"
+    let name = this.state.parent.name || ""
+    let firstName = name
+    if (name != undefined) {
+     firstName = name.split(" ")[0] || ""
+    }
     
     
 
@@ -136,7 +140,7 @@ class ParentDetail extends Component {
                 </div>
               </Card>
             ) : (
-                <h1>Welcome, {fullName}</h1>
+                <h1>Welcome, {firstName}!</h1>
             )}
             {/* <br></br> */}
             <Input
