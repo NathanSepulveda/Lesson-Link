@@ -18,7 +18,7 @@ class Nav extends Component {
   render() {
     let mobileConditions = true
       if (Number(sessionStorage.getItem("userType")) !== 1) {
-        return false
+        mobileConditions = false
       }
       if (window.matchMedia("(max-width: 414px)").matches) {
         mobileConditions = false

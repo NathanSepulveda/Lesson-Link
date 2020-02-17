@@ -1,0 +1,34 @@
+.parenthome:after {
+    content: " ";
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0.25;
+    /* background: lightgoldenrodyellow; */
+    background-image: url("../../../images/ROOTSPROMOWeb-17.jpg");
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    /* background-size: 100%; */
+    background-repeat: no-repeat;
+    /* background-position: bottom; */
+
+    background-attachment: fixed;
+    background-position: center;
+
+
+  }
+
+  .parenthome {
+    height: 100%;
+    overflow: scroll;
+
+
+    
+    
+  }

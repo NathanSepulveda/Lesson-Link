@@ -2,6 +2,7 @@ import React, { Component } from "react";
 // import "./StudentForm.css"
 import {Input } from 'reactstrap';
 import StudentAndParentManager from "../../../modules/StudentAndParentManager"
+import LessonDetaiInfo from "../../../modules/LessonDetaiInfo";
 
 
 
@@ -10,7 +11,7 @@ export default class StudentEditForm extends Component {
     // Set initial state
     state = {
         "userTypeId": 2,
-        "teacherId": Number(sessionStorage.getItem("credentials")),
+        "teacherId": sessionStorage.getItem("credentials"),
         "password": 0,
         "accountId": 0,
         "parentId": 0,
@@ -61,7 +62,7 @@ export default class StudentEditForm extends Component {
                 userTypeId: this.state.userTypeId,
                 lessonTime: this.state.lessonTime,
                 active: this.state.active,
-                lessonMaterialsIds: []
+                lessonMaterialsIds: this.state.lessonMaterialsIds
 
             };
             if (document.querySelector("#active").checked) {
@@ -100,7 +101,7 @@ export default class StudentEditForm extends Component {
                 lessonMaterialsIds: []
 
             };
-            if (Number(parent.parentId) !== 0) {
+            if (parent.parentId !== 0) {
                 parent.parentId = 0
             }
             this.props.editParent(parent)
@@ -124,8 +125,10 @@ export default class StudentEditForm extends Component {
     }
 
     componentDidMount() {
-        StudentAndParentManager.getStudent(Number(this.props.match.params.studentId))
+        let ID = this.props.match.params.studentId
+        StudentAndParentManager.getStudent(ID)
             .then(student => {
+                student.id = ID
                 if (student.active) {
                     document.querySelector("#active").checked = true
                 }
@@ -143,7 +146,8 @@ export default class StudentEditForm extends Component {
                     lengthId: Number(student.lengthId),
                     lessonTime: student.lessonTime,
                     lessonDayId: student.lessonDayId,
-                    active: student.active
+                    active: student.active, 
+                    lessonMaterialsIds: student.lessonMaterialsIds
 
 
                 })
@@ -258,7 +262,7 @@ export default class StudentEditForm extends Component {
 
                                 >
                                     <option value=""></option>
-                                    {this.props.instruments.map(e => (
+                                    {LessonDetaiInfo.instruments.map(e => (
                                         <option key={e.id} id="instruments" value={e.id}>
                                             {e.name}
                                         </option>
@@ -277,7 +281,7 @@ export default class StudentEditForm extends Component {
 
                                 >
                                     <option value=""></option>
-                                    {this.props.locations.map(e => (
+                                    {LessonDetaiInfo.locations.map(e => (
                                         <option key={e.id} id="locations" value={e.id}>
                                             {e.location}
                                         </option>
@@ -297,7 +301,7 @@ export default class StudentEditForm extends Component {
 
                                 >
                                     <option value=""></option>
-                                    {this.props.lengths.map(e => (
+                                    {LessonDetaiInfo.lengths.map(e => (
                                         <option key={e.id} id="lengths" value={e.id}>
                                             {e.length}
                                         </option>
@@ -317,7 +321,7 @@ export default class StudentEditForm extends Component {
 
                                 >
                                     <option value=""></option>
-                                    {this.props.lessonDays.map(e => (
+                                    {LessonDetaiInfo.lessonDays.map(e => (
                                         <option key={Number(e.id)} id="days" value={Number(e.id)}>
                                             {e.day}
                                         </option>

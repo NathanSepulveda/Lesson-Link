@@ -3,6 +3,7 @@ import "./StudentForm.css"
 import {Input } from 'reactstrap';
 
 import StudentAndParentManager from "../../../modules/StudentAndParentManager";
+import LessonDetaiInfo from "../../../modules/LessonDetaiInfo";
 
 
 let makeid = () => {
@@ -43,9 +44,9 @@ export default class EventForm extends Component {
 
         if (this.state.parentId !== 0) {
 
-            StudentAndParentManager.getOneParent(Number(sessionStorage.getItem("parentId"))).then(parent => {
+            StudentAndParentManager.getOneParent(sessionStorage.getItem("parentId")).then(parent => {
                 sessionStorage.setItem("accountId", parent.accountId)
-                stateToChange.accountId = Number(sessionStorage.getItem("accountId"))
+                stateToChange.accountId = sessionStorage.getItem("accountId")
                 this.setState(stateToChange)
     
             })
@@ -57,8 +58,8 @@ export default class EventForm extends Component {
     NewStudent = evt => {
 
         let accountId = makeid
-        if (Number(sessionStorage.getItem("accountId")) !== null) {
-            accountId = Number(sessionStorage.getItem("accountId"))
+        if (sessionStorage.getItem("accountId") !== null) {
+            accountId = sessionStorage.getItem("accountId")
         }
         evt.preventDefault();
         if (this.state.eventName === "") {
@@ -73,14 +74,14 @@ export default class EventForm extends Component {
                 password: makeid(),
                 teacherId: this.state.teacherId,
                 lessonDayId: Number(this.state.lessonDayId),
-                parentId: Number(this.state.parentId),
+                parentId: this.state.parentId,
                 lessonTime: this.state.lessonTime,
                 instrumentId: Number(this.state.instrumentId),
                 locationId: Number(this.state.locationId),
                 lengthId: Number(this.state.lengthId),
                 userTypeId: Number(this.state.userTypeId),
                 active: true,
-                lessonMaterialsIds: []
+                lessonMaterialsIds: [2]
 
 
             };
@@ -95,7 +96,12 @@ export default class EventForm extends Component {
 
             console.log(student)
             this.props.addStudent(student)
-                .then(() => this.props.history.push("/TeacherHome"));
+                .then(stud => 
+                {
+                    console.log(stud)
+                    this.props.history.push("/TeacherHome")
+                }
+                );
         }
     };
 
@@ -198,7 +204,7 @@ export default class EventForm extends Component {
 
                                 >
                                     <option value="">Look for a Parent</option>
-                                    {this.props.parents.filter(parent => Number(parent.teacherId) === Number(sessionStorage.getItem("credentials")))
+                                    {this.props.parents.filter(parent => parent.teacherId == sessionStorage.getItem("credentials"))
                                         .map(e => (
                                             <option key={e.accountId} id="parentId" value={e.id} >
 
@@ -233,7 +239,7 @@ export default class EventForm extends Component {
 
                                 >
                                     <option value=""></option>
-                                    {this.props.instruments.map(e => (
+                                    {LessonDetaiInfo.instruments.map(e => (
                                         <option key={e.id} id="instruments" value={e.id}>
                                             {e.name}
                                         </option>
@@ -252,7 +258,7 @@ export default class EventForm extends Component {
 
                                 >
                                     <option value=""></option>
-                                    {this.props.locations.map(e => (
+                                    {LessonDetaiInfo.locations.map(e => (
                                         <option key={e.id} id="locations" value={e.id}>
                                             {e.location}
                                         </option>
@@ -271,7 +277,7 @@ export default class EventForm extends Component {
 
                                 >
                                     <option value=""></option>
-                                    {this.props.lengths.map(e => (
+                                    {LessonDetaiInfo.lengths.map(e => (
                                         <option key={e.id} id="lengths" value={e.id}>
                                             {e.length}
                                         </option>
@@ -290,7 +296,7 @@ export default class EventForm extends Component {
 
                                 >
                                     <option value=""></option>
-                                    {this.props.lessonDays.map(e => (
+                                    {LessonDetaiInfo.lessonDays.map(e => (
                                         <option key={Number(e.id)} id="days" value={Number(e.id)}>
                                             {e.day}
                                         </option>

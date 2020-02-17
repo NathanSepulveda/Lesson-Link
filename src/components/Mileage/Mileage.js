@@ -35,22 +35,181 @@ class Mileage extends Component {
 
     }
 
-    paymentChart = () => {
+    filterMiles = () => {
+        let newState = {}
+        console.log(this.state.miles)
+        let jan = this.state.miles.filter(p => new Date(p.date).getMonth() === 0)
 
-        new Chart(document.getElementById("myChart"), {
-            "type": "bar", "data": {
-                "labels": ["January", "February", "March", "April", "May", "June", "July", "Aug", "Sep", "Oct", "Nov", "Dec"],
-                "datasets": [{
-                    "label": "Monthly Miles", "data": [`$ ${this.state.janTotal}`, this.state.febTotal, this.state.marchTotal, this.state.aprilTotal,
-                    this.state.mayTotal, this.state.juneTotal, this.state.julyTotal, this.state.augTotal, this.state.sepTotal,
-                    this.state.octTotal, this.state.novTotal, this.state.decTotal],
-                    "fill": false, "backgroundColor": ["rgba(255, 99, 132, 0.2)", "rgba(255, 159, 64, 0.2)", "rgba(255, 205, 86, 0.2)", "rgba(75, 192, 192, 0.2)", "rgba(54, 162, 235, 0.2)", "rgba(153, 102, 255, 0.2)", "rgba(201, 203, 207, 0.2)", "rgba(255, 2, 5, 0.2)"],
-                    "borderColor": ["rgb(255, 99, 132)", "rgb(255, 159, 64)", "rgb(255, 205, 86)", "rgb(75, 192, 192)", "rgb(54, 162, 235)", "rgb(153, 102, 255)", "rgb(101, 203, 207)"],
 
-                    "borderWidth": 5
-                }]
-            }, "options": { "scales": { "yAxes": [{ "ticks": { "beginAtZero": true } }] } }
-        });
+                let janTotal = jan.reduce((currentTotal, nextValue) => {
+
+                    return currentTotal += Number(nextValue.amount)
+
+
+                }, 0
+                )
+                newState.janTotal = janTotal
+                
+                let feb = this.state.miles.filter(p => new Date(p.date).getMonth() === 1)
+
+                let febTotal = feb.reduce((currentTotal, nextValue) => {
+
+                    return currentTotal += Number(nextValue.amount)
+
+
+                }, 0
+                )
+                newState.febTotal = febTotal
+                this.setState({febTotal : febTotal})
+
+                let march = this.state.miles.filter(p => new Date(p.date).getMonth() === 2)
+
+
+                let marchTotal = march.reduce((currentTotal, nextValue) => {
+
+                    return currentTotal += Number(nextValue.amount)
+
+
+                }, 0
+                )
+
+                newState.marchTotal = marchTotal
+
+                let april = this.state.miles.filter(p => new Date(p.date).getMonth() === 3)
+
+
+                let aprilTotal = april.reduce((currentTotal, nextValue) => {
+
+                    return currentTotal += Number(nextValue.amount)
+
+
+                }, 0
+                )
+
+                newState.aprilTotal = aprilTotal
+
+                let may = this.state.miles.filter(p => new Date(p.date).getMonth() === 4)
+
+
+                let mayTotal = may.reduce((currentTotal, nextValue) => {
+
+                    return currentTotal += Number(nextValue.amount)
+
+
+                }, 0
+                )
+
+                newState.mayTotal = mayTotal
+
+                let june = this.state.miles.filter(p => new Date(p.date).getMonth() === 5)
+
+
+                let juneTotal = june.reduce((currentTotal, nextValue) => {
+
+                    return currentTotal += Number(nextValue.amount)
+
+
+                }, 0
+                )
+
+                newState.juneTotal = juneTotal
+
+
+                let july = this.state.miles.filter(p => new Date(p.date).getMonth() === 6)
+
+
+                let julyTotal = july.reduce((currentTotal, nextValue) => {
+
+                    return currentTotal += Number(nextValue.amount)
+
+
+                }, 0
+                )
+
+                newState.julyTotal = julyTotal
+
+
+                let aug = this.state.miles.filter(p => new Date(p.date).getMonth() === 7)
+
+
+                let augTotal = aug.reduce((currentTotal, nextValue) => {
+
+                    return currentTotal += Number(nextValue.amount)
+
+
+                }, 0
+                )
+
+                newState.augTotal = augTotal
+
+
+                let sep = this.state.miles.filter(p => new Date(p.date).getMonth() === 8)
+
+
+                let sepTotal = sep.reduce((currentTotal, nextValue) => {
+
+                    return currentTotal += Number(nextValue.amount)
+
+
+                }, 0
+                )
+
+                newState.sepTotal = sepTotal
+
+
+                let oct = this.state.miles.filter(p => new Date(p.date).getMonth() === 9)
+
+
+
+                let octTotal = oct.reduce((currentTotal, nextValue) => {
+
+                    return currentTotal += Number(nextValue.amount)
+
+
+                }, 0
+                )
+
+                newState.octTotal = octTotal
+
+                let nov = this.state.miles.filter(p => new Date(p.date).getMonth() === 10)
+
+
+
+                let novTotal = nov.reduce((currentTotal, nextValue) => {
+
+                    return currentTotal += Number(nextValue.amount)
+
+
+                }, 0
+                )
+
+                newState.novTotal = novTotal
+
+                let dec = this.state.miles.filter(p => new Date(p.date).getMonth() === 11)
+
+
+
+                let decTotal = dec.reduce((currentTotal, nextValue) => {
+
+                    return currentTotal += Number(nextValue.amount)
+
+
+                }, 0
+                )
+
+                newState.decTotal = decTotal
+
+
+
+                let total = this.state.miles.reduce((currentTotal, nextValue) => {
+                    return currentTotal += Number(nextValue.amount)
+
+
+                }, 0
+                )
+                newState.yearlyTotal = total
+                this.setState(newState)
+
     }
 
 
@@ -64,6 +223,7 @@ class Mileage extends Component {
             .then(() =>
                 this.setState(newState))
             .then(() => {
+
                 let jan = this.state.miles.filter(p => new Date(p.date).getMonth() === 0)
 
 
@@ -234,78 +394,49 @@ class Mileage extends Component {
                 )
                 newState.yearlyTotal = total
 
-
-
-                let cash = this.state.miles.filter(payment => Number(payment.paymentMethodId) === 1)
-
-                let cashAmount = 0
-                cash.forEach(payment => {
-                    cashAmount += Number(payment.amount)
-                })
-
-                newState.cashAmount = cashAmount
-
-                newState.cashPercentage = Number((cashAmount / newState.yearlyTotal).toFixed(2))
-
-
-
-                let check = this.state.miles.filter(payment => Number(payment.paymentMethodId) === 2)
-
-                let checkAmount = 0
-                check.forEach(payment => {
-                    checkAmount += Number(payment.amount)
-                })
-                newState.checkAmount = checkAmount
-                newState.checkPercentage = Number((checkAmount / newState.yearlyTotal).toFixed(2))
-
-                let electronicPayment = this.state.miles.filter(payment => Number(payment.paymentMethodId) === 3)
-
-                let elAmount = 0
-                electronicPayment.forEach(payment => {
-                    elAmount += Number(payment.amount)
-                })
-                newState.electronicPaymentAmount = elAmount
-                newState.electronicpaymentPercentage = Number((elAmount / newState.yearlyTotal).toFixed(2))
-
-
-
+                console.log(this.state)
 
                 this.setState(newState)
-
-                let paymentChart = () => {
-
-                    new Chart(document.getElementById("myChart"), {
-                        "type": "bar", "data": {
-                            "labels": ["January", "February", "March", "April", "May", "June", "July", "Aug", "Sep", "Oct", "Nov", "Dec"],
-                            "datasets": [{
-                                "label": "Monthly Miles", "data": [this.state.janTotal, this.state.febTotal, this.state.marchTotal, this.state.aprilTotal,
-                                this.state.mayTotal, this.state.juneTotal, this.state.julyTotal, this.state.augTotal, this.state.sepTotal,
-                                this.state.octTotal, this.state.novTotal, this.state.decTotal],
-                                "fill": false, "backgroundColor": ["rgba(25, 99, 132, 0.2)", "rgba(255, 159, 64, 0.2)", "rgba(255, 205, 86, 0.2)", "rgba(75, 192, 192, 0.2)", "rgba(54, 162, 235, 0.2)", "rgba(153, 102, 255, 0.2)", "rgba(201, 203, 207, 0.2)"],
-                                "borderColor": ["rgb(25, 99, 132)", "rgb(255, 159, 64)", "rgb(255, 205, 86)", "rgb(75, 192, 192)", "rgb(54, 162, 235)", "rgb(153, 102, 255)", "rgb(101, 203, 207)", "rgb(14, 12, 235)"],
-
-                                "borderWidth": 5
-                            }]
-                        }, "options": { "scales": { "yAxes": [{ "ticks": { "beginAtZero": true } }] } }
-                    });
-                }
-
                 
 
-                paymentChart()
+                this.paymentChart()
 
             })
 
 
 
+
+
+    }
+    paymentChart = () => {
+
+        new Chart(document.getElementById("myChart"), {
+            "type": "bar", "data": {
+                "labels": ["January", "February", "March", "April", "May", "June", "July", "Aug", "Sep", "Oct", "Nov", "Dec"],
+                "datasets": [{
+                    "label": "Monthly Miles", "data": [this.state.janTotal, this.state.febTotal, this.state.marchTotal, this.state.aprilTotal,
+                    this.state.mayTotal, this.state.juneTotal, this.state.julyTotal, this.state.augTotal, this.state.sepTotal,
+                    this.state.octTotal, this.state.novTotal, this.state.decTotal],
+                    "fill": false, "backgroundColor": ["rgba(25, 99, 132, 0.2)", "rgba(255, 159, 64, 0.2)", "rgba(255, 205, 86, 0.2)", "rgba(75, 192, 192, 0.2)", "rgba(54, 162, 235, 0.2)", "rgba(153, 102, 255, 0.2)", "rgba(201, 203, 207, 0.2)"],
+                    "borderColor": ["rgb(25, 99, 132)", "rgb(255, 159, 64)", "rgb(255, 205, 86)", "rgb(75, 192, 192)", "rgb(54, 162, 235)", "rgb(153, 102, 255)", "rgb(101, 203, 207)", "rgb(14, 12, 235)"],
+
+                    "borderWidth": 5
+                }]
+            }, "options": { "scales": { "yAxes": [{ "ticks": { "beginAtZero": true } }] } }
+        });
     }
 
     addPayment = (milesObj) => {
         return StudentAndParentManager.addMiles(milesObj)
             .then(() => StudentAndParentManager.getMiles())
-            .then(miles => this.setState({ miles: miles,
-                collapse: !this.state.collapse
-            }))
+            .then(miles => {this.setState({ miles: miles,
+                collapse: !this.state.collapse})}
+                ).then(() => {
+                    this.filterMiles()
+                    this.paymentChart()
+                }
+                
+                )
     }
 
     render() {

@@ -1,14 +1,14 @@
 import React from "react"
 import ReactDOM from "react-dom"
 import "./index.css"
-import Nutshell from "./Nutshell"
+import LessonLink from "./Nutshell"
 import * as serviceWorker from "./serviceWorker"
 import { BrowserRouter as Router } from "react-router-dom"
 
 ReactDOM.render(
   <Router>
     <div className="container-fluid">
-    <Nutshell />
+    <LessonLink />
     </div> 
     
   </Router>,

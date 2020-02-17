@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import LessonDetaiInfo from '../../modules/LessonDetaiInfo';
 
 let newPayment = {}
 let today = new Date()
@@ -32,7 +33,7 @@ class PaymentsModal extends React.Component {
 
         console.log(date)
         newPayment = {
-            userId: Number(id),
+            userId: id,
             date: document.querySelector("#date").value,
             amount: document.querySelector("#payment").value,
             paymentMethodId: document.querySelector("#paymentMethodId").value,
@@ -64,7 +65,7 @@ class PaymentsModal extends React.Component {
                                 id="paymentMethodId"
                                 onChange={this.handleFieldChange}>
                                 <option value="">Method</option>
-                                {this.props.paymentMethods.map(e => (
+                                {LessonDetaiInfo.paymentMethods.map(e => (
                                     <option key={e.id} id="paymentMethodId" value={e.id} >
 
                                         {e.method}

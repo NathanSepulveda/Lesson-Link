@@ -4,6 +4,7 @@ import PaymentsModal from "./PaymentsModal"
 import EditPaymentModal from "./EditPaymentModal"
 import "./Payments.css"
 import { Collapse, Button} from 'reactstrap';
+import LessonDetaiInfo from "../../modules/LessonDetaiInfo"
 
 const Json2csvParser = require('json2csv').Parser;
 
@@ -35,10 +36,10 @@ class PaymentsDisplay extends Component {
             payments: [],
             thisUser: {}
         }
-        let id = Number(sessionStorage.getItem("studentId"))
+        let id = sessionStorage.getItem("studentId")
 
-        if (id === 0) {
-            id = Number(sessionStorage.getItem("parentId"))
+        if (id === null) {
+            id = sessionStorage.getItem("parentId")
         }
 
 
@@ -60,10 +61,10 @@ class PaymentsDisplay extends Component {
     componentDidMount() {
 
         let newState = {}
-        let id = Number(sessionStorage.getItem("studentId"))
+        let id = sessionStorage.getItem("studentId")
 
         if (id === 0) {
-            id = Number(sessionStorage.getItem("parentId"))
+            id = sessionStorage.getItem("parentId")
         }
 
 
@@ -83,19 +84,17 @@ class PaymentsDisplay extends Component {
     outputCSV = evt => {
 
         const fields = ["userId", "date", "amount", "paymentMethodId", "teacherId"]
-        StudentAndParentManager.getPayments()
-            .then(payments => payments.filter(payment => payment.userId === Number(sessionStorage.getItem("studentId"))))
-            .then(payments => {
+            
+            
 
-                const json2csvParser = new Json2csvParser({ fields });
-                const csv = json2csvParser.parse(this.state.payments)
-                console.log(csv)
-                return csv
-
+        const json2csvParser = new Json2csvParser({ fields });
+        const csv = json2csvParser.parse(this.state.payments)
+        console.log(csv)
+        window.open("data:text/csv;charset=utf-8," + escape(csv))
 
 
 
-            }).then((csv) => window.open("data:text/csv;charset=utf-8," + escape(csv)))
+
     }
     addPayment = (paymentObj) => {
         return StudentAndParentManager.addPayment(paymentObj)
@@ -129,24 +128,32 @@ class PaymentsDisplay extends Component {
     render() {
 
 
+        let findMethod = payment => {
+           let r = LessonDetaiInfo.paymentMethods.find(p => p.id == payment.paymentMethodId )
+           return r.method
+        }
 
 
 
-        // let thisUser = this.props.users.find(user => parseInt(user.id) === parseInt(id)) || {}
+
 
         return (
             <React.Fragment>
                 <Button color="primary" onClick={this.toggle} style={{ marginBottom: '1rem' }}>View Payments</Button>
                 <Collapse isOpen={this.state.collapse}
                     // onExited={this.onExited}
+                    style={{height: "130px", overflow: "scroll" }}
                 >
                     {this.state.payments
                         .map(payment =>
                             <div className="row paymentBox">
                                 <div className="col-md-12" key={payment.id} id={payment.id}>
-
+                                    <div className='info'>
                                     <div>{payment.date}</div>
-                                    <div>${payment.amount} {payment.paymentMethod.method}</div>
+                                    <div>${payment.amount} {findMethod(payment)}</div>
+
+                                    </div>
+
                                     {/* </div> */}
 
                                     {Number(sessionStorage.getItem("userType")) === 1 ?
@@ -200,7 +207,7 @@ class PaymentsDisplay extends Component {
 
                     <Button type="button" onClick={() =>
                         this.outputCSV()
-                    }> Click Here to Download Payments Summary</Button>
+                    }>Download Payments Summary</Button>
 
 
 

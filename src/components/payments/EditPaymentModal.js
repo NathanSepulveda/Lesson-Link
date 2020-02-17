@@ -2,6 +2,7 @@
 import React from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import StudentAndParentManager from '../../modules/StudentAndParentManager';
+import LessonDetaiInfo from '../../modules/LessonDetaiInfo';
 
 let editedPayment = {
 
@@ -43,7 +44,7 @@ class EditPaymentModal extends React.Component {
         }
         editedPayment = {
             id: this.props.currentPayment.id,
-            userId: Number(id),
+            userId: id,
             date:document.querySelector("#date").value,
             teacherId: Number(sessionStorage.getItem("credentials")),
             amount: Number(document.querySelector("#paymentAmount").value),
@@ -57,6 +58,11 @@ class EditPaymentModal extends React.Component {
 
 
     render() {
+
+        let findMethod = payment => {
+            let r = LessonDetaiInfo.paymentMethods.find(p => p.id == payment.paymentMethodId )
+            return r.method
+         }
 
         return (
             <div>
@@ -86,8 +92,8 @@ class EditPaymentModal extends React.Component {
                                 }
 
                             >
-                                <option value={this.props.currentPayment.paymentMethodId}>{this.props.currentPayment.paymentMethod.method}</option>
-                                {this.props.paymentMethods.filter(e => Number(e.id) !== Number(this.props.currentPayment.paymentMethodId) )
+                                <option value={this.props.currentPayment.paymentMethodId}>{findMethod(this.props.currentPayment)}</option>
+                                {LessonDetaiInfo.paymentMethods.filter(e => Number(e.id) != Number(this.props.currentPayment.paymentMethodId ))
                                 .map(e => (
                                     <option key={e.id} id="paymentMethodId" value={e.id} >
 

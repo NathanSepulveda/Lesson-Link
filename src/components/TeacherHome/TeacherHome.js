@@ -10,33 +10,24 @@ import { Button, Input } from 'reactstrap';
 
 class TeacherHome extends Component {
     state = {
-        parents: this.props.parents,
-        student: this.props.students
+        parents: null,
+        student: null
 
     }
 
     handleFieldChange = evt => {
 
         const stateToChange = {};
-        stateToChange[evt.target.id] = Number(evt.target.value);
+        stateToChange[evt.target.id] = evt.target.value;
 
         this.setState(stateToChange);
 
+        let selectedStudent = this.props.students.find(student => student.id == this.state.selectedStudentId)
+        this.setState({selectedStudent})
+
     };
 
-    // componentDidMount () {
-    //     function myFunction(x) {
-    //         if (x.matches) { // If media query matches
-    //             document.body.style.backgroundColor = "green";
-    //         } else {
-    //          document.body.style.backgroundColor = "pink";
-    //         }
-    //       }
 
-    //       var x = window.matchMedia("(max-width: 700px)")
-    //       myFunction(x) // Call listener function at run time
-    //       x.addListener(myFunction) // Attach listener function on state changes
-    // }
 
 
     render() {
@@ -56,7 +47,7 @@ class TeacherHome extends Component {
                     <div className="page-component teacherhome col-md-6">
                         <div id='search' className="">
                             <h1 className="tl-heading">Welcome, {firstName}!</h1>
-                            {this.props.students.filter(s => Number(s.teacherId) === Number(sessionStorage.getItem("credentials")))
+                            {this.props.students.filter(s => Number(s.teacherId) == Number(sessionStorage.getItem("credentials")))
                             
                                 .length === 0 ?
                                 ""
@@ -72,7 +63,7 @@ class TeacherHome extends Component {
                                     >
                                         {this.state.hasOwnProperty("selectedStudentId") === false ?
                                             <option value="">Look for a student</option> : ""}
-                                        {this.props.students.filter(student => Number(student.parentId) === 0 && Number(student.teacherId) === Number(sessionStorage.getItem("credentials")) && student.active ===true)
+                                        {this.props.students.filter(student => student.parentId == 0 && student.teacherId == sessionStorage.getItem("credentials") && student.active ==true)
                                             .map(e => (
                                                 <option key={e.id} id="students" value={e.id} >
                                                     {e.name}
@@ -84,11 +75,11 @@ class TeacherHome extends Component {
                                     {this.state.hasOwnProperty("selectedStudentId") === false ?
                                         ""
                                         :
-                                        <Link to={"/Students/" + this.state.selectedStudentId}><Button type="button" className="btn btn-info tl-btn" onClick={() => {
+                                        <Link to={"/Students/" + this.state.selectedStudentId} ><Button type="button" className="btn btn-info tl-btn" onClick={() => {
 
 
 
-                                            sessionStorage.setItem("studentId", Number(this.state.selectedStudentId))
+                                            sessionStorage.setItem("studentId", this.state.selectedStudentId)
 
 
                                         }}>Go to this Student</Button></Link>
@@ -107,7 +98,7 @@ class TeacherHome extends Component {
 
                             }
 
-                            {this.props.parents.filter(p => p.teacherId === Number(sessionStorage.getItem("credentials")))
+                            {this.props.parents.filter(p => p.teacherId == Number(sessionStorage.getItem("credentials")))
                                 .length === 0 ?
                                 "" :
                                 <div className="search-section">
@@ -144,7 +135,7 @@ class TeacherHome extends Component {
 
 
 
-                                            sessionStorage.setItem("parentId", Number(this.state.selectedParentId))
+                                            sessionStorage.setItem("parentId", this.state.selectedParentId)
 
 
                                         }}>Go to this Parent</Button></Link>
@@ -179,10 +170,10 @@ class TeacherHome extends Component {
                             <span className="divide"></span>
                             <div className="search-section">
                                 <button type="button"
-                                    onClick={() => this.props.history.push("/students/new")}
+                                    onClick={() => this.props.history.push("/newstudent")}
                                     className="btn btn-success tl-btn">
                                     Add New Student/Parent
-                    </button>
+                            </button>
                             </div>
                         </div>
                         {/* {

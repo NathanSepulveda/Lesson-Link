@@ -4,6 +4,7 @@ import UserAccessLayer from "../UserAccessLayer"
 
 class IsAuth extends Component {
   render() {
+
     return (
       <React.Fragment>
         {this.props.isAuthenticated() ? (

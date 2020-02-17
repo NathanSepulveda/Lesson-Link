@@ -1,82 +1,138 @@
 import Settings from "./Settings"
 
+function objectToArray(obj) {
+
+    let arr = []
+    let keys = Object.keys(obj)
+
+    keys.forEach(key => {
+        obj[key].id = key
+        arr.push(obj[key])
+
+    })
+    return arr
+}
 
 export default {
     getAllStudents() {
-        return fetch(`${Settings.remoteURL}/users/?userTypeId=2&_expand=length&_expand=instrument&_expand=location&_expand=length&_expand=lessonDay`).then(e => e.json())
+        return fetch(`${Settings.remoteURL}/users.json`).then(e => e.json().then(studentObject => {
+            
+                let studentsArr = []
+                let keys = Object.keys(studentObject)
+
+                keys.forEach(key => {
+                    studentObject[key].id = key
+                    studentsArr.push(studentObject[key])
+
+                })
+
+                return studentsArr
+                
+        })
+        .then(users => users.filter(u => u.userTypeId == 2)))
     },
-    getStudent(id) {
-        return fetch(`${Settings.remoteURL}/users/${id}/?userTypeId=2&_expand=length&_expand=instrument&_expand=location&_expand=length&_expand=lessonDay`).then(e => e.json())
+    getStudent(ID) {
+        return fetch(`${Settings.remoteURL}/users/${ID}.json`).then(e => e.json().then(stud => {
+            // let studentsArr = []
+            // let keys = Object.keys(stud)
+            // console.log(stud)
+            // keys.forEach(key => {
+            //     stud[key].id = key
+            //     studentsArr.push(stud[key])
+
+            // })
+            // console.log(studentsArr)
+            // stud[ID].id = ID
+            return stud
+            
+        }))
     },
     getUnexpandedStudent(id) {
-        return fetch(`${Settings.remoteURL}/users/${id}`).then(e => e.json())
-    },
-    getUser(id) {
-        return fetch(`${Settings.remoteURL}/users/${id}/?_expand=length&_expand=instrument&_expand=location&_expand=length&_expand=lessonDay`).then(e => e.json())
+        return fetch(`${Settings.remoteURL}/users/${id}.json`).then(e => e.json())
     },
     getAllParents() {
-        return fetch(`${Settings.remoteURL}/users`).then(user => user).then(u => u.json())
-    },
-    // getAllParents() {
-    //     return fetch(`${Settings.remoteURL}/users`).then(e => 
+        return fetch(`${Settings.remoteURL}/users.json`).then(e => e.json().then(parentObject => {
             
-    //         e.filter(e.userTypeId === 3).then(e => e.json))
-    // },
+                let parentsArr = []
+                let keys = Object.keys(parentObject)
+
+                keys.forEach(key => {
+                    parentObject[key].id = key
+                    parentsArr.push(parentObject[key])
+
+                })
+
+                return parentsArr
+                
+        })
+        .then(users => users.filter(u => u.userTypeId == 3)))
+    },
     getOneParent(id) {
-        return fetch(`${Settings.remoteURL}/users/${id}`).then(e => e.json())
+        return fetch(`${Settings.remoteURL}/users/${id}.json`).then(e => e.json())
     },
     getTeacher(id) {
-        return fetch(`${Settings.remoteURL}/users/${id}`).then(e => e.json())
+        return fetch(`${Settings.remoteURL}/users/${id}.json`).then(e => e.json())
     },
     getLessons() {
-        return fetch(`${Settings.remoteURL}/lessons?_order=desc`).then(e => e.json())
+        return fetch(`${Settings.remoteURL}/lessons.json`).then(e => e.json())
     },
     getLessonsOfStudent(stId) {
-        return fetch(`${Settings.remoteURL}/lessons?studentId=${stId}&_order=desc`).then(e => e.json())
+        return fetch(`${Settings.remoteURL}/lessons.json`).then(e => e.json().then(lessonObj => {
+            return objectToArray(lessonObj)
+        })
+        
+        .then(lessons => lessons.filter(ls => ls.studentId == stId)))
     },
     getPayments() {
-        return fetch(`${Settings.remoteURL}/payments?_expand=paymentMethod`).then(e => e.json())
+        return fetch(`${Settings.remoteURL}/payments.json`).then(e => e.json().then(paymentObject => {
+            return objectToArray(paymentObject)
+        }))
     },
     getMiles() {
-        return fetch(`${Settings.remoteURL}/milage`).then(e => e.json())
+        return fetch(`${Settings.remoteURL}/milage.json`).then(e => e.json().then(mileageObj => {
+            return objectToArray(mileageObj)
+        }))
     },
     getPaymentsOfStudent(usId) {
-        return fetch(`${Settings.remoteURL}/payments?userId=${usId}&_expand=paymentMethod`).then(e => e.json())
+        return fetch(`${Settings.remoteURL}/payments.json`).then(e => e.json().then(payments => 
+            {
+                let paymentsArr = []
+                let keys = Object.keys(payments)
+
+                keys.forEach(key => {
+                    payments[key].id = key
+                    paymentsArr.push(payments[key])
+
+                })
+
+                let filteredPayments = paymentsArr.filter(payment => payment.userId == usId)
+
+                return filteredPayments
+                }
+                
+                
+                )
+            
+            )
     },
     getOnePayment(id) {
-        return fetch(`${Settings.remoteURL}/payments/${id}`).then(e => e.json())
-    },
-    
-    getInstruments() {
-        return fetch(`${Settings.remoteURL}/instruments`).then(e => e.json())
-    },
-    getLocations() {
-        return fetch(`${Settings.remoteURL}/locations`).then(e => e.json())
-    },
-    getLengths() {
-        return fetch(`${Settings.remoteURL}/lengths`).then(e => e.json())
-    },
-    getPaymentMethods() {
-        return fetch(`${Settings.remoteURL}/paymentMethods`).then(e => e.json())
-    },
-    getLessonDays() {
-        return fetch(`${Settings.remoteURL}/lessonDays`).then(e => e.json())
+        return fetch(`${Settings.remoteURL}/payments/${id}.json`).then(e => e.json())
     },
     delete(id, collection) {
-        return fetch(`${Settings.remoteURL}/${collection}/${id}`, {
+        return fetch(`${Settings.remoteURL}/${collection}/${id}.json`, {
             method: "DELETE"
         })
     },
     deleteNote(id) {
-        return fetch(`${Settings.remoteURL}/lessons/${id}`, {
+        return fetch(`${Settings.remoteURL}/lessons/${id}.json`, {
             method: "DELETE"
         })
     },
     getAll() {
-        return fetch(`${Settings.remoteURL}/users`).then(e => e.json())
+        return fetch(`${Settings.remoteURL}/users.json`).then(e => e.json())
     },
     addUser(obj) {
-        return fetch(`${Settings.remoteURL}/users`, {
+        return fetch(`${Settings.remoteURL}/users.json`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -85,7 +141,7 @@ export default {
         }).then(data => data.json())
     },
     addNote(obj) {
-        return fetch(`${Settings.remoteURL}/lessons`, {
+        return fetch(`${Settings.remoteURL}/lessons.json`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -95,7 +151,7 @@ export default {
     },
     addPayment(obj) {
         console.log(obj)
-        return fetch(`${Settings.remoteURL}/payments`, {
+        return fetch(`${Settings.remoteURL}/payments.json`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -105,7 +161,7 @@ export default {
     },
     addMiles(obj) {
         console.log(obj)
-        return fetch(`${Settings.remoteURL}/milage`, {
+        return fetch(`${Settings.remoteURL}/milage.json`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -114,7 +170,7 @@ export default {
         }).then(data => data.json())
     },
     editUser(obj) {
-        return fetch(`${Settings.remoteURL}/users/${obj.id}`, {
+        return fetch(`${Settings.remoteURL}/users/${obj.id}.json`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
@@ -124,7 +180,7 @@ export default {
 
     },
     editPayment(obj) {
-        return fetch(`${Settings.remoteURL}/payments/${obj.id}`, {
+        return fetch(`${Settings.remoteURL}/payments/${obj.id}.json`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
@@ -134,7 +190,7 @@ export default {
 
     },
     editLesson(obj) {
-        return fetch(`${Settings.remoteURL}/lessons/${obj.id}`, {
+        return fetch(`${Settings.remoteURL}/lessons/${obj.id}.json`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
@@ -145,7 +201,7 @@ export default {
     },
 
     searchUsername(username) {
-        return fetch(`${Settings.remoteURL}/users?username=${username}`).then(e =>
+        return fetch(`${Settings.remoteURL}/users?username=${username}.json`).then(e =>
             e.json()
         )
     }

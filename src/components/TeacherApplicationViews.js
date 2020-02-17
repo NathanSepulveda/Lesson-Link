@@ -18,13 +18,7 @@ class TeacherApplicationViews extends Component {
     students: [],
     users: [],
     parents: [],
-    lessons: [],
     payments: [],
-    paymentMethods: [],
-    instruments: [],
-    locations: [],
-    lessonDays: [],
-    lengths: [],
     studentMaterials: []
   };
 
@@ -36,12 +30,7 @@ class TeacherApplicationViews extends Component {
       })
       .then(() =>
         StudentAndParentManager.getAllParents().then(
-          parents => (newState.parents = parents.filter(p => p.userTypeId === 3))
-        )
-      )
-      .then(() =>
-        StudentAndParentManager.getLessons().then(
-          lessons => (newState.lessons = lessons)
+          parents => newState.parents = parents
         )
       )
       .then(() =>
@@ -55,32 +44,7 @@ class TeacherApplicationViews extends Component {
         )
       )
       .then(() =>
-        StudentAndParentManager.getInstruments().then(
-          instruments => (newState.instruments = instruments)
-        )
-      )
-      .then(() =>
-        StudentAndParentManager.getLocations().then(
-          locations => (newState.locations = locations)
-        )
-      )
-      .then(() =>
-        StudentAndParentManager.getLengths().then(
-          lengths => (newState.lengths = lengths)
-        )
-      )
-      .then(() =>
         StudentAndParentManager.getAll().then(users => (newState.users = users))
-      )
-      .then(() =>
-        StudentAndParentManager.getPaymentMethods().then(
-          paymentMethods => (newState.paymentMethods = paymentMethods)
-        )
-      )
-      .then(() =>
-        StudentAndParentManager.getLessonDays().then(
-          lessonDays => (newState.lessonDays = lessonDays)
-        )
       )
       .then(() => {
         this.setState(newState);
@@ -180,30 +144,40 @@ class TeacherApplicationViews extends Component {
             );
           }}
         />
+          <Route
+            path="/newstudent"
+            render={props => {
+              return (
+                <NewStudentForm
+                  {...props}
+                  addStudent={this.addStudent}
+                  parents={this.state.parents}
+                />
+              );
+            }}
+          />
         <Route
           exact
-          path="/Students/:studentId(\d+)"
+          path="/Students/:studentId"
           render={props => {
             return (
               <StudentDetail
                 {...props}
                 students={this.state.students}
                 deleteStudent={this.deleteStudent}
-                paymentMethods={this.state.paymentMethods}
               />
             );
           }}
         />
         <Route
           exact
-          path="/parents/:parentId(\d+)"
+          path="/parents/:parentId"
           render={props => {
             return (
               <ParentDetail
                 {...props}
                 students={this.state.students}
                 parents={this.state.parents}
-                paymentMethods={this.state.paymentMethods}
                 deleteStudent={this.deleteStudent}
               />
             );
@@ -211,13 +185,12 @@ class TeacherApplicationViews extends Component {
         />
         <Route
           exact
-          path="/Students/:studentId(\d+)/notes"
+          path="/Students/:studentId/notes"
           render={props => {
             return (
               <NotesDisplay
                 {...props}
                 students={this.state.students}
-                lessons={this.state.lessons}
               />
             );
           }}
@@ -228,11 +201,8 @@ class TeacherApplicationViews extends Component {
           render={props => {
             return (
               <PaymentsDisplay
-                {...props}
-                students={this.state.students}
-                users={this.state.users}
                 payments={this.state.payments}
-                paymentMethods={this.state.paymentMethods}
+
               />
             );
           }}
@@ -270,36 +240,15 @@ class TeacherApplicationViews extends Component {
         />
         <Route
           exact
-          path="/students/:studentId(\d+)/edit"
+          path="/students/:studentId/edit"
           render={props => {
             return (
               <StudentEditForm
                 {...props}
-                instruments={this.state.instruments}
-                locations={this.state.locations}
                 editStudent={this.editStudent}
                 editParent={this.editParent}
-                lengths={this.state.lengths}
-                lessonDays={this.state.lessonDays}
                 addStudent={this.addStudent}
                 parents={this.state.parents}
-              />
-            );
-          }}
-        />
-        <Route
-          path="/students/new"
-          render={props => {
-            return (
-              <NewStudentForm
-                {...props}
-                instruments={this.state.instruments}
-                locations={this.state.locations}
-                lengths={this.state.lengths}
-                lessonDays={this.state.lessonDays}
-                addStudent={this.addStudent}
-                parents={this.state.parents}
-                // addArticle={this.addArticle}
               />
             );
           }}

@@ -27,7 +27,7 @@ class EditNotesModal extends React.Component {
         
         editedLessonNote = {
             id: this.props.currentNote.id,
-            studentId: Number(sessionStorage.getItem("studentId")),
+            studentId: sessionStorage.getItem("studentId"),
             date: document.querySelector("#date").value,
             note: document.querySelector("#notes").value
         };
@@ -55,7 +55,7 @@ class EditNotesModal extends React.Component {
                         </form>
                     </ModalBody>
                     <ModalFooter id="footer">
-                        <Button className="modalBtn" color="primary" onClick={this.NewLesson}>Add this note!</Button>{' '}
+                        <Button className="modalBtn" color="primary" onClick={this.NewLesson}>Edit this note!</Button>{' '}
                         {/* <Button color="primary" onClick={console.log(newFriendObject)}>Add Friend!</Button>{' '} */}
                         <Button className="modalBtn" color="secondary" onClick={this.toggle}>Cancel</Button>
                     </ModalFooter>

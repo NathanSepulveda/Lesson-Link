@@ -1,11 +1,85 @@
-.loginForm {
-    padding: 0 25px;
-}
-
 .hidden {
-    display: none
+  display: none;
 }
 
-.loginForm {
-    background-color: aliceblue
+
+
+
+
+
+
+.label {
+  margin-bottom: 0 !important;
+}
+
+.lab {
+  padding-top: 20px;
+}
+
+#signInButton {
+  margin: 0;
+  width: 40%;
+}
+
+/* #name {
+    padding: 0 !important
+} */
+
+#buttonCont {
+  display: flex;
+  justify-content: center;
+}
+
+#LG:after {
+  content: " ";
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  opacity: 0.25;
+  /* background: lightgoldenrodyellow; */
+  background-image: url("../../images/ROOTSPROMOWeb-17.jpg");
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  /* background-size: 100%; */
+  background-repeat: no-repeat;
+  background-position: bottom;
+}
+
+.logg{
+  padding-top: 170px !important;
+  padding-right: 30px !important;
+  padding-left: 30px;
+}
+
+#banner {
+  display: flex;
+  justify-content: center;
+
+
+
+    
+  
+}
+
+h2 {
+    font-size: 1.5rem !important;
+    font-size: 2rem !important;
+}
+
+@media screen and (max-width: 480px) {
+  h2 {
+    font-size: 1.5rem !important;
+  }
+  .logg {
+    padding-top: 230px !important;
+    padding-right: 30px !important;
+    padding-left: 30px;
+  }
+
 }
