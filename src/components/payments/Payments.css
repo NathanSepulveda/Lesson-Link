@@ -2,5 +2,13 @@
     border: 1px solid black;
     margin: 5px;
     box-shadow: 0 0 10px grey;
+    border-radius: 6px;
 
+
+}
+
+.info {
+    display: flex;
+    flex-direction: row; 
+    justify-content: space-between;
 }

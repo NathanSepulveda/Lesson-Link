@@ -16,5 +16,19 @@
     background-size: cover;
     /* background-size: 100%; */
     background-repeat: no-repeat;
-    background-position: bottom;
+    /* background-position: bottom; */
+
+    background-attachment: fixed;
+    background-position: center;
+
+
+  }
+
+  .parenthome {
+    height: 100%;
+    overflow: scroll;
+
+
+    
+    
   }

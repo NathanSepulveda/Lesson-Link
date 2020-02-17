@@ -143,6 +143,9 @@ class ParentDetail extends Component {
                 <h1>Welcome, {firstName}!</h1>
             )}
             {/* <br></br> */}
+            <div style={{paddingTop: " 30px"}}>
+              <h4>Find Your Student's Info</h4>
+            </div>
             <Input
               type="select"
               defaultValue=""
@@ -185,8 +188,7 @@ class ParentDetail extends Component {
               </Link>
             )}
 
-            <div id="payments">
-              <h2>Payments</h2>
+            <div id="payments" style={{paddingTop: "20px"}} >
               <PaymentsDisplay {...this.props} user={this.state.parent} />
             </div>
           </div>

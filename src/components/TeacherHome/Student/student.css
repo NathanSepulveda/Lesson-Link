@@ -17,4 +17,15 @@
     /* background-size: 100%; */
     background-repeat: no-repeat;
     background-position: bottom;
+    background-attachment: fixed;
+  }
+
+  .studenthome {
+    height: 100%;
+    overflow: scroll;
+
+  }
+
+  .sd {
+    margin-top: 10px !important;
   }

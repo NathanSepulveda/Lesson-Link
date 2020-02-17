@@ -142,14 +142,18 @@ class PaymentsDisplay extends Component {
                 <Button color="primary" onClick={this.toggle} style={{ marginBottom: '1rem' }}>View Payments</Button>
                 <Collapse isOpen={this.state.collapse}
                     // onExited={this.onExited}
+                    style={{height: "130px", overflow: "scroll" }}
                 >
                     {this.state.payments
                         .map(payment =>
                             <div className="row paymentBox">
                                 <div className="col-md-12" key={payment.id} id={payment.id}>
-
+                                    <div className='info'>
                                     <div>{payment.date}</div>
                                     <div>${payment.amount} {findMethod(payment)}</div>
+
+                                    </div>
+
                                     {/* </div> */}
 
                                     {Number(sessionStorage.getItem("userType")) === 1 ?
@@ -203,7 +207,7 @@ class PaymentsDisplay extends Component {
 
                     <Button type="button" onClick={() =>
                         this.outputCSV()
-                    }> Click Here to Download Payments Summary</Button>
+                    }>Download Payments Summary</Button>
 
 
 
