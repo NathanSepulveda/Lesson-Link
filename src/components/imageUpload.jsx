@@ -2,6 +2,9 @@ import React, { Component } from "react"
 import { storage } from '../firebase'
 import FileManager from "../modules/FileManager"
 import {Input, Button } from 'reactstrap';
+import { css } from "@emotion/core";
+// First way to import
+import { ClipLoader } from "react-spinners";
 
 
 import StudentAndParentManager from "../modules/StudentAndParentManager"
@@ -19,6 +22,8 @@ class ImageUpload extends Component {
             url: "",
             name: "",
             fileType: "",
+            uploadDisabled: true,
+            loading: false
             
         }
         this.handleChange = this.handleChange.bind(this)
@@ -37,12 +42,15 @@ class ImageUpload extends Component {
             this.setState(() => ({name}))
             this.setState(() => ({fileType}))
 
-            console.log(image.name, image.type)
+            console.log(image.name, image.type, storage)
+            this.setState({uploadDisabled: false})
         }
     }
 
     handleUpload = () => {
         const {image} = this.state
+        this.setState({loading: true})
+
       const uploadTask =   storage.ref(`files/${image.name}`).put(image)
         uploadTask.on("state_changed", 
         (snapshot) => {
@@ -67,8 +75,10 @@ class ImageUpload extends Component {
                     console.log(file)
                     studentToUpdate.lessonMaterialsIds.push(file.name)
                     StudentAndParentManager.getUnexpandedStudent(studentToUpdate.id).then(returnedStudent => {
+                        console.log(returnedStudent)
                         returnedStudent.lessonMaterialsIds.push(file.name)
                         console.log(returnedStudent)
+                        returnedStudent.id = studentToUpdate.id
                         return returnedStudent
                     }).then(rStudent => {
                         StudentAndParentManager.editUser(rStudent).then(student => {
@@ -78,7 +88,8 @@ class ImageUpload extends Component {
                     })
 
                 })
-                alert("File uploaded")
+                // alert("File uploaded")
+                this.setState({loading: false})
 
             })
         })
@@ -97,12 +108,21 @@ class ImageUpload extends Component {
     render() {
         return (
             <React.Fragment>
-
-
+            
+            {this.state.loading ? 
+            <ClipLoader
+        //   css={override}
+          size={30}
+          //size={"150px"} this also works
+          color={"#123abc"}
+        //   loading={this.state.loading}
+        /> : 
+            
                 <div style={container}>
                     <Input type="file" onChange={this.handleChange}></Input>
-                    <Button onClick={this.handleUpload} >Upload</Button>
+                    <Button disabled={this.state.uploadDisabled} onClick={this.handleUpload} >Upload</Button>
                 </div>
+        }
 
 
             </React.Fragment>

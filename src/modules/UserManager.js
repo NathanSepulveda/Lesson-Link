@@ -42,7 +42,7 @@ export default {
 
     })
     
-    .then(users => users.find(u => u.name === username)))
+    .then(users => users.find(u => u.name === username && u.password == password)))
   },
   searchUsername(username) {
     return fetch(`${Settings.remoteURL}/users.json`).then(e =>

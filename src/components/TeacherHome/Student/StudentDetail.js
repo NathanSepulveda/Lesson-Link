@@ -13,7 +13,7 @@ import PaymentsDisplay from "../../payments/PaymentDisplay";
 import ImageUpload from "../../imageUpload";
 import FileManager from "../../../modules/FileManager";
 import LessonDetaiInfo from "../../../modules/LessonDetaiInfo";
-import "./student.css"
+import "./student.css";
 
 let id = sessionStorage.getItem("studentId");
 if (id === null) {
@@ -31,8 +31,8 @@ const headings = {
 };
 
 const cardContent = {
-    padding: "10px 10px 0 10px"
-}
+  padding: "10px 10px 0 10px"
+};
 
 class StudentDetail extends Component {
   state = {
@@ -49,6 +49,7 @@ class StudentDetail extends Component {
     StudentAndParentManager.getStudent(ID)
       .then(student => (newState.student = student))
       .then(student => (newState.student.id = ID))
+
       .then(() =>
         newState.student.lessonMaterialsIds.forEach(id => {
           if (id) {
@@ -102,49 +103,63 @@ class StudentDetail extends Component {
     }
 
     let thisUser = this.props.students.find(user => user.id == id) || {};
+    let name = this.state.student.name || "";
+    let firstName = name;
+    if (name != undefined) {
+      firstName = name.split(" ")[0] || "";
+    }
     return (
       <React.Fragment>
         <div className="page-component-wrapper row d-flex studenthome justify-content-center">
           <div className="page-component sd col-md-8">
-            <h1 className="align-middle" id="name">
-              {this.state.student.name}
-            </h1>
+            {Number(sessionStorage.getItem("userType")) !== 1 ? (
+              <h1 className="align-middle" id="name">
+                Hi, {firstName}!
+              </h1>
+            ) : (
+              <h1 className="align-middle" id="name">
+                {this.state.student.name}
+              </h1>
+            )}
+
             <div id="pagecontainer">
-            {Number(sessionStorage.getItem("userType")) === 1 ? (
-              <Card>
-                <div id="studentInfo" style ={cardContent}>
-                  <h2>Student Info</h2>
+              {Number(sessionStorage.getItem("userType")) === 1 ? (
+                <Card>
+                  <div id="studentInfo" style={cardContent}>
+                    <h2>Student Info</h2>
 
-                  <div id="instruments">
-                    <img
-                      id="instruments"
-                      src={instrumentImage}
-                      alt={instrument.name}
-                    ></img>
+                    <div id="instruments">
+                      <img
+                        id="instruments"
+                        src={instrumentImage}
+                        alt={instrument.name}
+                      ></img>
+                    </div>
+                    {sessionStorage.getItem("parentId") === null ? (
+                      <div>
+                        <h2>Email: {this.state.student.emailAddress} </h2>
+                        <h2>
+                          Phone:{" "}
+                          <a
+                            href={"tel:" + this.state.student.phoneNumber}
+                            className="phone"
+                          >
+                            {thisStudent.phoneNumber}
+                          </a>
+                        </h2>
+                      </div>
+                    ) : (
+                      ""
+                    )}
+
+                    <h2>{length.length} Minute Lessons</h2>
+                    <h2>Lesson Time: {thisStudent.lessonTime} </h2>
+                    <h2>Lesson Location: {location.location} </h2>
+                    <h2>Lesson Day: {day.day}'s </h2>
                   </div>
-                        {sessionStorage.getItem("parentId") === null ? (
 
-                    <div>
-                      <h2>Email: {this.state.student.emailAddress} </h2>
-                      <h2>
-                        Phone:{" "}
-                        <a
-                          href={"tel:" + this.state.student.phoneNumber}
-                          className="phone"
-                        >
-                          {thisStudent.phoneNumber}
-                        </a>
-                      </h2>
-                        </div> ) : ""}
-
-                  <h2>{length.length} Minute Lessons</h2>
-                  <h2>Lesson Time: {thisStudent.lessonTime} </h2>
-                  <h2>Lesson Location: {location.location} </h2>
-                  <h2>Lesson Day: {day.day}'s </h2>
-                </div>
-                  
-                    <Container>
-                      <Row xs="2">
+                  <Container>
+                    <Row xs="2">
                       <Button
                         type="button"
                         color="danger"
@@ -168,7 +183,7 @@ class StudentDetail extends Component {
                         Delete This Student
                       </Button>
                       <Button
-                      className="col-6"
+                        className="col-6"
                         type="button"
                         color="info"
                         onClick={() => {
@@ -180,11 +195,12 @@ class StudentDetail extends Component {
                       >
                         Edit This Student's Info
                       </Button>
-                      </Row>
-                      </Container>
-                  
-              </Card>
-              ) : ""}
+                    </Row>
+                  </Container>
+                </Card>
+              ) : (
+                ""
+              )}
               <ImageUpload
                 student={this.state.student}
                 updateStudentMaterials={this.updateStudentMaterials}
