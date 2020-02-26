@@ -13,6 +13,10 @@ import PaymentsDisplay from "../../payments/PaymentDisplay";
 import ImageUpload from "../../imageUpload";
 import FileManager from "../../../modules/FileManager";
 import LessonDetaiInfo from "../../../modules/LessonDetaiInfo";
+
+import { css } from "@emotion/core";
+// First way to import
+import { ClipLoader } from "react-spinners";
 import "./student.css";
 
 let id = sessionStorage.getItem("studentId");
@@ -24,6 +28,7 @@ const materialsList = {
   display: "flex",
   flexDirection: "column"
 };
+
 
 const headings = {
   margin: "30px 0 5px 0",
@@ -38,7 +43,9 @@ class StudentDetail extends Component {
   state = {
     student: {},
     studentMaterials: [],
-    number: 2
+    number: 2,
+    isUploading: true,
+    containerOpacity: ""
   };
 
   componentDidMount() {
@@ -74,6 +81,14 @@ class StudentDetail extends Component {
       });
     });
   };
+
+  makeLoadingViewChanges = () => {
+    if (!this.state.isUploading) {
+      this.setState({isUploading: true, containerOpacity: .15}) 
+    } else {
+      this.setState({isUploading: false, containerOpacity: ""})
+    }
+  }
 
   render() {
     let thisStudent = this.state.student || {};
@@ -112,6 +127,16 @@ class StudentDetail extends Component {
       <React.Fragment>
         <div className="page-component-wrapper row d-flex studenthome justify-content-center">
           <div className="page-component sd col-md-8">
+          <div>
+          {this.state.isUploading ? 
+              (<ClipLoader
+                  css={{"z-index": 0, "position": "fixed!important", "z-index": 10, "margin-left": "45px"}}
+                size={300}
+                id="loading"
+                //size={"150px"} this also works
+                color={"#123abc"}
+                //   loading={this.state.loading}
+              />) : "" }
             {Number(sessionStorage.getItem("userType")) !== 1 ? (
               <h1 className="align-middle" id="name">
                 Hi, {firstName}!
@@ -122,7 +147,7 @@ class StudentDetail extends Component {
               </h1>
             )}
 
-            <div id="pagecontainer">
+            <div id="pagecontainer" style={{"opacity": this.state.containerOpacity}} >
               {Number(sessionStorage.getItem("userType")) === 1 ? (
                 <Card>
                   <div id="studentInfo" style={cardContent}>
@@ -205,6 +230,7 @@ class StudentDetail extends Component {
                 student={this.state.student}
                 updateStudentMaterials={this.updateStudentMaterials}
                 changeNumber={this.changeNumber}
+                isUploading = {this.makeLoadingViewChanges}
               ></ImageUpload>
 
               <h1 style={headings}>Student Materials</h1>
@@ -293,6 +319,7 @@ class StudentDetail extends Component {
                 Back to {this.state.student.name}'s Parent Info
               </Button>
             )}
+          </div>
           </div>
         </div>
       </React.Fragment>

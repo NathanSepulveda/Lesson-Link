@@ -2,9 +2,7 @@ import React, { Component } from "react"
 import { storage } from '../firebase'
 import FileManager from "../modules/FileManager"
 import {Input, Button } from 'reactstrap';
-import { css } from "@emotion/core";
-// First way to import
-import { ClipLoader } from "react-spinners";
+
 
 
 import StudentAndParentManager from "../modules/StudentAndParentManager"
@@ -49,7 +47,8 @@ class ImageUpload extends Component {
 
     handleUpload = () => {
         const {image} = this.state
-        this.setState({loading: true})
+        // this.setState({loading: true})
+        this.props.isUploading()
 
       const uploadTask =   storage.ref(`files/${image.name}`).put(image)
         uploadTask.on("state_changed", 
@@ -89,7 +88,8 @@ class ImageUpload extends Component {
 
                 })
                 // alert("File uploaded")
-                this.setState({loading: false})
+                // this.setState({loading: false})
+                this.props.isUploading()
 
             })
         })
@@ -109,20 +109,13 @@ class ImageUpload extends Component {
         return (
             <React.Fragment>
             
-            {this.state.loading ? 
-            <ClipLoader
-        //   css={override}
-          size={30}
-          //size={"150px"} this also works
-          color={"#123abc"}
-        //   loading={this.state.loading}
-        /> : 
+            
             
                 <div style={container}>
                     <Input type="file" onChange={this.handleChange}></Input>
                     <Button disabled={this.state.uploadDisabled} onClick={this.handleUpload} >Upload</Button>
                 </div>
-        }
+        
 
 
             </React.Fragment>
