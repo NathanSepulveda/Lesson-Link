@@ -39,8 +39,14 @@ class PaymentsModal extends React.Component {
             paymentMethodId: document.querySelector("#paymentMethodId").value,
             teacherId: Number(sessionStorage.getItem("credentials"))
         };
-        console.log(newPayment)
-        this.props.addPayment(newPayment).then(() => this.toggle())
+        if (newPayment.paymentMethodId === "") {
+            alert("please put payment type")
+        } else {
+
+            console.log(newPayment)
+            this.props.addPayment(newPayment).then(() => this.toggle())
+        }
+
 
     };
 

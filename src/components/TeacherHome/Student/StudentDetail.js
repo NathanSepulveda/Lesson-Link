@@ -127,16 +127,16 @@ class StudentDetail extends Component {
       <React.Fragment>
         <div className="page-component-wrapper row d-flex studenthome justify-content-center">
           <div className="page-component sd col-md-8">
-          <div>
+            <Container>
           {this.state.isUploading ? 
               (<ClipLoader
-                  css={{"z-index": 0, "position": "fixed!important", "z-index": 10, "margin-left": "45px"}}
+                css={{"z-index": 0, "position": "fixed!important", "z-index": 10, "margin-left": "45px"}}
                 size={300}
                 id="loading"
                 //size={"150px"} this also works
                 color={"#123abc"}
                 //   loading={this.state.loading}
-              />) : "" }
+                />) : "" }
             {Number(sessionStorage.getItem("userType")) !== 1 ? (
               <h1 className="align-middle" id="name">
                 Hi, {firstName}!
@@ -147,6 +147,7 @@ class StudentDetail extends Component {
               </h1>
             )}
 
+            <Col>
             <div id="pagecontainer" style={{"opacity": this.state.containerOpacity}} >
               {Number(sessionStorage.getItem("userType")) === 1 ? (
                 <Card>
@@ -232,7 +233,7 @@ class StudentDetail extends Component {
                 changeNumber={this.changeNumber}
                 isUploading = {this.makeLoadingViewChanges}
               ></ImageUpload>
-
+              <Col>
               <h1 style={headings}>Student Materials</h1>
               <div style={materialsList}>
                 {this.state.studentMaterials.map(e => (
@@ -260,6 +261,7 @@ class StudentDetail extends Component {
                   <PaymentsDisplay {...this.props} user={this.state.student} />
                 </div>
               )}
+              </Col>
             </div>
 
             {/* hide for just now */}
@@ -319,9 +321,11 @@ class StudentDetail extends Component {
                 Back to {this.state.student.name}'s Parent Info
               </Button>
             )}
-          </div>
+          
+          </Container>
           </div>
         </div>
+
       </React.Fragment>
     );
   }
