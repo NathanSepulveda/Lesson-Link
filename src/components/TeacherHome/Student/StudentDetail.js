@@ -44,7 +44,7 @@ class StudentDetail extends Component {
     student: {},
     studentMaterials: [],
     number: 2,
-    isUploading: true,
+    isUploading: false,
     containerOpacity: ""
   };
 
@@ -128,24 +128,24 @@ class StudentDetail extends Component {
         <div className="page-component-wrapper row d-flex studenthome justify-content-center">
           <div className="page-component sd col-md-8">
             <Container>
-          {this.state.isUploading ? 
-              (<ClipLoader
-                css={{"z-index": 0, "position": "fixed!important", "z-index": 10, "margin-left": "45px"}}
-                size={300}
-                id="loading"
-                //size={"150px"} this also works
-                color={"#123abc"}
-                //   loading={this.state.loading}
-                />) : "" }
-            {Number(sessionStorage.getItem("userType")) !== 1 ? (
-              <h1 className="align-middle" id="name">
-                Hi, {firstName}!
-              </h1>
-            ) : (
-              <h1 className="align-middle" id="name">
-                {this.state.student.name}
-              </h1>
-            )}
+              {this.state.isUploading ? 
+                  (<ClipLoader
+                    css={{"z-index": 0, "position": "fixed!important", "z-index": 10, "margin-left": "45px"}}
+                    size={150}
+                    id="loading"
+                    //size={"150px"} this also works
+                    color={"#123abc"}
+                    //   loading={this.state.loading}
+                    />) : "" }
+                {Number(sessionStorage.getItem("userType")) !== 1 ? (
+                  <h1 className="align-middle" id="name">
+                    Hi, {firstName}!
+                  </h1>
+                ) : (
+                  <h1 className="align-middle" id="name">
+                    {this.state.student.name}
+                  </h1>
+                )}
 
             <Col>
             <div id="pagecontainer" style={{"opacity": this.state.containerOpacity}} >
@@ -301,6 +301,7 @@ class StudentDetail extends Component {
                     >Back to {this.state.student.name}'s Parent Info</Button>
 
                 } */}
+            
             {sessionStorage.getItem("parentId") === null ? (
               ""
             ) : (
@@ -321,7 +322,7 @@ class StudentDetail extends Component {
                 Back to {this.state.student.name}'s Parent Info
               </Button>
             )}
-          
+          </Col>
           </Container>
           </div>
         </div>
