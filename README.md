@@ -1,9 +1,10 @@
-# Nutshell 🌰
+# Lesson Link
 
-## What is this project and what does it do?
+## This project is a music lessons management app that is built with React 
 
 ## After I clone this repo, what do I need to do to setup and run this project?
+## This app uses Firebase for persistent data storage
 
-##### for markdown ideas https://markdown-it.github.io 😁
 
-# Nutshell
+
+# Lesson Link
