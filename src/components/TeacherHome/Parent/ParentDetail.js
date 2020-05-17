@@ -42,7 +42,6 @@ class ParentDetail extends Component {
 
     this.setState(stateToChange);
 
-    console.log(this.state);
   };
   render() {
     let parentId = sessionStorage.getItem("parentId");

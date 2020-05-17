@@ -28,13 +28,13 @@ export default {
       {
         let userArr = []
         let keys = Object.keys(userObject)
-        console.log(keys)
+
         keys.forEach(key => {
           userObject[key].id = key
           userArr.push(userObject[key])
 
         })
-        console.log(userArr)
+
         if (userArr.length === 1) {
           return userArr[0]
         }

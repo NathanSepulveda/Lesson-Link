@@ -394,7 +394,6 @@ class Mileage extends Component {
                 )
                 newState.yearlyTotal = total
 
-                console.log(this.state)
 
                 this.setState(newState)
                 
