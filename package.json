@@ -17,7 +17,7 @@
     "react-dom": "^16.6.3",
     "react-image-crop": "^6.0.18",
     "react-router-dom": "^4.3.1",
-    "react-scripts": "2.1.1",
+    "react-scripts": "5.0.1",
     "react-spinners": "^0.8.0",
     "react-viewer": "^2.8.0",
     "reactstrap": "^6.5.0"
